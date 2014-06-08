@@ -1,45 +1,9 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Prodeo.index" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="index.aspx.cs" Inherits="Prodeo.index" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-		<title>Twenty by HTML5 UP</title>
-		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-		<script src="js/jquery.min.js"></script>
-		<script src="js/jquery.dropotron.min.js"></script>
-        <link href="Styles/modal.css" rel="stylesheet" type="text/css" />
-		<script src="js/skel.min.js"></script>
-		<script src="js/skel-layers.min.js"></script>
-		<script src="js/init.js"></script>
-        <script src="js/jquery-1.9.1.min.js" type="text/javascript"></script>
-        <script src="js/jquery.leanModal.min.js" type="text/javascript"></script>
-		<noscript>
-			<link rel="stylesheet" href="Styles/skel.css" />
-			<link rel="stylesheet" href="Styles/style.css" />
-			<link rel="stylesheet" href="Styles/style-noscript.css" />
-		</noscript>
-		<!--[if lte IE 8]><link rel="stylesheet" href="Styles/ie/v8.css" /><![endif]-->
-		<!--[if lte IE 9]><link rel="stylesheet" href="Styles/ie/v9.css" /><![endif]-->
-	</head>
-	<body class="index loading">
-	
-		<!-- Header -->
-			<header id="header" class="alt">
-				<h1 id="logo"><a href="index.htm"><img src="images/logos/prodeo.gif" /></a></h1>
-				<nav id="nav">
-					<ul>
-						<li class="current"><a href="index.htm">Welcome</a></li>
-                        <li class="current"><a href="index.htm">Tutorial</a></li>
-                        <li class="current"><a href="index.htm">Mobile</a></li>
-						<li><a href="#container" class="button special" id="modaltrigger">Sign Up</a></li>
-					</ul>
-				</nav>
-			</header>
-
-		<!-- Banner -->		
+<!-- Banner -->		
 			<section id="banner">
 				
 				<!--
@@ -66,36 +30,8 @@
 				
 			</section>
 		    
-             <div class="container" id="container" style="display:none;">
-	            <section id="content">
-		            <form action="">
-			            <h1>Login Form</h1>
-			            <div>
-				            <input type="text" placeholder="Username" required="" id="username" />
-			            </div>
-			            <div>
-				            <input type="password" placeholder="Password" required="" id="password" />
-			            </div>
-			            <div>
-				            <input type="submit" value="Log in" />
-				            <a href="#">Lost your password?</a>
-				            <a href="#">Register</a>
-			            </div>
-		            </form><!-- form -->
-		            <div class="buttonModal">
-			            <a href="#">Download source file</a>
-		            </div><!-- button -->
-	            </section><!-- content -->
-            </div><!-- container -->
-            <script type="text/javascript">
-                $(function () {
-                    $('#loginform').submit(function (e) {
-                        return false;
-                    });
-
-                    $('#modaltrigger').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
-                });
-            </script>
+             
+            
 
 		<!-- Main -->
 			<article id="main">
@@ -313,5 +249,6 @@
 			
 			</footer>
 
-	</body>
-</html>
+
+</asp:Content>
+

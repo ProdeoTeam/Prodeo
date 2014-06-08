@@ -1036,14 +1036,9 @@
 			width: 5em;
 		}
 		
-.container { margin: 25px auto; position: relative; width: 900px; }
+.containerLogin { margin: 25px auto; position: relative; width: 400px; }
 #content {
-	background: #f9f9f9;
-	background: -moz-linear-gradient(top,  rgba(248,248,248,1) 0%, rgba(249,249,249,1) 100%);
-	background: -webkit-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
-	background: -o-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
-	background: -ms-linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
-	background: linear-gradient(top,  rgba(248,248,248,1) 0%,rgba(249,249,249,1) 100%);
+	background: #DADFE3;
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f8f8f8', endColorstr='#f9f9f9',GradientType=0 );
 	-webkit-box-shadow: 0 1px 0 #fff inset;
 	-moz-box-shadow: 0 1px 0 #fff inset;
@@ -1057,9 +1052,10 @@
 	text-align: center;
 	text-shadow: 0 1px 0 #fff;
 	width: 400px;
+	height:500px;
 }
 #content h1 {
-	color: #7E7E7E;
+	color: White;
 	font: bold 25px Helvetica, Arial, sans-serif;
 	letter-spacing: -0.05em;
 	line-height: 20px;
@@ -1073,7 +1069,7 @@
 	top: 10px;
 	width: 27%;
 }
-#content h1:after {
+/*#content h1:after {
 	background: rgb(126,126,126);
 	background: -moz-linear-gradient(left,  rgba(126,126,126,1) 0%, rgba(255,255,255,1) 100%);
 	background: -webkit-linear-gradient(left,  rgba(126,126,126,1) 0%,rgba(255,255,255,1) 100%);
@@ -1125,10 +1121,10 @@
 	transform: rotate(-3deg);
 	top: 0;
 	z-index: -2;
-}
+}*/
 #content form { margin: 0 20px; position: relative }
-#content form input[type="text"],
-#content form input[type="password"] {
+#content input[type="text"],
+#content input[type="password"] {
 	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	-ms-border-radius: 3px;
@@ -1144,7 +1140,7 @@
 	-ms-transition: all 0.5s ease;
 	-o-transition: all 0.5s ease;
 	transition: all 0.5s ease;
-	background: #eae7e7 url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) no-repeat;
+	background: #eae7e7 url(../images/imgLogins.png) no-repeat;
 	border: 1px solid #c8c8c8;
 	color: #777;
 	font: 13px Helvetica, Arial, sans-serif;
@@ -1152,8 +1148,8 @@
 	padding: 15px 10px 15px 40px;
 	width: 80%;
 }
-#content form input[type="text"]:focus,
-#content form input[type="password"]:focus {
+#content input[type="text"]:focus,
+#content input[type="password"]:focus {
 	-webkit-box-shadow: 0 0 2px #ed1c24 inset;
 	-moz-box-shadow: 0 0 2px #ed1c24 inset;
 	-ms-box-shadow: 0 0 2px #ed1c24 inset;
@@ -1165,45 +1161,26 @@
 }
 #username { background-position: 10px 10px !important }
 #password { background-position: 10px -53px !important }
-#content form input[type="submit"] {
-	background: rgb(254,231,154);
-	background: -moz-linear-gradient(top,  rgba(254,231,154,1) 0%, rgba(254,193,81,1) 100%);
-	background: -webkit-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
-	background: -o-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
-	background: -ms-linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
-	background: linear-gradient(top,  rgba(254,231,154,1) 0%,rgba(254,193,81,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fee79a', endColorstr='#fec151',GradientType=0 );
-	-webkit-border-radius: 30px;
-	-moz-border-radius: 30px;
-	-ms-border-radius: 30px;
-	-o-border-radius: 30px;
-	border-radius: 30px;
-	-webkit-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	-moz-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	-ms-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	-o-box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	box-shadow: 0 1px 0 rgba(255,255,255,0.8) inset;
-	border: 1px solid #D69E31;
-	color: #85592e;
-	cursor: pointer;
-	float: left;
-	font: bold 15px Helvetica, Arial, sans-serif;
-	height: 35px;
-	margin: 20px 0 35px 15px;
-	position: relative;
-	text-shadow: 0 1px 0 rgba(255,255,255,0.5);
-	width: 120px;
+#content input[type="submit"] {
+	    background: #12587B;
+		color: white !important;
+		font-size: 1em;
+		font-weight: 900;
+		letter-spacing: 2px;
+		width:auto;
+		min-width: 0;
+		padding: 0em 0.75em;
+		text-align: center;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-family: 'Lato', sans-serif;
+		line-height: 1.75em;
 }
-#content form input[type="submit"]:hover {
-	background: rgb(254,193,81);
-	background: -moz-linear-gradient(top,  rgba(254,193,81,1) 0%, rgba(254,231,154,1) 100%);
-	background: -webkit-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-	background: -o-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-	background: -ms-linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-	background: linear-gradient(top,  rgba(254,193,81,1) 0%,rgba(254,231,154,1) 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fec151', endColorstr='#fee79a',GradientType=0 );
+#content input[type="submit"]:hover {
+	    background: #96dad1 !important;
+		border-color: #96dad1 !important;
 }
-#content form div a {
+#content div a {
 	color: #004a80;
     float: right;
     font-size: 12px;
@@ -1232,7 +1209,7 @@
 	padding: 15px 0;
 }
 .buttonModal a {
-	background: url(http://cssdeck.com/uploads/media/items/8/8bcLQqF.png) 0 -112px no-repeat;
+	background: url(../images/imgLogins.png) 0 -112px no-repeat;
 	color: #7E7E7E;
 	font-size: 17px;
 	padding: 2px 0 2px 40px;
