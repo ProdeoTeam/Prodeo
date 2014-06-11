@@ -13,5 +13,10 @@ namespace Prodeo
         {
 
         }
+
+        protected void loginForm_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pantallas/seleccion.aspx");
+        }
     }
 }
