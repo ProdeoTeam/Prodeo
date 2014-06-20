@@ -79,6 +79,7 @@
     <Content Include="images\pic03.jpg" />
     <Content Include="images\pic04.jpg" />
     <Content Include="images\Wallpaper.jpg" />
+    <Content Include="images\Wallpaper3.jpg" />
     <Content Include="index.aspx" />
     <Content Include="js\init.js" />
     <Content Include="js\jquery-1.9.1.min.js" />
