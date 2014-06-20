@@ -38,12 +38,14 @@
 
 				<header class="special container">
 					<span class="icon fa-bar-chart-o"></span>
-					<h2>As this is my <strong>twentieth</strong> freebie for HTML5 UP<br />
-					I decided to give it a really creative name.</h2>
-					<p>Turns out <strong>Twenty</strong> was the best I could come up with. Anyway, lame name aside,<br />
-					it's minimally designed, fully responsive, built on HTML5/CSS3/<strong>skel</strong>, 
-					and, like all my stuff,<br />
-					released for free under the <a href="http://html5up.net/license">Creative Commons Attribution 3.0</a> license. Have fun!</p>
+					<h2>Necesitas llevar un orden en tus <b>Proyectos</b> y no sabes como?<br />
+					En este peque&ntilde;o instructivo te contamos como...</h2>
+					<p><strong>Prodeo</strong> esta orientado a empresas con grupos que trabajen a distancia<br />
+					y que quieran administrar sus actividades de forma ordenada, evitando retrasos, 
+					solapamientos de tareas<br /> y problemas de comunicaci&oacute;n.<br />
+					Tambien puede ser utilizado por particulares que quieran tener organizadas<br />
+                        sus actividades a lo largo de la semana.
+					</p>
 				</header>
 					
 				<!-- One -->
@@ -85,9 +87,9 @@
 								<section>
 									<span class="icon feature fa-check"></span>
 									<header>
-										<h3>This is Something</h3>
+										<h3>Privacidad</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>Todos tus proyectos y datos de registro son privados y no se publican en ningun lugar.</p>
 								</section>
 							
 							</div>
@@ -96,9 +98,9 @@
 								<section>
 									<span class="icon feature fa-check"></span>
 									<header>
-										<h3>Also Something</h3>
+										<h3>Colaboraci&oacute;n</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>Trabaja en equipo y organiza el trabajo para ser mas eficiente.</p>
 								</section>
 							
 							</div>
@@ -107,9 +109,9 @@
 								<section>
 									<span class="icon feature fa-check"></span>
 									<header>
-										<h3>Probably Something</h3>
+										<h3>Portabilidad</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>No nocesitas descargar ni instalar nada, solo disponer de conexi&oacute;n a internet.</p>
 								</section>
 							
 							</div>
@@ -121,9 +123,9 @@
 								<section>
 									<span class="icon feature fa-check"></span>
 									<header>
-										<h3>This is Something</h3>
+										<h3>Seguimiento</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>Podras disponer de graficos de progreso para visualizar rapidamente el estado del proyecto.</p>
 								</section>
 							
 							</div>
@@ -132,9 +134,9 @@
 								<section>
 									<span class="icon feature fa-check"></span>
 									<header>
-										<h3>Also Something</h3>
+										<h3>Organizado</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>Crea tareas, define su finalizacion y asigna prioridades para hacerlas ordenadamente.</p>
 								</section>
 							
 							</div>
@@ -143,9 +145,9 @@
 								<section>
 									<span class="icon feature fa-check"></span>
 									<header>
-										<h3>Probably Something</h3>
+										<h3>Gratuito</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo suscipit dolor nec nibh. Proin a ullamcorper elit, et sagittis turpis. Integer ut fermentum.</p>
+									<p>No nocesitas pagar nada con tu tarjeta, ni usarlo con funciones limitadas. Solo registrate y comienza!</p>
 								</section>
 							
 							</div>

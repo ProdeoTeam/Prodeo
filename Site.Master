@@ -32,9 +32,9 @@
 				<h1 id="logo"><asp:HyperLink ID="HyperLink1" runat="server"><asp:Image ID="Image1" ImageUrl="~/images/logos/prodeo.gif" runat="server"></asp:Image></asp:HyperLink></h1>
 				<nav id="nav">
 					<ul>
-						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.htm" runat="server">Bienvenido</asp:HyperLink>
-                        <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="~/index.htm" runat="server">Tutorial</asp:HyperLink>
-                        <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.htm" runat="server">Mobile</asp:HyperLink>
+						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink>
+                        <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="~/index.aspx" runat="server">Tutorial</asp:HyperLink>
+                        <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink>
 						<li><a href="#container" class="button special" id="modaltrigger">Sign Up</a></li>
 					</ul>
 				</nav>
