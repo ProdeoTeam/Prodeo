@@ -33,7 +33,7 @@
 				<nav id="nav">
 					<ul>
 						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink>
-                        <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="~/index.aspx" runat="server">Tutorial</asp:HyperLink>
+                        <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink>
                         <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink>
 						<li><a href="#container" class="button special" id="modaltrigger">Sign Up</a></li>
 					</ul>

@@ -74,6 +74,10 @@
     <Content Include="images\logos\prodeo.gif" />
     <Content Include="images\logos\ProdeoLogo.png" />
     <Content Include="images\logos\ProdeoLogoNombre.gif" />
+    <Content Include="images\muestra1.jpg" />
+    <Content Include="images\muestra2.jpg" />
+    <Content Include="images\muestra3.jpg" />
+    <Content Include="images\muestra4.jpg" />
     <Content Include="images\pic01.jpg" />
     <Content Include="images\pic02.jpg" />
     <Content Include="images\pic03.jpg" />

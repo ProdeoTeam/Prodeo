@@ -54,12 +54,12 @@
 							<div class="8u">
 							
 								<header>
-									<h2>Behold the <strong>icons</strong> that visualize what you’re all about. or just take up space. your call bro.</h2>
+									<h2>Administra tiempo, recursos, personas y la seguridad de tener tu <strong>Proyecto</strong> controlado!</h2>
 								</header>
 								<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu comteger ut fermentum lorem. Lorem ipsum dolor sit amet. Sed tristique purus vitae volutpat ultrices. eu elit eget commodo. Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo.</p>
 								<footer>
 									<ul class="buttons">
-										<li><a href="#" class="button">Find Out More</a></li>
+										<li><a href="#section2" class="button fit scrolly">M&aacute;s Caracter&iacute;sticas</a></li>
 									</ul>
 								</footer>
 							
@@ -80,7 +80,7 @@
 					</section>
 					
 				<!-- Two -->
-					<section class="wrapper style1 container special">
+					<section id="section2" class="wrapper style1 container special">
 						<div class="row">
 							<div class="4u">
 							
@@ -155,7 +155,7 @@
 					</section>
 					
 				<!-- Three -->
-					<section class="wrapper style3 container special">
+					<section class="wrapper style3 container special" id="tutorial">
 					
 						<header class="major">
 							<h2>Next look at this <strong>cool stuff</strong></h2>
@@ -165,7 +165,7 @@
 							<div class="6u">
 							
 								<section>
-									<a href="#" class="image feature"><img src="images/pic01.jpg" alt="" /></a>
+									<a href="#" class="image feature"><asp:Image ID="Image1" ImageUrl="~/images/muestra1.jpg" runat="server"></asp:Image>  </a>
 									<header>
 										<h3>A Really Fast Train</h3>
 									</header>
@@ -176,7 +176,7 @@
 							<div class="6u">
 							
 								<section>
-									<a href="#" class="image feature"><img src="images/pic02.jpg" alt="" /></a>
+									<a href="#" class="image feature"><asp:Image ID="Image2" ImageUrl="~/images/muestra2.jpg" runat="server"></asp:Image></a>
 									<header>
 										<h3>An Airport Terminal</h3>
 									</header>
@@ -189,7 +189,7 @@
 							<div class="6u">
 							
 								<section>
-									<a href="#" class="image feature"><img src="images/pic03.jpg" alt="" /></a>
+									<a href="#" class="image feature"><asp:Image ID="Image3" ImageUrl="~/images/muestra3.jpg" runat="server"></asp:Image></a>
 									<header>
 										<h3>Hyperspace Travel</h3>
 									</header>
@@ -200,7 +200,7 @@
 							<div class="6u">
 							
 								<section>
-									<a href="#" class="image feature"><img src="images/pic04.jpg" alt="" /></a>
+									<a href="#" class="image feature"><asp:Image ID="Image4" ImageUrl="~/images/muestra4.jpg" runat="server"></asp:Image></a>
 									<header>
 										<h3>And Another Train</h3>
 									</header>
@@ -212,7 +212,7 @@
 
 						<footer class="major">
 							<ul class="buttons">
-								<li><a href="#" class="button">See More</a></li>
+								<li><a href="#banner" class="button fit scrolly">See More</a></li>
 							</ul>
 						</footer>
 					
