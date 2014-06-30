@@ -8,23 +8,26 @@
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
 		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
-        <script src="<%= ResolveUrl("~/js/jquery.min.js")%>" type="text/javascript"></script>
-        <script src="<%= ResolveUrl("~/js/jquery.dropotron.min.js")%>" type="text/javascript"></script>
+        <script src="<%= ResolveClientUrl("~/js/jquery.min.js")%>" type="text/javascript"></script>
+        <script src="<%= ResolveClientUrl("~/js/jquery.dropotron.min.js")%>" type="text/javascript"></script>
         <link href="~/Styles/modal.css" rel="stylesheet" type="text/css" />
-        <script src="<%= ResolveUrl("~/js/skel.min.js")%>" type="text/javascript"></script>
-        <script src="<%= ResolveUrl("~/js/skel-layers.min.js")%>" type="text/javascript"></script>
-        <script src="<%= ResolveUrl("~/js/init.js")%>" type="text/javascript"></script>
-        <script src="<%= ResolveUrl("~/js/jquery-1.9.1.min.js")%>" type="text/javascript"></script>
-        <script src="<%= ResolveUrl("~/js/jquery.leanModal.min.js")%>" type="text/javascript"></script>
+        <script src="<%= ResolveClientUrl("~/js/skel.min.js")%>" type="text/javascript"></script>
+        <script src="<%= ResolveClientUrl("~/js/skel-layers.min.js")%>" type="text/javascript"></script>
+        <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+        </asp:ContentPlaceHolder>
+        <script src="<%= ResolveClientUrl("~/js/jquery-1.9.1.min.js")%>" type="text/javascript"></script>
+        <script src="<%= ResolveClientUrl("~/js/jquery.leanModal.min.js")%>" type="text/javascript"></script>
         <link href="~/Styles/skel.css" rel="stylesheet" type="text/css" />
         <link href="~/Styles/style.css" rel="stylesheet" type="text/css" />
         <link href="~/Styles/style-noscript.css" rel="stylesheet" type="text/css" />
+        <link href="~/Styles/btn-googleStyle.css" rel="stylesheet" />
+        <link href="~/Styles/pict-textbox.css" rel="stylesheet" />
+        <link href="~/Styles/responsiveform.css" rel="stylesheet" />
 
 		<!--[if lte IE 8]><link rel="stylesheet" href="~/Styles/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="~/Styles/ie/v9.css" /><![endif]-->
 
-    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
-    </asp:ContentPlaceHolder>
+    
 </head>
 <body class="index loading">
     <form runat="server">
@@ -35,11 +38,11 @@
 						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink>
                         <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink>
                         <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink>
-						<li><a href="#container" class="button special" id="modaltrigger">Sign Up</a></li>
+						<li><a href="#envelope" class="button special" id="modaltrigger">Sign Up</a></li>
 					</ul>
 				</nav>
 			</header>
-            <div class="containerLogin" id="container" style="display:none;" runat="server">
+            <%--<div class="containerLogin" id="container" style="display:none;" runat="server">
 	            <section id="content" runat="server">
 		            
 			            <h1>Login</h1>
@@ -57,7 +60,51 @@
 		            
 		            
 	            </section><!-- content -->
-            </div><!-- container -->
+            </div><!-- container -->--%>
+
+        <div id="envelope" style="display:none;" runat="server">
+            <section id="contentEnvelope" runat="server">
+        <header>
+            <h2>Iniciar sesi&oacute;n</h2>
+        </header>
+  
+         <!-- To make a responsive form each element of the form should be in a separate div.!-->
+        <div id="responsive">
+            <div id="mitadIzq">               
+
+				<div>
+					<label for="email"> Email </label>
+					<div>
+						<i class="fa fa-envelope pict-textbox"></i>						
+						<input type="text" id="email" class="input-pict" placeholder="email@gmail.com">
+                    </div>                    
+                </div>
+				
+                <div>
+                    <label for="pass"> Contrase&ntilde;a </label>					
+					<div>
+						<i class="fa fa-key pict-textbox"></i>						
+						<input type="password" id="pass" class="input-pict" placeholder="**********">
+                    </div>					                   
+                </div>             
+                
+                <div>
+                    <div>
+                        <input id="Submit1" type="submit" onserverclick="loginForm_Click" value="Iniciar sesi&oacute;n" class="btn-google" runat="server" />
+                    </div>
+                </div>
+
+                <p>¿No tienes una cuenta? <a href="#" id="link-style">Registrarse</a></p>
+            </div>
+            <div id="mitadDer">
+				<label>O tambi&eacute;n puedes:</label>
+				<p><a href="#" class="btn-google"><i class="fa fa-google"></i>&nbsp;Iniciar con Google</a></p>
+            </div>
+        </div>
+                </section>
+</div>
+
+
             <script type="text/javascript">
                 $(function () {
                     $('#loginform').submit(function (e) {

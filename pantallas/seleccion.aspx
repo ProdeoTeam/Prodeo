@@ -1,8 +1,10 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="seleccion.aspx.cs" Inherits="Prodeo.pantallas.seleccion" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-    
+    <script src="<%= ResolveClientUrl("~/js/initPages.js")%>" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+    <%--<section id="banner">
+        </section>--%>
     <article id="main">
     <section class="wrapper style3 container special">
 					
@@ -14,7 +16,7 @@
 							<div class="6u">
 							
 								<section>
-									<a href="#" class="image feature"> <asp:Image ID="Image1" ImageUrl="~/images/btnCrearProyecto.jpg" runat="server"></asp:Image> </a>
+									<a href="AltaProyecto.aspx" class="image feature"> <asp:Image ID="Image1" ImageUrl="~/images/btnCrearProyecto.jpg" runat="server"></asp:Image> </a>
 									<header>
 										<h3>Crear un Proyecto</h3>
 									</header>

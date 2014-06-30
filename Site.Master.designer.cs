@@ -67,40 +67,22 @@ namespace Prodeo {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
         
         /// <summary>
-        /// container control.
+        /// envelope control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl container;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl envelope;
         
         /// <summary>
-        /// content control.
+        /// contentEnvelope control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl content;
-        
-        /// <summary>
-        /// username control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText username;
-        
-        /// <summary>
-        /// password control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword password;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contentEnvelope;
         
         /// <summary>
         /// Submit1 control.
@@ -110,24 +92,6 @@ namespace Prodeo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputSubmit Submit1;
-        
-        /// <summary>
-        /// A1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A1;
-        
-        /// <summary>
-        /// A2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor A2;
         
         /// <summary>
         /// MainContent control.

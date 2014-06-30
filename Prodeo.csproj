@@ -85,6 +85,7 @@
     <Content Include="images\Wallpaper.jpg" />
     <Content Include="images\Wallpaper3.jpg" />
     <Content Include="index.aspx" />
+    <Content Include="js\initPages.js" />
     <Content Include="js\init.js" />
     <Content Include="js\jquery-1.9.1.min.js" />
     <Content Include="js\jquery.dropotron.min.js" />
@@ -92,9 +93,14 @@
     <Content Include="js\jquery.min.js" />
     <Content Include="js\skel-layers.min.js" />
     <Content Include="js\skel.min.js" />
+    <Content Include="pantallas\AltaProyecto.aspx" />
     <Content Include="pantallas\seleccion.aspx" />
+    <Content Include="Styles\btn-googleStyle.css" />
     <Content Include="Styles\font-awesome.min.css" />
+    <Content Include="Styles\formulariosInternos.css" />
     <Content Include="Styles\modal.css" />
+    <Content Include="Styles\pict-textbox.css" />
+    <Content Include="Styles\responsiveform.css" />
     <Content Include="Styles\Site.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\jquery-1.4.1-vsdoc.js" />
@@ -154,6 +160,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\AltaProyecto.aspx.cs">
+      <DependentUpon>AltaProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\AltaProyecto.aspx.designer.cs">
+      <DependentUpon>AltaProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\seleccion.aspx.cs">
       <DependentUpon>seleccion.aspx</DependentUpon>

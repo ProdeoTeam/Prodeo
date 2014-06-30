@@ -1,0 +1,25 @@
+.pict-textbox {
+    /*font-family: "EntypoRegular";*/
+    position: absolute;
+	color: #1A3D51;
+    margin: 1.1em 0em 0em 0.6em;
+	font-size: 20px;
+    font-weight: normal;
+    vertical-align: middle;
+    line-height: 0;
+    
+}
+
+.input-pict {
+    background: none repeat scroll 0% 0% #D8E6EF;
+    font-family: Arial;
+    font-weight: bold;
+    color: #1A3D51;
+    padding: 12px 10px 11px 40px;
+    width: 230px;
+    border: 0px none;
+    font-size: 16px;
+    text-shadow: 1px 1px 1px rgba(255, 255, 255, 0.7);
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.4) inset;
+    /*margin: 1em 2em;*/
+}

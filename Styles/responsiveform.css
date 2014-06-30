@@ -1,0 +1,176 @@
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans);
+@import url(http://fonts.googleapis.com/css?family=Roboto+Slab);
+* {
+  
+  /*with these codes padding and border does not increase it's width.Gives intuitive style.*/
+  
+  -webkit-box-sizing: border-box;   
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+   margin:0;
+   padding:0;
+	font-family: 'Droid Sans', sans-serif;
+  
+  }
+div#envelope{
+	width:31%;
+	margin: 10px 30% 10px 25%;
+	background-color:#A8C4CE;
+	padding:0;
+	border:1px solid gray;
+	border-radius:0px;
+    float:left;
+	min-width: 230px;
+	} 
+	
+div#responsive {
+    width: 83%;
+	margin-left: 10%;
+	/*background-color: green;*/
+	margin-right: 10%;
+	float: left;
+}
+#envelope header {
+  margin: 0; 
+  text-align:center;
+  font-family: 'Roboto Slab', serif;
+  }
+  
+#envelope header div {
+  font-size: 90%;
+ }
+
+/* Makes responsive fields.Sets size and field alignment.*/
+#contentEnvelope input[type=text],
+#contentEnvelope input[type=email],
+#contentEnvelope input[type=password]
+ {
+width:80%;
+ /* padding: 15px;
+  border:1px solid #7ac9b7;*/
+}
+
+#contentEnvelope div{
+  padding:5px 0;
+}
+ 
+#contentEnvelope input[type=text]:focus,
+#contentEnvelope input[type=email]:focus,
+#contentEnvelope input[type=password]:focus{
+  border-color: #4697e4;
+}
+#contentEnvelope label{
+margin-left:0;
+}
+
+#mitadDer{
+    float:left;
+    /*background-color:blue;*/
+    padding-top:10px;
+}
+
+#mitadIzq{
+    /*background-color:red;*/
+    float:left;
+}
+
+#link-style{
+	text-decoration:none;
+	color:#1A3D51;
+	font-weight:bold;
+}
+	#link-style:hover{	
+	color:rgba(65, 98, 122, 1);
+	}
+
+/* By using @ media form can have different layout for screen, mobile phone, tablet.*/
+
+/* Sets the form layout for mobile phone, tablet*/
+@media screen and (max-device-width: 600px) {
+	body {
+	   margin:0;
+	   padding:0;
+	  font-family: 'Droid Sans', sans-serif;
+	  
+	  }
+	div#envelope{
+		width:41%;
+		margin: 10px 30% 10px 25%;
+		background-color:##A8C4CE;
+		padding:0;
+		border:1px solid gray;
+		border-radius:0px;
+		float:left;
+		min-width: 230px;
+		} 
+		
+	div#responsive {
+		width: 83%;
+		margin-left: 10%;
+		/*background-color: green;*/
+		margin-right: 10%;
+		float: left;
+	}
+
+	#envelope header {
+	  margin: 0; 
+	  text-align:center;
+	  font-family: 'Roboto Slab', serif;
+	  }
+	  
+	#envelope header div {
+	  font-size: 90%;
+	 }
+
+	/* Makes responsive fields.Sets size and field alignment.*/
+	#contentEnvelope input[type=text],
+	#contentEnvelope input[type=email],
+	#contentEnvelope input[type=password]
+	 {
+	width:80%;
+	 /* padding: 15px;
+	  border-radius:5px;
+	  border:1px solid #7ac9b7;*/
+	}
+
+	#contentEnvelope div{
+	  padding:5px 0;
+	}
+	 
+	#contentEnvelope input[type=text]:focus,
+	#contentEnvelope input[type=email]:focus,
+	#contentEnvelope input[type=password]:focus
+	#contentEnvelope textarea:focus {
+
+	  border-color: #4697e4;
+	}
+	#contentEnvelope label{
+	margin-left:0;
+	}
+	
+	#mitadDer{
+    float:left;
+    /*background-color:blue;*/
+    padding-top:10px;
+	}
+
+	#mitadIzq{
+		/*background-color:red;*/
+		float:left;
+	}
+
+	#link-style{
+		text-decoration:none;
+		color:#1A3D51;
+		font-weight:bold;
+	}
+	#link-style:hover{	
+	color:rgba(65, 98, 122, 1);
+	}
+
+}
+
+
