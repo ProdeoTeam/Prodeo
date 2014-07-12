@@ -11,29 +11,50 @@
 						<header class="major">
 							<h2><strong>Alta de Proyecto</strong></h2>
 						</header>
-						
-						<div class="row half no-collapse-1">
-										<div class="6u">
+									<div class="row half">
+										<div class="12u">
 											<input type="text" name="nombreProyecto" placeholder="Nombre">
 										</div>
+									</div>
+									<div class="row half">
+										<div class="12u">
+											<textarea name="descripcion" placeholder="Descripcion" rows="7"></textarea>
+										</div>
+									</div>
+                                    <div class="row half no-collapse-1">
 										<div class="6u">
-											<input type="text" name="tipoProyecto" placeholder="Tipo">
+                                            <input type="date" name="fechaFinal">
 										</div>
 									</div>
-									<div class="row half">
-										<div class="12u">
-											<input type="text" name="subject" placeholder="Subject">
+                                    <div class="row half no-collapse-1">
+										<div class="6u">
+											<input type="text" name="participantes" placeholder="Participantes">
+										</div>
+										<div class="6u">
+                                            <select name="privilegio">
+                                              <option value="seleccione" selected>Seleccione privilegio</option>
+                                              <option value="admin">Administrador</option>
+                                              <option value="col">Colaborador</option>
+                                            </select>
 										</div>
 									</div>
-									<div class="row half">
-										<div class="12u">
-											<textarea name="message" placeholder="Comentarios" rows="7"></textarea>
+                                    <div class="row half no-collapse-1">
+										<div class="6u">
+                                            <select name="avisoVencimientos">
+                                              <option value="seleccione" selected>Seleccione avisos</option>
+                                              <option value="nunca">Nunca</option>
+                                              <option value="1hora">1 hora antes</option>
+                                              <option value="1dia">1 dia antes</option>
+                                              <option value="2dia">2 dias antes</option>
+                                              <option value="1semana">1 semana antes</option>
+                                              <option value="1mes">1 mes antes</option>
+                                            </select>
 										</div>
 									</div>
 									<div class="row">
 										<div class="12u">
 											<ul class="buttons">
-												<li><a href="#" class="button special">Alta</a></li>
+												<li><a href="ListaProyectos.aspx" class="button special">Alta</a></li>
 											</ul>
 										</div>
 									</div>

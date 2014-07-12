@@ -563,6 +563,32 @@
 					color: white !important;
 				}
 
+
+
+        .wrapper.styleListaProy {
+			background-color: #12587B;
+			background-position: bottom left, bottom right;
+			background-repeat: no-repeat, no-repeat;
+			background-size: 25em, 25em;
+			color: white;
+            height:3em;
+		}
+
+			.wrapper.styleListaProy .button:hover {
+				background: rgba(255, 255, 255, 0.15) !important;
+			}
+
+			.wrapper.styleListaProy .button.special {
+				background: white;
+				border-color: white;
+				color: #83d3c9 !important;
+			}
+
+				.wrapper.styleListaProy .button.special:hover {
+					border-color: inherit !important;
+					color: white !important;
+				}
+
 		.wrapper.style3 {
 			background: white;
 			color: inherit;

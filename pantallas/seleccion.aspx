@@ -27,7 +27,7 @@
 							<div class="6u">
 							
 								<section>
-									<a href="#" class="image feature"><asp:Image ID="Image2" ImageUrl="~/images/btnVerProyecto.jpg" runat="server"></asp:Image></a>
+									<a href="ListaProyectos.aspx" class="image feature"><asp:Image ID="Image2" ImageUrl="~/images/btnVerProyecto.jpg" runat="server"></asp:Image></a>
 									<header>
 										<h3>Ver sus Proyectos</h3>
 									</header>

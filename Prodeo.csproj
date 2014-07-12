@@ -93,6 +93,8 @@
     <Content Include="js\jquery.min.js" />
     <Content Include="js\skel-layers.min.js" />
     <Content Include="js\skel.min.js" />
+    <Content Include="pantallas\ProyectoPrincipal.aspx" />
+    <Content Include="pantallas\ListaProyectos.aspx" />
     <Content Include="pantallas\AltaProyecto.aspx" />
     <Content Include="pantallas\seleccion.aspx" />
     <Content Include="Styles\btn-googleStyle.css" />
@@ -160,6 +162,20 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\ProyectoPrincipal.aspx.cs">
+      <DependentUpon>ProyectoPrincipal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\ProyectoPrincipal.aspx.designer.cs">
+      <DependentUpon>ProyectoPrincipal.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\ListaProyectos.aspx.cs">
+      <DependentUpon>ListaProyectos.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\ListaProyectos.aspx.designer.cs">
+      <DependentUpon>ListaProyectos.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\AltaProyecto.aspx.cs">
       <DependentUpon>AltaProyecto.aspx</DependentUpon>
