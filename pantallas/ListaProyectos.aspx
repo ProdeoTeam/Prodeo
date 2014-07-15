@@ -6,28 +6,22 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <article id="main">
-    <section class="wrapper style3 container special">
-				<div id="formInterno">
-						<header class="major">
-							<h2><strong>Lista de Proyectos</strong></h2>
-						</header>
-									<section class="wrapper styleListaProy">
-						            <div>
-							            		<a href="ProyectoPrincipal.aspx">Proyecto 1</a>	
-						            </div>
-					            </section>
-                    <section class="wrapper styleListaProy">
-						            <div>
-							            		Proyecto 1	
-						            </div>
-					            </section>
-                    <section class="wrapper styleListaProy">
-						            <div>
-							            		Proyecto 1	
-						            </div>
-					            </section>
-                    </div>
-                    </section>
-        </article> 
+            <section class="wrapper style3 container special">
+				<h2>Lista de Proyectos:</h2>
+                <section id="vistaProyecto">
+					<h2>Proyecto 1 : descripcion...</h2>
+					<a href="#" class="button">Administrador</a>
+				</section><br />
+                <section id="vistaProyecto">
+					<h2>Proyecto 2 : descripcion...</h2>
+					<a href="#" class="button">Administrador</a>
+				</section><br />
+                <section id="vistaProyecto">
+					<h2>Proyecto 3 : descripcion...</h2>
+					<a href="#" class="button">Colaborador</a>
+				</section><br />
+
+            </section>
+    </article> 
 
 </asp:Content>
