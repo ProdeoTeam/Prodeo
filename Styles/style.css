@@ -1073,6 +1073,11 @@
 		{
 			color: #fff;
 		}
+
+        #vistaProyecto h3
+		{
+			color: #96dad1;
+		}
 		
 		#vistaProyecto .button
 		{
@@ -1080,6 +1085,7 @@
 			border-color: rgba(255,255,255,0);
 			color: #27636B;
             border-radius: 0.5em;
+            display:block;
 		}
 		
 			#vistaProyecto .button:hover
@@ -1088,6 +1094,7 @@
 				background-color: rgba(255,255,255,0.15);
 				color: #fff;
                 border-radius: 0.5em;
+                display:block;
 			}
 
 		
