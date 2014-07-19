@@ -11,7 +11,7 @@
                 <section id="vistaProyecto">
 					<h2>Proyecto 1 : Administrador</h2>
                     <h3>asdadasd asdads asdads asdasd asdasd asdasda</h3>
-					<a href="#" class="button">Ingresar</a>
+					<a href="ProyectoPrincipal.aspx" class="button">Ingresar</a>
 				</section><br />
                 <section id="vistaProyecto">
 					<h2>Proyecto 2 : Administrador</h2>
