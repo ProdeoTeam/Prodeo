@@ -101,6 +101,7 @@
     <Content Include="pantallas\ListaProyectos.aspx" />
     <Content Include="pantallas\AltaProyecto.aspx" />
     <Content Include="pantallas\seleccion.aspx" />
+    <Content Include="pantallas\VerProyecto.aspx" />
     <Content Include="Styles\btn-googleStyle.css" />
     <Content Include="Styles\font-awesome.min.css" />
     <Content Include="Styles\formulariosInternos.css" />
@@ -150,6 +151,7 @@
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\Modulo.cs" />
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -194,6 +196,13 @@
     </Compile>
     <Compile Include="pantallas\seleccion.aspx.designer.cs">
       <DependentUpon>seleccion.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\VerProyecto.aspx.cs">
+      <DependentUpon>VerProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\VerProyecto.aspx.designer.cs">
+      <DependentUpon>VerProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

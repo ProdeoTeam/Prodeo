@@ -15,7 +15,9 @@
         <script src="<%= ResolveClientUrl("~/js/skel-layers.min.js")%>" type="text/javascript"></script>
         <asp:ContentPlaceHolder ID="HeadContent" runat="server">
         </asp:ContentPlaceHolder>
+    
         <script src="<%= ResolveClientUrl("~/js/jquery-1.9.1.min.js")%>" type="text/javascript"></script>
+    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
         <script src="<%= ResolveClientUrl("~/js/jquery.leanModal.min.js")%>" type="text/javascript"></script>
         <link href="~/Styles/skel.css" rel="stylesheet" type="text/css" />
         <link href="~/Styles/style.css" rel="stylesheet" type="text/css" />
