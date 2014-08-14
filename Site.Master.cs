@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Negocio;
 
 namespace Prodeo
 {
@@ -16,7 +17,12 @@ namespace Prodeo
 
         protected void loginForm_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/pantallas/seleccion.aspx");
+            AccesoLogica access = new AccesoLogica();
+            bool acceso = access.VerificaUsuario(email.Value, pass.Value);
+            if (acceso)
+            {
+                Response.Redirect("~/pantallas/seleccion.aspx");
+            }
         }
     }
 }

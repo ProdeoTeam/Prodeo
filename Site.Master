@@ -44,25 +44,6 @@
 					</ul>
 				</nav>
 			</header>
-            <%--<div class="containerLogin" id="container" style="display:none;" runat="server">
-	            <section id="content" runat="server">
-		            
-			            <h1>Login</h1>
-			            <div>
-				            <input type="text" placeholder="Username" required="" id="username" runat="server" />
-			            </div>
-			            <div>
-				            <input type="password" placeholder="Password" required="" id="password" runat="server" />
-			            </div>
-			            <div>
-				            <input id="Submit1" type="submit" onserverclick="loginForm_Click" value="Ingresar" runat="server" />
-				            <a id="A1" href="#" runat="server">Olvido su contrase&ntilde;a?</a>
-				            <a id="A2" href="#" runat="server">Registrse</a>
-			            </div>
-		            
-		            
-	            </section><!-- content -->
-            </div><!-- container -->--%>
 
         <div id="envelope" style="display:none;" runat="server">
             <section id="contentEnvelope" runat="server">
@@ -78,7 +59,7 @@
 					<label for="email"> Email </label>
 					<div>
 						<i class="fa fa-envelope pict-textbox"></i>						
-						<input type="text" id="email" class="input-pict" placeholder="email@gmail.com">
+						<input type="text" id="email" class="input-pict" placeholder="email@gmail.com" runat="server">
                     </div>                    
                 </div>
 				
@@ -86,7 +67,7 @@
                     <label for="pass"> Contrase&ntilde;a </label>					
 					<div>
 						<i class="fa fa-key pict-textbox"></i>						
-						<input type="password" id="pass" class="input-pict" placeholder="**********">
+						<input type="password" id="pass" class="input-pict" placeholder="**********" runat="server">
                     </div>					                   
                 </div>             
                 
