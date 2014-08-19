@@ -23,19 +23,12 @@
 									</div>
                                     <div class="row half no-collapse-1">
 										<div class="6u">
+                                            Fecha Final
                                             <input type="date" name="fechaFinal">
 										</div>
-									</div>
-                                    <div class="row half no-collapse-1">
-										<div class="6u">
-											<input type="text" name="participantes" placeholder="Participantes">
-										</div>
-										<div class="6u">
-                                            <select name="privilegio">
-                                              <option value="seleccione" selected>Seleccione privilegio</option>
-                                              <option value="admin">Administrador</option>
-                                              <option value="col">Colaborador</option>
-                                            </select>
+                                        <div class="6u">
+                                            Fecha Vencimiento
+                                            <input type="date" name="fechaVencimiento">
 										</div>
 									</div>
                                     <div class="row half no-collapse-1">
