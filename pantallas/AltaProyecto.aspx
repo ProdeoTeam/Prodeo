@@ -13,41 +13,38 @@
 						</header>
 									<div class="row half">
 										<div class="12u">
-											<input type="text" name="nombreProyecto" placeholder="Nombre">
+											<input type="text" name="nombreProyecto" placeholder="Nombre" id="nombreProyecto" runat="server">
 										</div>
 									</div>
 									<div class="row half">
 										<div class="12u">
-											<textarea name="descripcion" placeholder="Descripcion" rows="7"></textarea>
+											<textarea name="descripcion" placeholder="Descripcion" rows="7" id="descripcion" runat="server"></textarea>
 										</div>
 									</div>
                                     <div class="row half no-collapse-1">
-										<div class="6u">
-                                            Fecha Final
-                                            <input type="date" name="fechaFinal">
-										</div>
                                         <div class="6u">
                                             Fecha Vencimiento
-                                            <input type="date" name="fechaVencimiento">
+                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server">
 										</div>
-									</div>
-                                    <div class="row half no-collapse-1">
 										<div class="6u">
-                                            <select name="avisoVencimientos">
+                                            &nbsp;
+                                            <select name="avisoVencimientos" id="avisoVencimientos" runat="server">
                                               <option value="seleccione" selected>Seleccione avisos</option>
-                                              <option value="nunca">Nunca</option>
-                                              <option value="1hora">1 hora antes</option>
-                                              <option value="1dia">1 dia antes</option>
-                                              <option value="2dia">2 dias antes</option>
-                                              <option value="1semana">1 semana antes</option>
-                                              <option value="1mes">1 mes antes</option>
+                                              <option value="h-0">Nunca</option>
+                                              <option value="h-1">1 hora antes</option>
+                                              <option value="d-1">1 dia antes</option>
+                                              <option value="d-2">2 dias antes</option>
+                                              <option value="d-7">1 semana antes</option>
+                                              <option value="m-1">1 mes antes</option>
                                             </select>
 										</div>
+                                        
 									</div>
+                          
 									<div class="row">
 										<div class="12u">
 											<ul class="buttons">
-												<li><a href="ListaProyectos.aspx" class="button special">Alta</a></li>
+												<li><a class="button special" id="btnAltaProyecto" runat="server" onserverclick="altaProyForm_Click">Alta</a></li>
 											</ul>
 										</div>
 									</div>

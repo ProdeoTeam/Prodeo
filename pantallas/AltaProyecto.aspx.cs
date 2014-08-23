@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Negocio;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -12,6 +13,15 @@ namespace Prodeo.pantallas
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+        protected void altaProyForm_Click(object sender, EventArgs e)
+        {
+            ProyectoLogica agregaProyecto = new ProyectoLogica();
+            bool altaExitosa = agregaProyecto.insertaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value);
+            if (altaExitosa)
+            {
+                Response.Redirect("~/pantallas/ListaProyectos.aspx");
+            }
         }
     }
 }

@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="AccesoLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProyectoLogica.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
