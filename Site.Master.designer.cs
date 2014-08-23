@@ -85,13 +85,13 @@ namespace Prodeo {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl contentEnvelope;
         
         /// <summary>
-        /// email control.
+        /// usuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText email;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText usuario;
         
         /// <summary>
         /// pass control.

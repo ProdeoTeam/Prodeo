@@ -40,7 +40,7 @@
 						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink>
                         <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink>
                         <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink>
-						<li><a href="#envelope" class="button special" id="modaltrigger">Sign Up</a></li>
+						<li><a href="#envelope" class="button special" id="modaltrigger">Iniciar sesi&oacute;n</a></li>
 					</ul>
 				</nav>
 			</header>
@@ -56,10 +56,10 @@
             <div id="mitadIzq">               
 
 				<div>
-					<label for="email"> Email </label>
+					<label for="usuario"> Usuario </label>
 					<div>
-						<i class="fa fa-envelope pict-textbox"></i>						
-						<input type="text" id="email" class="input-pict" placeholder="email@gmail.com" runat="server">
+						<i class="fa fa-user pict-textbox"></i>						
+						<input type="text" id="usuario" class="input-pict" placeholder="usuario" runat="server">
                     </div>                    
                 </div>
 				
@@ -77,7 +77,7 @@
                     </div>
                 </div>
 
-                <p>¿No tienes una cuenta? <a href="#" id="link-style">Registrarse</a></p>
+                <p>¿No tienes una cuenta? <a href="pantallas/Registro.aspx" id="link-style">Registrarse</a></p>
             </div>
             <div id="mitadDer">
 				<label>O tambi&eacute;n puedes:</label>

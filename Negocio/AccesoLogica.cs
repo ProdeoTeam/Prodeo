@@ -9,11 +9,45 @@ namespace Negocio
 {
     public class AccesoLogica
     {
-        public bool VerificaUsuario(string usuario, string pass)
+        public bool verificaUsuario(string usuario, string pass)
         { 
-            Data datos = new Data();
+            AccesoDatos datos = new AccesoDatos();
             bool verifica = datos.verificarUsuario(usuario, pass);
             return verifica;
+        }
+
+        public bool verDuplicadoUser(string usuario) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool usuarioValid = datos.verUsuarioRep(usuario);
+            return usuarioValid;
+        }
+
+        public bool verDuplicadoEmail(string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool emailValid = datos.verEmailRep(email);
+            return emailValid;
+        }
+                
+        public bool insertaUsuario(string usuario, string pass, string email) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.insertarUsuario(usuario, pass, email) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch 
+            {
+                return false;
+            }
         }
     }
 }

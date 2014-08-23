@@ -18,7 +18,7 @@ namespace Prodeo
         protected void loginForm_Click(object sender, EventArgs e)
         {
             AccesoLogica access = new AccesoLogica();
-            bool acceso = access.VerificaUsuario(email.Value, pass.Value);
+            bool acceso = access.verificaUsuario(usuario.Value, pass.Value);
             if (acceso)
             {
                 Response.Redirect("~/pantallas/seleccion.aspx");

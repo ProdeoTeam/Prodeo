@@ -1,65 +1,65 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="Prodeo.pantallas.AltaProyecto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="Prodeo.pantallas.Registro" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-<script src="<%= ResolveClientUrl("~/js/initPages.js")%>" type="text/javascript"></script>
+    <script src="<%= ResolveClientUrl("~/js/initPages.js")%>" type="text/javascript"></script>
     <link href="../Styles/formulariosInternos.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <article id="main">
-    <section class="wrapper style3 container special">
-				<div id="formInterno">
-						<header class="major">
-							<h2><strong>Registro</strong></h2>
-						</header>
-									<div class="row half">
-										<div class="12u">
-											<input type="text" name="nombreProyecto" placeholder="Nombre">
-										</div>
-									</div>
-									<div class="row half">
-										<div class="12u">
-											<textarea name="descripcion" placeholder="Descripcion" rows="7"></textarea>
-										</div>
-									</div>
-                                    <div class="row half no-collapse-1">
-										<div class="6u">
-                                            <input type="date" name="fechaFinal">
-										</div>
-									</div>
-                                    <div class="row half no-collapse-1">
-										<div class="6u">
-											<input type="text" name="participantes" placeholder="Participantes">
-										</div>
-										<div class="6u">
-                                            <select name="privilegio">
-                                              <option value="seleccione" selected>Seleccione privilegio</option>
-                                              <option value="admin">Administrador</option>
-                                              <option value="col">Colaborador</option>
-                                            </select>
-										</div>
-									</div>
-                                    <div class="row half no-collapse-1">
-										<div class="6u">
-                                            <select name="avisoVencimientos">
-                                              <option value="seleccione" selected>Seleccione avisos</option>
-                                              <option value="nunca">Nunca</option>
-                                              <option value="1hora">1 hora antes</option>
-                                              <option value="1dia">1 dia antes</option>
-                                              <option value="2dia">2 dias antes</option>
-                                              <option value="1semana">1 semana antes</option>
-                                              <option value="1mes">1 mes antes</option>
-                                            </select>
-										</div>
-									</div>
-									<div class="row">
-										<div class="12u">
-											<ul class="buttons">
-												<li><a href="ListaProyectos.aspx" class="button special">Registrarse</a></li>
-											</ul>
-										</div>
-									</div>
-                    </div>
-                    </section>
-        </article> 
+        <section class="wrapper style3 container special">
+		    <div id="formInterno">
+				<header class="major">
+					<h2><strong>Registro</strong></h2>
+				</header>
 
+                <asp:ScriptManager ID="ScriptManagReg" runat="server"></asp:ScriptManager>
+				<asp:UpdatePanel ID="UpdatePanelReg" runat="server">
+                    <ContentTemplate>
+                    
+                    <div class="row half">
+					    <div class="12u">
+                            <asp:CustomValidator ID="CustomValUsuarioRep" Display="Dynamic" ControlToValidate="usuario" runat="server" ErrorMessage="Ya existe un usuario registrado con ese nombre" OnServerValidate="validarUsuarioRep"></asp:CustomValidator>
+                            <asp:RequiredFieldValidator ID="ReqFieldValUsuario" Display="Dynamic" ControlToValidate="usuario" runat="server" ErrorMessage="Debe ingresar un nombre de usuario"></asp:RequiredFieldValidator>
+						    <input type="text" id="usuario" name="usuario" runat="server" placeholder="Usuario">                            
+					    </div>
+				    </div>
+									
+                    <div class="row half">
+					    <div class="12u">
+                            <asp:RequiredFieldValidator ID="ReqFieldValPass" Display="Dynamic" ControlToValidate="pass" runat="server" ErrorMessage="Debe ingresar una contrase&ntilde;a"></asp:RequiredFieldValidator>
+						    <input type="password" id="pass" name="pass" runat="server" placeholder="Contrase&ntilde;a">
+					    </div>
+				    </div>
+                                    
+                    <div class="row half">
+					    <div class="12u">
+                            <asp:RequiredFieldValidator ID="ReqFieldValRepPass" Display="Dynamic" ControlToValidate="repetirPass" runat="server" ErrorMessage="Debe repetir la contrase&ntilde;a"></asp:RequiredFieldValidator>
+						    <asp:CompareValidator ID="CompareValPass" Display="Dynamic" ControlToCompare="pass" ControlToValidate="repetirPass" runat="server" ErrorMessage="Las contrase&ntilde;as no coinciden"></asp:CompareValidator>
+                            <input type="password" id="repetirPass" name="repetirPass" runat="server" placeholder="Repetir Contrase&ntilde;a">
+					    </div>
+				    </div>
+                                    
+                    <div class="row half">
+					    <div class="12u">
+                            <asp:CustomValidator ID="CustomValEmailRep" Display="Dynamic" ControlToValidate="email" runat="server" ErrorMessage="Ya existe un usuario registrado con ese email" OnServerValidate="validarEmailRep"></asp:CustomValidator>
+                            <asp:RequiredFieldValidator ID="ReqFieldValEmail" Display="Dynamic" ControlToValidate="email" runat="server" ErrorMessage="Debe ingresar un email"></asp:RequiredFieldValidator>
+						    <asp:RegularExpressionValidator ID="RegExpresValEmail" Display="Dynamic" ControlToValidate="email" runat="server" ErrorMessage="Formato de email inv&aacute;lido" ValidationExpression="^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$"></asp:RegularExpressionValidator>
+                            <input type="text" id="email" name="email" runat="server" placeholder="Email">
+					    </div>
+				    </div>
+                                    
+				    <div class="row">
+					    <div class="12u">
+						    <ul class="buttons">
+							    <li><a class="button special" id="btnRegistro" runat="server" onserverclick="registroForm_Click">Registrarse</a></li>                            
+						    </ul>
+					    </div>
+				    </div>
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+            </div>
+        </section>
+    </article> 
 </asp:Content>
+
+
