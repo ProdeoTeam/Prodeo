@@ -25,7 +25,7 @@ namespace Datos
         public string Descripcion { get; set; }
         public System.DateTime FechaCreacion { get; set; }
         public System.DateTime FechaVencimiento { get; set; }
-        public System.DateTime FechaFinalizacion { get; set; }
+        public Nullable<System.DateTime> FechaFinalizacion { get; set; }
         public System.DateTime AlertaPrevia { get; set; }
         public string DireccionGPS { get; set; }
         public string Prioridad { get; set; }

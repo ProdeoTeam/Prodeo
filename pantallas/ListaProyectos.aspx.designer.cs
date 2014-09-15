@@ -10,6 +10,15 @@
 namespace Prodeo.pantallas {
     
     
-    public partial class AltaProyecto {
+    public partial class ListaProyectos {
+        
+        /// <summary>
+        /// proyectosLista control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl proyectosLista;
     }
 }

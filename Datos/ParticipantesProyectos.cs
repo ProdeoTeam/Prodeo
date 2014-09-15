@@ -14,8 +14,10 @@ namespace Datos
     
     public partial class ParticipantesProyectos
     {
+        public int id { get; set; }
         public int idUsuario { get; set; }
         public int idProyecto { get; set; }
+        public string permisosAdministrador { get; set; }
     
         public virtual Proyectos Proyectos { get; set; }
     }

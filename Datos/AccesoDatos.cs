@@ -101,17 +101,132 @@ namespace Datos
             return sBuilder.ToString();
         }
 
-        public int insertarProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta)
+        public int insertarProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
-            Proyectos proy = new Proyectos();
-            proy.Nombre = nombre;
-            proy.Descripcion = descrip;
-            proy.FechaCreacion = fechaCreacion;
-            proy.FechaVencimiento = fechaVencimiento;
-            proy.AlertaPrevia = alerta;
-            prodeoContext.Proyectos.Add(proy);
-            return prodeoContext.SaveChanges();
+            using (var dbContextTransaction = prodeoContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    int idUsuario = (from u in prodeoContext.Usuarios
+                                         where u.nombre == usuario
+                                         select u.idUsuario).First();
+                    Proyectos proy = new Proyectos();
+                    proy.Nombre = nombre;
+                    proy.Descripcion = descrip;
+                    proy.FechaCreacion = fechaCreacion;
+                    proy.FechaVencimiento = fechaVencimiento;
+                    proy.AlertaPrevia = alerta;
+                    prodeoContext.Proyectos.Add(proy);
+                    prodeoContext.SaveChanges();
+                    //Participantes part = new Participantes();
+                    //part.idUsuario = idUsuario;
+                    //part.PermisosAdministrador = "1";
+                    //prodeoContext.Participantes.Add(part);
+                    //prodeoContext.SaveChanges();
+                    ParticipantesProyectos partProy = new ParticipantesProyectos();
+                    partProy.idProyecto = proy.idProyecto;
+                    partProy.idUsuario = idUsuario;
+                    partProy.permisosAdministrador = "A";
+                    prodeoContext.ParticipantesProyectos.Add(partProy);
+                    prodeoContext.SaveChanges();
+                    dbContextTransaction.Commit();
+                    return 1;
+                }
+                catch(Exception)
+                {
+                    dbContextTransaction.Rollback(); 
+                }
+                return 0;
+            }
+        }
+
+        public int insertarModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                int idUsuario = (from u in prodeoContext.Usuarios
+                                 where u.nombre == usuario
+                                 select u.idUsuario).First();
+                Modulos modulos = new Modulos();
+                modulos.idProyecto = proyecto;
+                modulos.Nombre = nombre;
+                modulos.Descripcion = descrip;
+                modulos.FechaCreacion = fechaCreacion;
+                modulos.FechaVencimiento = fechaVencimiento;
+                modulos.idUsuarioCreador = idUsuario;
+                prodeoContext.Modulos.Add(modulos);
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
+
+        }
+
+        public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                int idUsuario = (from u in prodeoContext.Usuarios
+                                 where u.nombre == usuario
+                                 select u.idUsuario).First();
+                Tareas tareas = new Tareas();
+                tareas.idModulo = idModulo;
+                tareas.Nombre = nombre;
+                tareas.Descripcion = descrip;
+                tareas.Comentario = comentario;
+                tareas.FechaCreacion = fechaCreacion;
+                tareas.DireccionGPS = "0.0.0.0";
+                tareas.FechaVencimiento = fechaVencimiento;
+                tareas.AlertaPrevia = DateTime.Now;
+                prodeoContext.Tareas.Add(tareas);
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
+        }
+
+        public List<DatosProyecto> obtenerListaProyectos(string usuario)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            int idUsuario = (from u in prodeoContext.Usuarios
+                             where u.nombre == usuario
+                             select u.idUsuario).First();
+            var query = (from p in prodeoContext.Proyectos
+                         join usr in prodeoContext.ParticipantesProyectos on p.idProyecto equals usr.idProyecto
+                         where usr.idUsuario == idUsuario
+                         select new DatosProyecto { Id = p.idProyecto, Nombre = p.Nombre, Permisos = usr.permisosAdministrador, Descripcion = p.Descripcion }).ToList();
+            return query;
+        }
+
+        public List<DatosModulo> obtenerListaModulos(string usuario, int proyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            int idUsuario = (from u in prodeoContext.Usuarios
+                             where u.nombre == usuario
+                             select u.idUsuario).First();
+            var query = (from p in prodeoContext.Modulos
+                         where p.idUsuarioCreador == idUsuario && p.idProyecto == proyecto
+                         select new DatosModulo { IdModulo = p.idModulo, IdProyecto = p.idProyecto, IdUsuario = p.idUsuarioCreador, Nombre = p.Nombre, Descripcion = p.Descripcion }).ToList();
+            return query;
+        }
+
+        public List<DatosTarea> obtenerListaTareas(int modulo)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var query = (from p in prodeoContext.Tareas
+                         where p.idModulo == modulo
+                         select new DatosTarea {IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Estado = p.Prioridad }).ToList();
+            return query;
         }
 
     }

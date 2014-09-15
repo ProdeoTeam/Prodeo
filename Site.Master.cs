@@ -12,7 +12,16 @@ namespace Prodeo
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (Session["usuario"] != null)
+            {
+                sessionActiva.Style.Add("display", "block");
+                sessionInactiva.Style.Add("display", "none");
+            } 
+            else
+            {
+                sessionActiva.Style.Add("display", "none");
+                sessionInactiva.Style.Add("display", "block");
+            }
         }
 
         protected void loginForm_Click(object sender, EventArgs e)
@@ -21,8 +30,21 @@ namespace Prodeo
             bool acceso = access.verificaUsuario(usuario.Value, pass.Value);
             if (acceso)
             {
-                Response.Redirect("~/pantallas/seleccion.aspx");
+                Session["usuario"] = usuario.Value;
+                if (Session["usuario"] != null)
+                {
+                    sessionActiva.Style.Add("display", "block");
+                    sessionInactiva.Style.Add("display", "none");
+                    Response.Redirect("~/pantallas/seleccion.aspx");
+                } 
             }
+        }
+
+        protected void closeSession_Click(object sender, EventArgs e)
+        {
+
+            Session.Abandon();
+            Response.Redirect("~/index.aspx");
         }
     }
 }

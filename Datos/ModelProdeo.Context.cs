@@ -27,10 +27,10 @@ namespace Datos
     
         public virtual DbSet<Modulos> Modulos { get; set; }
         public virtual DbSet<Participantes> Participantes { get; set; }
-        public virtual DbSet<ParticipantesProyectos> ParticipantesProyectos { get; set; }
         public virtual DbSet<ParticipantesTareas> ParticipantesTareas { get; set; }
-        public virtual DbSet<Tareas> Tareas { get; set; }
-        public virtual DbSet<Usuarios> Usuarios { get; set; }
         public virtual DbSet<Proyectos> Proyectos { get; set; }
+        public virtual DbSet<Usuarios> Usuarios { get; set; }
+        public virtual DbSet<ParticipantesProyectos> ParticipantesProyectos { get; set; }
+        public virtual DbSet<Tareas> Tareas { get; set; }
     }
 }

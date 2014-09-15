@@ -10,51 +10,69 @@
 namespace Prodeo.pantallas {
     
     
-    public partial class VerProyecto {
+    public partial class AltaTarea {
         
         /// <summary>
-        /// HyperLink1 control.
+        /// nombreTarea control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink1;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText nombreTarea;
         
         /// <summary>
-        /// HyperLink2 control.
+        /// descripcion control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink2;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText descripcion;
         
         /// <summary>
-        /// HyperLink3 control.
+        /// comentario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea comentario;
         
         /// <summary>
-        /// asm control.
+        /// listaModulos control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.ScriptManager asm;
+        protected global::System.Web.UI.HtmlControls.HtmlSelect listaModulos;
         
         /// <summary>
-        /// contenedorAccordion control.
+        /// fechaVencimiento control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenedorAccordion;
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaVencimiento;
+        
+        /// <summary>
+        /// avisoVencimientos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect avisoVencimientos;
+        
+        /// <summary>
+        /// btnAltaTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnAltaTarea;
     }
 }

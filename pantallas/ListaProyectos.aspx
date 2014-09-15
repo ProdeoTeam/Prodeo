@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaProyectos.aspx.cs" Inherits="Prodeo.pantallas.AltaProyecto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ListaProyectos.aspx.cs" Inherits="Prodeo.pantallas.ListaProyectos" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 <script src="<%= ResolveClientUrl("~/js/initPages.js")%>" type="text/javascript"></script>
@@ -6,9 +6,9 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <article id="main">
-            <section class="wrapper style3 container special">
+            <section class="wrapper style3 container special" id="proyectosLista" runat="server">
 				<h2>Lista de Proyectos:</h2>
-                <section id="vistaProyecto">
+                <%--<section id="vistaProyecto">
 					<h2>Proyecto 1 : Administrador</h2>
                     <h3>asdadasd asdads asdads asdasd asdasd asdasda</h3>
 					<a href="ProyectoPrincipal.aspx" class="button">Ingresar</a>
@@ -22,7 +22,7 @@
 					<h2>Proyecto 3 : Colaborador</h2>
                     <h3>asdadasd asdads asdads asdasd asdasd asdasda</h3>
 					<a href="#" class="button">Ingresar</a>
-				</section><br />
+				</section><br />--%>
 
             </section>
     </article> 
