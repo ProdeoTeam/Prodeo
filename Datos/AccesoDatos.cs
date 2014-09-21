@@ -167,7 +167,7 @@ namespace Datos
 
         }
 
-        public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos)
+        public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
         {
             try
             {
@@ -183,8 +183,13 @@ namespace Datos
                 tareas.FechaCreacion = fechaCreacion;
                 tareas.DireccionGPS = "0.0.0.0";
                 tareas.FechaVencimiento = fechaVencimiento;
-                tareas.AlertaPrevia = DateTime.Now;
+                tareas.AlertaPrevia = avisos;
+                tareas.Prioridad = prioridad;
                 prodeoContext.Tareas.Add(tareas);
+                ParticipantesTareas partTareas = new ParticipantesTareas();
+                partTareas.idUsuario = idUserAsignado;
+                partTareas.idTarea = tareas.idTarea;
+                prodeoContext.ParticipantesTareas.Add(partTareas);
                 prodeoContext.SaveChanges();
                 return 1;
             }
@@ -220,13 +225,32 @@ namespace Datos
             return query;
         }
 
+        public List<Usuarios> obtenerListaUsuarios()
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var query = (from u in prodeoContext.Usuarios
+                         select u).ToList();
+            return query;
+        }
+
         public List<DatosTarea> obtenerListaTareas(int modulo)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             var query = (from p in prodeoContext.Tareas
+                         join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
+                         join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
                          where p.idModulo == modulo
-                         select new DatosTarea {IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Estado = p.Prioridad }).ToList();
+                         select new DatosTarea {IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Prioridad = p.Prioridad, Asignada = u.nombre, FechaLimite=p.FechaVencimiento.ToString(), Estado = p.Estado}).ToList();
             return query;
+        }
+
+        public string obtenerNombreProyecto(int idProyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            string nombre = (from p in prodeoContext.Proyectos
+                             where p.idProyecto == idProyecto
+                             select p.Nombre).First();
+            return nombre;
         }
 
     }

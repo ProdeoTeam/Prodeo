@@ -13,6 +13,15 @@ namespace Prodeo.pantallas {
     public partial class VerProyecto {
         
         /// <summary>
+        /// nombreProyecto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label nombreProyecto;
+        
+        /// <summary>
         /// HyperLink1 control.
         /// </summary>
         /// <remarks>

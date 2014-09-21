@@ -33,6 +33,16 @@
                                               
                                             </select>
 										</div>
+                                        <div class="6u">
+                                            &nbsp;
+                                            <select name="listaPrioridad" id="listaPrioridad" runat="server">
+                                              <option value="seleccione" selected>Seleccione Prioridad</option>
+                                              <option value="N">Ninguna</option>
+                                              <option value="A">Alta</option>
+                                              <option value="M">Media</option>
+                                              <option value="B">Baja</option>
+                                            </select>
+										</div>
                                       </div>
                                     <div class="row half no-collapse-1">
                                         <div class="6u">
@@ -49,6 +59,16 @@
                                               <option value="d-2">2 dias antes</option>
                                               <option value="d-7">1 semana antes</option>
                                               <option value="m-1">1 mes antes</option>
+                                            </select>
+										</div>
+                                        
+									</div>
+                                    <div class="row half no-collapse-1">
+										<div class="6u">
+                                            &nbsp;
+                                            <select name="usuariosLista" id="usuariosLista" runat="server">
+                                              <option value="seleccione" selected>Seleccione usuario</option>
+                                              
                                             </select>
 										</div>
                                         

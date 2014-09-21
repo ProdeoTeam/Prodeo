@@ -26,10 +26,12 @@ namespace Datos
         public System.DateTime FechaCreacion { get; set; }
         public System.DateTime FechaVencimiento { get; set; }
         public Nullable<System.DateTime> FechaFinalizacion { get; set; }
-        public System.DateTime AlertaPrevia { get; set; }
+        public string AlertaPrevia { get; set; }
         public string DireccionGPS { get; set; }
         public string Prioridad { get; set; }
         public string Comentario { get; set; }
+        public string Estado { get; set; }
+        public Nullable<double> Tiempo { get; set; }
     
         public virtual Modulos Modulos { get; set; }
         public virtual ICollection<ParticipantesTareas> ParticipantesTareas { get; set; }

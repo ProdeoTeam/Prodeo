@@ -49,5 +49,12 @@ namespace Negocio
                 return false;
             }
         }
+
+        public List<Usuarios> obtieneListaUsuarios()
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<Usuarios> lista = datos.obtenerListaUsuarios();
+            return lista;
+        }
     }
 }

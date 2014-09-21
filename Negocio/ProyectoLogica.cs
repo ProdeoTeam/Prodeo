@@ -49,13 +49,14 @@ namespace Negocio
             }
         }
 
-        public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos)
+        public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             int modulo = Convert.ToInt32(idModulo);
+            int idUser = Convert.ToInt32(idUsuario);
             try
             {
-                if (datos.insertarTarea(modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos) != 0)
+                if (datos.insertarTarea(modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos, prioridad, idUser) != 0)
                 {
                     return true;
                 }
@@ -89,8 +90,31 @@ namespace Negocio
         {
             AccesoDatos datos = new AccesoDatos();
             List<DatosTarea> lista = datos.obtenerListaTareas(modulo);
+            if (lista.Count() > 0)
+            {
+                int result = DateTime.Compare(Convert.ToDateTime(lista[0].FechaLimite), DateTime.Now);
+                if (result > 0)
+                {
+                    lista[0].Estado = "Pendiente";
+                }
+                else if (result == 0)
+                {
+                    lista[0].Estado = "Pendiente";
+                }
+                else
+                {
+                    lista[0].Estado = "Vencido";
+                }
+            }
             return lista;
 
+        }
+
+        public string obtieneNombreProyecto(int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string nombre = datos.obtenerNombreProyecto(idProyecto);
+            return nombre;
         }
     }
 }

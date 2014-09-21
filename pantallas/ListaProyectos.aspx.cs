@@ -16,36 +16,64 @@ namespace Prodeo.pantallas
         {
             ProyectoLogica proy = new ProyectoLogica();
             List<DatosProyecto> dataProy = proy.obtieneListaProyecto(Session["usuario"].ToString());
-
-            Control control = FindHtmlControlByIdInControl(this, "proyectosLista");
             
-            if (control != null)
-            {
-                foreach (DatosProyecto dato in dataProy)
+                Control control = FindHtmlControlByIdInControl(this, "proyectosLista");
+
+                if (control != null)
                 {
-                    Literal literal;
+                    if (dataProy.Count > 0)
+                    {
+                       foreach (DatosProyecto dato in dataProy)
+                        {
+                            Literal literal;
 
-                    literal = new Literal();
-                    literal.Text = "<section id='vistaProyecto'>";
-                    control.Controls.Add(literal);
+                            literal = new Literal();
+                            literal.Text = "<section id='vistaProyecto'>";
+                            control.Controls.Add(literal);
 
-                    literal = new Literal();
-                    literal.Text = "<h2>"+dato.Nombre+" : "+dato.Permisos+"</h2>";
-                    control.Controls.Add(literal);
+                            literal = new Literal();
+                            literal.Text = "<h2>" + dato.Nombre + " : " + dato.Permisos + "</h2>";
+                            control.Controls.Add(literal);
 
-                    literal = new Literal();
-                    literal.Text = "<h3>"+dato.Descripcion+"</h3>";
-                    control.Controls.Add(literal);
+                            literal = new Literal();
+                            literal.Text = "<h3>" + dato.Descripcion + "</h3>";
+                            control.Controls.Add(literal);
 
-                    literal = new Literal();
-                    literal.Text = "<a href='VerProyecto.aspx?idProyecto="+dato.Id+"' class='button'>Ingresar</a>";
-                    control.Controls.Add(literal);
+                            literal = new Literal();
+                            literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "' class='button'>Ingresar</a>";
+                            control.Controls.Add(literal);
 
-                    literal = new Literal();
-                    literal.Text = "</section><br />";
-                    control.Controls.Add(literal);
-                }
+                            literal = new Literal();
+                            literal.Text = "</section><br />";
+                            control.Controls.Add(literal);
+                        }
+                    }
+                    else
+                    {
+                        Literal literal;
+
+                        literal = new Literal();
+                        literal.Text = "<section id='vistaProyecto'>";
+                        control.Controls.Add(literal);
+
+                        literal = new Literal();
+                        literal.Text = "<h2>No posee proyectos!</h2>";
+                        control.Controls.Add(literal);
+
+                        literal = new Literal();
+                        literal.Text = "<h3>Vaya a la seccion alta de proyectos para comenzar.</h3>";
+                        control.Controls.Add(literal);
+
+                        literal = new Literal();
+                        literal.Text = "<a href='AltaProyecto.aspx' class='button'>Alta de Proyectos</a>";
+                        control.Controls.Add(literal);
+
+                        literal = new Literal();
+                        literal.Text = "</section><br />";
+                        control.Controls.Add(literal);
+                    }
             }
+            
 
         }
 

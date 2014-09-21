@@ -14,7 +14,9 @@ namespace Prodeo.pantallas
         public int idProyecto;
         protected void Page_Load(object sender, EventArgs e)
         {
+            ProyectoLogica datosProyecto = new ProyectoLogica();
             idProyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
+            nombreProyecto.Text = datosProyecto.obtieneNombreProyecto(idProyecto);
             Session["idProyecto"] = idProyecto;
             presentarContenidoProyecto(idProyecto);
             
@@ -34,17 +36,50 @@ namespace Prodeo.pantallas
             dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Descripcion");
             dtTareas.Columns.Add(unaColumna);
-            unaColumna = new DataColumn("Estado Tarea");
+            unaColumna = new DataColumn("Prioridad");
+            dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Asignada a");
+            dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Fecha Limite");
+            dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Estado");
             dtTareas.Columns.Add(unaColumna);
             List<DatosTarea> listaTareas = proy.obtieneListaTareas(idModulo);
             if(listaTareas.Count != 0)
             { 
                 foreach(DatosTarea tarea in listaTareas)
                 {
+                        string prioridad = "";
                         DataRow dr = dtTareas.NewRow();
                         dr.SetField("Nombre Tarea",tarea.Nombre);
                         dr.SetField("Descripcion", tarea.Descripcion);
-                        dr.SetField("Estado Tarea", tarea.Estado);
+                         switch(tarea.Prioridad)
+                         {
+                             case "A":
+                                 {
+                                     prioridad = "Alta";
+                                     break;
+                                 }
+                             case "M":
+                                 {
+                                     prioridad = "Media";
+                                     break;
+                                 }
+                             case "B":
+                                 {
+                                     prioridad = "Baja";
+                                     break;
+                                 }
+                             case "N":
+                                 {
+                                     prioridad = "Ninguna";
+                                     break;
+                                 }
+                         }
+                         dr.SetField("Prioridad", prioridad);
+                         dr.SetField("Asignada a", tarea.Asignada);
+                         dr.SetField("Fecha Limite", tarea.FechaLimite);
+                         dr.SetField("Estado", tarea.Estado);
                         dtTareas.Rows.Add(dr);
                 }
             }

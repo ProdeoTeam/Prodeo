@@ -1,5 +1,4 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Registro.aspx.cs" Inherits="Prodeo.pantallas.Registro" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="<%= ResolveClientUrl("~/js/initPages.js")%>" type="text/javascript"></script>
     <link href="../Styles/formulariosInternos.css" rel="stylesheet" />
