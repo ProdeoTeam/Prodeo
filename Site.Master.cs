@@ -21,6 +21,7 @@ namespace Prodeo
             bool acceso = access.verificaUsuario(usuario.Value, pass.Value);
             if (acceso)
             {
+                Session.Add("usuario",usuario.Value);
                 Response.Redirect("~/pantallas/seleccion.aspx");
             }
         }

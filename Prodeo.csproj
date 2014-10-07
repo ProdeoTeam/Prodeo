@@ -50,6 +50,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>3rd\AjaxControlToolkit.dll</HintPath>
     </Reference>
+    <Reference Include="AjaxPro.2, Version=6.10.6.2, Culture=neutral, PublicKeyToken=4735ae9824c7d3ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\AjaxPro.2.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
@@ -112,6 +116,7 @@
     <Content Include="pantallas\ProyectoPrincipal.aspx" />
     <Content Include="pantallas\ListaProyectos.aspx" />
     <Content Include="pantallas\AltaProyecto.aspx" />
+    <Content Include="pantallas\Reportes.aspx" />
     <Content Include="pantallas\seleccion.aspx" />
     <Content Include="pantallas\VerProyecto.aspx" />
     <Content Include="Styles\btn-googleStyle.css" />
@@ -210,6 +215,13 @@
     </Compile>
     <Compile Include="pantallas\AltaProyecto.aspx.designer.cs">
       <DependentUpon>AltaProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\Reportes.aspx.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\Reportes.aspx.designer.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\seleccion.aspx.cs">
       <DependentUpon>seleccion.aspx</DependentUpon>
