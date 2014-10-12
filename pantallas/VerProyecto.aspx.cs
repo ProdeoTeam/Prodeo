@@ -5,42 +5,89 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using Negocio;
+using Datos;
 namespace Prodeo.pantallas
 {
     public partial class VerProyecto : System.Web.UI.Page
     {
+        public int idProyecto;
         protected void Page_Load(object sender, EventArgs e)
         {
-            presentarContenidoProyecto();
+            ProyectoLogica datosProyecto = new ProyectoLogica();
+            idProyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
+            nombreProyecto.Text = datosProyecto.obtieneNombreProyecto(idProyecto);
+            Session["idProyecto"] = idProyecto;
+            presentarContenidoProyecto(idProyecto);
+            
 
         }
         /// <summary>
         /// Se devuelve un datatable con todos las tareas del proyecto.
         /// </summary>
         /// <returns></returns>
-        System.Data.DataTable obtenerTareas()
+        System.Data.DataTable obtenerTareas(int idModulo)
         {
+            ProyectoLogica proy = new ProyectoLogica();
             DataTable dtTareas = new DataTable();
             DataColumn unaColumna;
             //una de las columnas tiene que ser el modulo para agruparlas cuando las queremos presentar en accordion
-            unaColumna = new DataColumn("NombreModulo");
+            unaColumna = new DataColumn("Nombre Tarea");
             dtTareas.Columns.Add(unaColumna);
-            unaColumna = new DataColumn("NombreTarea");
+            unaColumna = new DataColumn("Descripcion");
             dtTareas.Columns.Add(unaColumna);
-            unaColumna = new DataColumn("EstadoTarea");
+            unaColumna = new DataColumn("Prioridad");
             dtTareas.Columns.Add(unaColumna);
-
-            for (int i = 1; i < 5; i++)
-            {
-                string nombreModulo = "Modulo " + i;
-                for (int j = 0; j < 4; j++)
+            unaColumna = new DataColumn("Asignada a");
+            dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Fecha Limite");
+            dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Estado");
+            dtTareas.Columns.Add(unaColumna);
+            List<DatosTarea> listaTareas = proy.obtieneListaTareas(idModulo);
+            if(listaTareas.Count != 0)
+            { 
+                foreach(DatosTarea tarea in listaTareas)
                 {
-                    DataRow dr = dtTareas.NewRow();
-                    dr.SetField("NombreModulo",nombreModulo);
-                    dr.SetField("NombreTarea", "Tarea " + i.ToString() + j.ToString());
-                    dr.SetField("EstadoTarea", "Pendiente");
-                    dtTareas.Rows.Add(dr);
+                        string prioridad = "";
+                        DataRow dr = dtTareas.NewRow();
+                        dr.SetField("Nombre Tarea",tarea.Nombre);
+                        dr.SetField("Descripcion", tarea.Descripcion);
+                         switch(tarea.Prioridad)
+                         {
+                             case "A":
+                                 {
+                                     prioridad = "Alta";
+                                     break;
+                                 }
+                             case "M":
+                                 {
+                                     prioridad = "Media";
+                                     break;
+                                 }
+                             case "B":
+                                 {
+                                     prioridad = "Baja";
+                                     break;
+                                 }
+                             case "N":
+                                 {
+                                     prioridad = "Ninguna";
+                                     break;
+                                 }
+                         }
+                         dr.SetField("Prioridad", prioridad);
+                         dr.SetField("Asignada a", tarea.Asignada);
+                         dr.SetField("Fecha Limite", tarea.FechaLimite);
+                         dr.SetField("Estado", tarea.Estado);
+                        dtTareas.Rows.Add(dr);
                 }
+            }
+            else
+            {
+                DataRow dr = dtTareas.NewRow();
+                dr.SetField("Nombre Tarea", "No posee Tareas");
+                dtTareas.Rows.Add(dr);
             }
 
             return dtTareas;
@@ -51,40 +98,45 @@ namespace Prodeo.pantallas
         /// y se devuelve una lista de objetos que cada uno tiene Titulo del modulo y un Datatable con las tareas.
         /// </summary>
         /// <returns></returns>
-        List<Entidad.Modulo> obtenerListaModulos()
+        List<DatosModulo> obtenerListaModulos(int idproyecto)
         {
-            List<Entidad.Modulo> listaDeModulos;
-            Entidad.Modulo unModulo;
-            listaDeModulos = new List<Entidad.Modulo>();
-            
+            List<DatosModulo> listaDeModulos;
+            //Entidad.Modulo unModulo;
+            listaDeModulos = new List<DatosModulo>();
+            ProyectoLogica proy = new ProyectoLogica();
+            listaDeModulos = proy.obtieneListaModulos(Session["usuario"].ToString(),idproyecto);
             //Aca se debería recorrer un datatable, que tiene todas las tareas e ir generando nuevas tablas con un dataview para separarlos por modulos.
-            unModulo = new Entidad.Modulo();
-            unModulo.nombreModulo = "Titulo de un modulo";
-            unModulo.tablaTareas = obtenerTareas();
-            listaDeModulos.Add(unModulo);
+            foreach(DatosModulo modulo in listaDeModulos)
+            {
+                modulo.tablaTareas = obtenerTareas(modulo.IdModulo);
+            }
+            //unModulo = new Entidad.Modulo();
+            //unModulo.nombreModulo = "Titulo de un modulo";
+            //unModulo.tablaTareas = obtenerTareas();
+            //listaDeModulos.Add(unModulo);
 
-            unModulo = new Entidad.Modulo();
-            unModulo.nombreModulo = "Titulo de otro modulo";
-            unModulo.tablaTareas = obtenerTareas();
-            listaDeModulos.Add(unModulo);
+            //unModulo = new Entidad.Modulo();
+            //unModulo.nombreModulo = "Titulo de otro modulo";
+            //unModulo.tablaTareas = obtenerTareas();
+            //listaDeModulos.Add(unModulo);
 
 
             return listaDeModulos;
         }
-        void presentarContenidoProyecto() {
+        void presentarContenidoProyecto(int idproyecto) {
             //Prodeo.Entidad.Modulo unModulo = new Prodeo.Entidad.Modulo();
-            List<Entidad.Modulo> listaDeModulos;
-            listaDeModulos = new List<Entidad.Modulo>();
-            listaDeModulos = obtenerListaModulos();
+            List<DatosModulo> listaDeModulos;
+            listaDeModulos = new List<DatosModulo>();
+            listaDeModulos = obtenerListaModulos(idproyecto);
             
-            foreach (Entidad.Modulo unModulo in listaDeModulos)
+            foreach (DatosModulo unModulo in listaDeModulos)
             {
                 Literal h3 = new Literal();
                 Literal divApertura = new Literal();
                 Literal divCierre = new Literal();
 
                 //creamos y agregamos el h3 que sera el titulo de la solapa accordion
-                h3.Text = "<h3>" + unModulo.nombreModulo + "</h3>";
+                h3.Text = "<h3>" + unModulo.Nombre + "</h3>";
                 contenedorAccordion.Controls.Add(h3);
 
                 //Creamos la grilla que va a tener las tareas

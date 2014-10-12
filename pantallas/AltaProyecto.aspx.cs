@@ -16,8 +16,9 @@ namespace Prodeo.pantallas
         }
         protected void altaProyForm_Click(object sender, EventArgs e)
         {
+            string usuario = Session["usuario"].ToString();
             ProyectoLogica agregaProyecto = new ProyectoLogica();
-            bool altaExitosa = agregaProyecto.insertaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value);
+            bool altaExitosa = agregaProyecto.insertaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value,usuario);
             if (altaExitosa)
             {
                 Response.Redirect("~/pantallas/ListaProyectos.aspx");

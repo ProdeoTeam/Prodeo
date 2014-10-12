@@ -40,7 +40,12 @@
 						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink>
                         <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink>
                         <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink>
-						<li><a href="#envelope" class="button special" id="modaltrigger">Iniciar sesi&oacute;n</a></li>
+                        <li runat="server">
+                            <div runat="server" id="sessionInactiva"><a href="#envelope" class="button special" id="modaltrigger">Iniciar sesi&oacute;n</a></div>
+                        </li>
+                        <li runat="server">
+                            <div runat="server" id="sessionActiva"><a href="#" runat="server" class="button special" onserverclick="closeSession_Click">Cerrar sesi&oacute;n</a></div>
+                        </li>
 					</ul>
 				</nav>
 			</header>

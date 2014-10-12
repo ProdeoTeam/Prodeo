@@ -14,14 +14,14 @@
         $(function () {
             if (yaSeGeneroAccordion) {
                 $("#MainContent_contenedorAccordion").accordion('refresh');
-                alert("entro");
+                //alert("entro");
                 yaSeGeneroAccordion = true;
             } else {
                 $("#MainContent_contenedorAccordion").accordion({
                     collapsible: true,
                     heightStyle: "content"
                 });
-                alert("entro");
+                //alert("entro");
                 yaSeGeneroAccordion = true;
             }
 
@@ -34,10 +34,10 @@
     <article id="main">
         <section class="wrapper style3 container special">
 			<header class="major">
-				<h2><strong>Proyecto PEPE</strong></h2>
-                <input id="Button1" type="button" onclick="generarAccordion()" value="button" />
+				<h2><strong>Proyecto </strong><asp:Label ID="nombreProyecto" runat="server" Text="" Font-Bold="True"></asp:Label></h2>
+                <%--<input id="Button1" type="button" onclick="generarAccordion()" value="button" />--%>
 			</header>
-            <h4><asp:HyperLink ID="HyperLink1" NavigateUrl="#" runat="server">Agregar Tarea</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink2" NavigateUrl="#" runat="server">Agregar Modulo</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink3" NavigateUrl="#" runat="server">Graficos Estadisticos</asp:HyperLink></h4>
+            <h4><asp:HyperLink ID="HyperLink1" NavigateUrl="~/pantallas/AltaTarea.aspx" runat="server">Agregar Tarea</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink2" NavigateUrl="~/pantallas/AltaModulo.aspx" runat="server">Agregar Modulo</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink3" NavigateUrl="#" runat="server">Graficos Estadisticos</asp:HyperLink></h4>
 				<asp:ScriptManager ID="asm" runat="server">
                                 
                 </asp:ScriptManager>

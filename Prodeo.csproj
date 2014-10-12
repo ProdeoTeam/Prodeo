@@ -84,6 +84,7 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="pantallas\AltaModulo.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="images\banner.jpg" />
     <Content Include="images\btnCrearProyecto.jpg" />
@@ -112,6 +113,7 @@
     <Content Include="js\jquery.min.js" />
     <Content Include="js\skel-layers.min.js" />
     <Content Include="js\skel.min.js" />
+    <Content Include="pantallas\AltaTarea.aspx" />
     <Content Include="pantallas\Registro.aspx" />
     <Content Include="pantallas\ProyectoPrincipal.aspx" />
     <Content Include="pantallas\ListaProyectos.aspx" />
@@ -170,6 +172,13 @@
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="pantallas\AltaModulo.aspx.cs">
+      <DependentUpon>AltaModulo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\AltaModulo.aspx.designer.cs">
+      <DependentUpon>AltaModulo.aspx</DependentUpon>
+    </Compile>
     <Compile Include="App_Code\Modulo.cs" />
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
@@ -187,6 +196,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\AltaTarea.aspx.cs">
+      <DependentUpon>AltaTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\AltaTarea.aspx.designer.cs">
+      <DependentUpon>AltaTarea.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
@@ -261,6 +277,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Datos\Datos.csproj">
+      <Project>{b7787889-03dd-433f-8635-a0ed077cf082}</Project>
+      <Name>Datos</Name>
+    </ProjectReference>
     <ProjectReference Include="Negocio\Negocio.csproj">
       <Project>{7ca3cf98-a86f-44a1-9467-883a35f71f61}</Project>
       <Name>Negocio</Name>
