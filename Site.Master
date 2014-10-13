@@ -17,7 +17,7 @@
         </asp:ContentPlaceHolder>
     
         <script src="<%= ResolveClientUrl("~/js/jquery-1.9.1.min.js")%>" type="text/javascript"></script>
-    <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+        <script src="<%= ResolveClientUrl("~/js/jquery-ui.js")%>" type="text/javascript"></script>
         <script src="<%= ResolveClientUrl("~/js/jquery.leanModal.min.js")%>" type="text/javascript"></script>
         <link href="~/Styles/skel.css" rel="stylesheet" type="text/css" />
         <link href="~/Styles/style.css" rel="stylesheet" type="text/css" />
@@ -37,9 +37,14 @@
 				<h1 id="logo"><asp:HyperLink ID="HyperLink1" runat="server"><asp:Image ID="Image1" ImageUrl="~/images/logos/prodeo.gif" runat="server"></asp:Image></asp:HyperLink></h1>
 				<nav id="nav">
 					<ul>
-						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink>
-                        <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink>
-                        <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink>
+						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink></li>
+                        <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink></li>
+                        <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink></li>
+                        <li class="current" runat="server">
+                            <div runat="server" id="principalProyecto">
+                                <asp:HyperLink ID="HyperLink5" NavigateUrl="~/pantallas/seleccion.aspx" CssClass="button" runat="server">Principal</asp:HyperLink>
+                            </div>
+                        </li>
                         <li runat="server">
                             <div runat="server" id="sessionInactiva"><a href="#envelope" class="button special" id="modaltrigger">Iniciar sesi&oacute;n</a></div>
                         </li>

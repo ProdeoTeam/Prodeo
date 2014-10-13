@@ -84,6 +84,8 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="images\quitar.jpg" />
+    <Content Include="js\jquery-ui.js" />
     <Content Include="pantallas\AltaModulo.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="images\banner.jpg" />

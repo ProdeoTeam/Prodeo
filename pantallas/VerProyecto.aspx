@@ -37,7 +37,14 @@
 				<h2><strong>Proyecto </strong><asp:Label ID="nombreProyecto" runat="server" Text="" Font-Bold="True"></asp:Label></h2>
                 <%--<input id="Button1" type="button" onclick="generarAccordion()" value="button" />--%>
 			</header>
-            <h4><asp:HyperLink ID="HyperLink1" NavigateUrl="~/pantallas/AltaTarea.aspx" runat="server">Agregar Tarea</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink2" NavigateUrl="~/pantallas/AltaModulo.aspx" runat="server">Agregar Modulo</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink3" NavigateUrl="#" runat="server">Graficos Estadisticos</asp:HyperLink></h4>
+            <%--<h4><asp:HyperLink ID="HyperLink1" NavigateUrl="~/pantallas/AltaTarea.aspx" runat="server">Agregar Tarea</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink2" NavigateUrl="~/pantallas/AltaModulo.aspx" runat="server">Agregar Modulo</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink3" NavigateUrl="#" runat="server">Graficos Estadisticos</asp:HyperLink></h4>--%>
+            <footer>
+					<ul class="buttons">
+						<li><a href="~/pantallas/AltaTarea.aspx" class="button" runat="server">Agregar Tarea</a></li>
+						<li><a href="~/pantallas/AltaModulo.aspx" class="button" runat="server">Agregar Modulo</a></li>
+                        <li><a href="#" class="button">Graficos Estadisticos</a></li>
+					</ul>
+			</footer>
 				<asp:ScriptManager ID="asm" runat="server">
                                 
                 </asp:ScriptManager>

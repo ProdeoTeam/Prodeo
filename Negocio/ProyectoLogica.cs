@@ -116,5 +116,12 @@ namespace Negocio
             string nombre = datos.obtenerNombreProyecto(idProyecto);
             return nombre;
         }
+
+        public bool verificaUsuarioRegistrado(string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool existe = datos.verificarUsusarioRegistrado(email);
+            return existe;
+        }
     }
 }

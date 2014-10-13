@@ -101,6 +101,21 @@ namespace Datos
             return sBuilder.ToString();
         }
 
+        public bool verificarUsusarioRegistrado(string email)
+        {
+            bool existe = false;
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var query = (from u in prodeoContext.Usuarios
+                         where u.mail == email
+                         select u).Count();
+
+            if(query > 0)
+            {
+                existe = true;
+            }
+            return existe;
+        }
+
         public int insertarProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario)
         {
             prodeoEntities prodeoContext = new prodeoEntities();

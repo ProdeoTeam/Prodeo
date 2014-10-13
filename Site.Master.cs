@@ -16,11 +16,13 @@ namespace Prodeo
             {
                 sessionActiva.Style.Add("display", "block");
                 sessionInactiva.Style.Add("display", "none");
+                principalProyecto.Style.Add("display", "block");
             } 
             else
             {
                 sessionActiva.Style.Add("display", "none");
                 sessionInactiva.Style.Add("display", "block");
+                principalProyecto.Style.Add("display", "none");
             }
         }
 
@@ -35,6 +37,7 @@ namespace Prodeo
                 {
                     sessionActiva.Style.Add("display", "block");
                     sessionInactiva.Style.Add("display", "none");
+                    principalProyecto.Style.Add("display", "block");
                     Response.Redirect("~/pantallas/seleccion.aspx");
                 } 
             }
