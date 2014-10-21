@@ -10,13 +10,13 @@ namespace Negocio
     public class AccesoLogica
     {
         public bool verificaUsuario(string usuario, string pass)
-        { 
+        {
             AccesoDatos datos = new AccesoDatos();
             bool verifica = datos.verificarUsuario(usuario, pass);
             return verifica;
         }
 
-        public bool verDuplicadoUser(string usuario) 
+        public bool verDuplicadoUser(string usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             bool usuarioValid = datos.verUsuarioRep(usuario);
@@ -29,13 +29,13 @@ namespace Negocio
             bool emailValid = datos.verEmailRep(email);
             return emailValid;
         }
-                
-        public bool insertaUsuario(string usuario, string pass, string email) 
+
+        public bool insertaUsuario(string usuario, string pass, string email, string emailCodificado)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                if (datos.insertarUsuario(usuario, pass, email) != 0)
+                if (datos.insertarUsuario(usuario, pass, email, emailCodificado) != 0)
                 {
                     return true;
                 }
@@ -44,7 +44,7 @@ namespace Negocio
                     return false;
                 }
             }
-            catch 
+            catch
             {
                 return false;
             }

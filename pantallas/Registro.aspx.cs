@@ -20,10 +20,22 @@ namespace Prodeo.pantallas
             if (Page.IsValid) 
             { 
                 AccesoLogica logica = new AccesoLogica();
-                bool registroExitoso = logica.insertaUsuario(usuario.Value, pass.Value, email.Value);
+                MailRegistroLogica mailReg = new MailRegistroLogica();                
+                CriptografiaLogica encriptaMail = new CriptografiaLogica();
+
+                //Codifica y encripta la direccion de email
+                string emailCodificado = HttpUtility.UrlEncode(encriptaMail.Encriptar(email.Value.Trim()));
+                string urlVerificacion = string.Format("http://localhost:8090/pantallas/VerificarEmail.aspx?verif={0}", emailCodificado);
+
+                //Guarda el usuario en la base de datos
+                bool registroExitoso = logica.insertaUsuario(usuario.Value, pass.Value, email.Value, emailCodificado);
+                
+                //Si pudo guardar el usuario en la BD le manda el mail
                 if (registroExitoso)
-                {
-                    Response.Redirect("~/pantallas/seleccion.aspx");
+                {                    
+                    string estadoDeEnvio = mailReg.enviarMailRegistro(email.Value, urlVerificacion);
+                    lblEstadoMail.Text = estadoDeEnvio;
+                    //Response.Redirect("~/pantallas/seleccion.aspx");
                 }
             }
         }

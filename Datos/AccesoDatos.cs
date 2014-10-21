@@ -44,18 +44,19 @@ namespace Datos
             }
             else
             {
-               return usuarioVal = false;
-            }            
+                return usuarioVal = false;
+            }
         }
 
-        //validación para que no se registre con un mail que ya existe
+        //validación para que no se registre con un mail que ya existe	
+        //sirve tambien para comprobar el registro definitivo con el link de activacion
         public bool verEmailRep(string email)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             bool emailVal = false;
             var emailReg = (from e in prodeoContext.Usuarios
-                        where e.mail == email
-                        select e).Count();
+                            where e.mail == email
+                            select e).Count();
             if (emailReg == 0)
             {
                 return emailVal = true;
@@ -63,11 +64,11 @@ namespace Datos
             else
             {
                 return emailVal = false;
-            }            
+            }
         }
 
         //guarda los datos de registro en la BD
-        public int insertarUsuario(string usuario, string pass, string email)
+        public int insertarUsuario(string usuario, string pass, string email, string emailCodificado)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             Usuarios nuevoUsuario = new Usuarios();
@@ -76,6 +77,8 @@ namespace Datos
             nuevoUsuario.nombre = usuario;
             nuevoUsuario.password = passMd5;
             nuevoUsuario.mail = email;
+            nuevoUsuario.usuarioActivo = false;
+            nuevoUsuario.codigoVerificacion = emailCodificado;
             prodeoContext.Usuarios.Add(nuevoUsuario);
             return prodeoContext.SaveChanges(); //SaveChanges devuelve el N° de objetos escritos en la BD            
         }
@@ -109,7 +112,7 @@ namespace Datos
                          where u.mail == email
                          select u).Count();
 
-            if(query > 0)
+            if (query > 0)
             {
                 existe = true;
             }
@@ -124,8 +127,8 @@ namespace Datos
                 try
                 {
                     int idUsuario = (from u in prodeoContext.Usuarios
-                                         where u.nombre == usuario
-                                         select u.idUsuario).First();
+                                     where u.nombre == usuario
+                                     select u.idUsuario).First();
                     Proyectos proy = new Proyectos();
                     proy.Nombre = nombre;
                     proy.Descripcion = descrip;
@@ -148,9 +151,9 @@ namespace Datos
                     dbContextTransaction.Commit();
                     return 1;
                 }
-                catch(Exception)
+                catch (Exception)
                 {
-                    dbContextTransaction.Rollback(); 
+                    dbContextTransaction.Rollback();
                 }
                 return 0;
             }
@@ -175,7 +178,7 @@ namespace Datos
                 prodeoContext.SaveChanges();
                 return 1;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return 0;
             }
@@ -255,7 +258,7 @@ namespace Datos
                          join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
                          join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
                          where p.idModulo == modulo
-                         select new DatosTarea {IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Prioridad = p.Prioridad, Asignada = u.nombre, FechaLimite=p.FechaVencimiento.ToString(), Estado = p.Estado}).ToList();
+                         select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Prioridad = p.Prioridad, Asignada = u.nombre, FechaLimite = p.FechaVencimiento.ToString(), Estado = p.Estado }).ToList();
             return query;
         }
 
