@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
+    <Compile Include="CriptografiaDatos.cs" />
     <Compile Include="DatosModulo.cs" />
     <Compile Include="DatosProyecto.cs" />
     <Compile Include="DatosTarea.cs" />

@@ -17,7 +17,7 @@ namespace Datos
             MD5 md5Hash = MD5.Create();
             string passMd5 = GetMd5Hash(md5Hash, pass);
             var user = (from u in prod.Usuarios
-                        where u.nombre == usuario && u.password == passMd5
+                        where u.nombre == usuario && u.password == passMd5 && u.usuarioActivo == true
                         select u).Count();
             if (user != 0)
             {
@@ -271,5 +271,37 @@ namespace Datos
             return nombre;
         }
 
+        public Usuarios obtenerUsuario(string mail)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var usuarioCompleto = (from u in prodeoContext.Usuarios
+                                   where u.mail == mail
+                                   select u).First();
+            return usuarioCompleto;
+        }
+
+        public bool activarUsuario(string email)
+        {
+            bool resultModif;
+            prodeoEntities prodeoContext = new prodeoEntities();
+            
+            try
+            {
+                var usuarioaActivar = (from u in prodeoContext.Usuarios
+                                       where u.mail == email
+                                       select u).First();                
+                usuarioaActivar.usuarioActivo = true;
+                //prodeoContext.Entry(userSinActiv).State = System.Data.Entity.EntityState.Modified;                
+                prodeoContext.SaveChanges();
+                resultModif = true;
+            }                        
+
+            catch (Exception ex) 
+            {
+                resultModif = false;
+            }            
+            
+            return resultModif;            
+        }
     }
 }

@@ -80,6 +80,8 @@
           <Property Name="nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="mail" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="usuarioActivo" Type="bit" Nullable="false" />
+          <Property Name="codigoVerificacion" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <Association Name="FK_Modulos_Proyectos">
           <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
@@ -290,6 +292,8 @@
           <Property Name="password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Modulos" Relationship="prodeoModel.FK_Modulos_Usuarios" FromRole="Usuarios" ToRole="Modulos" />
           <NavigationProperty Name="Participantes" Relationship="prodeoModel.FK_participantes_usuarios" FromRole="Usuarios" ToRole="Participantes" />
+          <Property Name="usuarioActivo" Type="Boolean" Nullable="false" />
+          <Property Name="codigoVerificacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Modulos_Proyectos">
           <End Type="prodeoModel.Proyectos" Role="Proyectos" Multiplicity="1" />
@@ -446,6 +450,8 @@
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="prodeoModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="codigoVerificacion" ColumnName="codigoVerificacion" />
+                <ScalarProperty Name="usuarioActivo" ColumnName="usuarioActivo" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="mail" ColumnName="mail" />
                 <ScalarProperty Name="nombre" ColumnName="nombre" />
