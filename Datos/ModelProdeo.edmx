@@ -314,6 +314,8 @@ warning 6002: The table/view 'prodeo.dbo.ParticipantesTareas' does not have a pr
           <Property Name="codigoVerificacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Modulos" Relationship="prodeoModel.FK_Modulos_Usuarios" FromRole="Usuarios" ToRole="Modulos" />
           <NavigationProperty Name="Participantes" Relationship="prodeoModel.FK_participantes_usuarios" FromRole="Usuarios" ToRole="Participantes" />
+          <Property Name="usuarioActivo" Type="Boolean" Nullable="false" />
+          <Property Name="codigoVerificacion" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ParticipantesTareas">
           <Key>
@@ -448,6 +450,21 @@ warning 6002: The table/view 'prodeo.dbo.ParticipantesTareas' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+<<<<<<< HEAD
+=======
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="prodeoModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="codigoVerificacion" ColumnName="codigoVerificacion" />
+                <ScalarProperty Name="usuarioActivo" ColumnName="usuarioActivo" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+>>>>>>> origin/master
           <EntitySetMapping Name="Tareas">
             <EntityTypeMapping TypeName="prodeoModel.Tareas">
               <MappingFragment StoreEntitySet="Tareas">

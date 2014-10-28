@@ -15,19 +15,42 @@ namespace Prodeo.pantallas
             if (!this.IsPostBack) 
             { 
                 CriptografiaLogica cripto = new CriptografiaLogica();
-                AccesoLogica datos = new AccesoLogica();
-
                 string mailAVerificar = cripto.Desencriptar(HttpUtility.UrlDecode(Request.QueryString["verif"]));
-                bool resultComprobacion = datos.verDuplicadoEmail(mailAVerificar);
 
-                if (!resultComprobacion)//Devuelve FALSE si existe, por eso lo niego
+                if (mailAVerificar != "urlInvalida")
                 {
-                    lblMensaje.Text = "El usuario existe.";
-                }
+                    AccesoLogica logica = new AccesoLogica();
+                    bool resultComprobacion = logica.verDuplicadoEmail(mailAVerificar);
 
+                    if (!resultComprobacion)//Devuelve FALSE si existe, por eso lo niego
+                    {                        
+                        var user = logica.obtieneUsuario(mailAVerificar); //Obtiene el usuario entero
+                        if (user.usuarioActivo == true)
+                        {
+                            lblMensaje.Text = user.nombre + ", su usuario ya fue activado y puede usar su cuenta completamente.";
+                        }
+                        else 
+                        {
+                            bool resultModificacion = logica.activaUsuario(user.mail);
+                            if (resultModificacion == true)
+                            {
+                                lblMensaje.Text = "Bienvenido " + user.nombre + ". Su usuario fue activado correctamente.";
+                            }
+                            else 
+                            {
+                                lblMensaje.Text = "En este momento no pudimos validar su usuario, por favor intente nuevamente más tarde";
+                            }
+                        }
+                    }
+
+                    else
+                    {
+                        lblMensaje.Text = "El usuario que intenta registrar no existe o caducó el link de confirmacion.";
+                    }
+                }
                 else 
                 {
-                    lblMensaje.Text = "El usuario que intenta registrar no existe o caducó el link de confirmacion.";
+                    lblMensaje.Text = "La url es inválida";
                 }
             }
         }

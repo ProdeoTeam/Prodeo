@@ -56,5 +56,19 @@ namespace Negocio
             List<Usuarios> lista = datos.obtenerListaUsuarios();
             return lista;
         }
+
+        public Usuarios obtieneUsuario(string email)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Usuarios usuario = datos.obtenerUsuario(email);
+            return usuario;
+        }
+
+        public bool activaUsuario(string email) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool resultModif = datos.activarUsuario(email);
+            return resultModif;
+        }
     }
 }

@@ -45,7 +45,6 @@ namespace Prodeo
 
         protected void closeSession_Click(object sender, EventArgs e)
         {
-
             Session.Abandon();
             Response.Redirect("~/index.aspx");
         }
