@@ -271,7 +271,7 @@ namespace Datos
             return nombre;
         }
 
-<<<<<<< HEAD
+
         //public List<TareasPorUsuarios> obtenerDatosDeTareaPorUsuario(string usuario)
         //{
         //    prodeoEntities prodeoContext = new prodeoEntities();
@@ -283,7 +283,6 @@ namespace Datos
         //    return query;
         //}
 
-=======
         public Usuarios obtenerUsuario(string mail)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
@@ -316,6 +315,5 @@ namespace Datos
             
             return resultModif;            
         }
->>>>>>> origin/master
     }
 }

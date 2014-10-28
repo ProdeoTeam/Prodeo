@@ -450,8 +450,6 @@ warning 6002: The table/view 'prodeo.dbo.ParticipantesTareas' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-<<<<<<< HEAD
-=======
           <EntitySetMapping Name="Usuarios">
             <EntityTypeMapping TypeName="prodeoModel.Usuarios">
               <MappingFragment StoreEntitySet="Usuarios">
@@ -464,7 +462,6 @@ warning 6002: The table/view 'prodeo.dbo.ParticipantesTareas' does not have a pr
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
->>>>>>> origin/master
           <EntitySetMapping Name="Tareas">
             <EntityTypeMapping TypeName="prodeoModel.Tareas">
               <MappingFragment StoreEntitySet="Tareas">
