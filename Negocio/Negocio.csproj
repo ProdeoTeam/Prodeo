@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxPro.2">
-      <HintPath>bin\AjaxPro.2.dll</HintPath>
+      <HintPath>..\3rd\AjaxPro.2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -44,6 +44,8 @@
   <ItemGroup>
     <Compile Include="AccesoLogica.cs" />
     <Compile Include="Clases Entidad\ReporteModel.cs" />
+    <Compile Include="CriptografiaLogica.cs" />
+    <Compile Include="MailRegistroLogica.cs" />
     <Compile Include="ReportesLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoLogica.cs" />

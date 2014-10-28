@@ -271,5 +271,16 @@ namespace Datos
             return nombre;
         }
 
+        //public List<TareasPorUsuarios> obtenerDatosDeTareaPorUsuario(string usuario)
+        //{
+        //    prodeoEntities prodeoContext = new prodeoEntities();
+        //    var query = (from u in prodeoContext.Usuarios
+        //                 join pt in prodeoContext.ParticipantesTareas on u.idUsuario equals pt.idUsuario
+        //                 join t in prodeoContext.Tareas on pt.idTarea equals t.idTarea
+        //                 where u.nombre == usuario
+        //                 select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Prioridad = p.Prioridad, Asignada = u.nombre, FechaLimite = p.FechaVencimiento.ToString(), Estado = p.Estado }).ToList();
+        //    return query;
+        //}
+
     }
 }

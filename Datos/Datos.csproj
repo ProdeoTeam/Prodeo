@@ -87,6 +87,7 @@
     <Compile Include="Tareas.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>
     </Compile>
+    <Compile Include="TareasPorUsuarios.cs" />
     <Compile Include="Usuarios.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>
     </Compile>

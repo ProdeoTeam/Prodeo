@@ -89,49 +89,42 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 									</div>--%>
                                     <div class="row half">
 										<div class="12u">
-											<table id="tabla">
-	                                            <!-- Cabecera de la tabla -->
-	                                            <thead>
-		                                            <tr>
-			                                            <th>Email</th>
-			                                            <th>Permiso</th>
-			                                            <th>&nbsp;</th>
-		                                            </tr>
-	                                            </thead>
- 
-	                                            <!-- Cuerpo de la tabla con los campos -->
-	                                            <tbody>
- 
-		                                            <!-- fila base para clonar y agregar al final -->
-		                                            <tr class="fila-base">
-			                                            <td><input type="text" class="nombre" runat="server"/></td>
-			                                            <td>
-				                                            <select name="permisoUsuario" class="permiso" runat="server">
-                                                              <option value="seleccione" selected>Seleccione un permiso</option>
-                                                              <option value="A">Admisnistrador</option>
-                                                              <option value="C">Colaborador</option>
-                                                            </select>
-			                                            </td>
-			                                            <td class="eliminar">Eliminar</td>
-		                                            </tr>
-		                                            <!-- fin de código: fila base -->
- 
-		                                            <!-- Fila de ejemplo -->
-		                                            <%--<tr>
-			                                            <td><input type="text" class="nombre" id="usuarioMail" /></td>
-			                                            <td>
-				                                            <select name="permisoUsuario" id="Select2" runat="server">
-                                                              <option value="seleccione" selected>Seleccione un permiso</option>
-                                                              <option value="A">Admisnistrador</option>
-                                                              <option value="C">Colaborador</option>
-                                                            </select>
-			                                            </td>
-			                                            <td class="eliminar">Eliminar</td>
-		                                            </tr>--%>
-		                                            <!-- fin de código: fila de ejemplo -->
- 
-	                                            </tbody>
-                                            </table>
+											<asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False" ShowFooter="True">
+                                                <Columns>
+                                                    <asp:BoundField DataField="RowNumber" HeaderText="Nro" ReadOnly="True" SortExpression="RowNumber"></asp:BoundField>
+                                                    <asp:TemplateField HeaderText="Usuario">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtAddUser" runat="server" MaxLength="50"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Email">
+                                                        <ItemTemplate>
+                                                            <asp:TextBox ID="txtUserMail" runat="server" MaxLength="50"></asp:TextBox>
+                                                        </ItemTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:TemplateField HeaderText="Permisos">
+                                                        <ItemTemplate>
+                                                            <asp:DropDownList ID="ddlPermisos" runat="server">
+                                                                <asp:ListItem>Seleccione</asp:ListItem>
+                                                                <asp:ListItem Value="A">Administrador</asp:ListItem>
+                                                                <asp:ListItem Value="C">Colaborador</asp:ListItem>
+                                                            </asp:DropDownList>
+                                                        </ItemTemplate>
+                                                        <FooterStyle HorizontalAlign="Right" />
+                                                        <FooterTemplate>
+                                                            <asp:Button ID="btnAgregarUsuario" runat="server" Text="Nuevo usuario" OnClick="btnAgregarUsuario_Click" />
+                                                        </FooterTemplate>
+                                                    </asp:TemplateField>
+                                                    <asp:CommandField ShowDeleteButton="True" />
+                                                </Columns>
+                                                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                                <RowStyle BackColor="#EFF3FB" />
+                                                <EditRowStyle BackColor="#2461BF" />
+                                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
+                                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
+                                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
+                                                <AlternatingRowStyle BackColor="White" />
+                                            </asp:GridView>
 										</div>
 									</div>
                                     <div class="row half no-collapse-1">

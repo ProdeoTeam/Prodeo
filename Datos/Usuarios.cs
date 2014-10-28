@@ -24,6 +24,8 @@ namespace Datos
         public string nombre { get; set; }
         public string mail { get; set; }
         public string password { get; set; }
+        public bool usuarioActivo { get; set; }
+        public string codigoVerificacion { get; set; }
     
         public virtual ICollection<Modulos> Modulos { get; set; }
         public virtual ICollection<Participantes> Participantes { get; set; }

@@ -171,11 +171,11 @@
 						<header class="major">
 							<h2><strong>Sección Reportes</strong></h2>
 						</header>
-						<div class="row">
-                            <input type="button" onclick="crearTareasPorUsuario()" value="Reporte Tareas por usuario"/>
-                            <input type="button"  onclick="crearTareasPorModulo()" value="Reporte Tareas por modulo"/>
-                            <input type="button" value="Reporte3"/>
-                        </div>
+                        <ul class="buttons">
+						    <li><a href="#" class="button" onclick="crearTareasPorUsuario()" runat="server">Reporte Tareas por usuario</a></li>
+						    <li><a href="#" class="button" onclick="crearTareasPorModulo()" runat="server">Reporte Tareas por modulo</a></li>
+                            <li><a href="#" class="button" runat="server">Reporte3</a></li>
+					    </ul>
 						<div class="row">
 						<div id="containerReporte" style="width: 400px;">
 

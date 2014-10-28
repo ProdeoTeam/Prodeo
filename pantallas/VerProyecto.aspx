@@ -42,13 +42,13 @@
 					<ul class="buttons">
 						<li><a href="~/pantallas/AltaTarea.aspx" class="button" runat="server">Agregar Tarea</a></li>
 						<li><a href="~/pantallas/AltaModulo.aspx" class="button" runat="server">Agregar Modulo</a></li>
-                        <li><a href="#" class="button">Graficos Estadisticos</a></li>
+                        <li><a href="~/pantallas/Reportes.aspx" class="button" runat="server">Graficos Estadisticos</a></li>
 					</ul>
 			</footer>
 				<asp:ScriptManager ID="asm" runat="server">
                                 
                 </asp:ScriptManager>
-				<div id="contenedorAccordion" runat="server">
+				<div id="contenedorAccordion" runat="server" class="default">
 
                 </div>    
         	</section>

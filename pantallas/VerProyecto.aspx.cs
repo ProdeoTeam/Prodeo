@@ -141,6 +141,7 @@ namespace Prodeo.pantallas
 
                 //Creamos la grilla que va a tener las tareas
                 GridView grillaTareas = new GridView();
+                grillaTareas.Attributes.Add("class", "default");
                 grillaTareas.DataSource = unModulo.tablaTareas;
                 grillaTareas.DataBind();
 
