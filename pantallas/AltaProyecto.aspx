@@ -139,6 +139,7 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 										<div class="12u">
 											<ul class="buttons">
 												<li><a class="button special" id="btnAltaProyecto" runat="server" onserverclick="altaProyForm_Click">Alta</a></li>
+                                                <li><a class="button special" id="btnCancelarProyecto" runat="server" onserverclick="cancelarProyForm_Click">Alta</a></li>
 											</ul>
 										</div>
 									</div>

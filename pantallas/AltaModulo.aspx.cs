@@ -25,5 +25,12 @@ namespace Prodeo
                 Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto="+proyecto);
             }
         }
+
+        protected void cancelarModuloForm_Click(object sender, EventArgs e)
+        {
+            int proyecto = Convert.ToInt32(Session["idProyecto"]);
+            Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto);
+
+        }
     }
 }

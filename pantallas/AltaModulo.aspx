@@ -32,6 +32,7 @@
 										<div class="12u">
 											<ul class="buttons">
 												<li><a class="button special" id="btnAltaModulo" runat="server" onserverclick="altaModuloForm_Click">Alta</a></li>
+                                                <li><a class="button special" id="btnCancelarModulo" runat="server" onserverclick="cancelarModuloForm_Click">Cancelar</a></li>
 											</ul>
 										</div>
 									</div>

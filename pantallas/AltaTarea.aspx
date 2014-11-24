@@ -78,6 +78,7 @@
 										<div class="12u">
 											<ul class="buttons">
 												<li><a class="button special" id="btnAltaTarea" runat="server" onserverclick="altaTareaForm_Click">Alta</a></li>
+                                                <li><a class="button special" id="btnCalcelarTarea" runat="server" onserverclick="cancelarTareaForm_Click">Cancelar</a></li>
 											</ul>
 										</div>
 									</div>

@@ -59,6 +59,11 @@ namespace Prodeo.pantallas
             }
         }
 
+        protected void cancelarProyForm_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pantallas/ListaProyectos.aspx");
+        }
+
         protected void agregoUserProy_Click(object sender, EventArgs e)
         {
             ProyectoLogica verificoUser = new ProyectoLogica();

@@ -153,24 +153,6 @@ namespace Prodeo.pantallas
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(divCierre);
 
-                //De aca para abajo eran pruebas, no va.
-
-                ////AjaxControlToolkit.Accordion ac1;
-                //AjaxControlToolkit.AccordionPane pane1;
-                //pane1 = new AjaxControlToolkit.AccordionPane();
-                //pane1.ID = "pan" + i;
-                ////pane1.Header = Accordion1.HeaderTemplate;
-                //Label c1 = new Label();
-                //GridView c2 = new GridView();
-                //c1.Text = unModulo.nombreModulo;
-                //c2.DataSource = unModulo.tablaTareas;
-                //c2.DataBind();
-                //pane1.ContentContainer.Controls.Add(c1);
-                //pane1.HeaderContainer.Controls.Add(c2);
-                //pane1.HeaderContainer.ID = "hea" + i;
-                //pane1.ContentContainer.ID = "cont" + i;
-                //Accordion1.Panes.Add(pane1);
-                //i = i + 1;
             }
         }
     }
