@@ -33,6 +33,26 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
                 $(parent).remove();
             });
         });
+        function agregarUsuario() {
+            var e = document.getElementById("selectPermisos");
+            var permiso = e.options[e.selectedIndex].value;
+            var mail = document.getElementById("txtUsuarioAjax").value;
+            //Prodeo.pantallas.AltaProyecto.agregarUsuario_asp(mail, permiso);
+            var fila = Prodeo.pantallas.AltaProyecto.agregarUsuario_html(mail, permiso);
+            var tabla = document.getElementById("MainContent_tablaUsuariosGrilla");
+            tabla.innerHTML += fila.value;
+        }
+
+        function quitarUsuario(idFila) {
+            //Prodeo.pantallas.AltaProyecto.agregarUsuario_asp(mail, permiso);
+
+            var fila = document.getElementById(idFila);
+            var mail = fila.cells[0].innerText;
+            var tabla = fila.parentNode;
+            tabla.removeChild(fila);
+            Prodeo.pantallas.AltaProyecto.quitarUsuario_html(mail);
+
+        }
 
 </script>
 </asp:Content>
@@ -56,7 +76,7 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
                                     <div class="row half no-collapse-1">
                                         <div class="6u">
                                             Fecha Vencimiento
-                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server">
+                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server"/>
 										</div>
 										<div class="6u">
                                             &nbsp;
@@ -89,44 +109,71 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 									</div>--%>
                                     <div class="row half">
 										<div class="12u">
-											<asp:GridView ID="gvUsuarios" runat="server" AutoGenerateColumns="False" ShowFooter="True">
-                                                <Columns>
-                                                    <asp:BoundField DataField="RowNumber" HeaderText="Nro" ReadOnly="True" SortExpression="RowNumber"></asp:BoundField>
-                                                    <asp:TemplateField HeaderText="Usuario">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtAddUser" runat="server" MaxLength="50"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Email">
-                                                        <ItemTemplate>
-                                                            <asp:TextBox ID="txtUserMail" runat="server" MaxLength="50"></asp:TextBox>
-                                                        </ItemTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:TemplateField HeaderText="Permisos">
-                                                        <ItemTemplate>
-                                                            <asp:DropDownList ID="ddlPermisos" runat="server">
-                                                                <asp:ListItem>Seleccione</asp:ListItem>
-                                                                <asp:ListItem Value="A">Administrador</asp:ListItem>
-                                                                <asp:ListItem Value="C">Colaborador</asp:ListItem>
-                                                            </asp:DropDownList>
-                                                        </ItemTemplate>
-                                                        <FooterStyle HorizontalAlign="Right" />
-                                                        <FooterTemplate>
-                                                            <asp:Button ID="btnAgregarUsuario" runat="server" Text="Nuevo usuario" OnClick="btnAgregarUsuario_Click" />
-                                                        </FooterTemplate>
-                                                    </asp:TemplateField>
-                                                    <asp:CommandField ShowDeleteButton="True" />
-                                                </Columns>
-                                                <FooterStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                                <RowStyle BackColor="#EFF3FB" />
-                                                <EditRowStyle BackColor="#2461BF" />
-                                                <SelectedRowStyle BackColor="#D1DDF1" Font-Bold="True" ForeColor="#333333" />
-                                                <PagerStyle BackColor="#2461BF" ForeColor="White" HorizontalAlign="Center" />
-                                                <HeaderStyle BackColor="#507CD1" Font-Bold="True" ForeColor="White" />
-                                                <AlternatingRowStyle BackColor="White" />
-                                            </asp:GridView>
+                                            <div runat="server" id="divTablaUsuarios">
+                                                <!--<asp:Button ID="Button1" runat="server" Text="Agregar Usuario" OnClick="Button1_Click"/>-->
+                                                <input id="btnAgregarUsuario" onclick="agregarUsuario()" type="button" value="Agregar Usuario Ajx" />
+                                                <!--<asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
+                                                <asp:DropDownList ID="DropDownList1" runat="server">
+                                                    <asp:ListItem Text="Administrador" Value="A"></asp:ListItem>
+                                                    <asp:ListItem Text="Colaborador" Enabled="true" Value="C"></asp:ListItem>
+                                                </asp:DropDownList>-->
+                                                <input type="text" id="txtUsuarioAjax" />
+                                                    <select id="selectPermisos">
+                                                        <option value="A">Administrador</option>
+                                                        <option value="C" selected="selected">Colaborador</option>
+                                                    </select>
+                                               
+                                                <!--<asp:GridView ID="GridView1" runat="server" AutoGenerateDeleteButton="True" AutoGenerateColumns="True" OnRowDeleted="GridView1_RowDeleted" OnRowDeleting="GridView1_RowDeleting" >
+    
+                                                </asp:GridView>-->
+											<!--<table id="tabla">
+	                                           
+	                                            <thead>
+		                                            <tr>
+			                                            <th>Email</th>
+			                                            <th>Permiso</th>
+			                                            <th>&nbsp;</th>
+		                                            </tr>
+	                                            </thead>
+	                                            <tbody>
+ 
+		                                          
+		                                            <tr class="fila-base">
+			                                            <td><input type="text" class="nombre"/></td>
+			                                            <td>
+				                                            <select name="permisoUsuario" class="permiso">
+                                                              <option value="seleccione" selected>Seleccione un permiso</option>
+                                                              <option value="A">Admisnistrador</option>
+                                                              <option value="C">Colaborador</option>
+                                                            </select>
+			                                            </td>
+			                                            <td class="eliminar">Eliminar</td>
+		                                            </tr>
+		                                            
+	                                            </tbody>
+                                            </table>
+                                                </div>
+                                                    <input type="text" id="txtUsuarioAjax" />
+                                                    <select id="selectPermisos">
+                                                        <option value="A">Administrador</option>
+                                                        <option value="C" selected="selected">Colaborador</option>
+                                                    </select>-->
+                                                <table runat="server" id="tablaUsuariosGrilla">
+                                                    <tr>
+                                                        <td>
+                                                            Usuario
+                                                        </td>
+                                                        <td>
+                                                            Permisos
+                                                        </td>
+                                                        <td>
+                                                            #
+                                                        </td>
+                                                    </tr>
+                                                </table>
 										</div>
 									</div>
+                                        <!--
                                     <div class="row half no-collapse-1">
                                         <div class="6u">
                                             <ul class="buttons">
@@ -134,17 +181,16 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
                                                 <input type="button" id="agregar" value="Agregar fila" />
 											</ul>
 										</div>
-									</div>
+									</div>-->
 									<div class="row">
 										<div class="12u">
 											<ul class="buttons">
 												<li><a class="button special" id="btnAltaProyecto" runat="server" onserverclick="altaProyForm_Click">Alta</a></li>
-                                                <li><a class="button special" id="btnCancelarProyecto" runat="server" onserverclick="cancelarProyForm_Click">Alta</a></li>
 											</ul>
 										</div>
 									</div>
                     </div>
                     </section>
-        </article> 
+        </article>
 
 </asp:Content>
