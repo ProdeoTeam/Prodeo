@@ -119,7 +119,7 @@ namespace Datos
             return existe;
         }
 
-        public int insertarProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario)
+        public int insertarProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario, List<string> usuariosAsignados)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             using (var dbContextTransaction = prodeoContext.Database.BeginTransaction())
@@ -148,6 +148,20 @@ namespace Datos
                     partProy.permisosAdministrador = "A";
                     prodeoContext.ParticipantesProyectos.Add(partProy);
                     prodeoContext.SaveChanges();
+                    
+                    foreach(string user in usuariosAsignados)
+                    {
+                        string mail = user.Split('-')[0];
+                        string permiso = user.Split('-')[1];
+                        idUsuario = (from u in prodeoContext.Usuarios
+                                     where u.mail == mail
+                                     select u.idUsuario).First();
+                        partProy.idProyecto = proy.idProyecto;
+                        partProy.idUsuario = idUsuario;
+                        partProy.permisosAdministrador = permiso;
+                        prodeoContext.ParticipantesProyectos.Add(partProy);
+                        prodeoContext.SaveChanges();
+                    }
                     dbContextTransaction.Commit();
                     return 1;
                 }
@@ -231,24 +245,70 @@ namespace Datos
             return query;
         }
 
-        public List<DatosModulo> obtenerListaModulos(string usuario, int proyecto)
+        public List<DatosModulo> obtenerListaModulos(string usuario, int proyecto, string permiso)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             int idUsuario = (from u in prodeoContext.Usuarios
                              where u.nombre == usuario
                              select u.idUsuario).First();
-            var query = (from p in prodeoContext.Modulos
+            int creador = (from m in prodeoContext.Modulos
+                            where m.idUsuarioCreador == idUsuario && m.idProyecto == proyecto
+                            select m).Count();
+            List<DatosModulo> listaM = new List<DatosModulo>();
+            if(creador > 0)
+            {
+                listaM = (from p in prodeoContext.Modulos
                          where p.idUsuarioCreador == idUsuario && p.idProyecto == proyecto
                          select new DatosModulo { IdModulo = p.idModulo, IdProyecto = p.idProyecto, IdUsuario = p.idUsuarioCreador, Nombre = p.Nombre, Descripcion = p.Descripcion }).ToList();
-            return query;
+            }
+            else
+            {
+                switch(permiso)
+                {
+                    case "A":
+                        {
+                            listaM = (from p in prodeoContext.Modulos
+                                      where p.idUsuarioCreador == idUsuario && p.idProyecto == proyecto
+                                      select new DatosModulo { IdModulo = p.idModulo, IdProyecto = p.idProyecto, IdUsuario = p.idUsuarioCreador, Nombre = p.Nombre, Descripcion = p.Descripcion }).ToList();
+                            break;
+                        }
+                    case "C":
+                        {
+                            listaM = (from t in prodeoContext.ParticipantesTareas
+                                                        join ta in prodeoContext.Tareas on t.idTarea equals ta.idTarea
+                                                        join m in prodeoContext.Modulos on ta.idModulo equals m.idModulo
+                                                where t.idUsuario == idUsuario && m.idProyecto == proyecto
+                                      select new DatosModulo { IdModulo = m.idModulo, IdProyecto = m.idProyecto, IdUsuario = t.idUsuario, Nombre = m.Nombre, Descripcion = m.Descripcion }).Distinct().ToList();
+
+                            break;
+                        }
+                }
+            }
+
+            return listaM;
         }
 
-        public List<Usuarios> obtenerListaUsuarios()
+        public List<Usuarios> obtenerListaUsuarios(int idProyecto)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             var query = (from u in prodeoContext.Usuarios
+                         join pp in prodeoContext.ParticipantesProyectos on u.idUsuario equals pp.idUsuario
+                         where pp.idProyecto == idProyecto
                          select u).ToList();
             return query;
+        }
+
+        public string obtenerPermisoUsuario(string usuario, int idProyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            int idUsuario = (from u in prodeoContext.Usuarios
+                             where u.nombre == usuario
+                             select u.idUsuario).First();
+            string permiso = (from pp in prodeoContext.ParticipantesProyectos
+                                  where pp.idProyecto == idProyecto && pp.idUsuario == idUsuario
+                                  select pp.permisosAdministrador).First();
+
+            return permiso;
         }
 
         public List<DatosTarea> obtenerListaTareas(int modulo)
@@ -258,7 +318,20 @@ namespace Datos
                          join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
                          join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
                          where p.idModulo == modulo
-                         select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Prioridad = p.Prioridad, Asignada = u.nombre, FechaLimite = p.FechaVencimiento.ToString(), Estado = p.Estado }).ToList();
+                         select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Prioridad = p.Prioridad, Asignada = u.nombre, FechaLimite = p.FechaVencimiento, Estado = p.Estado }).ToList();
+            return query;
+        }
+        public List<DatosTarea> obtenerListaTareasUsuario(int modulo, string usuario)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            int idUsuario = (from u in prodeoContext.Usuarios
+                             where u.nombre == usuario
+                             select u.idUsuario).First();
+            var query = (from p in prodeoContext.Tareas
+                         join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
+                         join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
+                         where p.idModulo == modulo && t.idUsuario == idUsuario
+                         select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Prioridad = p.Prioridad, Asignada = u.nombre, FechaLimite = p.FechaVencimiento, Estado = p.Estado }).ToList();
             return query;
         }
 

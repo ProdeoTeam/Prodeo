@@ -50,10 +50,10 @@ namespace Negocio
             }
         }
 
-        public List<Usuarios> obtieneListaUsuarios()
+        public List<Usuarios> obtieneListaUsuarios(int idProyecto)
         {
             AccesoDatos datos = new AccesoDatos();
-            List<Usuarios> lista = datos.obtenerListaUsuarios();
+            List<Usuarios> lista = datos.obtenerListaUsuarios(idProyecto);
             return lista;
         }
 

@@ -14,7 +14,7 @@ namespace Datos
         public string Descripcion { get; set; }
         public string Prioridad { get; set; }
         public string Asignada { get; set; }
-        public string FechaLimite { get; set; }
+        public DateTime FechaLimite { get; set; }
         public string Estado { get; set; }
     }
 }

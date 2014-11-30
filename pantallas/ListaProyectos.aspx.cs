@@ -23,6 +23,7 @@ namespace Prodeo.pantallas
                 {
                     if (dataProy.Count > 0)
                     {
+                        string permiso = "";
                        foreach (DatosProyecto dato in dataProy)
                         {
                             Literal literal;
@@ -30,9 +31,21 @@ namespace Prodeo.pantallas
                             literal = new Literal();
                             literal.Text = "<section id='vistaProyecto'>";
                             control.Controls.Add(literal);
-
+                            switch(dato.Permisos)
+                            {
+                                case "A":
+                                    {
+                                        permiso = "Administrador";
+                                        break;
+                                    }
+                                case "C":
+                                    {
+                                        permiso = "Colaborador";
+                                        break;
+                                    }
+                            }
                             literal = new Literal();
-                            literal.Text = "<h2>" + dato.Nombre + " : " + dato.Permisos + "</h2>";
+                            literal.Text = "<h2>" + dato.Nombre + " : " + permiso + "</h2>";
                             control.Controls.Add(literal);
 
                             literal = new Literal();
@@ -40,7 +53,7 @@ namespace Prodeo.pantallas
                             control.Controls.Add(literal);
 
                             literal = new Literal();
-                            literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "' class='button'>Ingresar</a>";
+                            literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p="+dato.Permisos+"' class='button'>Ingresar</a>";
                             control.Controls.Add(literal);
 
                             literal = new Literal();

@@ -12,13 +12,16 @@ namespace Prodeo.pantallas
     public partial class VerProyecto : System.Web.UI.Page
     {
         public int idProyecto;
+        public string permiso = "";
         protected void Page_Load(object sender, EventArgs e)
         {
             ProyectoLogica datosProyecto = new ProyectoLogica();
             idProyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
+            permiso = Request.QueryString["p"];
             nombreProyecto.Text = datosProyecto.obtieneNombreProyecto(idProyecto);
             Session["idProyecto"] = idProyecto;
-            presentarContenidoProyecto(idProyecto);
+            Session["permiso"] = permiso;
+            presentarContenidoProyecto(idProyecto, permiso);
             
 
         }
@@ -44,7 +47,15 @@ namespace Prodeo.pantallas
             dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Estado");
             dtTareas.Columns.Add(unaColumna);
-            List<DatosTarea> listaTareas = proy.obtieneListaTareas(idModulo);
+            List<DatosTarea> listaTareas = new List<DatosTarea>();
+            if (Session["permiso"].ToString() == "A")
+            {
+                listaTareas = proy.obtieneListaTareas(idModulo);
+            }
+            else
+            {
+                listaTareas = proy.obtieneListaTareasUsusario(idModulo,Session["usuario"].ToString());
+            }
             if(listaTareas.Count != 0)
             { 
                 foreach(DatosTarea tarea in listaTareas)
@@ -98,36 +109,26 @@ namespace Prodeo.pantallas
         /// y se devuelve una lista de objetos que cada uno tiene Titulo del modulo y un Datatable con las tareas.
         /// </summary>
         /// <returns></returns>
-        List<DatosModulo> obtenerListaModulos(int idproyecto)
+        List<DatosModulo> obtenerListaModulos(int idproyecto, string permiso)
         {
             List<DatosModulo> listaDeModulos;
             //Entidad.Modulo unModulo;
             listaDeModulos = new List<DatosModulo>();
             ProyectoLogica proy = new ProyectoLogica();
-            listaDeModulos = proy.obtieneListaModulos(Session["usuario"].ToString(),idproyecto);
-            //Aca se debería recorrer un datatable, que tiene todas las tareas e ir generando nuevas tablas con un dataview para separarlos por modulos.
-            foreach(DatosModulo modulo in listaDeModulos)
-            {
-                modulo.tablaTareas = obtenerTareas(modulo.IdModulo);
-            }
-            //unModulo = new Entidad.Modulo();
-            //unModulo.nombreModulo = "Titulo de un modulo";
-            //unModulo.tablaTareas = obtenerTareas();
-            //listaDeModulos.Add(unModulo);
-
-            //unModulo = new Entidad.Modulo();
-            //unModulo.nombreModulo = "Titulo de otro modulo";
-            //unModulo.tablaTareas = obtenerTareas();
-            //listaDeModulos.Add(unModulo);
-
+                listaDeModulos = proy.obtieneListaModulos(Session["usuario"].ToString(), idproyecto, permiso);
+                //Aca se debería recorrer un datatable, que tiene todas las tareas e ir generando nuevas tablas con un dataview para separarlos por modulos.
+                foreach (DatosModulo modulo in listaDeModulos)
+                {
+                    modulo.tablaTareas = obtenerTareas(modulo.IdModulo);
+                }
 
             return listaDeModulos;
         }
-        void presentarContenidoProyecto(int idproyecto) {
+        void presentarContenidoProyecto(int idproyecto, string permiso) {
             //Prodeo.Entidad.Modulo unModulo = new Prodeo.Entidad.Modulo();
             List<DatosModulo> listaDeModulos;
             listaDeModulos = new List<DatosModulo>();
-            listaDeModulos = obtenerListaModulos(idproyecto);
+            listaDeModulos = obtenerListaModulos(idproyecto, permiso);
             
             foreach (DatosModulo unModulo in listaDeModulos)
             {

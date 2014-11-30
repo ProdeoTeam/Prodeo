@@ -18,11 +18,12 @@ namespace Prodeo
         {
             int proyecto = Convert.ToInt32(Session["idProyecto"]);
             string usuario = Session["usuario"].ToString();
+            Session["permiso"] = "A";
             ProyectoLogica agregaModulo = new ProyectoLogica();
             bool altaExitosa = agregaModulo.insertaModulo(nombreModulo.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario);
             if (altaExitosa)
             {
-                Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto="+proyecto);
+                Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto="+proyecto+"&p=A");
             }
         }
 

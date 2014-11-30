@@ -9,12 +9,12 @@ namespace Negocio
 {
     public class ProyectoLogica
     {
-        public bool insertaProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario)
+        public bool insertaProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario, List<string> usuariosAsignados)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                if (datos.insertarProyecto(nombre,descrip,fechaCreacion,fechaVencimiento,alerta, usuario) != 0)
+                if (datos.insertarProyecto(nombre,descrip,fechaCreacion,fechaVencimiento,alerta, usuario, usuariosAsignados) != 0)
                 {
                     return true;
                 }
@@ -78,10 +78,10 @@ namespace Negocio
             return lista;
 
         }
-        public List<DatosModulo> obtieneListaModulos(string usuario, int proyecto)
+        public List<DatosModulo> obtieneListaModulos(string usuario, int proyecto, string permiso)
         {
             AccesoDatos datos = new AccesoDatos();
-            List<DatosModulo> lista = datos.obtenerListaModulos(usuario, proyecto);
+            List<DatosModulo> lista = datos.obtenerListaModulos(usuario, proyecto, permiso);
             return lista;
 
         }
@@ -92,7 +92,31 @@ namespace Negocio
             List<DatosTarea> lista = datos.obtenerListaTareas(modulo);
             if (lista.Count() > 0)
             {
-                int result = DateTime.Compare(Convert.ToDateTime(lista[0].FechaLimite), DateTime.Now);
+                int result = DateTime.Compare(lista[0].FechaLimite, DateTime.Now);
+                if (result > 0)
+                {
+                    lista[0].Estado = "Pendiente";
+                }
+                else if (result == 0)
+                {
+                    lista[0].Estado = "Pendiente";
+                }
+                else
+                {
+                    lista[0].Estado = "Vencido";
+                }
+            }
+            return lista;
+
+        }
+
+        public List<DatosTarea> obtieneListaTareasUsusario(int modulo, string usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<DatosTarea> lista = datos.obtenerListaTareasUsuario(modulo, usuario);
+            if (lista.Count() > 0)
+            {
+                int result = DateTime.Compare(lista[0].FechaLimite, DateTime.Now);
                 if (result > 0)
                 {
                     lista[0].Estado = "Pendiente";
@@ -122,6 +146,13 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             bool existe = datos.verificarUsusarioRegistrado(email);
             return existe;
+        }
+
+        public string obtienePermisoUsuario(string usuario, int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string permiso = datos.obtenerPermisoUsuario(usuario, idProyecto);
+            return permiso;
         }
     }
 }

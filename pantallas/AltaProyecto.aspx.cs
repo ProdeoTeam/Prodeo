@@ -36,14 +36,25 @@ namespace Prodeo.pantallas
 
             DataTable dt = Session["tabla"] as DataTable;
             string usuario = Session["usuario"].ToString();
+            Session["permiso"] = "A";
+            List<string> usuariosAsignados = new List<string>();
+            foreach(DataRow row in dt.Rows)
+            {
+                usuariosAsignados.Add(row.ItemArray[0] + "-" + row.ItemArray[1]);
+            }
 
             ProyectoLogica agregaProyecto = new ProyectoLogica();
-            bool altaExitosa = agregaProyecto.insertaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value, usuario);
+            bool altaExitosa = agregaProyecto.insertaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value, usuario, usuariosAsignados);
             if (altaExitosa)
             {
 
                 Response.Redirect("~/pantallas/ListaProyectos.aspx");
             }
+        }
+
+        protected void cancelarProyForm_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pantallas/seleccion.aspx");
         }
 
         protected void agregoUserProy_Click(object sender, EventArgs e)
@@ -94,44 +105,52 @@ namespace Prodeo.pantallas
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
         public System.Web.UI.HtmlControls.HtmlTableRow agregarUsuario_html(string email, string permisos)
         {
-            DataTable dt = Session["tabla"] as DataTable;
+            ProyectoLogica validar = new ProyectoLogica();
+            bool usuarioValido = validar.verificaUsuarioRegistrado(email);
+            
+                DataTable dt = Session["tabla"] as DataTable;
 
 
-            //System.Web.UI.HtmlControls.HtmlTable tabla = new System.Web.UI.HtmlControls.HtmlTable();
-            System.Web.UI.HtmlControls.HtmlTableRow tr = new System.Web.UI.HtmlControls.HtmlTableRow();
-            System.Web.UI.HtmlControls.HtmlTableCell td = new System.Web.UI.HtmlControls.HtmlTableCell();
-            System.Web.UI.HtmlControls.HtmlInputButton botonEliminar = new System.Web.UI.HtmlControls.HtmlInputButton();
+                //System.Web.UI.HtmlControls.HtmlTable tabla = new System.Web.UI.HtmlControls.HtmlTable();
+                System.Web.UI.HtmlControls.HtmlTableRow tr = new System.Web.UI.HtmlControls.HtmlTableRow();
+                System.Web.UI.HtmlControls.HtmlTableCell td = new System.Web.UI.HtmlControls.HtmlTableCell();
+                System.Web.UI.HtmlControls.HtmlInputButton botonEliminar = new System.Web.UI.HtmlControls.HtmlInputButton();
+
+                if (usuarioValido)
+                {
+                    //creamos una fila
+                    tr = new System.Web.UI.HtmlControls.HtmlTableRow();
+                    tr.ID = "fila_" + dt.Rows.Count + 1;
+                    //agregamos mail
+                    td = new System.Web.UI.HtmlControls.HtmlTableCell();
+                    td.InnerText = email;
+                    tr.Controls.Add(td);
+                    //agregamos permisos
+                    td = new System.Web.UI.HtmlControls.HtmlTableCell();
+                    td.InnerText = permisos;
+                    tr.Controls.Add(td);
+                    //agregamos boton eliminar
+                    botonEliminar.Attributes.Add("onclick", "quitarUsuario('" + tr.ID + "')");
+                    botonEliminar.Attributes.Add("value", "Eliminar");
+                    botonEliminar.Attributes.Add("type", "button");
+                    td = new System.Web.UI.HtmlControls.HtmlTableCell();
+                    td.Controls.Add(botonEliminar);
+                    tr.Controls.Add(td);
+                    //Agregamos la fila a la tabla
+                    //tablaUsuariosGrilla.Controls.Add(tr);
 
 
-            //creamos una fila
-            tr = new System.Web.UI.HtmlControls.HtmlTableRow();
-            tr.ID = "fila_" + dt.Rows.Count + 1;
-            //agregamos mail
-            td = new System.Web.UI.HtmlControls.HtmlTableCell();
-            td.InnerText = email;
-            tr.Controls.Add(td);
-            //agregamos permisos
-            td = new System.Web.UI.HtmlControls.HtmlTableCell();
-            td.InnerText = permisos;
-            tr.Controls.Add(td);
-            //agregamos boton eliminar
-            botonEliminar.Attributes.Add("onclick", "quitarUsuario('" + tr.ID + "')");
-            botonEliminar.Attributes.Add("value", "Eliminar");
-            botonEliminar.Attributes.Add("type", "button");
-            td = new System.Web.UI.HtmlControls.HtmlTableCell();
-            td.Controls.Add(botonEliminar);
-            tr.Controls.Add(td);
-            //Agregamos la fila a la tabla
-            //tablaUsuariosGrilla.Controls.Add(tr);
-
-
-            DataRow row = dt.NewRow();
-            row["mail"] = email;
-            row["permisos"] = permisos;
-            dt.Rows.Add(row);
-            dt.AcceptChanges();
-            Session["tabla"] = dt;
-
+                    DataRow row = dt.NewRow();
+                    row["mail"] = email;
+                    row["permisos"] = permisos;
+                    dt.Rows.Add(row);
+                    dt.AcceptChanges();
+                    Session["tabla"] = dt;
+                }
+                else
+                { 
+                    
+                }
             return tr;
 
 
