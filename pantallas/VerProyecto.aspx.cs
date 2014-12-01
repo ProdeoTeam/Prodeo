@@ -13,6 +13,7 @@ namespace Prodeo.pantallas
     {
         public int idProyecto;
         public string permiso = "";
+        public GridView grillaTareas = new GridView();
         protected void Page_Load(object sender, EventArgs e)
         {
             ProyectoLogica datosProyecto = new ProyectoLogica();
@@ -21,6 +22,16 @@ namespace Prodeo.pantallas
             nombreProyecto.Text = datosProyecto.obtieneNombreProyecto(idProyecto);
             Session["idProyecto"] = idProyecto;
             Session["permiso"] = permiso;
+            if(permiso == "C")
+            {
+                liTarea.Style["display"] = "none";
+                liModulo.Style["display"] = "none";
+            }
+            else
+            {
+                liTarea.Style["display"] = "inline-block";
+                liModulo.Style["display"] = "inline-block";
+            }
             presentarContenidoProyecto(idProyecto, permiso);
             
 
@@ -57,10 +68,13 @@ namespace Prodeo.pantallas
                 listaTareas = proy.obtieneListaTareasUsusario(idModulo,Session["usuario"].ToString());
             }
             if(listaTareas.Count != 0)
-            { 
+            {
+                Button newButton = new Button();
+                newButton.Text = "Ver";
                 foreach(DatosTarea tarea in listaTareas)
                 {
                         string prioridad = "";
+                        newButton.ID = "btnTarea"+tarea.IdTarea;
                         DataRow dr = dtTareas.NewRow();
                         dr.SetField("Nombre Tarea",tarea.Nombre);
                         dr.SetField("Descripcion", tarea.Descripcion);
@@ -141,7 +155,10 @@ namespace Prodeo.pantallas
                 contenedorAccordion.Controls.Add(h3);
 
                 //Creamos la grilla que va a tener las tareas
-                GridView grillaTareas = new GridView();
+                //GridView grillaTareas = new GridView();
+                grillaTareas.ID = "GridView";
+                grillaTareas.SelectedIndexChanged += new EventHandler(GridView_SelectedIndexChanged);
+                grillaTareas.AutoGenerateSelectButton = true;
                 grillaTareas.Attributes.Add("class", "default");
                 grillaTareas.DataSource = unModulo.tablaTareas;
                 grillaTareas.DataBind();
@@ -155,6 +172,13 @@ namespace Prodeo.pantallas
                 contenedorAccordion.Controls.Add(divCierre);
 
             }
+        }
+
+        protected void GridView_SelectedIndexChanged(Object sender, EventArgs e)
+        {
+            GridViewRow row = grillaTareas.SelectedRow;
+            
+
         }
     }
 }

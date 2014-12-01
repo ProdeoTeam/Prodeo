@@ -92,18 +92,21 @@ namespace Negocio
             List<DatosTarea> lista = datos.obtenerListaTareas(modulo);
             if (lista.Count() > 0)
             {
-                int result = DateTime.Compare(lista[0].FechaLimite, DateTime.Now);
-                if (result > 0)
+                foreach (DatosTarea lis in lista)
                 {
-                    lista[0].Estado = "Pendiente";
-                }
-                else if (result == 0)
-                {
-                    lista[0].Estado = "Pendiente";
-                }
-                else
-                {
-                    lista[0].Estado = "Vencido";
+                    int result = DateTime.Compare(lis.FechaLimite, DateTime.Now);
+                    if (result > 0)
+                    {
+                        lis.Estado = "Pendiente";
+                    }
+                    else if (result == 0)
+                    {
+                        lis.Estado = "Pendiente";
+                    }
+                    else
+                    {
+                        lis.Estado = "Vencido";
+                    }
                 }
             }
             return lista;

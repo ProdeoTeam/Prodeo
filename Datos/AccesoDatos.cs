@@ -268,7 +268,7 @@ namespace Datos
                     case "A":
                         {
                             listaM = (from p in prodeoContext.Modulos
-                                      where p.idUsuarioCreador == idUsuario && p.idProyecto == proyecto
+                                      where p.idProyecto == proyecto
                                       select new DatosModulo { IdModulo = p.idModulo, IdProyecto = p.idProyecto, IdUsuario = p.idUsuarioCreador, Nombre = p.Nombre, Descripcion = p.Descripcion }).ToList();
                             break;
                         }

@@ -111,7 +111,7 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 										<div class="12u">
                                             <div runat="server" id="divTablaUsuarios">
                                                 <!--<asp:Button ID="Button1" runat="server" Text="Agregar Usuario" OnClick="Button1_Click"/>-->
-                                                <input id="btnAgregarUsuario" onclick="agregarUsuario()" type="button" value="Agregar Usuario Ajx" />
+                                                <input id="btnAgregarUsuario" onclick="agregarUsuario()" type="button" value="Agregar Usuario" />
                                                 <!--<asp:TextBox ID="txtUsuario" runat="server"></asp:TextBox>
                                                 <asp:DropDownList ID="DropDownList1" runat="server">
                                                     <asp:ListItem Text="Administrador" Value="A"></asp:ListItem>
