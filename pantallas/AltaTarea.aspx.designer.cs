@@ -13,6 +13,33 @@ namespace Prodeo.pantallas {
     public partial class AltaTarea {
         
         /// <summary>
+        /// LabelTareas control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label LabelTareas;
+        
+        /// <summary>
+        /// btnEditarTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnEditarTarea;
+        
+        /// <summary>
+        /// btnCancelarEdicion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnCancelarEdicion;
+        
+        /// <summary>
         /// nombreTarea control.
         /// </summary>
         /// <remarks>
@@ -101,5 +128,14 @@ namespace Prodeo.pantallas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btnCalcelarTarea;
+        
+        /// <summary>
+        /// btnVolverTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnVolverTarea;
     }
 }

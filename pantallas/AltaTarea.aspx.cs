@@ -16,7 +16,6 @@ namespace Prodeo.pantallas
             {
                 ProyectoLogica proy = new ProyectoLogica();
                 int proyecto = Convert.ToInt32(Session["idProyecto"]);
-                Session["permiso"] = "A";
                 string usuario = Session["usuario"].ToString();
                 string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
                 AccesoLogica user = new AccesoLogica();
@@ -28,6 +27,75 @@ namespace Prodeo.pantallas
                 usuariosLista.DataValueField = "idUsuario";
                 usuariosLista.DataTextField = "nombre";
                 usuariosLista.DataBind();
+                if (Session["datosTarea"] == null)
+                {
+                    Session["permiso"] = "A";
+                    LabelTareas.Text = "Alta de Tarea";
+                    btnAltaTarea.Visible = true;
+                    btnCalcelarTarea.Visible = true;
+                    btnVolverTarea.Visible = false;
+                    
+                }
+                else
+                {
+                    btnAltaTarea.Visible = false;
+                    btnEditarTarea.Visible = false;
+                    btnCalcelarTarea.Visible = false;
+                    btnVolverTarea.Visible = true;
+                    Session["permiso"] = permiso;
+                    if(permiso == "A")
+                    {
+                        btnEditarTarea.Visible = true;
+                    }
+                    else
+                    {
+                        btnEditarTarea.Visible = false;
+                    }
+                    LabelTareas.Text = "Ver Tarea";
+                    GridViewRow row;
+                    row = (GridViewRow) Session["datosTarea"];
+                    nombreTarea.Value = row.Cells[3].Text;
+                    nombreTarea.Disabled = true;
+                    descripcion.Value = row.Cells[4].Text;
+                    descripcion.Disabled = true;
+                    comentario.Value = row.Cells[5].Text;
+                    comentario.Disabled = true;
+                    for (int i=0; i<=listaModulos.Items.Count - 1; i++)
+                        {
+                            if (listaModulos.Items[i].Value == row.Cells[2].Text)
+                            {
+                                listaModulos.Items[i].Selected = true;
+                            }
+                        }
+                    listaModulos.Disabled = true;
+                    for (int i = 0; i <= listaPrioridad.Items.Count - 1; i++)
+                    {
+                        if (listaPrioridad.Items[i].Text == row.Cells[6].Text)
+                        {
+                            listaPrioridad.Items[i].Selected = true;
+                        }
+                    }
+                    listaPrioridad.Disabled = true;
+                    for (int i = 0; i <= avisoVencimientos.Items.Count - 1; i++)
+                    {
+                        if (avisoVencimientos.Items[i].Value == row.Cells[7].Text)
+                        {
+                            avisoVencimientos.Items[i].Selected = true;
+                        }
+                    }
+                    avisoVencimientos.Disabled = true;
+                    for (int i = 0; i <= usuariosLista.Items.Count - 1; i++)
+                    {
+                        if (usuariosLista.Items[i].Text == row.Cells[8].Text)
+                        {
+                            usuariosLista.Items[i].Selected = true;
+                        }
+                    }
+                    usuariosLista.Disabled = true;
+                    fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[9].Text));
+                    fechaVencimiento.Disabled = true;
+                    Session["datosTarea"] = null;
+                }
             }
         }
 
@@ -47,7 +115,43 @@ namespace Prodeo.pantallas
         protected void cancelarTareaForm_Click(object sender, EventArgs e)
         {
             int proyecto = Convert.ToInt32(Session["idProyecto"]);
-            Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto);
+            Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
+        }
+
+        protected void editarTarea_Click(object sender, EventArgs e)
+        {
+            btnEditarTarea.Visible = true;
+            btnCancelarEdicion.Visible = false;
+            nombreTarea.Disabled = false;
+            descripcion.Disabled = false;
+            comentario.Disabled = false;
+            listaModulos.Disabled = false;
+            listaPrioridad.Disabled = false;
+            fechaVencimiento.Disabled = false;
+            avisoVencimientos.Disabled = false;
+            usuariosLista.Disabled = false;
+
+            btnAltaTarea.Visible = true;
+            btnAltaTarea.InnerText = "Guardar";
+
+        }
+
+        protected void cancelarTarea_Click(object sender, EventArgs e)
+        {
+            btnEditarTarea.Visible = false;
+            btnCancelarEdicion.Visible = true;
+            nombreTarea.Disabled = true;
+            descripcion.Disabled = true;
+            comentario.Disabled = true;
+            listaModulos.Disabled = true;
+            listaPrioridad.Disabled = true;
+            fechaVencimiento.Disabled = true;
+            avisoVencimientos.Disabled = true;
+            usuariosLista.Disabled = true;
+
+            btnCancelarEdicion.Visible = true;
+            btnAltaTarea.InnerText = "Guardar";
+
         }
     }
 }

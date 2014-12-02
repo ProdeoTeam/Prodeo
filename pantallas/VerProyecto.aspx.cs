@@ -46,11 +46,19 @@ namespace Prodeo.pantallas
             DataTable dtTareas = new DataTable();
             DataColumn unaColumna;
             //una de las columnas tiene que ser el modulo para agruparlas cuando las queremos presentar en accordion
+            unaColumna = new DataColumn("Id Tarea");
+            dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Id Modulo");
+            dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Nombre Tarea");
             dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Descripcion");
             dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Comentario");
+            dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Prioridad");
+            dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Avisos");
             dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Asignada a");
             dtTareas.Columns.Add(unaColumna);
@@ -76,8 +84,11 @@ namespace Prodeo.pantallas
                         string prioridad = "";
                         newButton.ID = "btnTarea"+tarea.IdTarea;
                         DataRow dr = dtTareas.NewRow();
+                        dr.SetField("Id Tarea", tarea.IdTarea);
+                        dr.SetField("Id Modulo", tarea.IdModulo);
                         dr.SetField("Nombre Tarea",tarea.Nombre);
                         dr.SetField("Descripcion", tarea.Descripcion);
+                        dr.SetField("Comentario", tarea.Comentario);
                          switch(tarea.Prioridad)
                          {
                              case "A":
@@ -102,6 +113,7 @@ namespace Prodeo.pantallas
                                  }
                          }
                          dr.SetField("Prioridad", prioridad);
+                         dr.SetField("Avisos", tarea.Avisos);
                          dr.SetField("Asignada a", tarea.Asignada);
                          dr.SetField("Fecha Limite", tarea.FechaLimite);
                          dr.SetField("Estado", tarea.Estado);
@@ -156,12 +168,24 @@ namespace Prodeo.pantallas
 
                 //Creamos la grilla que va a tener las tareas
                 //GridView grillaTareas = new GridView();
+                foreach (DataColumn column in unModulo.tablaTareas.Columns)
+                {
+                    BoundField field = new BoundField();
+                    field.DataField = column.ColumnName;
+                    field.HeaderText = column.ColumnName;
+                    grillaTareas.Columns.Add(field);
+                }
                 grillaTareas.ID = "GridView";
+                grillaTareas.AutoGenerateColumns = false;
                 grillaTareas.SelectedIndexChanged += new EventHandler(GridView_SelectedIndexChanged);
                 grillaTareas.AutoGenerateSelectButton = true;
                 grillaTareas.Attributes.Add("class", "default");
                 grillaTareas.DataSource = unModulo.tablaTareas;
                 grillaTareas.DataBind();
+                grillaTareas.Columns[0].Visible = false;
+                grillaTareas.Columns[1].Visible = false;
+                grillaTareas.Columns[4].Visible = false;
+                grillaTareas.Columns[6].Visible = false;
 
                 //Creamos un div que va a ser el que tenga el contenido de lo que se va a mostrar al desplegar el accordion.
                 //Dentro de este dev agregamos la grilla de tareas
@@ -177,7 +201,8 @@ namespace Prodeo.pantallas
         protected void GridView_SelectedIndexChanged(Object sender, EventArgs e)
         {
             GridViewRow row = grillaTareas.SelectedRow;
-            
+            Session["datosTarea"] = row;
+            Response.Redirect("~/pantallas/AltaTarea.aspx");
 
         }
     }
