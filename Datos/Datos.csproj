@@ -52,6 +52,7 @@
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="CriptografiaDatos.cs" />
     <Compile Include="DatosModulo.cs" />
+    <Compile Include="DatosParticipantesProyecto.cs" />
     <Compile Include="DatosProyecto.cs" />
     <Compile Include="DatosTarea.cs" />
     <Compile Include="ModelProdeo.Context.cs">

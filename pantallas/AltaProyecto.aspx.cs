@@ -6,6 +6,8 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data;
+using Negocio;
+using Datos;
 
 namespace Prodeo.pantallas
 {
@@ -22,9 +24,33 @@ namespace Prodeo.pantallas
                 dt.Columns.Add("mail", typeof(string));
                 dt.Columns.Add("permisos", typeof(string));
 
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
-                Session["tabla"] = dt;
+                //GridView1.DataSource = dt;
+                //GridView1.DataBind();
+                //Session["tabla"] = dt;
+                ProyectoLogica proy = new ProyectoLogica();
+                if(Session["idProyecto"] == null)
+                {
+
+                }
+                else
+                {
+                    Proyectos proyecto = proy.obtieneDatosProyecto(Session["idProyecto"].ToString());
+                    List<DatosParticipantesProyecto> partProy = proy.obtieneParticipantes(Session["idProyecto"].ToString());
+                    nombreProyecto.Value = proyecto.Nombre;
+                    nombreProyecto.Disabled = true;
+                    descripcion.Value = proyecto.Descripcion;
+                    descripcion.Disabled = true;
+                    fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", proyecto.FechaVencimiento);
+                    fechaVencimiento.Disabled = true;
+                    for (int i = 0; i <= avisoVencimientos.Items.Count - 1; i++)
+                    {
+                        if (avisoVencimientos.Items[i].Value == proyecto.AlertaPrevia)
+                        {
+                            avisoVencimientos.Items[i].Selected = true;
+                        }
+                    }
+                    fechaVencimiento.Disabled = true;
+                }
 
             }
 
@@ -186,41 +212,41 @@ namespace Prodeo.pantallas
             //divTablaUsuariosGrilla.Controls.Add()
         }
 
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            DataTable dt = Session["tabla"] as DataTable;
-            DataRow row = dt.NewRow();
-            row["mail"] = this.GridView1.Rows.Count + 1;
-            row["permisos"] = txtUsuario.Text;
-            dt.Rows.Add(row);
-            dt.AcceptChanges();
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
-            Session["tabla"] = dt;
-        }
+        //protected void Button1_Click(object sender, EventArgs e)
+        //{
+        //    DataTable dt = Session["tabla"] as DataTable;
+        //    DataRow row = dt.NewRow();
+        //    row["mail"] = this.GridView1.Rows.Count + 1;
+        //    row["permisos"] = txtUsuario.Text;
+        //    dt.Rows.Add(row);
+        //    dt.AcceptChanges();
+        //    GridView1.DataSource = dt;
+        //    GridView1.DataBind();
+        //    Session["tabla"] = dt;
+        //}
 
-        protected void GridView1_RowDeleted(object sender, GridViewDeletedEventArgs e)
-        {
-            string a = "";
-        }
+        //protected void GridView1_RowDeleted(object sender, GridViewDeletedEventArgs e)
+        //{
+        //    string a = "";
+        //}
 
-        protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
-        {
-            string a = "";
-            TableCell cell = GridView1.Rows[e.RowIndex].Cells[1];
+        //protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        //{
+        //    string a = "";
+        //    TableCell cell = GridView1.Rows[e.RowIndex].Cells[1];
 
-            DataTable dtViejo = Session["tabla"] as DataTable;
-            DataTable dtNuevo = dtViejo.Clone();
-            foreach (DataRow row in dtViejo.Rows)
-            {
-                if (row["mail"] != cell.Text)
-                {
-                    dtNuevo.Rows.Add(row);
-                }
-            }
-            Session["tabla"] = dtNuevo;
+        //    DataTable dtViejo = Session["tabla"] as DataTable;
+        //    DataTable dtNuevo = dtViejo.Clone();
+        //    foreach (DataRow row in dtViejo.Rows)
+        //    {
+        //        if (row["mail"] != cell.Text)
+        //        {
+        //            dtNuevo.Rows.Add(row);
+        //        }
+        //    }
+        //    Session["tabla"] = dtNuevo;
 
-        }
+        //}
 
     }
 }

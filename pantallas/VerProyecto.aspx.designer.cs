@@ -22,6 +22,15 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.WebControls.Label nombreProyecto;
         
         /// <summary>
+        /// btnVerProyecto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnVerProyecto;
+        
+        /// <summary>
         /// liTarea control.
         /// </summary>
         /// <remarks>

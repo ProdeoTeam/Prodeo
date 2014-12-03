@@ -35,9 +35,8 @@
         <section class="wrapper style3 container special">
 			<header class="major">
 				<h2><strong>Proyecto </strong><asp:Label ID="nombreProyecto" runat="server" Text="" Font-Bold="True"></asp:Label></h2>
-                <%--<input id="Button1" type="button" onclick="generarAccordion()" value="button" />--%>
+                <input id="btnVerProyecto" type="button" onserverclick="btnVerProyecto_Click" value="Ver Proyecto" runat="server"/>
 			</header>
-            <%--<h4><asp:HyperLink ID="HyperLink1" NavigateUrl="~/pantallas/AltaTarea.aspx" runat="server">Agregar Tarea</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink2" NavigateUrl="~/pantallas/AltaModulo.aspx" runat="server">Agregar Modulo</asp:HyperLink>&nbsp&nbsp<asp:HyperLink ID="HyperLink3" NavigateUrl="#" runat="server">Graficos Estadisticos</asp:HyperLink></h4>--%>
             <footer>
 					<ul class="buttons">
 						<li id="liTarea" runat="server"><a href="~/pantallas/AltaTarea.aspx" class="button" runat="server">Agregar Tarea</a></li>

@@ -422,5 +422,25 @@ namespace Datos
             
             return resultModif;            
         }
+
+        public Proyectos obtenerDatosProyecto(int idProyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            Proyectos pro = (from p in prodeoContext.Proyectos
+                             where p.idProyecto == idProyecto
+                             select p).First();
+
+            return pro;
+        }
+
+        public List<DatosParticipantesProyecto> obtenerParticipantes(int idProyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            List<DatosParticipantesProyecto> pp = (from p in prodeoContext.ParticipantesProyectos
+                                                   join u in prodeoContext.Usuarios on p.idUsuario equals u.idUsuario
+                                                   where p.idProyecto == idProyecto
+                                                   select new DatosParticipantesProyecto { nombreUsuario = u.mail, permiso = p.permisosAdministrador }).ToList();
+            return pp;
+        }
     }
 }

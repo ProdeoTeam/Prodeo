@@ -180,5 +180,22 @@ namespace Negocio
             string permiso = datos.obtenerPermisoUsuario(usuario, idProyecto);
             return permiso;
         }
+
+        public Proyectos obtieneDatosProyecto(string proyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idProyecto = Convert.ToInt32(proyecto);
+            Proyectos pro = datos.obtenerDatosProyecto(idProyecto);
+            return pro;
+        }
+
+        public List<DatosParticipantesProyecto> obtieneParticipantes(string proyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idProyecto = Convert.ToInt32(proyecto);
+            List<DatosParticipantesProyecto> listaUsu = datos.obtenerParticipantes(idProyecto);
+
+            return listaUsu;
+        }
     }
 }

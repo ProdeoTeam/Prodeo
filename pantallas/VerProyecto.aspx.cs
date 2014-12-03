@@ -205,6 +205,11 @@ namespace Prodeo.pantallas
             Response.Redirect("~/pantallas/AltaTarea.aspx");
 
         }
+
+        protected void btnVerProyecto_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pantallas/AltaProyecto.aspx");
+        }
     }
 }
 
