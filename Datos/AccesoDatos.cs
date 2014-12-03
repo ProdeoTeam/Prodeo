@@ -232,6 +232,40 @@ namespace Datos
 
         }
 
+        public int ActualizarTarea(int idTarea, int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                int idUsuario = (from u in prodeoContext.Usuarios
+                                 where u.nombre == usuario
+                                 select u.idUsuario).First();
+                var tareas = (from t in prodeoContext.Tareas
+                             where t.idTarea == idTarea
+                             select t).First();
+                tareas.idModulo = idModulo;
+                tareas.Nombre = nombre;
+                tareas.Descripcion = descrip;
+                tareas.Comentario = comentario;
+                tareas.DireccionGPS = "0.0.0.0";
+                tareas.FechaVencimiento = fechaVencimiento;
+                tareas.AlertaPrevia = avisos;
+                tareas.Prioridad = prioridad;
+                var partTareas = (from pt in prodeoContext.ParticipantesTareas
+                             where pt.idTarea == idTarea
+                             select pt).First();
+                partTareas.idUsuario = idUserAsignado;
+                partTareas.idTarea = tareas.idTarea;
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+
+        }
+
         public List<DatosProyecto> obtenerListaProyectos(string usuario)
         {
             prodeoEntities prodeoContext = new prodeoEntities();

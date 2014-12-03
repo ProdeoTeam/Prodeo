@@ -71,6 +71,29 @@ namespace Negocio
             }
         }
 
+        public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int modulo = Convert.ToInt32(idModulo);
+            int idUser = Convert.ToInt32(idUsuario);
+            int tarea = Convert.ToInt32(idTarea);
+            try
+            {
+                if (datos.ActualizarTarea(tarea, modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos, prioridad, idUser) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<DatosProyecto> obtieneListaProyecto(string usuario)
         {
             AccesoDatos datos = new AccesoDatos();
