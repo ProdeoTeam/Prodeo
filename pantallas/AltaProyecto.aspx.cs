@@ -50,12 +50,19 @@ namespace Prodeo.pantallas
                         }
                     }
                     fechaVencimiento.Disabled = true;
+                    txtUsuarioAjax.Disabled = true;
+                    foreach (DatosParticipantesProyecto dp in partProy)
+                    {
+                        
+                    }
+
                 }
 
             }
 
 
         }
+
         protected void altaProyForm_Click(object sender, EventArgs e)
         {
 

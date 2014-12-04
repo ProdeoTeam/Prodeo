@@ -43,6 +43,12 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
             tabla.innerHTML += fila.value;
         }
 
+        function agregarUsuario(mail,permiso) {
+            var fila = Prodeo.pantallas.AltaProyecto.agregarUsuario_html(mail, permiso);
+            var tabla = document.getElementById("MainContent_tablaUsuariosGrilla");
+            tabla.innerHTML += fila.value;
+        }
+
         function quitarUsuario(idFila) {
             //Prodeo.pantallas.AltaProyecto.agregarUsuario_asp(mail, permiso);
 
@@ -95,12 +101,12 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
                                     <div class="row half">
 										<div class="12u">
                                             <div runat="server" id="divTablaUsuarios">
-                                                <input id="btnAgregarUsuario" onclick="agregarUsuario()" type="button" value="Agregar Usuario" />
+                                                <input id="btnAgregarUsuario" onclick="agregarUsuario()" type="button" value="Agregar Usuario" runat="server" />
                                                 
-                                                <input type="text" id="txtUsuarioAjax" />
-                                                    <select id="selectPermisos">
+                                                <input type="text" id="txtUsuarioAjax" runat="server"/>
+                                                    <select id="selectPermisos" runat="server">
                                                         <option value="A">Administrador</option>
-                                                        <option value="C" selected="selected">Colaborador</option>
+                                                        <option value="C">Colaborador</option>
                                                     </select>
                                                
                                                 <table runat="server" id="tablaUsuariosGrilla">

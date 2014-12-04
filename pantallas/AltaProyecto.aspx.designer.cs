@@ -58,6 +58,33 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divTablaUsuarios;
         
         /// <summary>
+        /// btnAgregarUsuario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputButton btnAgregarUsuario;
+        
+        /// <summary>
+        /// txtUsuarioAjax control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUsuarioAjax;
+        
+        /// <summary>
+        /// selectPermisos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlSelect selectPermisos;
+        
+        /// <summary>
         /// tablaUsuariosGrilla control.
         /// </summary>
         /// <remarks>
