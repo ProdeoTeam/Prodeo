@@ -13,7 +13,6 @@ namespace Prodeo.pantallas
     {
         public int idProyecto;
         public string permiso = "";
-        public GridView grillaTareas = new GridView();
         protected void Page_Load(object sender, EventArgs e)
         {
             ProyectoLogica datosProyecto = new ProyectoLogica();
@@ -158,6 +157,7 @@ namespace Prodeo.pantallas
             
             foreach (DatosModulo unModulo in listaDeModulos)
             {
+                GridView grillaTareas = new GridView();
                 Literal h3 = new Literal();
                 Literal divApertura = new Literal();
                 Literal divCierre = new Literal();
@@ -175,7 +175,7 @@ namespace Prodeo.pantallas
                     field.HeaderText = column.ColumnName;
                     grillaTareas.Columns.Add(field);
                 }
-                grillaTareas.ID = "GridView";
+                grillaTareas.ID = "GridView"+unModulo.IdModulo;
                 grillaTareas.AutoGenerateColumns = false;
                 grillaTareas.SelectedIndexChanged += new EventHandler(GridView_SelectedIndexChanged);
                 grillaTareas.AutoGenerateSelectButton = true;
@@ -200,8 +200,10 @@ namespace Prodeo.pantallas
 
         protected void GridView_SelectedIndexChanged(Object sender, EventArgs e)
         {
-            GridViewRow row = grillaTareas.SelectedRow;
+            GridView dv = sender as GridView;
+            GridViewRow row = dv.SelectedRow;
             Session["datosTarea"] = row;
+            
             Response.Redirect("~/pantallas/AltaTarea.aspx");
 
         }
