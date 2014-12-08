@@ -26,7 +26,7 @@ namespace Prodeo.pantallas
 
                 //GridView1.DataSource = dt;
                 //GridView1.DataBind();
-                //Session["tabla"] = dt;
+                Session["tabla"] = dt;
                 ProyectoLogica proy = new ProyectoLogica();
                 if(Session["idProyecto"] == null)
                 {
