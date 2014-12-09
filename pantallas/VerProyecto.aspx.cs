@@ -161,6 +161,7 @@ namespace Prodeo.pantallas
                 Literal h3 = new Literal();
                 Literal divApertura = new Literal();
                 Literal divCierre = new Literal();
+                Literal linkModulo = new Literal();
 
                 //creamos y agregamos el h3 que sera el titulo de la solapa accordion
                 h3.Text = "<h3>" + unModulo.Nombre + "</h3>";
@@ -191,6 +192,8 @@ namespace Prodeo.pantallas
                 //Dentro de este dev agregamos la grilla de tareas
                 divApertura.Text = "<div>";
                 divCierre.Text = "</div>";
+                linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + ">Ver</a>";
+
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(divCierre);

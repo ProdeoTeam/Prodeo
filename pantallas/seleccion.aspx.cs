@@ -11,7 +11,7 @@ namespace Prodeo.pantallas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            Session["idProyecto"] = null;
         }
     }
 }

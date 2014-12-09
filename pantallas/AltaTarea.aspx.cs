@@ -34,6 +34,8 @@ namespace Prodeo.pantallas
                     btnAltaTarea.Visible = true;
                     btnCalcelarTarea.Visible = true;
                     btnVolverTarea.Visible = false;
+                    btnEditarTarea.Visible = false;
+                    btnCancelarEdicion.Visible = false;
                     
                 }
                 else
