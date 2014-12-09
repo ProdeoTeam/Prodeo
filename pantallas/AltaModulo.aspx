@@ -8,8 +8,14 @@
     <section class="wrapper style3 container special">
 				<div id="formInterno">
 						<header class="major">
-							<h2><strong>Alta de Modulos</strong></h2>
+							<h2><strong><asp:Label ID="LabelModulo" runat="server" Text="Label"></asp:Label></strong></h2>
 						</header>
+                        <footer>
+					            <ul class="buttons">
+						            <li id="btnEditarModulo" runat="server"><a class="button" onserverclick="editarModulo_Click" runat="server">Editar Modulo</a></li>
+                                    <li id="btnCancelarEdicion" runat="server"><a class="button" onserverclick="cancelarModulo_Click" runat="server">Cancelar Edicion</a></li>
+					            </ul>
+			            </footer>
 									<div class="row half">
 										<div class="12u">
 											<input type="text" name="nombreModulo" placeholder="Nombre" id="nombreModulo" runat="server">
@@ -33,6 +39,7 @@
 											<ul class="buttons">
 												<li><a class="button special" id="btnAltaModulo" runat="server" onserverclick="altaModuloForm_Click">Alta</a></li>
                                                 <li><a class="button special" id="btnCancelarModulo" runat="server" onserverclick="cancelarModuloForm_Click">Cancelar</a></li>
+                                                <li><a class="button special" id="btnVolverModulo" runat="server" onserverclick="cancelarModuloForm_Click">Volver</a></li>
 											</ul>
 										</div>
 									</div>

@@ -173,6 +173,15 @@ namespace Datos
             }
         }
 
+        public Modulos obtenerDatosModulo(int idModulo)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            Modulos mod = (from m in prodeoContext.Modulos
+                           where m.idModulo == idModulo
+                           select m).First();
+            return mod;
+        }
+
         public int insertarModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario)
         {
             try
@@ -197,6 +206,26 @@ namespace Datos
                 return 0;
             }
 
+        }
+
+        public int actualizarModulo(int idModulo, string nombre, string descrip, DateTime fechaVencimiento)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                Modulos mod = (from m in prodeoContext.Modulos
+                               where m.idModulo == idModulo
+                               select m).First();
+                mod.Nombre = nombre;
+                mod.Descripcion = descrip;
+                mod.FechaVencimiento = fechaVencimiento;
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch(Exception e)
+            {
+                return 0;
+            }
         }
 
         public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)

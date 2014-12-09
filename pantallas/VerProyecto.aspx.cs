@@ -192,10 +192,11 @@ namespace Prodeo.pantallas
                 //Dentro de este dev agregamos la grilla de tareas
                 divApertura.Text = "<div>";
                 divCierre.Text = "</div>";
-                linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + ">Ver</a>";
+                linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Ver</a>";
 
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
+                contenedorAccordion.Controls.Add(linkModulo);
                 contenedorAccordion.Controls.Add(divCierre);
 
             }

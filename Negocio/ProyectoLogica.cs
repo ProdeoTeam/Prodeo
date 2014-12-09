@@ -29,12 +29,39 @@ namespace Negocio
             }
         }
 
+        public Modulos obtieneDatosModulo(int idModulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Modulos mod = datos.obtenerDatosModulo(idModulo);
+            return mod;
+        }
+
         public bool insertaModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
                 if (datos.insertarModulo(nombre, descrip, fechaCreacion, fechaVencimiento, proyecto, usuario) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public bool actualizaModulo(int idModulo, string nombre, string descrip, DateTime fechaVencimiento)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.actualizarModulo(idModulo, nombre, descrip, fechaVencimiento) != 0)
                 {
                     return true;
                 }
