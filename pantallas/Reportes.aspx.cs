@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Collections;
 using AjaxPro;
 using Negocio;
+using Datos;
 namespace Prodeo.pantallas
 {
     //[AjaxPro.AjaxNamespace("AjaxReportes")]
@@ -19,6 +20,13 @@ namespace Prodeo.pantallas
             if(!IsPostBack)
             {
                 Utility.RegisterTypeForAjax(typeof(ReportesLogica));
+                string usuario = Session["usuario"].ToString();
+                ProyectoLogica proy = new ProyectoLogica();
+            
+                proyectosLista.DataSource = proy.obtieneListaProyecto(Session["usuario"].ToString());
+                proyectosLista.DataValueField = "Id";
+                proyectosLista.DataTextField = "Nombre";
+                proyectosLista.DataBind();
             }
         }
 

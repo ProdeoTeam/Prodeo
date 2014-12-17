@@ -56,16 +56,8 @@
                                             <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server">
 										</div>
 										<div class="6u">
-                                            &nbsp;
-                                            <select name="avisoVencimientos" id="avisoVencimientos" runat="server">
-                                              <option value="seleccione">Seleccione avisos</option>
-                                              <option value="h-0">Nunca</option>
-                                              <option value="h-1">1 hora antes</option>
-                                              <option value="d-1">1 dia antes</option>
-                                              <option value="d-2">2 dias antes</option>
-                                              <option value="d-7">1 semana antes</option>
-                                              <option value="m-1">1 mes antes</option>
-                                            </select>
+                                            Fecha Finalizacion
+                                            <input type="date" name="fechaFinalizacion" id="fechaFinalizacion" runat="server">
 										</div>
                                         
 									</div>
@@ -77,7 +69,18 @@
                                               
                                             </select>
 										</div>
-                                        
+                                        <div class="6u">
+                                            &nbsp;
+                                            <select name="avisoVencimientos" id="avisoVencimientos" runat="server">
+                                              <option value="seleccione">Seleccione avisos</option>
+                                              <option value="h-0">Nunca</option>
+                                              <option value="h-1">1 hora antes</option>
+                                              <option value="d-1">1 dia antes</option>
+                                              <option value="d-2">2 dias antes</option>
+                                              <option value="d-7">1 semana antes</option>
+                                              <option value="m-1">1 mes antes</option>
+                                            </select>
+										</div>
 									</div>
                           
 									<div class="row">

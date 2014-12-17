@@ -172,7 +172,12 @@
 							<h2><strong>Sección Reportes</strong></h2>
 						</header>
                         <ul class="buttons">
-						    <li><a href="#" class="button" onclick="crearTareasPorUsuario()" runat="server">Reporte Tareas por usuario</a></li>
+						    
+                            <li><select name="proyectosLista" id="proyectosLista" runat="server">
+                                              <option value="seleccione" selected>Seleccione Proyecto</option>
+                                              
+                                            </select></li>
+                            <li><a href="#" class="button" onclick="crearTareasPorUsuario()" runat="server">Reporte Tareas por usuario</a></li>
 						    <li><a href="#" class="button" onclick="crearTareasPorModulo()" runat="server">Reporte Tareas por modulo</a></li>
                             <li><a href="#" class="button" runat="server">Reporte3</a></li>
 					    </ul>

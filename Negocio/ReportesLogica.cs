@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Collections;
 using System.Data;
 using Negocio.Clases_Entidad;
+using Datos;
 //using AjaxPro;
 
 namespace Negocio
@@ -23,9 +24,10 @@ namespace Negocio
             ArrayList tareas = new ArrayList();
             ArrayList auxtarea;
             DataTable tabla = new DataTable();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                tabla = this.simularDatosTareasPorUsuario();
+                tabla = datos.simularDatosTareasPorUsuario();
 
                 foreach (DataRow unaFila in tabla.Rows)
                 {
@@ -104,9 +106,10 @@ namespace Negocio
         {
             ArrayList tareas = new ArrayList();
             DataTable tabla = new DataTable();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                tabla = this.simularDatosTareasPorUsuario();
+                tabla = datos.simularDatosTareasPorUsuario();
 
                 foreach (DataRow unaFila in tabla.Rows)
                 {
@@ -186,9 +189,10 @@ namespace Negocio
             ArrayList tareas = new ArrayList();
             ArrayList auxtarea;
             DataTable tabla = new DataTable();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
-                tabla = this.simularDatosTareasPorModulo();
+                tabla = datos.simularDatosTareasPorModulo();
 
                 foreach (DataRow unaFila in tabla.Rows)
                 {
@@ -250,129 +254,6 @@ namespace Negocio
         }
 
 
-        private DataTable simularDatosTareasPorUsuario()
-        {
-            DataTable tabla = new DataTable();
-            DataColumn columna = new DataColumn();
-            DataRow fila;
-            columna.ColumnName = "usuario";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "estado";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "condicionvencimiento";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "cantidad";
-            tabla.Columns.Add(columna);
-
-            fila = tabla.NewRow();
-            fila["usuario"] = "Rodolfo";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "NoVencida";
-            fila["cantidad"] = 30;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["usuario"] = "Rodolfo";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "Vencida";
-            fila["cantidad"] = 20;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["usuario"] = "Rodolfo";
-            fila["estado"] = "Finalizado";
-            fila["condicionvencimiento"] = "";
-            fila["cantidad"] = 10;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["usuario"] = "Jose";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "NoVencida";
-            fila["cantidad"] = 35;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["usuario"] = "Jose";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "Vencida";
-            fila["cantidad"] = 25;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["usuario"] = "Jose";
-            fila["estado"] = "Finalizado";
-            fila["condicionvencimiento"] = "";
-            fila["cantidad"] = 15;
-            tabla.Rows.Add(fila);
-
-            return tabla;
-        }
-
-        private DataTable simularDatosTareasPorModulo()
-        {
-            DataTable tabla = new DataTable();
-            DataColumn columna = new DataColumn();
-            DataRow fila;
-            columna.ColumnName = "modulo";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "estado";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "condicionvencimiento";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "cantidad";
-            tabla.Columns.Add(columna);
-
-            fila = tabla.NewRow();
-            fila["modulo"] = "Comprar Elementos";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "NoVencida";
-            fila["cantidad"] = 30;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["modulo"] = "Comprar Elementos";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "Vencida";
-            fila["cantidad"] = 20;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["modulo"] = "Comprar Elementos";
-            fila["estado"] = "Finalizado";
-            fila["condicionvencimiento"] = "";
-            fila["cantidad"] = 10;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["modulo"] = "Pintado";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "NoVencida";
-            fila["cantidad"] = 35;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["modulo"] = "Pintado";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "Vencida";
-            fila["cantidad"] = 25;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["modulo"] = "Pintado";
-            fila["estado"] = "Finalizado";
-            fila["condicionvencimiento"] = "";
-            fila["cantidad"] = 15;
-            tabla.Rows.Add(fila);
-
-            return tabla;
-        }
     }
 
 

@@ -99,6 +99,8 @@ namespace Prodeo.pantallas
                     usuariosLista.Disabled = true;
                     fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[9].Text));
                     fechaVencimiento.Disabled = true;
+                    //fechaFinalizacion.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[9].Text));
+                    //fechaFinalizacion.Disabled = true;
                     Session["datosTarea"] = null;
                 }
             }
