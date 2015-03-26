@@ -225,14 +225,31 @@
 			<section id="cta">
 			
 				<header>
-					<h2>Ready to do <strong>something</strong>?</h2>
-					<p>Proin a ullamcorper elit, et sagittis turpis integer ut fermentum.</p>
+					<h2>Queres recibir nuestro <strong>Newsletter</strong>?</h2>
+					<p>Ingresa tus datos y te llegar&aacute;n nuestras novedades!</p>
 				</header>
 				<footer>
-					<ul class="buttons">
-						<li><a href="#" class="button special">Take My Money</a></li>
-						<li><a href="#" class="button">LOL Wut</a></li>
-					</ul>
+					<!-- Content -->
+							<div id="contentNewsletter">
+								<form>
+									<div class="row 50%">
+										<div class="6u 12u(mobile)">
+											<input type="text" name="name" placeholder="Name" />
+										</div>
+										<div class="6u 12u(mobile)">
+											<input type="text" name="email" placeholder="Email" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="12u">
+											<ul class="buttons">
+												<li><input type="submit" class="special" value="Enviar" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</div>
+
 				</footer>
 			
 			</section>
