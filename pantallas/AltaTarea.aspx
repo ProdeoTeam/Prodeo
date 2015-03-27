@@ -14,16 +14,17 @@
 					            <ul class="buttons">
 						            <li id="btnEditarTarea" runat="server"><a class="button" onserverclick="editarTarea_Click" runat="server">Editar Tarea</a></li>
                                     <li id="btnCancelarEdicion" runat="server"><a class="button" onserverclick="cancelarTarea_Click" runat="server">Cancelar Edicion</a></li>
+                                    <li id="btnEditarComentario" runat="server"><a class="button" onserverclick="editarComentario_Click" runat="server">Editar Comentario</a></li>
 					            </ul>
 			            </footer>
 									<div class="row half">
 										<div class="12u">
-											<input type="text" name="nombreTarea" placeholder="Nombre" id="nombreTarea" runat="server">
+											<input type="text" name="nombreTarea" placeholder="Nombre" id="nombreTarea" runat="server"/>
 										</div>
 									</div>
                                     <div class="row half">
 										<div class="12u">
-											<input type="text" name="descripcion" placeholder="Descripcion" id="descripcion" runat="server">
+											<textarea name="descripcion" rows="3" placeholder="Descripcion" id="descripcion" runat="server"></textarea>
 										</div>
 									</div>
 									<div class="row half">

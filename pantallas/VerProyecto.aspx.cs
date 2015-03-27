@@ -63,6 +63,8 @@ namespace Prodeo.pantallas
             dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Fecha Limite");
             dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Fecha Vencimiento");
+            dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Estado");
             dtTareas.Columns.Add(unaColumna);
             List<DatosTarea> listaTareas = new List<DatosTarea>();
@@ -115,6 +117,7 @@ namespace Prodeo.pantallas
                          dr.SetField("Avisos", tarea.Avisos);
                          dr.SetField("Asignada a", tarea.Asignada);
                          dr.SetField("Fecha Limite", tarea.FechaLimite);
+                         dr.SetField("Fecha Vencimiento", tarea.FechaFinalizacion);
                          dr.SetField("Estado", tarea.Estado);
                         dtTareas.Rows.Add(dr);
                 }

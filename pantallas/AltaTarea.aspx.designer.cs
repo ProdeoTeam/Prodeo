@@ -40,6 +40,15 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnCancelarEdicion;
         
         /// <summary>
+        /// btnEditarComentario control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnEditarComentario;
+        
+        /// <summary>
         /// nombreTarea control.
         /// </summary>
         /// <remarks>
@@ -55,7 +64,7 @@ namespace Prodeo.pantallas {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText descripcion;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea descripcion;
         
         /// <summary>
         /// comentario control.

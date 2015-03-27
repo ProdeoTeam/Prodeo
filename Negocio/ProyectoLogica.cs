@@ -76,14 +76,14 @@ namespace Negocio
             }
         }
 
-        public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
+        public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaFinalizacion, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             int modulo = Convert.ToInt32(idModulo);
             int idUser = Convert.ToInt32(idUsuario);
             try
             {
-                if (datos.insertarTarea(modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos, prioridad, idUser) != 0)
+                if (datos.insertarTarea(modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento,fechaFinalizacion, proyecto, usuario, avisos, prioridad, idUser) != 0)
                 {
                     return true;
                 }
@@ -98,7 +98,7 @@ namespace Negocio
             }
         }
 
-        public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
+        public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaFinalizacion, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             int modulo = Convert.ToInt32(idModulo);
@@ -106,7 +106,7 @@ namespace Negocio
             int tarea = Convert.ToInt32(idTarea);
             try
             {
-                if (datos.ActualizarTarea(tarea, modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos, prioridad, idUser) != 0)
+                if (datos.ActualizarTarea(tarea, modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento,fechaFinalizacion, proyecto, usuario, avisos, prioridad, idUser) != 0)
                 {
                     return true;
                 }
@@ -167,21 +167,23 @@ namespace Negocio
         {
             AccesoDatos datos = new AccesoDatos();
             List<DatosTarea> lista = datos.obtenerListaTareasUsuario(modulo, usuario);
-            if (lista.Count() > 0)
+            foreach(DatosTarea dato in lista)
             {
-                int result = DateTime.Compare(lista[0].FechaLimite, DateTime.Now);
+
+                int result = DateTime.Compare(dato.FechaLimite, DateTime.Now);
                 if (result > 0)
                 {
-                    lista[0].Estado = "Pendiente";
+                    dato.Estado = "Pendiente";
                 }
                 else if (result == 0)
                 {
-                    lista[0].Estado = "Pendiente";
+                    dato.Estado = "Pendiente";
                 }
                 else
                 {
-                    lista[0].Estado = "Vencido";
+                    dato.Estado = "Vencido";
                 }
+
             }
             return lista;
 
