@@ -363,7 +363,7 @@ namespace Datos
 #endregion
 
 #region "Tareas"
-        public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaFinalizacion, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
+        public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
         {
             try
             {
@@ -379,7 +379,6 @@ namespace Datos
                 tareas.FechaCreacion = fechaCreacion;
                 tareas.DireccionGPS = "0.0.0.0";
                 tareas.FechaVencimiento = fechaVencimiento;
-                //tareas.FechaFinalizacion = fechaFinalizacion;
                 tareas.AlertaPrevia = avisos;
                 tareas.Prioridad = prioridad;
                 prodeoContext.Tareas.Add(tareas);
@@ -396,7 +395,7 @@ namespace Datos
             }
 
         }
-        public int ActualizarTarea(int idTarea, int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaFinalizacion, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
+        public int ActualizarTarea(int idTarea, int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
         {
             try
             {
@@ -413,7 +412,6 @@ namespace Datos
                 tareas.Comentario = comentario;
                 tareas.DireccionGPS = "0.0.0.0";
                 tareas.FechaVencimiento = fechaVencimiento;
-                tareas.FechaFinalizacion = fechaFinalizacion;
                 tareas.AlertaPrevia = avisos;
                 tareas.Prioridad = prioridad;
                 var partTareas = (from pt in prodeoContext.ParticipantesTareas
@@ -437,7 +435,7 @@ namespace Datos
                          join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
                          join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
                          where p.idModulo == modulo && p.FechaFinalizacion == null
-                         select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Comentario = p.Comentario, Prioridad = p.Prioridad, Avisos = p.AlertaPrevia, Asignada = u.nombre, FechaLimite = p.FechaVencimiento, FechaFinalizacion = p.FechaFinalizacion, Estado = p.Estado }).OrderBy(o => o.FechaLimite).ToList();
+                         select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Comentario = p.Comentario, Prioridad = p.Prioridad, Avisos = p.AlertaPrevia, Asignada = u.nombre, FechaLimite = p.FechaVencimiento, Estado = p.Estado }).OrderBy(o => o.FechaLimite).ToList();
             return query;
         }
         public List<DatosTarea> obtenerListaTareasUsuario(int modulo, string usuario)
@@ -450,8 +448,33 @@ namespace Datos
                          join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
                          join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
                          where p.idModulo == modulo && t.idUsuario == idUsuario && p.FechaFinalizacion == null
-                         select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Comentario = p.Comentario, Prioridad = p.Prioridad, Avisos = p.AlertaPrevia, Asignada = u.nombre, FechaLimite = p.FechaVencimiento,FechaFinalizacion = p.FechaFinalizacion, Estado = p.Estado }).OrderBy(o=>o.FechaLimite).ToList();
+                         select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Comentario = p.Comentario, Prioridad = p.Prioridad, Avisos = p.AlertaPrevia, Asignada = u.nombre, FechaLimite = p.FechaVencimiento, Estado = p.Estado }).OrderBy(o=>o.FechaLimite).ToList();
             return query;
+        }
+
+        public int finalizarTarea(string horas, string usuario, int idTarea, string comentario)
+        {
+            try
+            {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            int idUsuario = (from u in prodeoContext.Usuarios
+                             where u.nombre == usuario
+                             select u.idUsuario).First();
+            var tareas = (from t in prodeoContext.Tareas
+                          where t.idTarea == idTarea
+                          select t).First();
+
+            tareas.Comentario = comentario;
+            tareas.FechaFinalizacion = DateTime.Now;
+            tareas.Tiempo = Convert.ToInt32(horas);
+            prodeoContext.SaveChanges();
+            return 1;
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+
         }
 
 #endregion

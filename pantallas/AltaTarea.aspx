@@ -52,14 +52,14 @@
 										</div>
                                       </div>
                                     <div class="row half no-collapse-1">
-                                        <div class="6u">
+                                        <div class="12u">
                                             Fecha Vencimiento
                                             <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server">
 										</div>
-										<div class="6u">
+										<%--<div class="6u">
                                             Fecha Finalizacion
                                             <input type="date" name="fechaFinalizacion" id="fechaFinalizacion" runat="server">
-										</div>
+										</div>--%>
                                         
 									</div>
                                     <div class="row half no-collapse-1">
@@ -92,6 +92,17 @@
                                                 <li><a class="button special" id="btnVolverTarea" runat="server" onserverclick="cancelarTareaForm_Click">Volver</a></li>
 											</ul>
 										</div>
+									</div>
+                                    <div class="row half no-collapse-1">
+                                        <div class="6u">
+                                            <input type="number" name="horasTarea" placeholder="Horas" id="txtHoras" runat="server"/>
+										</div>
+										<div class="6u">
+                                            <ul class="buttons">
+												<li><a class="button special" id="btnFinalizarTarea" runat="server" onserverclick="finalizarTareaForm_Click">Finalizar</a></li>
+											</ul>
+										</div>
+                                        
 									</div>
                     </div>
                     </section>

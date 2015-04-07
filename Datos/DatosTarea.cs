@@ -17,7 +17,6 @@ namespace Datos
         public string Avisos { get; set; }
         public string Asignada { get; set; }
         public DateTime FechaLimite { get; set; }
-        public DateTime? FechaFinalizacion { get; set; }
         public string Estado { get; set; }
     }
 }

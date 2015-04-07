@@ -37,6 +37,8 @@ namespace Prodeo.pantallas
                     btnEditarTarea.Visible = false;
                     btnCancelarEdicion.Visible = false;
                     btnEditarComentario.Visible = false;
+                    txtHoras.Visible = false;
+                    btnFinalizarTarea.Visible = false;
                     
                 }
                 else
@@ -52,12 +54,16 @@ namespace Prodeo.pantallas
                         btnEditarTarea.Visible = true;
                         btnCancelarEdicion.Visible = false;
                         btnEditarComentario.Visible = false;
+                        txtHoras.Visible = true;
+                        btnFinalizarTarea.Visible = true;
                     }
                     else
                     {
                         btnEditarTarea.Visible = false;
                         btnEditarComentario.Visible = true;
                         btnCancelarEdicion.Visible = false;
+                        txtHoras.Visible = true;
+                        btnFinalizarTarea.Visible = true;
                     }
                     LabelTareas.Text = "Ver Tarea";
                     GridViewRow row;
@@ -103,11 +109,11 @@ namespace Prodeo.pantallas
                     usuariosLista.Disabled = true;
                     fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[9].Text));
                     fechaVencimiento.Disabled = true;
-                    if (row.Cells[10].Text != "&nbsp;")
-                    {
-                        fechaFinalizacion.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[10].Text));
-                    }
-                    fechaFinalizacion.Disabled = true;
+                    //if (row.Cells[10].Text != "&nbsp;")
+                    //{
+                    //    fechaFinalizacion.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[10].Text));
+                    //}
+                    //fechaFinalizacion.Disabled = true;
                     Session["datosTarea"] = null;
                 }
             }
@@ -123,12 +129,12 @@ namespace Prodeo.pantallas
             GridViewRow row =  (GridViewRow)Session["datosTarea"];
             if (Session["idTarea"] != null)
             {
-                altaExitosa = agregaTarea.ActualizaTarea(Session["idTarea"].ToString(), listaModulos.Value, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), Convert.ToDateTime(fechaFinalizacion.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
+                altaExitosa = agregaTarea.ActualizaTarea(Session["idTarea"].ToString(), listaModulos.Value, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
                 Session["idTarea"] = null;
             }
             else
             {
-                altaExitosa = agregaTarea.insertaTarea(listaModulos.Value, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), Convert.ToDateTime(fechaFinalizacion.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
+                altaExitosa = agregaTarea.insertaTarea(listaModulos.Value, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
             }
             
             if (altaExitosa)
@@ -161,7 +167,7 @@ namespace Prodeo.pantallas
             listaModulos.Disabled = false;
             listaPrioridad.Disabled = false;
             fechaVencimiento.Disabled = false;
-            fechaFinalizacion.Disabled = false;
+            //fechaFinalizacion.Disabled = false;
             avisoVencimientos.Disabled = false;
             usuariosLista.Disabled = false;
 
@@ -181,7 +187,7 @@ namespace Prodeo.pantallas
             listaModulos.Disabled = true;
             listaPrioridad.Disabled = true;
             fechaVencimiento.Disabled = true;
-            fechaFinalizacion.Disabled = false;
+            //fechaFinalizacion.Disabled = false;
             avisoVencimientos.Disabled = true;
             usuariosLista.Disabled = true;
 
@@ -200,12 +206,33 @@ namespace Prodeo.pantallas
             listaModulos.Disabled = true;
             listaPrioridad.Disabled = true;
             fechaVencimiento.Disabled = true;
-            fechaFinalizacion.Disabled = true;
+            //fechaFinalizacion.Disabled = true;
             avisoVencimientos.Disabled = true;
             usuariosLista.Disabled = true;
 
             btnAltaTarea.Visible = false;
 
+        }
+
+        protected void finalizarTareaForm_Click(object sender, EventArgs e)
+        {
+            int proyecto = Convert.ToInt32(Session["idProyecto"]);
+            string usuario = Session["usuario"].ToString();
+            ProyectoLogica finalizaTarea = new ProyectoLogica();
+            bool finalizacion = finalizaTarea.finalizaTarea(Session["idTarea"].ToString(), usuario, comentario.Value, txtHoras.Value);
+
+            if (finalizacion)
+            {
+                if (Session["permiso"] != null)
+                {
+                    Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
+                }
+                else
+                {
+                    Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=A");
+                }
+
+            }
         }
     }
 }

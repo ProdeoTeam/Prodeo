@@ -103,15 +103,6 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaVencimiento;
         
         /// <summary>
-        /// fechaFinalizacion control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaFinalizacion;
-        
-        /// <summary>
         /// usuariosLista control.
         /// </summary>
         /// <remarks>
@@ -155,5 +146,23 @@ namespace Prodeo.pantallas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor btnVolverTarea;
+        
+        /// <summary>
+        /// txtHoras control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl txtHoras;
+        
+        /// <summary>
+        /// btnFinalizarTarea control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnFinalizarTarea;
     }
 }
