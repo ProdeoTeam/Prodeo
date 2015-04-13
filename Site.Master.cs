@@ -13,16 +13,19 @@ namespace Prodeo
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] != null)
-            {
+            {                
                 sessionActiva.Style.Add("display", "block");
                 sessionInactiva.Style.Add("display", "none");
                 principalProyecto.Style.Add("display", "block");
+                userLogueado.Style.Add("display", "block");
+                userLogueado.InnerHtml = Session["usuario"].ToString();
             } 
             else
-            {
+            {                
                 sessionActiva.Style.Add("display", "none");
                 sessionInactiva.Style.Add("display", "block");
                 principalProyecto.Style.Add("display", "none");
+                userLogueado.Style.Add("display", "none");
             }
         }
 
@@ -34,10 +37,12 @@ namespace Prodeo
             {
                 Session["usuario"] = usuario.Value;
                 if (Session["usuario"] != null)
-                {
+                {                    
                     sessionActiva.Style.Add("display", "block");
                     sessionInactiva.Style.Add("display", "none");
                     principalProyecto.Style.Add("display", "block");
+                    userLogueado.Style.Add("display", "block");
+                    userLogueado.InnerHtml = Session["usuario"].ToString();
                     Response.Redirect("~/pantallas/seleccion.aspx");
                 } 
             }
@@ -47,6 +52,11 @@ namespace Prodeo
         {
             Session.Abandon();
             Response.Redirect("~/index.aspx");
+        }
+
+        protected void editarUsuario_Click(object sender, EventArgs e) 
+        {            
+            Response.Redirect("~/pantallas/Registro.aspx?edit=true");                                   
         }
     }
 }

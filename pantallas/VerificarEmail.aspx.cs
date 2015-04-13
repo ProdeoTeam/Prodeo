@@ -24,7 +24,7 @@ namespace Prodeo.pantallas
 
                     if (!resultComprobacion)//Devuelve FALSE si existe, por eso lo niego
                     {                        
-                        var user = logica.obtieneUsuario(mailAVerificar); //Obtiene el usuario entero
+                        var user = logica.obtieneUsuarioPorMail(mailAVerificar); //Obtiene el usuario entero
                         if (user.usuarioActivo == true)
                         {
                             lblMensaje.Text = user.nombre + ", su usuario ya fue activado y puede usar su cuenta completamente.";

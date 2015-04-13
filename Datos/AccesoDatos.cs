@@ -30,7 +30,7 @@ namespace Datos
             }
             return userValid;
         }
-        public Usuarios obtenerUsuario(string mail)
+        public Usuarios obtenerUsuarioPorMail(string mail)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             var usuarioCompleto = (from u in prodeoContext.Usuarios
@@ -38,6 +38,16 @@ namespace Datos
                                    select u).First();
             return usuarioCompleto;
         }
+
+        public string obtenerMailUsuario(string usuario)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            string mailUsuario = (from u in prodeoContext.Usuarios
+                                  where u.nombre == usuario
+                                  select u.mail).First();
+            return mailUsuario;
+        }
+
         public bool activarUsuario(string email)
         {
             bool resultModif;
@@ -111,6 +121,28 @@ namespace Datos
             prodeoContext.Usuarios.Add(nuevoUsuario);
             return prodeoContext.SaveChanges(); //SaveChanges devuelve el N° de objetos escritos en la BD            
         }
+
+        //Actualizacion de usuario
+        public int actualizarUsuario(string userLogueado, string pass)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                Usuarios userAModificar = (from u in prodeoContext.Usuarios
+                                           where u.nombre == userLogueado
+                                           select u).First();
+                MD5 md5Hash = MD5.Create();
+                string passMd5 = GetMd5Hash(md5Hash, pass);
+                userAModificar.password = passMd5;
+                return prodeoContext.SaveChanges();
+
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
+
         static string GetMd5Hash(MD5 md5Hash, string input)
         {
 

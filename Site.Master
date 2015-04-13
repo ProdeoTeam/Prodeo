@@ -31,20 +31,33 @@
 
     
 </head>
+
 <body class="index loading">
     <form runat="server">
-        <header id="header" class="alt">
-				<h1 id="logo"><asp:HyperLink ID="HyperLink1" runat="server"><asp:Image ID="Image1" ImageUrl="~/images/logos/prodeo.gif" runat="server"></asp:Image></asp:HyperLink></h1>
+        <header id="header" class="alt">			 	
+            <h1 id="logo"><asp:HyperLink ID="HyperLink1" runat="server"><asp:Image ID="Image1" ImageUrl="~/images/logos/prodeo.gif" runat="server"></asp:Image></asp:HyperLink></h1>
 				<nav id="nav">
 					<ul>
-						<li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink></li>
+					    <li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink></li>
                         <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink></li>
                         <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink></li>
-                        <li class="current" runat="server">
+                                                                                                                       
+                        
+                        <li class="current" runat="server" >
                             <div runat="server" id="principalProyecto">
                                 <asp:HyperLink ID="HyperLink5" NavigateUrl="~/pantallas/seleccion.aspx" CssClass="button" runat="server">Principal</asp:HyperLink>
                             </div>
                         </li>
+
+
+                         <li class="submenu">                            
+							<a href="#" ID="userLogueado" runat="server">Charlie</a>
+							<ul>								                                                               
+                                <li><a href="#" ID="linkEditUser" runat="server" onserverclick="editarUsuario_Click">Modificar datos</a></li>						
+							</ul>                            
+						</li>
+                       
+
                         <li runat="server">
                             <div runat="server" id="sessionInactiva"><a href="#envelope" class="button special" id="modaltrigger">Iniciar sesi&oacute;n</a></div>
                         </li>
@@ -53,68 +66,69 @@
                         </li>
 					</ul>
 				</nav>
-			</header>
+		</header>
 
         <div id="envelope" style="display:none;" runat="server">
             <section id="contentEnvelope" runat="server">
-        <header>
-            <h2>Iniciar sesi&oacute;n</h2>
-        </header>
+        
+                <header>
+                    <h2>Iniciar sesi&oacute;n</h2>
+                </header>
   
-         <!-- To make a responsive form each element of the form should be in a separate div.!-->
-        <div id="responsive">
-            <div id="mitadIzq">               
+                 <!-- To make a responsive form each element of the form should be in a separate div.!-->
+                <div id="responsive">
+                    <div id="mitadIzq">               
 
-				<div>
-					<label for="usuario"> Usuario </label>
-					<div>
-						<i class="fa fa-user pict-textbox"></i>						
-						<input type="text" id="usuario" class="input-pict" placeholder="usuario" runat="server">
-                    </div>                    
-                </div>
+				        <div>
+					        <label for="usuario"> Usuario </label>
+					        <div>
+						        <i class="fa fa-user pict-textbox"></i>						
+						        <input type="text" id="usuario" class="input-pict" placeholder="usuario" runat="server">
+                            </div>                    
+                        </div>
 				
-                <div>
-                    <label for="pass"> Contrase&ntilde;a </label>					
-					<div>
-						<i class="fa fa-key pict-textbox"></i>						
-						<input type="password" id="pass" class="input-pict" placeholder="**********" runat="server">
-                    </div>					                   
-                </div>             
+                        <div>
+                            <label for="pass"> Contrase&ntilde;a </label>					
+					        <div>
+						        <i class="fa fa-key pict-textbox"></i>						
+						        <input type="password" id="pass" class="input-pict" placeholder="**********" runat="server">
+                            </div>					                   
+                        </div>             
                 
-                <div>
-                    <div>
-                        <input id="Submit1" type="submit" onserverclick="loginForm_Click" value="Iniciar sesi&oacute;n" class="btn-google" runat="server" />
+                        <div>
+                            <div>
+                                <input id="Submit1" type="submit" onserverclick="loginForm_Click" value="Iniciar sesi&oacute;n" class="btn-google" runat="server" />
+                            </div>
+                        </div>
+
+                        <p>¿No tienes una cuenta? <a href="pantallas/Registro.aspx" id="link-style">Registrarse</a></p>
+                    </div>
+                    <div id="mitadDer">
+				        <label>O tambi&eacute;n puedes:</label>
+				        <p><a href="#" class="btn-google"><i class="fa fa-google"></i>&nbsp;Iniciar con Google</a></p>
                     </div>
                 </div>
-
-                <p>¿No tienes una cuenta? <a href="pantallas/Registro.aspx" id="link-style">Registrarse</a></p>
-            </div>
-            <div id="mitadDer">
-				<label>O tambi&eacute;n puedes:</label>
-				<p><a href="#" class="btn-google"><i class="fa fa-google"></i>&nbsp;Iniciar con Google</a></p>
-            </div>
+            </section>
         </div>
-                </section>
-</div>
 
-
-            <script type="text/javascript">
-                $(function () {
-                    $('#loginform').submit(function (e) {
-                        return false;
-                    });
-
-                    $('#modaltrigger').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+        <script type="text/javascript">
+            $(function () {
+                $('#loginform').submit(function (e) {
+                    return false;
                 });
-            </script>
+
+                $('#modaltrigger').leanModal({ top: 110, overlay: 0.45, closeButton: ".hidemodal" });
+            });
+        </script>
+
         <div class="main">
             <asp:ContentPlaceHolder ID="MainContent" runat="server"/>
         </div>
         <div class="clear">
         </div>
-    <div class="footer">
-        
-    </div>
+        <div class="footer">        
+        </div>
+                
     </form>
 </body>
 </html>

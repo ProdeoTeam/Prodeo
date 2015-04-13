@@ -13,6 +13,15 @@ namespace Prodeo.pantallas {
     public partial class Registro {
         
         /// <summary>
+        /// h2Titulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl h2Titulo;
+        
+        /// <summary>
         /// ScriptManagReg control.
         /// </summary>
         /// <remarks>
@@ -49,58 +58,58 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValUsuario;
         
         /// <summary>
-        /// usuario control.
+        /// txtUsuario control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText usuario;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUsuario;
         
         /// <summary>
-        /// ReqFieldValPass control.
+        /// ReqFieldValPass_Reg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValPass;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValPass_Reg;
         
         /// <summary>
-        /// pass control.
+        /// txtPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword pass;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtPass;
         
         /// <summary>
-        /// ReqFieldValRepPass control.
+        /// ReqFieldValRepPass_Reg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValRepPass;
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValRepPass_Reg;
         
         /// <summary>
-        /// CompareValPass control.
+        /// CompareValPass_Reg control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CompareValidator CompareValPass;
+        protected global::System.Web.UI.WebControls.CompareValidator CompareValPass_Reg;
         
         /// <summary>
-        /// repetirPass control.
+        /// txtRepetirPass control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputPassword repetirPass;
+        protected global::System.Web.UI.HtmlControls.HtmlInputPassword txtRepetirPass;
         
         /// <summary>
         /// CustomValEmailRep control.
@@ -130,13 +139,22 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.WebControls.RegularExpressionValidator RegExpresValEmail;
         
         /// <summary>
-        /// email control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText email;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
+        
+        /// <summary>
+        /// contenBtnReg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenBtnReg;
         
         /// <summary>
         /// btnRegistro control.
@@ -145,16 +163,34 @@ namespace Prodeo.pantallas {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor btnRegistro;
+        protected global::System.Web.UI.WebControls.Button btnRegistro;
         
         /// <summary>
-        /// lblEstadoMail control.
+        /// contenBtnModif control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblEstadoMail;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl contenBtnModif;
+        
+        /// <summary>
+        /// btnModifDatos control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnModifDatos;
+        
+        /// <summary>
+        /// lblEstadoOperacion control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblEstadoOperacion;
         
         /// <summary>
         /// btnEstadoMail control.

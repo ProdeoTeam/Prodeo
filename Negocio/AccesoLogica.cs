@@ -50,6 +50,26 @@ namespace Negocio
             }
         }
 
+        public bool actualizaUsuario(string userLogueado, string pass)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.actualizarUsuario(userLogueado, pass) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<Usuarios> obtieneListaUsuarios(int idProyecto)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -57,11 +77,18 @@ namespace Negocio
             return lista;
         }
 
-        public Usuarios obtieneUsuario(string email)
+        public Usuarios obtieneUsuarioPorMail(string email)
         {
             AccesoDatos datos = new AccesoDatos();
-            Usuarios usuario = datos.obtenerUsuario(email);
+            Usuarios usuario = datos.obtenerUsuarioPorMail(email);
             return usuario;
+        }
+
+        public string obtenerMailUser(string user) 
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string mailUser = datos.obtenerMailUsuario(user);
+            return mailUser;
         }
 
         public bool activaUsuario(string email) 
