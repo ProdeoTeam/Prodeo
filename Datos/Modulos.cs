@@ -27,6 +27,7 @@ namespace Datos
         public System.DateTime FechaCreacion { get; set; }
         public Nullable<System.DateTime> FechaFinalizacion { get; set; }
         public System.DateTime FechaVencimiento { get; set; }
+        public int Baja { get; set; }
     
         public virtual Proyectos Proyectos { get; set; }
         public virtual Usuarios Usuarios { get; set; }

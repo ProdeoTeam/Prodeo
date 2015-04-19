@@ -310,7 +310,7 @@ namespace Datos
             if (creador > 0)
             {
                 listaM = (from p in prodeoContext.Modulos
-                          where p.idUsuarioCreador == idUsuario && p.idProyecto == proyecto
+                          where p.idUsuarioCreador == idUsuario && p.idProyecto == proyecto && p.Baja == 0
                           select new DatosModulo { IdModulo = p.idModulo, IdProyecto = p.idProyecto, IdUsuario = p.idUsuarioCreador, Nombre = p.Nombre, Descripcion = p.Descripcion }).ToList();
             }
             else
@@ -320,7 +320,7 @@ namespace Datos
                     case "A":
                         {
                             listaM = (from p in prodeoContext.Modulos
-                                      where p.idProyecto == proyecto
+                                      where p.idProyecto == proyecto && p.Baja == 0
                                       select new DatosModulo { IdModulo = p.idModulo, IdProyecto = p.idProyecto, IdUsuario = p.idUsuarioCreador, Nombre = p.Nombre, Descripcion = p.Descripcion }).ToList();
                             break;
                         }
@@ -329,7 +329,7 @@ namespace Datos
                             listaM = (from t in prodeoContext.ParticipantesTareas
                                       join ta in prodeoContext.Tareas on t.idTarea equals ta.idTarea
                                       join m in prodeoContext.Modulos on ta.idModulo equals m.idModulo
-                                      where t.idUsuario == idUsuario && m.idProyecto == proyecto
+                                      where t.idUsuario == idUsuario && m.idProyecto == proyecto && m.Baja == 0
                                       select new DatosModulo { IdModulo = m.idModulo, IdProyecto = m.idProyecto, IdUsuario = t.idUsuario, Nombre = m.Nombre, Descripcion = m.Descripcion }).Distinct().ToList();
 
                             break;
@@ -387,6 +387,24 @@ namespace Datos
                 return 1;
             }
             catch(Exception e)
+            {
+                return 0;
+            }
+        }
+
+        public int eliminarModulo(int idModulo)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                Modulos mod = (from m in prodeoContext.Modulos
+                               where m.idModulo == idModulo
+                               select m).First();
+                mod.Baja = 1;
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch (Exception e)
             {
                 return 0;
             }

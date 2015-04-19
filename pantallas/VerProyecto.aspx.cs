@@ -165,7 +165,7 @@ namespace Prodeo.pantallas
                 Literal divApertura = new Literal();
                 Literal divCierre = new Literal();
                 Literal linkModulo = new Literal();
-
+                Literal linkEliminarModulo = new Literal();
                 //creamos y agregamos el h3 que sera el titulo de la solapa accordion
                 h3.Text = "<h3>" + unModulo.Nombre + "</h3>";
                 contenedorAccordion.Controls.Add(h3);
@@ -200,11 +200,16 @@ namespace Prodeo.pantallas
                 //Dentro de este dev agregamos la grilla de tareas
                 divApertura.Text = "<div>";
                 divCierre.Text = "</div>";
-                linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Ver</a>";
-
+                linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Ver</a>&nbsp&nbsp";
+                linkEliminarModulo.Text = "<a href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Eliminar</a>"; ;
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(linkModulo);
+                if (Session["permiso"].ToString() == "A" && grillaTareas.Rows[0].Cells[3].Text == "No posee Tareas")
+                {
+                    contenedorAccordion.Controls.Add(linkEliminarModulo);
+                }
+                
                 contenedorAccordion.Controls.Add(divCierre);
 
             }
