@@ -121,6 +121,26 @@ namespace Negocio
             }
         }
 
+        public bool EliminaTarea(string idTarea, string usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int tarea = Convert.ToInt32(idTarea);
+            try
+            {
+                if (datos.eliminarTarea(tarea, usuario) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool finalizaTarea(string idTarea, string usuario, string comentario, string horas)
         {
             AccesoDatos datos = new AccesoDatos();

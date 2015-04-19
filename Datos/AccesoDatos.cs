@@ -460,13 +460,36 @@ namespace Datos
             }
 
         }
+
+        public int eliminarTarea(int idTarea, string usuario)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                int idUsuario = (from u in prodeoContext.Usuarios
+                                 where u.nombre == usuario
+                                 select u.idUsuario).First();
+                var tareas = (from t in prodeoContext.Tareas
+                              where t.idTarea == idTarea
+                              select t).First();
+
+                tareas.Baja = 1;
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch(Exception ex)
+            {
+                return 0;
+            }
+            
+        }
         public List<DatosTarea> obtenerListaTareas(int modulo)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             var query = (from p in prodeoContext.Tareas
                          join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
                          join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
-                         where p.idModulo == modulo && p.FechaFinalizacion == null
+                         where p.idModulo == modulo && p.FechaFinalizacion == null && p.Baja == 0
                          select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Comentario = p.Comentario, Prioridad = p.Prioridad, Avisos = p.AlertaPrevia, Asignada = u.nombre, FechaLimite = p.FechaVencimiento, Estado = p.Estado }).OrderBy(o => o.FechaLimite).ToList();
             return query;
         }
