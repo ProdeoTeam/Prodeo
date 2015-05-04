@@ -9,6 +9,7 @@ namespace Negocio
 {
     public class ProyectoLogica
     {
+        #region "Proyecto"
         public bool insertaProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario, List<string> usuariosAsignados)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -29,6 +30,40 @@ namespace Negocio
             }
         }
 
+        public List<DatosProyecto> obtieneListaProyecto(string usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<DatosProyecto> lista = datos.obtenerListaProyectos(usuario);
+            return lista;
+
+        }
+
+        public string obtieneNombreProyecto(int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            string nombre = datos.obtenerNombreProyecto(idProyecto);
+            return nombre;
+        }
+
+        public Proyectos obtieneDatosProyecto(string proyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idProyecto = Convert.ToInt32(proyecto);
+            Proyectos pro = datos.obtenerDatosProyecto(idProyecto);
+            return pro;
+        }
+
+        public List<DatosParticipantesProyecto> obtieneParticipantes(string proyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int idProyecto = Convert.ToInt32(proyecto);
+            List<DatosParticipantesProyecto> listaUsu = datos.obtenerParticipantes(idProyecto);
+
+            return listaUsu;
+        }
+
+        #endregion
+        #region "Modulos"
         public Modulos obtieneDatosModulo(int idModulo)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -56,6 +91,14 @@ namespace Negocio
             }
         }
 
+        public List<DatosModulo> obtieneListaModulos(string usuario, int proyecto, string permiso)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            List<DatosModulo> lista = datos.obtenerListaModulos(usuario, proyecto, permiso);
+            return lista;
+
+        }
+
         public bool actualizaModulo(int idModulo, string nombre, string descrip, DateTime fechaVencimiento)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -76,6 +119,28 @@ namespace Negocio
             }
         }
 
+        public bool EliminaModulo(int idModulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.eliminarModulo(idModulo) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        #endregion
+        #region "Tareas"
         public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -121,6 +186,26 @@ namespace Negocio
             }
         }
 
+        public bool EliminaTarea(string idTarea, string usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int tarea = Convert.ToInt32(idTarea);
+            try
+            {
+                if (datos.eliminarTarea(tarea, usuario) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public bool finalizaTarea(string idTarea, string usuario, string comentario, string horas)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -140,21 +225,6 @@ namespace Negocio
             {
                 return false;
             }
-        }
-
-        public List<DatosProyecto> obtieneListaProyecto(string usuario)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            List<DatosProyecto> lista = datos.obtenerListaProyectos(usuario);
-            return lista;
-
-        }
-        public List<DatosModulo> obtieneListaModulos(string usuario, int proyecto, string permiso)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            List<DatosModulo> lista = datos.obtenerListaModulos(usuario, proyecto, permiso);
-            return lista;
-
         }
 
         public List<DatosTarea> obtieneListaTareas(int modulo)
@@ -188,7 +258,7 @@ namespace Negocio
         {
             AccesoDatos datos = new AccesoDatos();
             List<DatosTarea> lista = datos.obtenerListaTareasUsuario(modulo, usuario);
-            foreach(DatosTarea dato in lista)
+            foreach (DatosTarea dato in lista)
             {
 
                 int result = DateTime.Compare(dato.FechaLimite, DateTime.Now);
@@ -210,12 +280,9 @@ namespace Negocio
 
         }
 
-        public string obtieneNombreProyecto(int idProyecto)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            string nombre = datos.obtenerNombreProyecto(idProyecto);
-            return nombre;
-        }
+        #endregion
+
+        #region "Usuarios"
 
         public bool verificaUsuarioRegistrado(string email)
         {
@@ -230,22 +297,7 @@ namespace Negocio
             string permiso = datos.obtenerPermisoUsuario(usuario, idProyecto);
             return permiso;
         }
+        #endregion
 
-        public Proyectos obtieneDatosProyecto(string proyecto)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            int idProyecto = Convert.ToInt32(proyecto);
-            Proyectos pro = datos.obtenerDatosProyecto(idProyecto);
-            return pro;
-        }
-
-        public List<DatosParticipantesProyecto> obtieneParticipantes(string proyecto)
-        {
-            AccesoDatos datos = new AccesoDatos();
-            int idProyecto = Convert.ToInt32(proyecto);
-            List<DatosParticipantesProyecto> listaUsu = datos.obtenerParticipantes(idProyecto);
-
-            return listaUsu;
-        }
     }
 }
