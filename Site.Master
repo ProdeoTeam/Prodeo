@@ -101,10 +101,10 @@
                             </div>
                         </div>
 
-                        <p>¿No tienes una cuenta? <a href="pantallas/Registro.aspx" id="link-style">Registrarse</a></p>
+                        <p>¿No tiene una cuenta? <a href="pantallas/Registro.aspx" id="link-style">Registrarse</a></p>
                     </div>
                     <div id="mitadDer">
-				        <label>O tambi&eacute;n puedes:</label>
+				        <label>O tambi&eacute;n puede:</label>
 				        <p><a href="#" class="btn-google"><i class="fa fa-google"></i>&nbsp;Iniciar con Google</a></p>
                     </div>
                 </div>

@@ -18,12 +18,12 @@
 					<header>
                         <img src="images/logos/ProdeoLogoNombre.gif" />
 					</header>
-					<p>Gestiona tus <b>Proyectos</b><br />
-					de manera facil e<br />
+					<p>Gestione sus <b>Proyectos</b><br />
+					de manera f&aacute;cil e<br />
 					intuitiva</p>
 					<footer>
 						<ul class="buttons vertical">
-							<li><a href="#main" class="button fit scrolly">Caracteristicas</a></li>
+							<li><a href="#main" class="button fit scrolly">Caracter&iacute;sticas</a></li>
 						</ul>
 					</footer>
 				
@@ -39,12 +39,12 @@
 
 				<header class="special container">
 					<span class="icon fa-bar-chart-o"></span>
-					<h2>Necesitas llevar un orden en tus <b>Proyectos</b> y no sabes como?<br />
-					En este peque&ntilde;o instructivo te contamos como...</h2>
-					<p><strong>Prodeo</strong> esta orientado a empresas con grupos que trabajen a distancia<br />
+					<h2>¿Necesita llevar un orden en sus <b>Proyectos</b> y no sabe c&oacute;mo?<br />
+					En este peque&ntilde;o instructivo le contamos...</h2>
+					<p><strong>Prodeo</strong> est&aacute; orientado a empresas con grupos que trabajen a distancia<br />
 					y que quieran administrar sus actividades de forma ordenada, evitando retrasos, 
 					solapamientos de tareas<br /> y problemas de comunicaci&oacute;n.<br />
-					Tambien puede ser utilizado por particulares que quieran tener organizadas<br />
+					Tambi&eacute;n puede ser utilizado por particulares que quieran tener organizadas<br />
                         sus actividades a lo largo de la semana.
 					</p>
 				</header>
@@ -55,9 +55,14 @@
 							<div class="8u">
 							
 								<header>
-									<h2>Administra tiempo, recursos, personas y la seguridad de tener tu <strong>Proyecto</strong> controlado!</h2>
+                                    
+									<h2>Mantenga su proyecto controlado administrando los tiempos, recursos y personal.</h2>
 								</header>
-								<p>Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu comteger ut fermentum lorem. Lorem ipsum dolor sit amet. Sed tristique purus vitae volutpat ultrices. eu elit eget commodo. Sed tristique purus vitae volutpat ultrices. Aliquam eu elit eget arcu commodo.</p>
+								<ul>
+                                    <li>No necesita ingresar todo el tiempo para verificar si hay nuevos cambios, Prodeo le enviar&aacute; notificaciones por mail.</li>
+                                    <li>Invite a usuarios a su proyecto y defina si van a ser Administradores junto a usted, o Colaboradores si no es necesario que editen y creen contenido.</li>
+                                    <li>Todo el sitio est&aacute; &iacute;ntegramente desarrollado en espa&ntilde;ol. La navegaci&oacute;n es sencilla y con opciones claras.</li>
+								</ul>
 								<footer>
 									<ul class="buttons">
 										<li><a href="#section2" class="button fit scrolly">M&aacute;s Caracter&iacute;sticas</a></li>
@@ -90,7 +95,7 @@
 									<header>
 										<h3>Privacidad</h3>
 									</header>
-									<p>Todos tus proyectos y datos de registro son privados y no se publican en ningun lugar.</p>
+									<p>Todos sus proyectos y datos de registro son privados y no se publican en ning&uacute;n lugar.</p>
 								</section>
 							
 							</div>
@@ -101,7 +106,7 @@
 									<header>
 										<h3>Colaboraci&oacute;n</h3>
 									</header>
-									<p>Trabaja en equipo y organiza el trabajo para ser mas eficiente.</p>
+									<p>Trabaje en equipo y organice el trabajo para ser mas eficiente.</p>
 								</section>
 							
 							</div>
@@ -112,7 +117,7 @@
 									<header>
 										<h3>Portabilidad</h3>
 									</header>
-									<p>No nocesitas descargar ni instalar nada, solo disponer de conexi&oacute;n a internet.</p>
+									<p>No nocesita descargar ni instalar nada, s&oacute;lo disponer de conexi&oacute;n a Internet.</p>
 								</section>
 							
 							</div>
@@ -126,7 +131,7 @@
 									<header>
 										<h3>Seguimiento</h3>
 									</header>
-									<p>Podras disponer de graficos de progreso para visualizar rapidamente el estado del proyecto.</p>
+									<p>Podr&aacute; disponer de gr&aacute;ficos de progreso para visualizar r&aacute;pidamente el estado del proyecto.</p>
 								</section>
 							
 							</div>
@@ -137,7 +142,7 @@
 									<header>
 										<h3>Organizado</h3>
 									</header>
-									<p>Crea tareas, define su finalizacion y asigna prioridades para hacerlas ordenadamente.</p>
+									<p>Cree tareas, defina su finalizaci&oacute;n y asigne prioridades para completarlas ordenadamente.</p>
 								</section>
 							
 							</div>
@@ -148,7 +153,7 @@
 									<header>
 										<h3>Gratuito</h3>
 									</header>
-									<p>No nocesitas pagar nada con tu tarjeta, ni usarlo con funciones limitadas. Solo registrate y comienza!</p>
+									<p>No necesita pagar nada con su tarjeta, ni usarlo con funciones limitadas. ¡S&oacute;lo reg&iacute;strese y comience!</p>
 								</section>
 							
 							</div>
@@ -159,63 +164,37 @@
 					<section class="wrapper style3 container special" id="tutorial">
 					
 						<header class="major">
-							<h2>Next look at this <strong>cool stuff</strong></h2>
+							<h2>Gr&aacute;ficos para una r&aacute;pida visualizaci&oacute;n de sus proyectos</h2>
 						</header>
 						
 						<div class="row">
-							<div class="6u">
-							
+							<div class="6u">							
 								<section>
-									<a href="#" class="image feature"><asp:Image ID="Image1" ImageUrl="~/images/muestra1.jpg" runat="server"></asp:Image>  </a>
+									<a href="#" class="image feature"><asp:Image ID="Image1" ImageUrl="~/images/GraficoTorta.png" runat="server"></asp:Image>  </a>
 									<header>
-										<h3>A Really Fast Train</h3>
+										<h3>Gr&aacute;fico de prioridad</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+									<p>Tenga presente en todo momento la criticidad del proyecto en funci&oacute;n de las prioridades de las tareas.</p>
 								</section>
 
 							</div>
-							<div class="6u">
-							
+							<div class="6u">							
 								<section>
-									<a href="#" class="image feature"><asp:Image ID="Image2" ImageUrl="~/images/muestra2.jpg" runat="server"></asp:Image></a>
+									<a href="#" class="image feature"><asp:Image ID="Image2" ImageUrl="~/images/GraficoBarra.png" runat="server"></asp:Image></a>
 									<header>
-										<h3>An Airport Terminal</h3>
+										<h3>Gr&aacute;fico de asignaci&oacute;n</h3>
 									</header>
-									<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
-								</section>
-
-							</div>
-						</div>
-						<div class="row">
-							<div class="6u">
-							
-								<section>
-									<a href="#" class="image feature"><asp:Image ID="Image3" ImageUrl="~/images/muestra3.jpg" runat="server"></asp:Image></a>
-									<header>
-										<h3>Hyperspace Travel</h3>
-									</header>
-									<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
-								</section>
-
-							</div>
-							<div class="6u">
-							
-								<section>
-									<a href="#" class="image feature"><asp:Image ID="Image4" ImageUrl="~/images/muestra4.jpg" runat="server"></asp:Image></a>
-									<header>
-										<h3>And Another Train</h3>
-									</header>
-									<p>Sed tristique purus vitae volutpat commodo suscipit amet sed nibh. Proin a ullamcorper sed blandit. Sed tristique purus vitae volutpat commodo suscipit ullamcorper sed blandit lorem ipsum dolore.</p>
+									<p>Verifique la cantidad de tareas que tiene asignadas cada participante para controlar la carga y distribuci&oacute;n de trabajo.</p>
 								</section>
 
 							</div>
 						</div>
-
-						<footer class="major">
+						
+						<%--<footer class="major">
 							<ul class="buttons">
 								<li><a href="#banner" class="button fit scrolly">See More</a></li>
 							</ul>
-						</footer>
+						</footer>--%>
 					
 					</section>
 					
@@ -225,8 +204,8 @@
 			<section id="cta">
 			
 				<header>
-					<h2>Queres recibir nuestro <strong>Newsletter</strong>?</h2>
-					<p>Ingresa tus datos y te llegar&aacute;n nuestras novedades!</p>
+					<h2>¿Desea recibir nuestro <strong>Newsletter</strong>?</h2>
+					<p>¡Ingrese sus datos y le llegar&aacute;n nuestras novedades!</p>
 				</header>
 				<footer>
 					<!-- Content -->
@@ -234,7 +213,7 @@
 								<form>
 									<div class="row 50%">
 										<div class="6u 12u(mobile)">
-											<input type="text" name="name" placeholder="Name" />
+											<input type="text" name="name" placeholder="Nombre" />
 										</div>
 										<div class="6u 12u(mobile)">
 											<input type="text" name="email" placeholder="Email" />
@@ -258,14 +237,14 @@
 			<footer id="footer">
 			
 				<ul class="icons">
-					<li><a href="#" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
-					<li><a href="#" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="https://twitter.com/proyectosprodeo" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="https://www.facebook.com/pages/Prodeo/1567642463469507" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
 					<li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
-					<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
-					<li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>
+					<%--<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+					<li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>--%>
 				</ul>
 				
-				<span class="copyright">&copy; Untitled. All rights reserved. Design: <a href="http://html5up.net">HTML5 UP</a>.</span>
+				<span class="copyright">&copy; PRODEO. Todos los derechos reservados.</span>
 			
 			</footer>
 
