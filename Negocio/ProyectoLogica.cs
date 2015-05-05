@@ -163,6 +163,13 @@ namespace Negocio
             }
         }
 
+        public Tareas obtieneDatosTarea(int idTarea)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Tareas tarea = datos.obtenerTareas(idTarea);
+            return tarea;
+
+        }
         public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();

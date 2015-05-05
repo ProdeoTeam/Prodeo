@@ -116,6 +116,7 @@
     <Content Include="js\skel.min.js" />
     <Content Include="pantallas\EliminarModulo.aspx" />
     <Content Include="pantallas\AltaTarea.aspx" />
+    <Content Include="pantallas\EliminarTarea.aspx" />
     <Content Include="pantallas\Registro.aspx" />
     <Content Include="pantallas\ProyectoPrincipal.aspx" />
     <Content Include="pantallas\ListaProyectos.aspx" />
@@ -213,6 +214,13 @@
     </Compile>
     <Compile Include="pantallas\AltaTarea.aspx.designer.cs">
       <DependentUpon>AltaTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\EliminarTarea.aspx.cs">
+      <DependentUpon>EliminarTarea.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\EliminarTarea.aspx.designer.cs">
+      <DependentUpon>EliminarTarea.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>

@@ -550,6 +550,16 @@ namespace Datos
 
         }
 
+        public Tareas obtenerTareas(int idTarea)
+        {
+            prodeoEntities context = new prodeoEntities();
+            Tareas tarea = (from t in context.Tareas
+                            where t.idTarea == idTarea
+                            select t).First();
+            return tarea;
+
+        }
+
 #endregion
 
 #region "Reportes"

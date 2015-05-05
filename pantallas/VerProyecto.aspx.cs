@@ -230,11 +230,12 @@ namespace Prodeo.pantallas
             ProyectoLogica proy = new ProyectoLogica();
             GridView dv = sender as GridView;
             GridViewRow row = dv.Rows[e.RowIndex];
-            bool correcto = proy.EliminaTarea(row.Cells[1].Text, Session["usuario"].ToString());
-            if(correcto)
-            {
-                Response.Redirect(Request.Url.AbsoluteUri);
-            }
+            Response.Redirect("~/pantallas/EliminarTarea.aspx?idTarea=" + row.Cells[1].Text + "");
+            //bool correcto = proy.EliminaTarea(row.Cells[1].Text, Session["usuario"].ToString());
+            //if(correcto)
+            //{
+            //    Response.Redirect(Request.Url.AbsoluteUri);
+            //}
             
 
         }
