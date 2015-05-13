@@ -28,12 +28,47 @@ namespace Prodeo.pantallas
                 //GridView1.DataBind();
                 Session["tabla"] = dt;
                 ProyectoLogica proy = new ProyectoLogica();
+                int Numproyecto = Convert.ToInt32(Session["idProyecto"]);
+                string usuario = Session["usuario"].ToString();
+                string permiso = proy.obtienePermisoUsuario(usuario, Numproyecto);
+                
                 if(Session["idProyecto"] == null)
                 {
-
+                    LabelProyectos.Text = "Alta de Proyecto";
+                    Session["permiso"] = "A";
+                    btnEditarProyecto.Visible = false;
+                    btnCancelarEdicion.Visible = false;
+                    btnAltaProyecto.Visible = true;
+                    btnActualizaProyecto.Visible = false;
+                    btnCancelarProyecto.Visible = true;
+                    btnVolverProyecto.Visible = false;
                 }
                 else
                 {
+                    nombreProyecto.Disabled = true;
+                    descripcion.Disabled = true;
+                    fechaVencimiento.Disabled = true;
+                    avisoVencimientos.Disabled = true;
+                    selectPermisos.Disabled = true;
+                    btnAgregarUsuario.Disabled = true;
+                    txtUsuarioAjax.Disabled = false;
+                    LabelProyectos.Text = "Ver Proyecto";
+                    btnEditarProyecto.Visible = true;
+                    btnCancelarEdicion.Visible = false;
+                    btnAltaProyecto.Visible = false;
+                    btnCancelarProyecto.Visible = false;
+                    btnActualizaProyecto.Visible = false;
+                    btnVolverProyecto.Visible = true;
+                    if (permiso == "A")
+                    {
+                        btnEditarProyecto.Visible = true;
+                        btnCancelarEdicion.Visible = false;
+                    }
+                    else
+                    {
+                        btnEditarProyecto.Visible = false;
+                        btnCancelarEdicion.Visible = false;
+                    }
                     Proyectos proyecto = proy.obtieneDatosProyecto(Session["idProyecto"].ToString());
                     List<DatosParticipantesProyecto> partProy = proy.obtieneParticipantes(Session["idProyecto"].ToString());
                     nombreProyecto.Value = proyecto.Nombre;
@@ -56,7 +91,6 @@ namespace Prodeo.pantallas
                        HtmlTableRow rowTablaUsuarios =  this.agregarUsuario_html(dp.nombreUsuario, dp.permiso);
                        tablaUsuariosGrilla.Controls.Add(rowTablaUsuarios);
                     }
-
                 }
 
             }
@@ -79,6 +113,28 @@ namespace Prodeo.pantallas
 
             ProyectoLogica agregaProyecto = new ProyectoLogica();
             bool altaExitosa = agregaProyecto.insertaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value, usuario, usuariosAsignados);
+            if (altaExitosa)
+            {
+
+                Response.Redirect("~/pantallas/ListaProyectos.aspx");
+            }
+        }
+
+        protected void actualizaProyForm_Click(object sender, EventArgs e)
+        {
+
+
+            DataTable dt = Session["tabla"] as DataTable;
+            string usuario = Session["usuario"].ToString();
+            Session["permiso"] = "A";
+            List<string> usuariosAsignados = new List<string>();
+            foreach (DataRow row in dt.Rows)
+            {
+                usuariosAsignados.Add(row.ItemArray[0] + "-" + row.ItemArray[1]);
+            }
+
+            ProyectoLogica agregaProyecto = new ProyectoLogica();
+            bool altaExitosa = agregaProyecto.actualizaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value, usuario, usuariosAsignados, Session["idProyecto"].ToString());
             if (altaExitosa)
             {
 
@@ -255,6 +311,44 @@ namespace Prodeo.pantallas
         //    Session["tabla"] = dtNuevo;
 
         //}
+
+        protected void editarProyecto_Click(object sender, EventArgs e)
+        {
+            LabelProyectos.Text = "Editar Proyecto";
+            btnEditarProyecto.Visible = false;
+            btnCancelarEdicion.Visible = true;
+            nombreProyecto.Disabled = false;
+            descripcion.Disabled = false;
+            fechaVencimiento.Disabled = false;
+            avisoVencimientos.Disabled = false;
+            selectPermisos.Disabled = false;
+            btnAgregarUsuario.Disabled = false;
+            txtUsuarioAjax.Disabled = false;
+
+            btnAltaProyecto.Visible = false;
+            btnCancelarProyecto.Visible = false;
+            btnVolverProyecto.Visible = false;
+            btnActualizaProyecto.Visible = true;
+        }
+
+        protected void cancelarProyecto_Click(object sender, EventArgs e)
+        {
+            LabelProyectos.Text = "Ver Proyecto";
+            btnEditarProyecto.Visible = true;
+            btnCancelarEdicion.Visible = false;
+            nombreProyecto.Disabled = true;
+            descripcion.Disabled = true;
+            fechaVencimiento.Disabled = true;
+            avisoVencimientos.Disabled = true;
+            selectPermisos.Disabled = true;
+            btnAgregarUsuario.Disabled = true;
+            txtUsuarioAjax.Disabled = true;
+
+            btnAltaProyecto.Visible = false;
+            btnCancelarProyecto.Visible = false;
+            btnActualizaProyecto.Visible = false;
+            btnVolverProyecto.Visible = true;
+        }
 
     }
 }

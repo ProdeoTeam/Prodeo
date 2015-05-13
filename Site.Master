@@ -53,7 +53,8 @@
                          <li class="submenu">                            
 							<a href="#" ID="userLogueado" runat="server">Charlie</a>
 							<ul>								                                                               
-                                <li><a href="#" ID="linkEditUser" runat="server" onserverclick="editarUsuario_Click">Modificar datos</a></li>						
+                                <li><a href="#" ID="linkEditUser" runat="server" onserverclick="editarUsuario_Click">Modificar datos</a></li>
+                                <li><a href="#" ID="eliminarCuenta" runat="server" onserverclick="eliminarCuenta_Click">Eliminar cuenta</a></li>						
 							</ul>                            
 						</li>
                        

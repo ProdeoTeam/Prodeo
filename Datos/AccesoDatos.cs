@@ -255,6 +255,61 @@ namespace Datos
                 return 0;
             }
         }
+        public int actualizarProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario, List<string> usuariosAsignados, string idProyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            using (var dbContextTransaction = prodeoContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    int idProy = Convert.ToInt32(idProyecto);
+                    Proyectos pro = (from p in prodeoContext.Proyectos
+                                     where p.idProyecto == idProy
+                                    select p).First();
+                    pro.Nombre = nombre;
+                    pro.Descripcion = descrip;
+                    pro.FechaVencimiento = fechaVencimiento;
+                    pro.AlertaPrevia = alerta;
+                    prodeoContext.SaveChanges();
+
+                    int idUsuario = (from u in prodeoContext.Usuarios
+                                     where u.nombre == usuario
+                                     select u.idUsuario).First();
+
+                    List<ParticipantesProyectos> partProy = (from pp in prodeoContext.ParticipantesProyectos
+                                                           where pp.idProyecto == idProy //&& pp.idUsuario != idUsuario
+                                                           select pp).ToList();
+                    foreach(ParticipantesProyectos pp in partProy)
+                    {
+                        prodeoContext.ParticipantesProyectos.Remove(pp);
+                    }
+                    prodeoContext.SaveChanges();
+                    ParticipantesProyectos partProyAdd = new ParticipantesProyectos();
+                    foreach(string user in usuariosAsignados)
+                    {
+                        string mail = user.Split('-')[0];
+                        string permiso = user.Split('-')[1];
+                        idUsuario = (from u in prodeoContext.Usuarios
+                                     where u.mail == mail
+                                     select u.idUsuario).First();
+                        partProyAdd.idProyecto = idProy;
+                        partProyAdd.idUsuario = idUsuario;
+                        partProyAdd.permisosAdministrador = permiso;
+                        prodeoContext.ParticipantesProyectos.Add(partProyAdd);
+                        prodeoContext.SaveChanges();
+                    }
+                    dbContextTransaction.Commit();
+                    return 1;
+
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
+                }
+            }
+
+            return 0;
+        }
         public List<DatosProyecto> obtenerListaProyectos(string usuario)
         {
             prodeoEntities prodeoContext = new prodeoEntities();

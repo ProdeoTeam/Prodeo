@@ -30,6 +30,26 @@ namespace Negocio
             }
         }
 
+        public bool actualizaProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario, List<string> usuariosAsignados, string idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.actualizarProyecto(nombre, descrip, fechaCreacion, fechaVencimiento, alerta, usuario, usuariosAsignados, idProyecto) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<DatosProyecto> obtieneListaProyecto(string usuario)
         {
             AccesoDatos datos = new AccesoDatos();
