@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data;
+using System.Collections;
 namespace Datos
 {
     public class AccesoDatos
@@ -486,6 +487,7 @@ namespace Datos
                 tareas.FechaVencimiento = fechaVencimiento;
                 tareas.AlertaPrevia = avisos;
                 tareas.Prioridad = prioridad;
+                tareas.Estado = "Pendiente";
                 prodeoContext.Tareas.Add(tareas);
                 ParticipantesTareas partTareas = new ParticipantesTareas();
                 partTareas.idUsuario = idUserAsignado;
@@ -595,6 +597,7 @@ namespace Datos
             tareas.Comentario = comentario;
             tareas.FechaFinalizacion = DateTime.Now;
             tareas.Tiempo = Convert.ToInt32(horas);
+            tareas.Estado = "Finalizada";
             prodeoContext.SaveChanges();
             return 1;
             }
