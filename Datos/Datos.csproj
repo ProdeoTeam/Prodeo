@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="CriptografiaDatos.cs" />
+    <Compile Include="DatosMail.cs" />
     <Compile Include="DatosModulo.cs" />
     <Compile Include="DatosParticipantesProyecto.cs" />
     <Compile Include="DatosProyecto.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Tareas.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>
     </Compile>
+    <Compile Include="TareasPorModulos.cs" />
     <Compile Include="TareasPorUsuarios.cs" />
     <Compile Include="Usuarios.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>

@@ -617,147 +617,206 @@ namespace Datos
 
 #endregion
 
-#region "Reportes"
-        public DataTable simularDatosTareasPorUsuario()
+        #region "Reportes"
+        public Reportes.DatosReportes obtenerDatosTareasPorUsuario(int idProyecto)
         {
-            DataTable tabla = new DataTable();
-            DataColumn columna = new DataColumn();
-            DataRow fila;
-            columna.ColumnName = "usuario";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "estado";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "condicionvencimiento";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "cantidad";
-            tabla.Columns.Add(columna);
+            //Categorias/nombres en eje x/usuarios
+            ArrayList usuarios = new ArrayList();
+            ArrayList tareasPendientesVencidas = new ArrayList();
+            ArrayList tareasPendientesNoVencidas = new ArrayList();
+            ArrayList tareasFinalizadas = new ArrayList();
+            ArrayList estados = new ArrayList();
+            Reportes.DatosReportes reporteSource = new Reportes.DatosReportes();
+            Reportes.Series reporteSerie = new Reportes.Series();
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var query = (from t in prodeoContext.Tareas
+                         join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
+                         join u in prodeoContext.Usuarios on pt.idUsuario equals u.idUsuario
+                         join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
+                         where m.idProyecto == idProyecto
+                         select new TareasPorUsuarios { estado = t.Estado, fechaVemcimiento = t.FechaVencimiento, usuario = u.nombre });
+            //, fechaFinalizacion = (t.FechaFinalizacion.GetType() == System.Type.GetType("System.DateTime") ? System.Convert.ToDateTime(t.FechaFinalizacion):Convert.ToDateTime("1900-01-01"))
+            estados.Add("Pendientes Vencidas");
+            estados.Add("Pendientes No Vencidas");
+            estados.Add("Finalizadas");
+            foreach (TareasPorUsuarios item in query)
+            {
+                int indiceUsuario = usuarios.IndexOf(item.usuario);
+                if (indiceUsuario < 0)
+                {
+                    //Todavia no se procesaron tareas del usuario, asi que agregamos al usuario e inicializamos sus tareas
+                    usuarios.Add(item.usuario);
+                    if (item.estado == "FINALIZADA")
+                    {
+                        //Tarea Finalizada
+                        tareasFinalizadas.Add(1);
+                        tareasPendientesNoVencidas.Add(0);
+                        tareasPendientesVencidas.Add(0);
+                    }
+                    else
+                    {
+                        //Tarea Pendiente
+                        tareasFinalizadas.Add(0);
+                        tareasPendientesNoVencidas.Add(1);
+                        tareasPendientesVencidas.Add(0);
+                        //Pendientes debemos analizar si esta vencida o no. Por ahora no aplica.
+                    }
+                }
+                else
+                {
+                    //El usuario ya existe
+                    if (item.estado == "FINALIZADA")
+                    {
+                        //le agregamos una tarea finalizada
+                        int cantFinalizadas = Convert.ToInt32(tareasFinalizadas[indiceUsuario]);
+                        tareasFinalizadas[indiceUsuario] = cantFinalizadas + 1;
+                    }
+                    else
+                    {
+                        //le agregamos una tarea Pendiente
+                        int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
+                        tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
+                        //pendiente analizamos si esta vencida o no
+                    }
+                }
+            }
 
-            fila = tabla.NewRow();
-            fila["usuario"] = "Rodolfo";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "NoVencida";
-            fila["cantidad"] = 30;
-            tabla.Rows.Add(fila);
+            reporteSource.Categorias = usuarios;
+            reporteSerie = new Reportes.Series();
+            reporteSerie.Nombre = "PendientesNoVencidas";
+            reporteSerie.Stack = "Pend";
+            reporteSerie.Datos = tareasPendientesNoVencidas;
+            reporteSource.Series.Add(reporteSerie);
 
-            fila = tabla.NewRow();
-            fila["usuario"] = "Rodolfo";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "Vencida";
-            fila["cantidad"] = 20;
-            tabla.Rows.Add(fila);
+            reporteSerie = new Reportes.Series();
+            reporteSerie.Nombre = "PendientesVencidas";
+            reporteSerie.Stack = "Pend";
+            reporteSerie.Datos = tareasPendientesVencidas;
+            reporteSource.Series.Add(reporteSerie);
 
-            fila = tabla.NewRow();
-            fila["usuario"] = "Rodolfo";
-            fila["estado"] = "Finalizado";
-            fila["condicionvencimiento"] = "";
-            fila["cantidad"] = 10;
-            tabla.Rows.Add(fila);
+            reporteSerie = new Reportes.Series();
+            reporteSerie.Nombre = "Finalizadas";
+            reporteSerie.Stack = "Fin";
+            reporteSerie.Datos = tareasFinalizadas;
+            reporteSource.Series.Add(reporteSerie);
 
-            fila = tabla.NewRow();
-            fila["usuario"] = "Jose";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "NoVencida";
-            fila["cantidad"] = 35;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["usuario"] = "Jose";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "Vencida";
-            fila["cantidad"] = 25;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["usuario"] = "Jose";
-            fila["estado"] = "Finalizado";
-            fila["condicionvencimiento"] = "";
-            fila["cantidad"] = 15;
-            tabla.Rows.Add(fila);
-
-            return tabla;
+            return reporteSource;
         }
-        public DataTable simularDatosTareasPorModulo()
+        public Reportes.DatosReportes obtenerDatosTareasPorModulos(int idProyecto)
         {
-            DataTable tabla = new DataTable();
-            DataColumn columna = new DataColumn();
-            DataRow fila;
-            columna.ColumnName = "modulo";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "estado";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "condicionvencimiento";
-            tabla.Columns.Add(columna);
-            columna = new DataColumn();
-            columna.ColumnName = "cantidad";
-            tabla.Columns.Add(columna);
+            //Categorias/nombres en eje x/usuarios
+            ArrayList modulos = new ArrayList();
+            ArrayList tareasPendientesVencidas = new ArrayList();
+            ArrayList tareasPendientesNoVencidas = new ArrayList();
+            ArrayList tareasFinalizadas = new ArrayList();
+            ArrayList estados = new ArrayList();
+            Reportes.DatosReportes reporteSource = new Reportes.DatosReportes();
+            Reportes.Series reporteSerie = new Reportes.Series();
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var query = (from t in prodeoContext.Tareas
+                         join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
+                         join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
+                         where m.idProyecto == idProyecto
+                         select new TareasPorModulos { estado = t.Estado, fechaVemcimiento = t.FechaVencimiento, modulo = m.Nombre });
+            //, fechaFinalizacion = (t.FechaFinalizacion.GetType() == System.Type.GetType("System.DateTime") ? System.Convert.ToDateTime(t.FechaFinalizacion):Convert.ToDateTime("1900-01-01"))
+            estados.Add("Pendientes Vencidas");
+            estados.Add("Pendientes No Vencidas");
+            estados.Add("Finalizadas");
+            foreach (TareasPorModulos item in query)
+            {
+                int indiceUsuario = modulos.IndexOf(item.modulo);
+                if (indiceUsuario < 0)
+                {
+                    //Todavia no se procesaron tareas del usuario, asi que agregamos al usuario e inicializamos sus tareas
+                    modulos.Add(item.modulo);
+                    if (item.estado == "FINALIZADA")
+                    {
+                        //Tarea Finalizada
+                        tareasFinalizadas.Add(1);
+                        tareasPendientesNoVencidas.Add(0);
+                        tareasPendientesVencidas.Add(0);
+                    }
+                    else
+                    {
+                        //Tarea Pendiente
+                        tareasFinalizadas.Add(0);
+                        tareasPendientesNoVencidas.Add(1);
+                        tareasPendientesVencidas.Add(0);
+                        //Pendientes debemos analizar si esta vencida o no. Por ahora no aplica.
+                    }
+                }
+                else
+                {
+                    //El usuario ya existe
+                    if (item.estado == "FINALIZADA")
+                    {
+                        //le agregamos una tarea finalizada
+                        int cantFinalizadas = Convert.ToInt32(tareasFinalizadas[indiceUsuario]);
+                        tareasFinalizadas[indiceUsuario] = cantFinalizadas + 1;
+                    }
+                    else
+                    {
+                        //le agregamos una tarea Pendiente
+                        int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
+                        tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
+                        //pendiente analizamos si esta vencida o no
+                    }
+                }
+            }
 
-            fila = tabla.NewRow();
-            fila["modulo"] = "Comprar Elementos";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "NoVencida";
-            fila["cantidad"] = 30;
-            tabla.Rows.Add(fila);
+            reporteSource.Categorias = modulos;
+            reporteSerie = new Reportes.Series();
+            reporteSerie.Nombre = "PendientesNoVencidas";
+            reporteSerie.Stack = "Pend";
+            reporteSerie.Datos = tareasPendientesNoVencidas;
+            reporteSource.Series.Add(reporteSerie);
 
-            fila = tabla.NewRow();
-            fila["modulo"] = "Comprar Elementos";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "Vencida";
-            fila["cantidad"] = 20;
-            tabla.Rows.Add(fila);
+            reporteSerie = new Reportes.Series();
+            reporteSerie.Nombre = "PendientesVencidas";
+            reporteSerie.Stack = "Pend";
+            reporteSerie.Datos = tareasPendientesVencidas;
+            reporteSource.Series.Add(reporteSerie);
 
-            fila = tabla.NewRow();
-            fila["modulo"] = "Comprar Elementos";
-            fila["estado"] = "Finalizado";
-            fila["condicionvencimiento"] = "";
-            fila["cantidad"] = 10;
-            tabla.Rows.Add(fila);
+            reporteSerie = new Reportes.Series();
+            reporteSerie.Nombre = "Finalizadas";
+            reporteSerie.Stack = "Fin";
+            reporteSerie.Datos = tareasFinalizadas;
+            reporteSource.Series.Add(reporteSerie);
 
-            fila = tabla.NewRow();
-            fila["modulo"] = "Pintado";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "NoVencida";
-            fila["cantidad"] = 35;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["modulo"] = "Pintado";
-            fila["estado"] = "Pendiente";
-            fila["condicionvencimiento"] = "Vencida";
-            fila["cantidad"] = 25;
-            tabla.Rows.Add(fila);
-
-            fila = tabla.NewRow();
-            fila["modulo"] = "Pintado";
-            fila["estado"] = "Finalizado";
-            fila["condicionvencimiento"] = "";
-            fila["cantidad"] = 15;
-            tabla.Rows.Add(fila);
-
-            return tabla;
+            return reporteSource;
         }
-        
-#endregion
+
+        #endregion
+
+        #region "Mails"
+        public int insertarMail(int idModulo, int idProyecto, int idTarea, string asunto, string detalle, string destinatarios)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+
+                Mails mail = new Mails();
+                mail.idModulo = idModulo;
+                mail.idProyecto = idProyecto;
+                mail.idTarea = idTarea;
+                mail.asunto = asunto;
+                mail.destinatarios = destinatarios;
+                mail.detalle = detalle;
+                mail.enviado = "N";
 
 
+                prodeoContext.Mails.Add(mail);
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
 
+        }
 
-
-
-   //public List<TareasPorUsuarios> obtenerDatosDeTareaPorUsuario(string usuario)
-        //{
-        //    prodeoEntities prodeoContext = new prodeoEntities();
-        //    var query = (from u in prodeoContext.Usuarios
-        //                 join pt in prodeoContext.ParticipantesTareas on u.idUsuario equals pt.idUsuario
-        //                 join t in prodeoContext.Tareas on pt.idTarea equals t.idTarea
-        //                 where u.nombre == usuario
-        //                 select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Prioridad = p.Prioridad, Asignada = u.nombre, FechaLimite = p.FechaVencimiento.ToString(), Estado = p.Estado }).ToList();
-        //    return query;
-        //}
+        #endregion
 
 
     }

@@ -297,6 +297,7 @@
             <End Role="Modulos" EntitySet="Modulos" />
             <End Role="Tareas" EntitySet="Tareas" />
           </AssociationSet>
+          <EntitySet Name="Mails" EntityType="prodeoModel.Mails" />
         </EntityContainer>
         <EntityType Name="ParticipantesTareas">
           <Key>
@@ -393,6 +394,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Mails">
+          <Key>
+            <PropertyRef Name="idMail" />
+          </Key>
+          <Property Name="idMail" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idProyecto" Type="Int32" />
+          <Property Name="idModulo" Type="Int32" />
+          <Property Name="idTarea" Type="Int32" />
+          <Property Name="asunto" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="destinatarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="enviado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->

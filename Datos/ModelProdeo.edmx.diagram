@@ -18,6 +18,7 @@
         <AssociationConnector Association="prodeoModel.FK_Modulos_Proyectos" />
         <AssociationConnector Association="prodeoModel.FK_Modulos_Usuarios" />
         <AssociationConnector Association="prodeoModel.FK_Tareas_Modulos" />
+        <EntityTypeShape EntityType="prodeoModel.Mails" Width="1.5" PointX="5.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

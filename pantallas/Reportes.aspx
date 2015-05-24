@@ -8,20 +8,12 @@
         //-------------------------------------------------------------------------------------
         // Creacion de chart ResultadoIntervenciones
         function crearTareasPorUsuario() {
-            var datosReporte = AjaxReportes.obtenerTareasPorUsuario();
-            var usuarios = [];
-            var PendientesVencidas = [];
-            var PendientesNoVencidas = [];
-            var Finalizadas = [];
+            var ddlProyecto = document.getElementById("MainContent_proyectosLista");
+            var idProyecto = ddlProyecto.options[ddlProyecto.selectedIndex].value;
+            var datosReporte = AjaxReportes.obtenerTareasPorUsuario(idProyecto);
+
             datosReporte = datosReporte.value;
-            for (var i = 0; i < datosReporte.length ; i++) {
-                var aux = {};
-                aux = datosReporte[i];
-                usuarios.push(aux.Nombre);
-                PendientesVencidas.push(aux.TareasPendientesVencidas);
-                PendientesNoVencidas.push(aux.TareasPendientesNoVencidas);
-                Finalizadas.push(aux.TareasFinalizadas);
-            }
+
             $('#containerReporte').highcharts({
 
                 chart: {
@@ -42,7 +34,7 @@
                 },
 
                 xAxis: {
-                    categories: usuarios
+                    categories: datosReporte.Categorias
                 },
 
                 yAxis: {
@@ -66,18 +58,20 @@
                 },
 
                 series: [{
-                    name: 'Pendientes',
+                    name: datosReporte.Series[0].Nombre,
                     //tiene que tener tantas posiciones como usuarios, cada una indica el valor en cada barras de usuario
-                    data: PendientesNoVencidas,
-                    stack: 'pend'
+                    data: datosReporte.Series[0].Datos,
+                    stack: datosReporte.Series[0].Stack
                 }, {
-                    name: 'Pendientes Vencidas',
-                    data: PendientesVencidas,
-                    stack: 'pend'
+                    name: datosReporte.Series[1].Nombre,
+                    //tiene que tener tantas posiciones como usuarios, cada una indica el valor en cada barras de usuario
+                    data: datosReporte.Series[1].Datos,
+                    stack: datosReporte.Series[1].Stack
                 }, {
-                    name: 'Finalizadas Vencidas',
-                    data: Finalizadas,
-                    stack: 'fin'
+                    name: datosReporte.Series[2].Nombre,
+                    //tiene que tener tantas posiciones como usuarios, cada una indica el valor en cada barras de usuario
+                    data: datosReporte.Series[2].Datos,
+                    stack: datosReporte.Series[2].Stack
                 }]
             });
         }
@@ -86,20 +80,12 @@
         //-------------------------------------------------------------------------------------
         // Creacion de chart Tareas Por Modulo
         function crearTareasPorModulo() {
-            var datosReporte = AjaxReportes.obtenerTareasPorModulo();
-            var modulos = [];
-            var PendientesVencidas = [];
-            var PendientesNoVencidas = [];
-            var Finalizadas = [];
+            var ddlProyecto = document.getElementById("MainContent_proyectosLista");
+            var idProyecto = ddlProyecto.options[ddlProyecto.selectedIndex].value;
+            var datosReporte = AjaxReportes.obtenerTareasPorModulos(idProyecto);
+
             datosReporte = datosReporte.value;
-            for (var i = 0; i < datosReporte.length ; i++) {
-                var aux = {};
-                aux = datosReporte[i];
-                modulos.push(aux.Nombre);
-                PendientesVencidas.push(aux.TareasPendientesVencidas);
-                PendientesNoVencidas.push(aux.TareasPendientesNoVencidas);
-                Finalizadas.push(aux.TareasFinalizadas);
-            }
+
             $('#containerReporte').highcharts({
 
                 chart: {
@@ -120,7 +106,7 @@
                 },
 
                 xAxis: {
-                    categories: modulos
+                    categories: datosReporte.Categorias
                 },
 
                 yAxis: {
@@ -138,20 +124,26 @@
 
                 plotOptions: {
                     column: {
-                        stacking: 'percent'
+                        stacking: 'normal',
+                        depth: 40
                     }
                 },
 
                 series: [{
-                    name: 'Pendientes',
+                    name: datosReporte.Series[0].Nombre,
                     //tiene que tener tantas posiciones como usuarios, cada una indica el valor en cada barras de usuario
-                    data: PendientesNoVencidas
+                    data: datosReporte.Series[0].Datos,
+                    stack: datosReporte.Series[0].Stack
                 }, {
-                    name: 'Pendientes Vencidas',
-                    data: PendientesVencidas
+                    name: datosReporte.Series[1].Nombre,
+                    //tiene que tener tantas posiciones como usuarios, cada una indica el valor en cada barras de usuario
+                    data: datosReporte.Series[1].Datos,
+                    stack: datosReporte.Series[1].Stack
                 }, {
-                    name: 'Finalizadas Vencidas',
-                    data: Finalizadas
+                    name: datosReporte.Series[2].Nombre,
+                    //tiene que tener tantas posiciones como usuarios, cada una indica el valor en cada barras de usuario
+                    data: datosReporte.Series[2].Datos,
+                    stack: datosReporte.Series[2].Stack
                 }]
             });
         }
