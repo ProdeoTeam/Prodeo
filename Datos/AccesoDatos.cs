@@ -659,10 +659,21 @@ namespace Datos
                     else
                     {
                         //Tarea Pendiente
-                        tareasFinalizadas.Add(0);
-                        tareasPendientesNoVencidas.Add(1);
-                        tareasPendientesVencidas.Add(0);
                         //Pendientes debemos analizar si esta vencida o no. Por ahora no aplica.
+                        if (DateTime.Compare(DateTime.Now, item.fechaVemcimiento) >=0)
+                        {
+                            //Now es posterior al vencimiento. Esta vencida
+                            tareasFinalizadas.Add(0);
+                            tareasPendientesNoVencidas.Add(0);
+                            tareasPendientesVencidas.Add(1);
+                        }
+                        else
+                        {
+                            //No esta vencida
+                            tareasFinalizadas.Add(0);
+                            tareasPendientesNoVencidas.Add(1);
+                            tareasPendientesVencidas.Add(0);
+                        }
                     }
                 }
                 else
@@ -677,8 +688,18 @@ namespace Datos
                     else
                     {
                         //le agregamos una tarea Pendiente
-                        int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
-                        tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
+                        if (DateTime.Compare(DateTime.Now, item.fechaVemcimiento) >= 0)
+                        {
+                            //Now es posterior al vencimiento. Esta vencida
+                            int cantPendientesVencidas = Convert.ToInt32(tareasPendientesVencidas[indiceUsuario]);
+                            tareasPendientesVencidas[indiceUsuario] = cantPendientesVencidas + 1;
+                        }
+                        else
+                        {
+                            //No esta vencida
+                            int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
+                            tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
+                        }
                         //pendiente analizamos si esta vencida o no
                     }
                 }
@@ -742,10 +763,20 @@ namespace Datos
                     else
                     {
                         //Tarea Pendiente
-                        tareasFinalizadas.Add(0);
-                        tareasPendientesNoVencidas.Add(1);
-                        tareasPendientesVencidas.Add(0);
-                        //Pendientes debemos analizar si esta vencida o no. Por ahora no aplica.
+                        if (DateTime.Compare(DateTime.Now, item.fechaVemcimiento) >= 0)
+                        {
+                            //Now es posterior al vencimiento. Esta vencida
+                            tareasFinalizadas.Add(0);
+                            tareasPendientesNoVencidas.Add(0);
+                            tareasPendientesVencidas.Add(1);
+                        }
+                        else
+                        {
+                            //No esta vencida
+                            tareasFinalizadas.Add(0);
+                            tareasPendientesNoVencidas.Add(1);
+                            tareasPendientesVencidas.Add(0);
+                        }
                     }
                 }
                 else
@@ -760,8 +791,21 @@ namespace Datos
                     else
                     {
                         //le agregamos una tarea Pendiente
-                        int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
-                        tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
+                        
+
+                        //Tarea Pendiente
+                        if (DateTime.Compare(DateTime.Now, item.fechaVemcimiento) >= 0)
+                        {
+                            //Now es posterior al vencimiento. Esta vencida
+                            int cantPendientesVencidas = Convert.ToInt32(tareasPendientesVencidas[indiceUsuario]);
+                            tareasPendientesVencidas[indiceUsuario] = cantPendientesVencidas + 1;
+                        }
+                        else
+                        {
+                            //No esta vencida
+                            int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
+                            tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
+                        }
                         //pendiente analizamos si esta vencida o no
                     }
                 }
