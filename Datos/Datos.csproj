@@ -56,6 +56,9 @@
     <Compile Include="DatosParticipantesProyecto.cs" />
     <Compile Include="DatosProyecto.cs" />
     <Compile Include="DatosTarea.cs" />
+    <Compile Include="Mails.cs">
+      <DependentUpon>ModelProdeo.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelProdeo.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -87,6 +90,8 @@
     <Compile Include="Proyectos.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>
     </Compile>
+    <Compile Include="Reportes\DatosReportes.cs" />
+    <Compile Include="Reportes\Series.cs" />
     <Compile Include="Tareas.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>
     </Compile>

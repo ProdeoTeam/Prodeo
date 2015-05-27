@@ -200,6 +200,45 @@ namespace Datos
             return query;
         }
 
+        public bool eliminarCuenta(string usuario)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            bool exito = false;
+            int idUsuario = (from u in prodeoContext.Usuarios
+                             where u.nombre == usuario
+                             select u.idUsuario).First();
+
+            int cantTareas = (from tu in prodeoContext.ParticipantesTareas
+                              where tu.idUsuario == idUsuario
+                              select tu).Count();
+            if(cantTareas == 0)
+            {
+                List<ParticipantesProyectos> pp = (from paP in prodeoContext.ParticipantesProyectos
+                                                   where paP.idUsuario == idUsuario
+                                                   select paP).ToList();
+                foreach (ParticipantesProyectos part in pp)
+                {
+                    prodeoContext.ParticipantesProyectos.Remove(part);
+                }
+                prodeoContext.SaveChanges();
+
+                Usuarios user = (from u in prodeoContext.Usuarios
+                                 where u.idUsuario == idUsuario
+                                 select u).First();
+                user.usuarioActivo = false;
+                prodeoContext.SaveChanges();
+
+                return exito;
+            }
+            else
+            {
+
+
+            }
+
+            return exito;
+        }
+
 #endregion
 
 #region "Proyectos"

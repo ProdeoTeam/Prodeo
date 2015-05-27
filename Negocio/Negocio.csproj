@@ -43,7 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccesoLogica.cs" />
-    <Compile Include="Clases Entidad\ReporteModel.cs" />
     <Compile Include="CriptografiaLogica.cs" />
     <Compile Include="MailRegistroLogica.cs" />
     <Compile Include="ReportesLogica.cs" />
@@ -55,6 +54,9 @@
       <Project>{b7787889-03dd-433f-8635-a0ed077cf082}</Project>
       <Name>Datos</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Clases Entidad\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

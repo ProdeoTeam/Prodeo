@@ -324,6 +324,14 @@ namespace Negocio
             string permiso = datos.obtenerPermisoUsuario(usuario, idProyecto);
             return permiso;
         }
+
+        public bool eliminaCuenta(string usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool exito = datos.eliminarCuenta(usuario);
+            return exito;
+
+        }
         #endregion
 
     }
