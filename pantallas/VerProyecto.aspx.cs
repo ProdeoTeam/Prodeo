@@ -157,7 +157,7 @@ namespace Prodeo.pantallas
             List<DatosModulo> listaDeModulos;
             listaDeModulos = new List<DatosModulo>();
             listaDeModulos = obtenerListaModulos(idproyecto, permiso);
-            
+            int anchoBarraProgreso = 150;
             foreach (DatosModulo unModulo in listaDeModulos)
             {
                 GridView grillaTareas = new GridView();
@@ -166,8 +166,32 @@ namespace Prodeo.pantallas
                 Literal divCierre = new Literal();
                 Literal linkModulo = new Literal();
                 Literal linkEliminarModulo = new Literal();
+                int totalTareas;
+                int tareasFinalizadas = 0;
+                Double porcentajeAvance = 0;
+                
+                totalTareas = unModulo.tablaTareas.Rows.Count;
+                foreach (DataRow item in unModulo.tablaTareas.Rows)
+                {
+                    if("Finalizada" == item["Estado"]){
+                        tareasFinalizadas = tareasFinalizadas + 1;
+                    }
+                }
+
+                porcentajeAvance = ((tareasFinalizadas * 100) / totalTareas);
+
                 //creamos y agregamos el h3 que sera el titulo de la solapa accordion
-                h3.Text = "<h3>" + unModulo.Nombre + "</h3>";
+                h3.Text = "<h3>" + unModulo.Nombre;
+
+                h3.Text += "<div style='width:";
+                h3.Text += anchoBarraProgreso.ToString() + "px; height:20px;position:absolute;margin-left:75%;margin-top:-25px; border-style:solid; border-color:black; border-width:2px;'>";
+                h3.Text += "<div style='background-color:#12587B;width:'>";
+                h3.Text += Math.Round(porcentajeAvance);
+                h3.Text += "%;";
+                
+                h3.Text += "height:16px;";
+                h3.Text += "</div>";
+                h3.Text += "</h3>";
                 contenedorAccordion.Controls.Add(h3);
 
                 //Creamos la grilla que va a tener las tareas
