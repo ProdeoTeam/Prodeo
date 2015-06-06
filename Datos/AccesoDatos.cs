@@ -227,12 +227,74 @@ namespace Datos
                                  select u).First();
                 user.usuarioActivo = false;
                 prodeoContext.SaveChanges();
-
+                exito = true;
                 return exito;
             }
             else
             {
+                List<DatosEliminarCuenta> datosCuentas = (from t in prodeoContext.Tareas
+                                                          join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
+                                                          join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
+                                                          where pt.idUsuario == idUsuario && t.Baja == 0 && m.Baja == 0
+                                                          select new DatosEliminarCuenta { idTarea = t.idTarea, idModulo = t.idModulo, idUsuario = pt.idUsuario, idProyecto = m.idProyecto, idUsuarioCreador = m.idUsuarioCreador }).ToList();
 
+                foreach(DatosEliminarCuenta dc in datosCuentas)
+                {
+                    if(dc.idUsuarioCreador != idUsuario)
+                    {
+                        ParticipantesTareas part = (from pt in prodeoContext.ParticipantesTareas
+                                                    where pt.idUsuario == idUsuario && pt.idTarea == dc.idTarea
+                                                    select pt).First();
+                        part.idUsuario = dc.idUsuarioCreador;
+                        prodeoContext.SaveChanges();
+                    }
+                    else
+                    {
+                        int cant = (from pp in prodeoContext.ParticipantesProyectos
+                                    where pp.idProyecto == dc.idProyecto && pp.idUsuario != idUsuario && pp.permisosAdministrador == "A"
+                                    select pp).Count();
+                        if(cant > 0)
+                        {
+                            ParticipantesProyectos partP = (from pp in prodeoContext.ParticipantesProyectos
+                                                            where pp.idProyecto == dc.idProyecto && pp.idUsuario != idUsuario && pp.permisosAdministrador == "A"
+                                                            select pp).First();
+
+                            ParticipantesTareas part = (from pt in prodeoContext.ParticipantesTareas
+                                                        where pt.idUsuario == idUsuario && pt.idTarea == dc.idTarea
+                                                        select pt).First();
+                            part.idUsuario = partP.idUsuario;
+                            prodeoContext.SaveChanges();
+                        }
+                        else
+                        {
+                            List<Tareas> listaTareas = (from t in prodeoContext.Tareas
+                                                  where t.idModulo == dc.idModulo
+                                                  select t).ToList();
+                            foreach(Tareas ta in listaTareas)
+                            {
+                                ta.Baja = 1;
+                                prodeoContext.SaveChanges();
+                            }
+                            List<Modulos> listaModulos = (from m in prodeoContext.Modulos
+                                                          where m.idProyecto == dc.idProyecto
+                                                          select m).ToList();
+                            foreach(Modulos mo in listaModulos)
+                            {
+                                mo.Baja = 1;
+                                prodeoContext.SaveChanges();
+                            }
+
+                        }
+                    }
+                }
+
+                Usuarios user = (from u in prodeoContext.Usuarios
+                                 where u.idUsuario == idUsuario
+                                 select u).First();
+                user.usuarioActivo = false;
+                prodeoContext.SaveChanges();
+                exito = true;
+                return exito;
 
             }
 
@@ -399,7 +461,7 @@ namespace Datos
                              where u.nombre == usuario
                              select u.idUsuario).First();
             int creador = (from m in prodeoContext.Modulos
-                           where m.idUsuarioCreador == idUsuario && m.idProyecto == proyecto
+                           where m.idUsuarioCreador == idUsuario && m.idProyecto == proyecto && m.Baja == 0
                            select m).Count();
             List<DatosModulo> listaM = new List<DatosModulo>();
             if (creador > 0)
@@ -616,7 +678,7 @@ namespace Datos
             var query = (from p in prodeoContext.Tareas
                          join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
                          join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
-                         where p.idModulo == modulo && t.idUsuario == idUsuario && p.FechaFinalizacion == null
+                         where p.idModulo == modulo && t.idUsuario == idUsuario && p.FechaFinalizacion == null && p.Baja == 0
                          select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Comentario = p.Comentario, Prioridad = p.Prioridad, Avisos = p.AlertaPrevia, Asignada = u.nombre, FechaLimite = p.FechaVencimiento, Estado = p.Estado }).OrderBy(o => o.FechaLimite).ToList();
             return query;
         }

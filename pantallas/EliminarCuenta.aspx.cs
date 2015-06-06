@@ -39,7 +39,7 @@ namespace Prodeo.pantallas
             if (respuesta)
             {
                 Session.Abandon();
-                Response.Redirect("index.aspx");
+                Response.Redirect("~/index.aspx");
             }
             else
             {
