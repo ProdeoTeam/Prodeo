@@ -82,6 +82,26 @@ namespace Negocio
             return listaUsu;
         }
 
+        public bool EliminaProyecto(int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.eliminarProyecto(idProyecto) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         #endregion
         #region "Modulos"
         public Modulos obtieneDatosModulo(int idModulo)
@@ -116,6 +136,15 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             List<DatosModulo> lista = datos.obtenerListaModulos(usuario, proyecto, permiso);
             return lista;
+
+        }
+
+        public int obtieneCantidadModulos(int proyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int cantidad = datos.obtenerCantidadModulos(proyecto);
+            return cantidad;
+
 
         }
 

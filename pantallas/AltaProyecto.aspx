@@ -73,6 +73,7 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 					            <ul class="buttons">
 						            <li id="btnEditarProyecto" runat="server"><a class="button" onserverclick="editarProyecto_Click" runat="server">Editar Proyecto</a></li>
                                     <li id="btnCancelarEdicion" runat="server"><a class="button" onserverclick="cancelarProyecto_Click" runat="server">Cancelar Edicion</a></li>
+                                    <li id="btnEliminarProyecto" runat="server"><a class="button" onserverclick="eliminarProyecto_Click" runat="server">Eliminar Proyecto</a></li>
 					            </ul>
 			            </footer>
 									<div class="row half">

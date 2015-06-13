@@ -117,6 +117,7 @@
     <Content Include="pantallas\EliminarModulo.aspx" />
     <Content Include="pantallas\AltaTarea.aspx" />
     <Content Include="pantallas\EliminarCuenta.aspx" />
+    <Content Include="pantallas\EliminarProyecto.aspx" />
     <Content Include="pantallas\EliminarTarea.aspx" />
     <Content Include="pantallas\Registro.aspx" />
     <Content Include="pantallas\ProyectoPrincipal.aspx" />
@@ -222,6 +223,13 @@
     </Compile>
     <Compile Include="pantallas\EliminarCuenta.aspx.designer.cs">
       <DependentUpon>EliminarCuenta.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\EliminarProyecto.aspx.cs">
+      <DependentUpon>EliminarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\EliminarProyecto.aspx.designer.cs">
+      <DependentUpon>EliminarProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\EliminarTarea.aspx.cs">
       <DependentUpon>EliminarTarea.aspx</DependentUpon>

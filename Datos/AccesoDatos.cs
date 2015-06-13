@@ -219,8 +219,32 @@ namespace Datos
                 foreach (ParticipantesProyectos part in pp)
                 {
                     prodeoContext.ParticipantesProyectos.Remove(part);
+                    prodeoContext.SaveChanges();
+
+                    int cant = (from ppro in prodeoContext.ParticipantesProyectos
+                                where ppro.idProyecto == part.idProyecto && ppro.idUsuario != idUsuario && ppro.permisosAdministrador == "A"
+                                select pp).Count();
+                    if(cant == 0)
+                    {
+                        List<Modulos> listaModulos = (from m in prodeoContext.Modulos
+                                                      where m.idProyecto == part.idProyecto
+                                                      select m).ToList();
+                        foreach (Modulos mo in listaModulos)
+                        {
+                            mo.Baja = 1;
+                            prodeoContext.SaveChanges();
+                        }
+
+                        Proyectos encuentraProyectos = (from p in prodeoContext.Proyectos
+                                                        where p.idProyecto == part.idProyecto
+                                                        select p).First();
+
+                        encuentraProyectos.Baja = 1;
+                        prodeoContext.SaveChanges();
+
+                    }
                 }
-                prodeoContext.SaveChanges();
+                
 
                 Usuarios user = (from u in prodeoContext.Usuarios
                                  where u.idUsuario == idUsuario
@@ -283,6 +307,13 @@ namespace Datos
                                 mo.Baja = 1;
                                 prodeoContext.SaveChanges();
                             }
+
+                            Proyectos encuentraProyectos = (from p in prodeoContext.Proyectos
+                                                              where p.idProyecto == dc.idProyecto
+                                                              select p).First();
+
+                            encuentraProyectos.Baja = 1;
+                            prodeoContext.SaveChanges();
 
                         }
                     }
@@ -420,7 +451,7 @@ namespace Datos
                              select u.idUsuario).First();
             var query = (from p in prodeoContext.Proyectos
                          join usr in prodeoContext.ParticipantesProyectos on p.idProyecto equals usr.idProyecto
-                         where usr.idUsuario == idUsuario
+                         where usr.idUsuario == idUsuario && p.Baja == 0
                          select new DatosProyecto { Id = p.idProyecto, Nombre = p.Nombre, Permisos = usr.permisosAdministrador, Descripcion = p.Descripcion }).ToList();
             return query;
         }
@@ -449,6 +480,24 @@ namespace Datos
                                                    where p.idProyecto == idProyecto
                                                    select new DatosParticipantesProyecto { nombreUsuario = u.mail, permiso = p.permisosAdministrador }).ToList();
             return pp;
+        }
+
+        public int eliminarProyecto(int idProyecto)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                Proyectos pro = (from p in prodeoContext.Proyectos
+                               where p.idProyecto == idProyecto
+                               select p).First();
+                pro.Baja = 1;
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
         }
 
 #endregion
@@ -565,6 +614,17 @@ namespace Datos
             {
                 return 0;
             }
+        }
+
+        public int obtenerCantidadModulos(int proyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            int cantidad = (from m in prodeoContext.Modulos
+                            where m.idProyecto == proyecto && m.Baja == 0
+                            select m).Count();
+
+            return cantidad;
+
         }
 
 #endregion
