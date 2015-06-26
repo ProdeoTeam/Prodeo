@@ -34,15 +34,15 @@ namespace Negocio
         }
 
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
-        public Datos.Reportes.DatosReportes obtenerAvanceDelProyecto(int idProyecto)
+        public ArrayList obtenerAvanceDelProyecto(int idProyecto)
         {
-            ArrayList tareas = new ArrayList();
-            DataTable tabla = new DataTable();
+            ArrayList datosSerie = new ArrayList();
             AccesoDatos datos = new AccesoDatos();
-            Datos.Reportes.DatosReportes reportesSource = new Datos.Reportes.DatosReportes();
+            //Debe devolver un array con arrays de 2 posiciones. la posicion 0 debe tener el nombre de la porcion y la 1 el valor.
+            //ejemplo: [[vencidas, 2],[no vencidas, 3],[finalizadas, 4]]
             try
             {
-                reportesSource = datos.obtenerDatosTareasPorUsuario(idProyecto);
+                datosSerie = datos.obtenerDatosAvanceDelProyecto(idProyecto);
 
 
             }
@@ -50,7 +50,7 @@ namespace Negocio
             {
 
             }
-            return reportesSource;
+            return datosSerie;
         }
 
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]

@@ -10,8 +10,8 @@ namespace Datos
 {
     public class AccesoDatos
     {
-#region "Usuarios"
- //validación para el login
+        #region "Usuarios"
+        //validación para el login
         public bool verificarUsuario(string usuario, string pass)
         {
             prodeoEntities prod = new prodeoEntities();
@@ -211,7 +211,7 @@ namespace Datos
             int cantTareas = (from tu in prodeoContext.ParticipantesTareas
                               where tu.idUsuario == idUsuario
                               select tu).Count();
-            if(cantTareas == 0)
+            if (cantTareas == 0)
             {
                 List<ParticipantesProyectos> pp = (from paP in prodeoContext.ParticipantesProyectos
                                                    where paP.idUsuario == idUsuario
@@ -239,9 +239,9 @@ namespace Datos
             return exito;
         }
 
-#endregion
+        #endregion
 
-#region "Proyectos"
+        #region "Proyectos"
         public int insertarProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario, List<string> usuariosAsignados)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
@@ -271,7 +271,7 @@ namespace Datos
                     partProy.permisosAdministrador = "A";
                     prodeoContext.ParticipantesProyectos.Add(partProy);
                     prodeoContext.SaveChanges();
-                    
+
                     foreach (string user in usuariosAsignados)
                     {
                         string mail = user.Split('-')[0];
@@ -305,7 +305,7 @@ namespace Datos
                     int idProy = Convert.ToInt32(idProyecto);
                     Proyectos pro = (from p in prodeoContext.Proyectos
                                      where p.idProyecto == idProy
-                                    select p).First();
+                                     select p).First();
                     pro.Nombre = nombre;
                     pro.Descripcion = descrip;
                     pro.FechaVencimiento = fechaVencimiento;
@@ -317,8 +317,8 @@ namespace Datos
                                      select u.idUsuario).First();
 
                     List<ParticipantesProyectos> partProy = (from pp in prodeoContext.ParticipantesProyectos
-                                                           where pp.idProyecto == idProy //&& pp.idUsuario != idUsuario
-                                                           select pp).ToList();
+                                                             where pp.idProyecto == idProy //&& pp.idUsuario != idUsuario
+                                                             select pp).ToList();
                     foreach (ParticipantesProyectos pp in partProy)
                     {
                         prodeoContext.ParticipantesProyectos.Remove(pp);
@@ -389,9 +389,9 @@ namespace Datos
             return pp;
         }
 
-#endregion
+        #endregion
 
-#region "Modulos"
+        #region "Modulos"
         public List<DatosModulo> obtenerListaModulos(string usuario, int proyecto, string permiso)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
@@ -505,9 +505,9 @@ namespace Datos
             }
         }
 
-#endregion
+        #endregion
 
-#region "Tareas"
+        #region "Tareas"
         public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
         {
             try
@@ -595,7 +595,7 @@ namespace Datos
             {
                 return 0;
             }
-            
+
         }
         public List<DatosTarea> obtenerListaTareas(int modulo)
         {
@@ -625,20 +625,20 @@ namespace Datos
         {
             try
             {
-            prodeoEntities prodeoContext = new prodeoEntities();
-            int idUsuario = (from u in prodeoContext.Usuarios
-                             where u.nombre == usuario
-                             select u.idUsuario).First();
-            var tareas = (from t in prodeoContext.Tareas
-                          where t.idTarea == idTarea
-                          select t).First();
+                prodeoEntities prodeoContext = new prodeoEntities();
+                int idUsuario = (from u in prodeoContext.Usuarios
+                                 where u.nombre == usuario
+                                 select u.idUsuario).First();
+                var tareas = (from t in prodeoContext.Tareas
+                              where t.idTarea == idTarea
+                              select t).First();
 
-            tareas.Comentario = comentario;
-            tareas.FechaFinalizacion = DateTime.Now;
-            tareas.Tiempo = Convert.ToInt32(horas);
-            tareas.Estado = "Finalizada";
-            prodeoContext.SaveChanges();
-            return 1;
+                tareas.Comentario = comentario;
+                tareas.FechaFinalizacion = DateTime.Now;
+                tareas.Tiempo = Convert.ToInt32(horas);
+                tareas.Estado = "Finalizada";
+                prodeoContext.SaveChanges();
+                return 1;
             }
             catch (Exception ex)
             {
@@ -657,7 +657,7 @@ namespace Datos
 
         }
 
-#endregion
+        #endregion
 
         #region "Reportes"
         public Reportes.DatosReportes obtenerDatosTareasPorUsuario(int idProyecto)
@@ -702,7 +702,7 @@ namespace Datos
                         if (DateTime.Compare(DateTime.Now, item.fechaVemcimiento) >= 0)
                         {
                             //Now es posterior al vencimiento. Esta vencida
-                        tareasFinalizadas.Add(0);
+                            tareasFinalizadas.Add(0);
                             tareasPendientesNoVencidas.Add(0);
                             tareasPendientesVencidas.Add(1);
                         }
@@ -710,10 +710,10 @@ namespace Datos
                         {
                             //No esta vencida
                             tareasFinalizadas.Add(0);
-                        tareasPendientesNoVencidas.Add(1);
-                        tareasPendientesVencidas.Add(0);
+                            tareasPendientesNoVencidas.Add(1);
+                            tareasPendientesVencidas.Add(0);
+                        }
                     }
-                }
                 }
                 else
                 {
@@ -736,8 +736,8 @@ namespace Datos
                         else
                         {
                             //No esta vencida
-                        int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
-                        tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
+                            int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
+                            tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
                         }
                         //pendiente analizamos si esta vencida o no
                     }
@@ -812,9 +812,9 @@ namespace Datos
                         else
                         {
                             //No esta vencida
-                        tareasFinalizadas.Add(0);
-                        tareasPendientesNoVencidas.Add(1);
-                        tareasPendientesVencidas.Add(0);
+                            tareasFinalizadas.Add(0);
+                            tareasPendientesNoVencidas.Add(1);
+                            tareasPendientesVencidas.Add(0);
                         }
                     }
                 }
@@ -842,8 +842,8 @@ namespace Datos
                         else
                         {
                             //No esta vencida
-                        int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
-                        tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
+                            int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[indiceUsuario]);
+                            tareasPendientesNoVencidas[indiceUsuario] = cantPendientesNoVencidas + 1;
                         }
                         //pendiente analizamos si esta vencida o no
                     }
@@ -870,6 +870,65 @@ namespace Datos
             reporteSource.Series.Add(reporteSerie);
 
             return reporteSource;
+        }
+
+        public ArrayList obtenerDatosAvanceDelProyecto(int idProyecto)
+        {
+            //Categorias/nombres en eje x/usuarios
+            ArrayList tareasPendientesVencidas = new ArrayList();
+            ArrayList tareasPendientesNoVencidas = new ArrayList();
+            ArrayList tareasFinalizadas = new ArrayList();
+            ArrayList datosReporte = new ArrayList();
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var query = (from t in prodeoContext.Tareas
+                         join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
+                         join u in prodeoContext.Usuarios on pt.idUsuario equals u.idUsuario
+                         join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
+                         where m.idProyecto == idProyecto
+                         select new DatosTarea { IdTarea = t.idTarea, IdModulo = t.idModulo, Nombre = t.Nombre, Descripcion = t.Descripcion, Comentario = t.Comentario, Prioridad = t.Prioridad, Avisos = t.AlertaPrevia, Asignada = u.nombre, FechaLimite = t.FechaVencimiento, Estado = t.Estado }).OrderBy(o => o.FechaLimite).ToList();
+
+
+            //, fechaFinalizacion = (t.FechaFinalizacion.GetType() == System.Type.GetType("System.DateTime") ? System.Convert.ToDateTime(t.FechaFinalizacion):Convert.ToDateTime("1900-01-01"))
+            tareasPendientesVencidas.Add("Pendientes Vencidas");
+            tareasPendientesVencidas.Add(0);
+            tareasPendientesNoVencidas.Add("Pendientes No Vencidas");
+            tareasPendientesNoVencidas.Add(0);
+            tareasFinalizadas.Add("Finalizadas");
+            tareasFinalizadas.Add(0);
+
+            foreach (DatosTarea item in query)
+            {
+                //El usuario ya existe
+                if (item.Estado == "FINALIZADA")
+                {
+                    //le agregamos una tarea finalizada
+                    int cantFinalizadas = Convert.ToInt32(tareasFinalizadas[1]);
+                    tareasFinalizadas[1] = cantFinalizadas + 1;
+                }
+                else
+                {
+                    //le agregamos una tarea Pendiente
+                    if (DateTime.Compare(DateTime.Now, item.FechaLimite) >= 0)
+                    {
+                        //Now es posterior al vencimiento. Esta vencida
+                        int cantPendientesVencidas = Convert.ToInt32(tareasPendientesVencidas[1]);
+                        tareasPendientesVencidas[1] = cantPendientesVencidas + 1;
+                    }
+                    else
+                    {
+                        //No esta vencida
+                        int cantPendientesNoVencidas = Convert.ToInt32(tareasPendientesNoVencidas[1]);
+                        tareasPendientesNoVencidas[1] = cantPendientesNoVencidas + 1;
+                    }
+                    //pendiente analizamos si esta vencida o no
+                }
+            }
+
+            datosReporte.Add(tareasPendientesNoVencidas);
+            datosReporte.Add(tareasPendientesVencidas);
+            datosReporte.Add(tareasFinalizadas);
+
+            return datosReporte;
         }
 
         #endregion

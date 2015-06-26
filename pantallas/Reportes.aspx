@@ -147,6 +147,44 @@
                 }]
             });
         }
+        function crearAvanceDelProyecto() {
+            var ddlProyecto = document.getElementById("MainContent_proyectosLista");
+            var idProyecto = ddlProyecto.options[ddlProyecto.selectedIndex].value;
+            var datosReporte = AjaxReportes.obtenerAvanceDelProyecto(idProyecto);
+
+            $('#containerReporte').highcharts({
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 1,//null,
+                    plotShadow: false
+                },
+                title: {
+                    text: 'Avance del proyecto'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                            style: {
+                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                            }
+                        }
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Porcentaje',
+                    data: datosReporte
+                }]
+            });
+        
+        }
 
     </script>
  
@@ -171,7 +209,7 @@
                                             </select></li>
                             <li><a href="#" class="button" onclick="crearTareasPorUsuario()" runat="server">Reporte Tareas por usuario</a></li>
 						    <li><a href="#" class="button" onclick="crearTareasPorModulo()" runat="server">Reporte Tareas por modulo</a></li>
-                            <li><a href="#" class="button" runat="server">Reporte3</a></li>
+                            <li><a href="#" class="button" onclick="crearAvanceDelProyecto()"  runat="server">Reporte Avance del Proyecto</a></li>
 					    </ul>
 						<div class="row">
 						<div id="containerReporte" style="width: 400px;">
