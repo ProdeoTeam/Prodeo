@@ -481,11 +481,7 @@ namespace Datos
                                                    select new DatosParticipantesProyecto { nombreUsuario = u.mail, permiso = p.permisosAdministrador }).ToList();
             return pp;
         }
-
-<<<<<<< HEAD
-        #endregion
-=======
-        public int eliminarProyecto(int idProyecto)
+ public int eliminarProyecto(int idProyecto)
         {
             try
             {
@@ -503,8 +499,8 @@ namespace Datos
             }
         }
 
-#endregion
->>>>>>> origin/master
+
+        #endregion
 
         #region "Modulos"
         public List<DatosModulo> obtenerListaModulos(string usuario, int proyecto, string permiso)
@@ -620,9 +616,6 @@ namespace Datos
             }
         }
 
-<<<<<<< HEAD
-        #endregion
-=======
         public int obtenerCantidadModulos(int proyecto)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
@@ -635,7 +628,6 @@ namespace Datos
         }
 
 #endregion
->>>>>>> origin/master
 
         #region "Tareas"
         public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
