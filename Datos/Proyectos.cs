@@ -27,6 +27,7 @@ namespace Datos
         public System.DateTime FechaVencimiento { get; set; }
         public Nullable<System.DateTime> FechaFinalizacion { get; set; }
         public string AlertaPrevia { get; set; }
+        public int Baja { get; set; }
     
         public virtual ICollection<Modulos> Modulos { get; set; }
         public virtual ICollection<ParticipantesProyectos> ParticipantesProyectos { get; set; }

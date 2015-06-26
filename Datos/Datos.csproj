@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="AccesoDatos.cs" />
     <Compile Include="CriptografiaDatos.cs" />
+    <Compile Include="DatosEliminarCuenta.cs" />
     <Compile Include="DatosMail.cs" />
     <Compile Include="DatosModulo.cs" />
     <Compile Include="DatosParticipantesProyecto.cs" />

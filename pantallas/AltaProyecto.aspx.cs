@@ -30,8 +30,11 @@ namespace Prodeo.pantallas
                 ProyectoLogica proy = new ProyectoLogica();
                 int Numproyecto = Convert.ToInt32(Session["idProyecto"]);
                 string usuario = Session["usuario"].ToString();
-                string permiso = proy.obtienePermisoUsuario(usuario, Numproyecto);
-                
+                string permiso = "";
+                if(Numproyecto != 0)
+                {
+                    permiso = proy.obtienePermisoUsuario(usuario, Numproyecto);
+                }
                 if(Session["idProyecto"] == null)
                 {
                     LabelProyectos.Text = "Alta de Proyecto";
@@ -63,11 +66,22 @@ namespace Prodeo.pantallas
                     {
                         btnEditarProyecto.Visible = true;
                         btnCancelarEdicion.Visible = false;
+                        int cantidadModulos = proy.obtieneCantidadModulos(Numproyecto);
+                        if(cantidadModulos == 0)
+                        {
+                            btnEliminarProyecto.Visible = true;
+                        }
+                        else
+                        {
+                            btnEliminarProyecto.Visible = false;
+                        }
+                        
                     }
                     else
                     {
                         btnEditarProyecto.Visible = false;
                         btnCancelarEdicion.Visible = false;
+                        btnEliminarProyecto.Visible = false;
                     }
                     Proyectos proyecto = proy.obtieneDatosProyecto(Session["idProyecto"].ToString());
                     List<DatosParticipantesProyecto> partProy = proy.obtieneParticipantes(Session["idProyecto"].ToString());
@@ -329,6 +343,13 @@ namespace Prodeo.pantallas
             btnCancelarProyecto.Visible = false;
             btnVolverProyecto.Visible = false;
             btnActualizaProyecto.Visible = true;
+        }
+
+        protected void eliminarProyecto_Click(object sender, EventArgs e)
+        {
+
+            Response.Redirect("~/pantallas/EliminarProyecto.aspx");
+
         }
 
         protected void cancelarProyecto_Click(object sender, EventArgs e)

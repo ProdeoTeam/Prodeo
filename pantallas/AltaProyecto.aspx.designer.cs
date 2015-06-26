@@ -40,6 +40,15 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnCancelarEdicion;
         
         /// <summary>
+        /// btnEliminarProyecto control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnEliminarProyecto;
+        
+        /// <summary>
         /// nombreProyecto control.
         /// </summary>
         /// <remarks>

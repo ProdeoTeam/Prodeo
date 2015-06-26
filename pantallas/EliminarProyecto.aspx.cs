@@ -4,48 +4,45 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using Datos;
 using Negocio;
+using Datos;
 
 namespace Prodeo.pantallas
 {
-    public partial class EliminarCuenta : System.Web.UI.Page
+    public partial class EliminarProyecto : System.Web.UI.Page
     {
-        public int idTarea;
-        public Tareas tarea;
         public int proyecto;
+        public Proyectos datosPro;
         protected void Page_Load(object sender, EventArgs e)
         {
             ProyectoLogica proy = new ProyectoLogica();
             proyecto = Convert.ToInt32(Session["idProyecto"]);
             string usuario = Session["usuario"].ToString();
-            //string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
+            string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
             AccesoLogica user = new AccesoLogica();
-            //idTarea = Convert.ToInt32(Request.QueryString["idTarea"]);
-            //tarea = proy.obtieneDatosTarea(idTarea);
-            LabelElimTareas.Text = "Se va a eliminar la cuenta, desea continuar?";
+            datosPro = proy.obtieneDatosProyecto(Session["idProyecto"].ToString());
+            LabelElimTareas.Text = "Se va a eliminar el proyecto " + datosPro.Nombre + ", desea continuar?";
         }
 
         protected void cancelar_Click(object sender, EventArgs e)
         {
             int proyecto = Convert.ToInt32(Session["idProyecto"]);
-            Response.Redirect("~/pantallas/ListaProyectos.aspx");
+            Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
         }
 
-        protected void eliminarCuenta_Click(object sender, EventArgs e)
+        protected void eliminarProyecto_Click(object sender, EventArgs e)
         {
             ProyectoLogica proy = new ProyectoLogica();
-            bool respuesta = proy.eliminaCuenta(Session["usuario"].ToString());
+            bool respuesta = proy.EliminaProyecto(proyecto);
             if (respuesta)
             {
-                Session.Abandon();
-                Response.Redirect("~/index.aspx");
+                Response.Redirect("~/pantallas/ListaProyectos.aspx");
             }
             else
             {
-                LabelElimTareas.Text = "No se pudo realizar la baja de la cuenta!";
+                LabelElimTareas.Text = "No se pudo realizar la baja del proyecto " + datosPro.Nombre + ", el mismo posee modulos asociados!";
             }
 
-        } 
+        }   
     }
 }
