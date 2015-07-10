@@ -3,18 +3,15 @@
     <script src="<%= ResolveClientUrl("~/js/init.js")%>" type="text/javascript"></script>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
-
 <!-- Banner -->		
-			<section id="banner">
-				
+			<section id="banner">				
 				<!--
 					".inner" is set up as an inline-block so it automatically expands
 					in both directions to fit whatever's inside it. This means it won't
 					automatically wrap lines, so be sure to use line breaks where
 					appropriate (<br />).
 				-->
-				<div class="inner">
-					
+				<div class="inner">					
 					<header>
                         <img src="images/logos/ProdeoLogoNombre.gif" />
 					</header>
@@ -25,14 +22,10 @@
 						<ul class="buttons vertical">
 							<li><a href="#main" class="button fit scrolly">Caracter&iacute;sticas</a></li>
 						</ul>
-					</footer>
-				
-				</div>
-				
+					</footer>				
+				</div>				
 			</section>
-		    
-             
-            
+		                 
 
 		<!-- Main -->
 			<article id="main">
@@ -63,6 +56,7 @@
                                     <li>Invite a usuarios a su proyecto y defina si van a ser Administradores junto a usted, o Colaboradores si no es necesario que editen y creen contenido.</li>
                                     <li>Todo el sitio est&aacute; &iacute;ntegramente desarrollado en espa&ntilde;ol. La navegaci&oacute;n es sencilla y con opciones claras.</li>
 								</ul>
+                                <iframe id="tutorial" width="640" height="360" src="https://www.youtube.com/embed/_NLZvDWKpA8?controls=0&rel=0&showinfo=0" frameborder="0" allowfullscreen></iframe>                                
 								<footer>
 									<ul class="buttons">
 										<li><a href="#section2" class="button fit scrolly">M&aacute;s Caracter&iacute;sticas</a></li>
@@ -161,7 +155,7 @@
 					</section>
 					
 				<!-- Three -->
-					<section class="wrapper style3 container special" id="tutorial">
+					<section class="wrapper style3 container special" id="ContenedorImgGraficos">
 					
 						<header class="major">
 							<h2>Gr&aacute;ficos para una r&aacute;pida visualizaci&oacute;n de sus proyectos</h2>
