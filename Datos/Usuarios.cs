@@ -16,8 +16,8 @@ namespace Datos
     {
         public Usuarios()
         {
-            this.Participantes = new HashSet<Participantes>();
             this.Modulos = new HashSet<Modulos>();
+            this.Participantes = new HashSet<Participantes>();
         }
     
         public int idUsuario { get; set; }
@@ -27,7 +27,7 @@ namespace Datos
         public bool usuarioActivo { get; set; }
         public string codigoVerificacion { get; set; }
     
-        public virtual ICollection<Participantes> Participantes { get; set; }
         public virtual ICollection<Modulos> Modulos { get; set; }
+        public virtual ICollection<Participantes> Participantes { get; set; }
     }
 }

@@ -67,8 +67,15 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
     <section class="wrapper style3 container special">
 				<div id="formInterno">
 						<header class="major">
-							<h2><strong>Alta de Proyecto</strong></h2>
+							<h2><strong><asp:Label ID="LabelProyectos" runat="server" Text="Label"></asp:Label></strong></h2>
 						</header>
+                        <footer>
+					            <ul class="buttons">
+						            <li id="btnEditarProyecto" runat="server"><a class="button" onserverclick="editarProyecto_Click" runat="server">Editar Proyecto</a></li>
+                                    <li id="btnCancelarEdicion" runat="server"><a class="button" onserverclick="cancelarProyecto_Click" runat="server">Cancelar Edicion</a></li>
+                                    <li id="btnEliminarProyecto" runat="server"><a class="button" onserverclick="eliminarProyecto_Click" runat="server">Eliminar Proyecto</a></li>
+					            </ul>
+			            </footer>
 									<div class="row half">
 										<div class="12u">
 											<input type="text" name="nombreProyecto" placeholder="Nombre" id="nombreProyecto" runat="server">
@@ -129,7 +136,9 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 										<div class="12u">
 											<ul class="buttons">
 												<li><a class="button special" id="btnAltaProyecto" runat="server" onserverclick="altaProyForm_Click">Alta</a></li>
+                                                <li><a class="button special" id="btnActualizaProyecto" runat="server" onserverclick="actualizaProyForm_Click">Guardar</a></li>
                                                 <li><a class="button special" id="btnCancelarProyecto" runat="server" onserverclick="cancelarProyForm_Click">Cancelar</a></li>
+                                                <li><a class="button special" id="btnVolverProyecto" runat="server" onserverclick="cancelarProyForm_Click">Volver</a></li>
 											</ul>
 										</div>
 									</div>

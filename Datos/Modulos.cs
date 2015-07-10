@@ -29,8 +29,8 @@ namespace Datos
         public System.DateTime FechaVencimiento { get; set; }
         public int Baja { get; set; }
     
-        public virtual Proyectos Proyectos { get; set; }
         public virtual Usuarios Usuarios { get; set; }
         public virtual ICollection<Tareas> Tareas { get; set; }
+        public virtual Proyectos Proyectos { get; set; }
     }
 }

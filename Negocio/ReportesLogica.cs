@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Collections;
 using System.Data;
-using Negocio.Clases_Entidad;
 using Datos;
 //using AjaxPro;
 
@@ -19,238 +18,55 @@ namespace Negocio
     public class ReportesLogica
     {
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
-        public ArrayList obtenerTareasPorUsuario(int idProyecto)
+        public Datos.Reportes.DatosReportes obtenerTareasPorUsuario(int idProyecto)
         {
-            ArrayList tareas = new ArrayList();
-            ArrayList auxtarea;
-            DataTable tabla = new DataTable();
+            Datos.Reportes.DatosReportes reporteSource = new Datos.Reportes.DatosReportes();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                tabla = datos.simularDatosTareasPorUsuario();
-
-                foreach (DataRow unaFila in tabla.Rows)
-                {
-                    ReporteModel tareasDeUnUsuario;
-                    Boolean yaSeAgrego = false;
-                    for (int i = 0; i < tareas.Count; i++)
-                    {
-                        tareasDeUnUsuario = (ReporteModel)tareas[i];
-                        if (tareasDeUnUsuario.Nombre == unaFila["usuario"].ToString())
-                        {
-                            yaSeAgrego = true;
-                            if ((string)unaFila["estado"] == "Pendiente")
-                            {
-                                if ((string)unaFila["condicionvencimiento"] == "Vencida")
-                                {
-                                    tareasDeUnUsuario.TareasPendientesVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                                }
-                                else
-                                {
-                                    tareasDeUnUsuario.TareasPendientesNoVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                                }
-                            }
-                            else
-                            {
-                                tareasDeUnUsuario.TareasFinalizadas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-                        }
-                    }
-                    if (!yaSeAgrego)
-                    {
-                        tareasDeUnUsuario = new ReporteModel();
-                        tareasDeUnUsuario.Nombre = unaFila["usuario"].ToString();
-                        if ((string)unaFila["estado"] == "Pendiente")
-                        {
-                            if ((string)unaFila["condicionvencimiento"] == "Vencida")
-                            {
-                                tareasDeUnUsuario.TareasPendientesVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-                            else
-                            {
-                                tareasDeUnUsuario.TareasPendientesNoVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-
-                        }
-                        else
-                        {
-                            tareasDeUnUsuario.TareasFinalizadas = Convert.ToInt32(unaFila["cantidad"]);
-                        }
-                        tareas.Add(tareasDeUnUsuario);
-                    }
-                }
-
-                //auxtarea = new ArrayList();
-                //auxtarea.Add("Carlos");
-                //auxtarea.Add(10);
-                //tareas.Add(auxtarea);
-                //auxtarea = new ArrayList();
-                //auxtarea.Add("Pedro");
-                //auxtarea.Add(20);
-                //tareas.Add(auxtarea);
-                //auxtarea = new ArrayList();
-                //auxtarea.Add("Raul");
-                //auxtarea.Add(30);
-                //tareas.Add(auxtarea);
-
+                reporteSource = datos.obtenerDatosTareasPorUsuario(idProyecto);
             }
             catch (Exception ex)
             {
 
             }
-            return tareas;
+            return reporteSource;
         }
 
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
         public ArrayList obtenerAvanceDelProyecto(int idProyecto)
         {
-            ArrayList tareas = new ArrayList();
-            DataTable tabla = new DataTable();
+            ArrayList datosSerie = new ArrayList();
             AccesoDatos datos = new AccesoDatos();
+            //Debe devolver un array con arrays de 2 posiciones. la posicion 0 debe tener el nombre de la porcion y la 1 el valor.
+            //ejemplo: [[vencidas, 2],[no vencidas, 3],[finalizadas, 4]]
             try
             {
-                tabla = datos.simularDatosTareasPorUsuario();
+                datosSerie = datos.obtenerDatosAvanceDelProyecto(idProyecto);
 
-                foreach (DataRow unaFila in tabla.Rows)
-                {
-                    ReporteModel tareasDeUnUsuario;
-                    Boolean yaSeAgrego = false;
-                    for (int i = 0; i < tareas.Count; i++)
-                    {
-                        tareasDeUnUsuario = (ReporteModel)tareas[i];
-                        if (tareasDeUnUsuario.Nombre == unaFila["usuario"].ToString())
-                        {
-                            yaSeAgrego = true;
-                            if ((string)unaFila["estado"] == "Pendiente")
-                            {
-                                if ((string)unaFila["condicionvencimiento"] == "Vencida")
-                                {
-                                    tareasDeUnUsuario.TareasPendientesVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                                }
-                                else
-                                {
-                                    tareasDeUnUsuario.TareasPendientesNoVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                                }
-                            }
-                            else
-                            {
-                                tareasDeUnUsuario.TareasFinalizadas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-                        }
-                    }
-                    if (!yaSeAgrego)
-                    {
-                        tareasDeUnUsuario = new ReporteModel();
-                        tareasDeUnUsuario.Nombre = unaFila["usuario"].ToString();
-                        if ((string)unaFila["estado"] == "Pendiente")
-                        {
-                            if ((string)unaFila["condicionvencimiento"] == "Vencida")
-                            {
-                                tareasDeUnUsuario.TareasPendientesVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-                            else
-                            {
-                                tareasDeUnUsuario.TareasPendientesNoVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-
-                        }
-                        else
-                        {
-                            tareasDeUnUsuario.TareasFinalizadas = Convert.ToInt32(unaFila["cantidad"]);
-                        }
-                        tareas.Add(tareasDeUnUsuario);
-                    }
-                }
-
-                //auxtarea = new ArrayList();
-                //auxtarea.Add("Carlos");
-                //auxtarea.Add(10);
-                //tareas.Add(auxtarea);
-                //auxtarea = new ArrayList();
-                //auxtarea.Add("Pedro");
-                //auxtarea.Add(20);
-                //tareas.Add(auxtarea);
-                //auxtarea = new ArrayList();
-                //auxtarea.Add("Raul");
-                //auxtarea.Add(30);
-                //tareas.Add(auxtarea);
 
             }
             catch (Exception ex)
             {
 
             }
-            return tareas;
+            return datosSerie;
         }
 
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
-        public ArrayList obtenerTareasPorModulo(int idProyecto)
+        public Datos.Reportes.DatosReportes obtenerTareasPorModulo(int idProyecto)
         {
-            ArrayList tareas = new ArrayList();
-            ArrayList auxtarea;
-            DataTable tabla = new DataTable();
+            Datos.Reportes.DatosReportes reporteSource = new Datos.Reportes.DatosReportes();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                tabla = datos.simularDatosTareasPorModulo();
-
-                foreach (DataRow unaFila in tabla.Rows)
-                {
-                    ReporteModel tareasDeUnModulo;
-                    Boolean yaSeAgrego = false;
-                    for (int i = 0; i < tareas.Count; i++)
-                    {
-                        tareasDeUnModulo = (ReporteModel)tareas[i];
-                        if (tareasDeUnModulo.Nombre == unaFila["modulo"].ToString())
-                        {
-                            yaSeAgrego = true;
-                            if ((string)unaFila["estado"] == "Pendiente")
-                            {
-                                if ((string)unaFila["condicionvencimiento"] == "Vencida")
-                                {
-                                    tareasDeUnModulo.TareasPendientesVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                                }
-                                else
-                                {
-                                    tareasDeUnModulo.TareasPendientesNoVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                                }
-                            }
-                            else
-                            {
-                                tareasDeUnModulo.TareasFinalizadas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-                        }
-                    }
-                    if (!yaSeAgrego)
-                    {
-                        tareasDeUnModulo = new ReporteModel();
-                        tareasDeUnModulo.Nombre = unaFila["modulo"].ToString();
-                        if ((string)unaFila["estado"] == "Pendiente")
-                        {
-                            if ((string)unaFila["condicionvencimiento"] == "Vencida")
-                            {
-                                tareasDeUnModulo.TareasPendientesVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-                            else
-                            {
-                                tareasDeUnModulo.TareasPendientesNoVencidas = Convert.ToInt32(unaFila["cantidad"]);
-                            }
-
-                        }
-                        else
-                        {
-                            tareasDeUnModulo.TareasFinalizadas = Convert.ToInt32(unaFila["cantidad"]);
-                        }
-                        tareas.Add(tareasDeUnModulo);
-                    }
-                }
-
+                reporteSource = datos.obtenerDatosTareasPorModulos(idProyecto);
             }
             catch (Exception ex)
             {
 
             }
-            return tareas;
+            return reporteSource;
         }
 
 

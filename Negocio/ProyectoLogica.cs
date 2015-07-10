@@ -30,6 +30,26 @@ namespace Negocio
             }
         }
 
+        public bool actualizaProyecto(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, string alerta, string usuario, List<string> usuariosAsignados, string idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.actualizarProyecto(nombre, descrip, fechaCreacion, fechaVencimiento, alerta, usuario, usuariosAsignados, idProyecto) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<DatosProyecto> obtieneListaProyecto(string usuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -60,6 +80,26 @@ namespace Negocio
             List<DatosParticipantesProyecto> listaUsu = datos.obtenerParticipantes(idProyecto);
 
             return listaUsu;
+        }
+
+        public bool EliminaProyecto(int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.eliminarProyecto(idProyecto) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         #endregion
@@ -96,6 +136,15 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             List<DatosModulo> lista = datos.obtenerListaModulos(usuario, proyecto, permiso);
             return lista;
+
+        }
+
+        public int obtieneCantidadModulos(int proyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int cantidad = datos.obtenerCantidadModulos(proyecto);
+            return cantidad;
+
 
         }
 
@@ -163,6 +212,13 @@ namespace Negocio
             }
         }
 
+        public Tareas obtieneDatosTarea(int idTarea)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Tareas tarea = datos.obtenerTareas(idTarea);
+            return tarea;
+
+        }
         public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -296,6 +352,14 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             string permiso = datos.obtenerPermisoUsuario(usuario, idProyecto);
             return permiso;
+        }
+
+        public bool eliminaCuenta(string usuario)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool exito = datos.eliminarCuenta(usuario);
+            return exito;
+
         }
         #endregion
 

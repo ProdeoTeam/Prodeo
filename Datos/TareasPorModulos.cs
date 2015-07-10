@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Datos
 {
-    public class TareasPorUsuarios
+    public class TareasPorModulos
     {
-        public string usuario { get; set; }
+        public string modulo { get; set; }
         public DateTime fechaFinalizacion { get; set; }
         public DateTime fechaVemcimiento { get; set; }
         public string estado { get; set; }

@@ -58,6 +58,11 @@ namespace Prodeo
         {            
             Response.Redirect("~/pantallas/Registro.aspx?edit=true");                                   
         }
+
+        protected void eliminarCuenta_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pantallas/EliminarCuenta.aspx");
+        }
     }
 }
 

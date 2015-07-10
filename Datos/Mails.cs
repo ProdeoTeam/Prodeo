@@ -12,13 +12,15 @@ namespace Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class ParticipantesProyectos
+    public partial class Mails
     {
-        public int id { get; set; }
-        public int idUsuario { get; set; }
-        public int idProyecto { get; set; }
-        public string permisosAdministrador { get; set; }
-    
-        public virtual Proyectos Proyectos { get; set; }
+        public int idMail { get; set; }
+        public Nullable<int> idProyecto { get; set; }
+        public Nullable<int> idModulo { get; set; }
+        public Nullable<int> idTarea { get; set; }
+        public string asunto { get; set; }
+        public string detalle { get; set; }
+        public string destinatarios { get; set; }
+        public string enviado { get; set; }
     }
 }

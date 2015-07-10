@@ -17,12 +17,12 @@ namespace Prodeo.pantallas
         {
             // Utility.RegisterTypeForAjax(typeof(Negocio.AjaxReportes));
             //Utility.RegisterTypeForAjax(typeof(Reportes));
-            if(!IsPostBack)
+            if (!IsPostBack)
             {
                 Utility.RegisterTypeForAjax(typeof(ReportesLogica));
                 string usuario = Session["usuario"].ToString();
                 ProyectoLogica proy = new ProyectoLogica();
-            
+
                 proyectosLista.DataSource = proy.obtieneListaProyecto(Session["usuario"].ToString());
                 proyectosLista.DataValueField = "Id";
                 proyectosLista.DataTextField = "Nombre";
@@ -30,14 +30,14 @@ namespace Prodeo.pantallas
             }
         }
 
-        [AjaxMethod(HttpSessionStateRequirement.ReadWrite)]
-        public ArrayList obtenerTareasPorUsuario()
-        {
-            Negocio.ReportesLogica reporteLogica = new Negocio.ReportesLogica();
-            ArrayList datosReporte = new ArrayList();
+        //[AjaxMethod(HttpSessionStateRequirement.ReadWrite)]
+        //public Datos.Reportes.DatosReportes obtenerTareasPorUsuario()
+        //{
+        //    Negocio.ReportesLogica reporteLogica = new Negocio.ReportesLogica();
+        //    Datos.Reportes.DatosReportes datosReporte = new Datos.Reportes.DatosReportes();
 
-            datosReporte = reporteLogica.obtenerTareasPorUsuario(1);
-            return datosReporte;
-        }
+        //    datosReporte = reporteLogica.obtenerTareasPorUsuario(1);
+        //    return datosReporte;
+        //}
     }
 }

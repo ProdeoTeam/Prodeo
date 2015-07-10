@@ -16,8 +16,8 @@ namespace Datos
     {
         public Proyectos()
         {
-            this.ParticipantesProyectos = new HashSet<ParticipantesProyectos>();
             this.Modulos = new HashSet<Modulos>();
+            this.ParticipantesProyectos = new HashSet<ParticipantesProyectos>();
         }
     
         public int idProyecto { get; set; }
@@ -27,8 +27,9 @@ namespace Datos
         public System.DateTime FechaVencimiento { get; set; }
         public Nullable<System.DateTime> FechaFinalizacion { get; set; }
         public string AlertaPrevia { get; set; }
+        public int Baja { get; set; }
     
-        public virtual ICollection<ParticipantesProyectos> ParticipantesProyectos { get; set; }
         public virtual ICollection<Modulos> Modulos { get; set; }
+        public virtual ICollection<ParticipantesProyectos> ParticipantesProyectos { get; set; }
     }
 }

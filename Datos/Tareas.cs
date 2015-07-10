@@ -34,7 +34,7 @@ namespace Datos
         public Nullable<double> Tiempo { get; set; }
         public int Baja { get; set; }
     
-        public virtual ICollection<ParticipantesTareas> ParticipantesTareas { get; set; }
         public virtual Modulos Modulos { get; set; }
+        public virtual ICollection<ParticipantesTareas> ParticipantesTareas { get; set; }
     }
 }
