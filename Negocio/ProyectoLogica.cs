@@ -102,6 +102,26 @@ namespace Negocio
             }
         }
 
+        public bool FinaizarProyecto(int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.finalizarProyecto(idProyecto) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         #endregion
         #region "Modulos"
         public Modulos obtieneDatosModulo(int idModulo)

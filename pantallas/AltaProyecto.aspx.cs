@@ -45,6 +45,7 @@ namespace Prodeo.pantallas
                     btnActualizaProyecto.Visible = false;
                     btnCancelarProyecto.Visible = true;
                     btnVolverProyecto.Visible = false;
+                    btnEliminarProyecto.Visible = false;
                 }
                 else
                 {

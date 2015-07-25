@@ -451,7 +451,7 @@ namespace Datos
                              select u.idUsuario).First();
             var query = (from p in prodeoContext.Proyectos
                          join usr in prodeoContext.ParticipantesProyectos on p.idProyecto equals usr.idProyecto
-                         where usr.idUsuario == idUsuario && p.Baja == 0
+                         where usr.idUsuario == idUsuario && p.Baja == 0 && p.FechaFinalizacion == null
                          select new DatosProyecto { Id = p.idProyecto, Nombre = p.Nombre, Permisos = usr.permisosAdministrador, Descripcion = p.Descripcion }).ToList();
             return query;
         }
@@ -498,6 +498,51 @@ namespace Datos
                 return 0;
             }
         }
+
+ public int finalizarProyecto(int idProyecto)
+ {
+     try
+     {
+         prodeoEntities prodeoContext = new prodeoEntities();
+         int tareaSinFinalizar = 0;
+         List<Modulos> mod = (from m in prodeoContext.Modulos
+                          where m.idProyecto == idProyecto
+                          select m).ToList();
+         foreach(Modulos unModulo in mod)
+         {
+             List<Tareas> tar = (from t in prodeoContext.Tareas
+                                 where unModulo.idModulo == t.idModulo
+                                 select t).ToList();
+             foreach(Tareas unaTarea in tar)
+             {
+                 if(unaTarea.Estado != "Finalizada")
+                 {
+                     tareaSinFinalizar++;
+                 }
+             }
+         }
+
+         if(tareaSinFinalizar == 0)
+         {
+             Proyectos proy = (from p in prodeoContext.Proyectos
+                               where p.idProyecto == idProyecto
+                               select p).First();
+             proy.FechaFinalizacion = DateTime.Now;
+             prodeoContext.SaveChanges();
+             return 1;
+         }
+         else
+         {
+             return 0;
+         }
+         
+         
+     }
+     catch (Exception e)
+     {
+         return 0;
+     }
+ }
 
 
         #endregion

@@ -53,7 +53,15 @@ namespace Prodeo.pantallas
                             control.Controls.Add(literal);
 
                             literal = new Literal();
-                            literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p="+dato.Permisos+"' class='button'>Ingresar</a>";
+                            if(permiso == "Administrador")
+                            {
+                                literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a><a href='FinalizarProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='buttonFinaliza'>Finalizar</a>";
+                            }
+                            else
+                            {
+                                literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a>";
+                            }
+                            
                             control.Controls.Add(literal);
 
                             literal = new Literal();
