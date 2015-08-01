@@ -173,7 +173,7 @@ namespace Prodeo.pantallas
                 totalTareas = unModulo.tablaTareas.Rows.Count;
                 foreach (DataRow item in unModulo.tablaTareas.Rows)
                 {
-                    if("Finalizada" == item["Estado"]){
+                    if("Finalizada" == Convert.ToString(item["Estado"])){
                         tareasFinalizadas = tareasFinalizadas + 1;
                     }
                 }
@@ -185,11 +185,11 @@ namespace Prodeo.pantallas
 
                 h3.Text += "<div style='width:";
                 h3.Text += anchoBarraProgreso.ToString() + "px; height:20px;position:absolute;margin-left:75%;margin-top:-25px; border-style:solid; border-color:black; border-width:2px;'>";
-                h3.Text += "<div style='background-color:#12587B;width:'>";
+                h3.Text += "<div style='background-color:#12587B;width:'";
                 h3.Text += Math.Round(porcentajeAvance);
                 h3.Text += "%;";
                 
-                h3.Text += "height:16px;";
+                h3.Text += "height:16px;>";
                 h3.Text += "</div>";
                 h3.Text += "</h3>";
                 contenedorAccordion.Controls.Add(h3);
