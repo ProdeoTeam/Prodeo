@@ -82,7 +82,7 @@
         function crearTareasPorModulo() {
             var ddlProyecto = document.getElementById("MainContent_proyectosLista");
             var idProyecto = ddlProyecto.options[ddlProyecto.selectedIndex].value;
-            var datosReporte = AjaxReportes.obtenerTareasPorModulos(idProyecto);
+            var datosReporte = AjaxReportes.obtenerTareasPorModulo(idProyecto);
 
             datosReporte = datosReporte.value;
 
@@ -151,7 +151,7 @@
             var ddlProyecto = document.getElementById("MainContent_proyectosLista");
             var idProyecto = ddlProyecto.options[ddlProyecto.selectedIndex].value;
             var datosReporte = AjaxReportes.obtenerAvanceDelProyecto(idProyecto);
-
+            datosReporte = datosReporte.value;
             $('#containerReporte').highcharts({
                 chart: {
                     plotBackgroundColor: null,
