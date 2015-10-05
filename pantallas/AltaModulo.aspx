@@ -19,6 +19,7 @@
 									<div class="row half">
 										<div class="12u">
 											<input type="text" name="nombreModulo" placeholder="Nombre" id="nombreModulo" runat="server">
+                                            <asp:RequiredFieldValidator ID="ReqFieldValNombre" Display="Dynamic" ControlToValidate="nombreModulo" ValidationGroup ="valGroupModulos" runat="server" ErrorMessage="Debe ingresarle un nombre al m&oacute;dulo"></asp:RequiredFieldValidator>                                            
 										</div>
 									</div>
 									<div class="row half">
@@ -30,14 +31,18 @@
                                         <div class="6u">
                                             Fecha Vencimiento
                                             <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server">
-										</div>
-                                        
+                                            <asp:CustomValidator ID="CustomValVencValid" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupModulos" runat="server" OnServerValidate="validarFechaVenc"></asp:CustomValidator>
+                                            <asp:CustomValidator ID="CustomValFechActual" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupModulos" runat="server" OnServerValidate="validarFechaActual"></asp:CustomValidator>
+                                            <asp:RequiredFieldValidator ID="ReqFieldValVenc" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupModulos" runat="server" ErrorMessage="Debe ingresar una fecha de vencimiento"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="RegExpresValFecha" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupModulos" runat="server" ErrorMessage="Formato de fecha inv&aacute;lido o fecha incorrecta." 
+                                                ValidationExpression="^(?:(?:0?[1-9]|1\d|2[0-8])(\/|-)(?:0?[1-9]|1[0-2]))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(?:(?:31(\/|-)(?:0?[13578]|1[02]))|(?:(?:29|30)(\/|-)(?:0?[1,3-9]|1[0-2])))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(29(\/|-)0?2)(\/|-)(?:(?:0[48]00|[13579][26]00|[2468][048]00)|(?:\d\d)?(?:0[48]|[2468][048]|[13579][26]))$"></asp:RegularExpressionValidator>                            
+										</div>                                        
 									</div>
                           
 									<div class="row">
 										<div class="12u">
 											<ul class="buttons">
-												<li><a class="button special" id="btnAltaModulo" runat="server" onserverclick="altaModuloForm_Click">Alta</a></li>
+												<li><a class="button special" id="btnAltaModulo" runat="server" onserverclick="altaModuloForm_Click" ValidationGroup ="valGroupModulos">Alta</a></li>
                                                 <li><a class="button special" id="btnCancelarModulo" runat="server" onserverclick="cancelarModuloForm_Click">Cancelar</a></li>
                                                 <li><a class="button special" id="btnVolverModulo" runat="server" onserverclick="cancelarModuloForm_Click">Volver</a></li>
 											</ul>

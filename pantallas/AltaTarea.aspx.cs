@@ -20,9 +20,9 @@ namespace Prodeo.pantallas
                 string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
                 AccesoLogica user = new AccesoLogica();
                 listaModulos.DataSource = proy.obtieneListaModulos(usuario, proyecto, permiso);
-                listaModulos.DataValueField = "IdModulo";
+                listaModulos.DataValueField = "IdModulo";                
                 listaModulos.DataTextField = "Nombre";
-                listaModulos.DataBind();
+                listaModulos.DataBind();                
                 usuariosLista.DataSource = user.obtieneListaUsuarios(proyecto);
                 usuariosLista.DataValueField = "idUsuario";
                 usuariosLista.DataTextField = "nombre";
@@ -82,7 +82,7 @@ namespace Prodeo.pantallas
                                 listaModulos.Items[i].Selected = true;
                             }
                         }
-                    listaModulos.Disabled = true;
+                    listaModulos.Enabled = false;
                     for (int i = 0; i <= listaPrioridad.Items.Count - 1; i++)
                     {
                         if (listaPrioridad.Items[i].Text == row.Cells[6].Text)
@@ -121,33 +121,36 @@ namespace Prodeo.pantallas
 
         protected void altaTareaForm_Click(object sender, EventArgs e)
         {
-            bool altaExitosa = false;
-            int proyecto = Convert.ToInt32(Session["idProyecto"]);
-            string usuario = Session["usuario"].ToString();
-            //Session["permiso"] = "A";
-            ProyectoLogica agregaTarea = new ProyectoLogica();
-            GridViewRow row =  (GridViewRow)Session["datosTarea"];
-            if (Session["idTarea"] != null)
+            if (Page.IsValid)
             {
-                altaExitosa = agregaTarea.ActualizaTarea(Session["idTarea"].ToString(), listaModulos.Value, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
-                Session["idTarea"] = null;
-            }
-            else
-            {
-                altaExitosa = agregaTarea.insertaTarea(listaModulos.Value, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
-            }
-            
-            if (altaExitosa)
-            {
-                if(Session["permiso"]!=null)
+                bool altaExitosa = false;
+                int proyecto = Convert.ToInt32(Session["idProyecto"]);
+                string usuario = Session["usuario"].ToString();
+                //Session["permiso"] = "A";
+                ProyectoLogica agregaTarea = new ProyectoLogica();
+                GridViewRow row = (GridViewRow)Session["datosTarea"];
+                if (Session["idTarea"] != null)
                 {
-                    Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
+                    altaExitosa = agregaTarea.ActualizaTarea(Session["idTarea"].ToString(), listaModulos.SelectedValue, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
+                    Session["idTarea"] = null;
                 }
                 else
                 {
-                    Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=A");
+                    altaExitosa = agregaTarea.insertaTarea(listaModulos.SelectedValue, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
                 }
-                
+
+                if (altaExitosa)
+                {
+                    if (Session["permiso"] != null)
+                    {
+                        Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
+                    }
+                    else
+                    {
+                        Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=A");
+                    }
+
+                }
             }
         }
 
@@ -164,7 +167,7 @@ namespace Prodeo.pantallas
             nombreTarea.Disabled = false;
             descripcion.Disabled = false;
             comentario.Disabled = false;
-            listaModulos.Disabled = false;
+            listaModulos.Enabled = true;
             listaPrioridad.Disabled = false;
             fechaVencimiento.Disabled = false;
             //fechaFinalizacion.Disabled = false;
@@ -184,7 +187,7 @@ namespace Prodeo.pantallas
             nombreTarea.Disabled = true;
             descripcion.Disabled = true;
             comentario.Disabled = false;
-            listaModulos.Disabled = true;
+            listaModulos.Enabled = false;
             listaPrioridad.Disabled = true;
             fechaVencimiento.Disabled = true;
             //fechaFinalizacion.Disabled = false;
@@ -203,7 +206,7 @@ namespace Prodeo.pantallas
             nombreTarea.Disabled = true;
             descripcion.Disabled = true;
             comentario.Disabled = true;
-            listaModulos.Disabled = true;
+            listaModulos.Enabled = false;
             listaPrioridad.Disabled = true;
             fechaVencimiento.Disabled = true;
             //fechaFinalizacion.Disabled = true;
@@ -232,6 +235,42 @@ namespace Prodeo.pantallas
                     Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=A");
                 }
 
+            }
+        }
+
+        protected void validarFechaVenc(object source, ServerValidateEventArgs args)
+        {
+
+            AccesoLogica logica = new AccesoLogica();
+            DateTime fechaVenc = Convert.ToDateTime(fechaVencimiento.Value);
+            int idModulo = Convert.ToInt32(listaModulos.SelectedValue);
+            bool fechaValida = logica.esFechaTareaValida(fechaVenc, idModulo);
+            if (fechaValida)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+                DateTime FechVencModulo = logica.obtieneVencModulo(idModulo);
+                CustomValVencValid.ErrorMessage = "La fecha de vencimiento no puede ser mayor a la del modulo: " + FechVencModulo;
+            }
+        }
+
+        protected void validarFechaActual(object source, ServerValidateEventArgs args)
+        {
+            AccesoLogica logica = new AccesoLogica();
+            DateTime fechaVenc = Convert.ToDateTime(fechaVencimiento.Value);            
+            bool fechaValida = logica.esFechaMayorActual(fechaVenc);
+            string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
+            if (fechaValida)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+                CustomValFechActual.ErrorMessage = "La fecha ingresada debe ser mayor o igual a la actual: " + fechaActual;
             }
         }
     }

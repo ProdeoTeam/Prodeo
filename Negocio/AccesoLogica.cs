@@ -23,6 +23,70 @@ namespace Negocio
             return usuarioValid;
         }
 
+        public bool esFechaTareaValida(DateTime fechaVenc, int idModulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            DateTime fechavencMod = datos.obtieneFechaVencModulo(idModulo);
+            bool fechaVencValida;
+
+            //El usuario no puede poner en la tarea una fecha de vencimiento mayor a la del módulo
+            if (fechaVenc < fechavencMod)
+            {
+                return fechaVencValida = true;
+            }
+            else
+            {
+                return fechaVencValida = false;
+            }                        
+        }
+
+        public bool esFechaModulValida(DateTime fechaVenc, int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            DateTime fechavencProy = datos.obtieneFechaVencProyecto(idProyecto);
+            bool fechaVencValida;
+
+            //El usuario no puede poner en el modulo una fecha de vencimiento mayor a la del proyecto
+            if (fechaVenc < fechavencProy)
+            {
+                return fechaVencValida = true;
+            }
+            else
+            {
+                return fechaVencValida = false;
+            }
+        }
+
+        public DateTime obtieneVencModulo (int idModulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            DateTime fechaVencMod = datos.obtieneFechaVencModulo(idModulo);            
+            return fechaVencMod;            
+        }
+
+        public DateTime obtieneVencProyecto(int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            DateTime fechaVencProy = datos.obtieneFechaVencProyecto(idProyecto);
+            return fechaVencProy;
+        }
+
+        //Verifica que la fecha ingresada por el usuario es mayor o igual que la fecha actual
+        public bool esFechaMayorActual(DateTime fechaVenc)
+        {
+            DateTime fechaActual = DateTime.Today;
+            bool fechaVencValida;
+            
+            if (fechaVenc >= fechaActual)
+            {
+                return fechaVencValida = true;
+            }
+            else
+            {
+                return fechaVencValida = false;
+            }                        
+        }
+        
         public bool verDuplicadoEmail(string email)
         {
             AccesoDatos datos = new AccesoDatos();

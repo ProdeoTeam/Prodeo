@@ -107,6 +107,37 @@ namespace Datos
                 return emailVal = false;
             }
         }
+
+        //Obtiene la fecha de vencimiento de un módulo
+        public DateTime obtieneFechaVencModulo(int idModul)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            DateTime fechaVenc;
+
+            var fechaVencMod = (from m in prodeoContext.Modulos                         
+                         where m.idModulo == idModul
+                         select m.FechaVencimiento).First();
+            
+            fechaVenc = Convert.ToDateTime(fechaVencMod);
+            
+            return fechaVenc;            
+        }
+
+        //Obtiene la fecha de vencimiento del proyecto
+        public DateTime obtieneFechaVencProyecto(int idProyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            DateTime fechaVenc;
+
+            var fechaVencProy = (from p in prodeoContext.Proyectos
+                                where p.idProyecto == idProyecto
+                                select p.FechaVencimiento).First();
+
+            fechaVenc = Convert.ToDateTime(fechaVencProy);
+
+            return fechaVenc;
+        }
+
         //guarda los datos de registro en la BD
         public int insertarUsuario(string usuario, string pass, string email, string emailCodificado)
         {

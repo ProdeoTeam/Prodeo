@@ -63,25 +63,27 @@ namespace Prodeo
         }
         protected void altaModuloForm_Click(object sender, EventArgs e)
         {
-            int proyecto = Convert.ToInt32(Session["idProyecto"]);
-            string usuario = Session["usuario"].ToString();
-            bool altaExitosa = false;
-            Session["permiso"] = "A";
-            ProyectoLogica agregaModulo = new ProyectoLogica();
-            if(Session["idModulo"].ToString() == "0")
-            { 
-                altaExitosa = agregaModulo.insertaModulo(nombreModulo.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario);
-            }
-            else
+            if (Page.IsValid)
             {
-                altaExitosa = agregaModulo.actualizaModulo(Convert.ToInt32(Session["idModulo"]), nombreModulo.Value, descripcion.Value, Convert.ToDateTime(fechaVencimiento.Value));
+                int proyecto = Convert.ToInt32(Session["idProyecto"]);
+                string usuario = Session["usuario"].ToString();
+                bool altaExitosa = false;
+                Session["permiso"] = "A";
+                ProyectoLogica agregaModulo = new ProyectoLogica();
+                if (Session["idModulo"].ToString() == "0")
+                {
+                    altaExitosa = agregaModulo.insertaModulo(nombreModulo.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario);
+                }
+                else
+                {
+                    altaExitosa = agregaModulo.actualizaModulo(Convert.ToInt32(Session["idModulo"]), nombreModulo.Value, descripcion.Value, Convert.ToDateTime(fechaVencimiento.Value));
+                }
+                if (altaExitosa)
+                {
+                    Session["idModulo"] = null;
+                    Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
+                }
             }
-            if (altaExitosa)
-            {
-                Session["idModulo"] = null;
-                Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
-            }
-            
         }
 
         protected void cancelarModuloForm_Click(object sender, EventArgs e)
@@ -113,7 +115,42 @@ namespace Prodeo
             fechaVencimiento.Disabled = true;
             LabelModulo.Text = "Ver Modulo";
             btnAltaModulo.Visible = false;
-
         }
+
+        protected void validarFechaVenc(object source, ServerValidateEventArgs args)
+        {
+            AccesoLogica logica = new AccesoLogica();
+            DateTime fechaVenc = Convert.ToDateTime(fechaVencimiento.Value);
+            int idProyecto = Convert.ToInt32(Session["idProyecto"]);
+            bool fechaValida = logica.esFechaModulValida(fechaVenc, idProyecto);
+            if (fechaValida)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+                DateTime FechVencProyecto = logica.obtieneVencProyecto(idProyecto);
+                CustomValVencValid.ErrorMessage = "La fecha de vencimiento no puede ser mayor a la del proyecto: " + FechVencProyecto;
+            }
+        }
+
+        protected void validarFechaActual(object source, ServerValidateEventArgs args)
+        {
+            AccesoLogica logica = new AccesoLogica();
+            DateTime fechaVenc = Convert.ToDateTime(fechaVencimiento.Value);
+            bool fechaValida = logica.esFechaMayorActual(fechaVenc);
+            string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
+            if (fechaValida)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+                CustomValFechActual.ErrorMessage = "La fecha ingresada debe ser mayor o igual a la actual: " + fechaActual;
+            }
+        }
+
     }
 }

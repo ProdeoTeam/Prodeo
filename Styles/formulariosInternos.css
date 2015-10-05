@@ -70,3 +70,16 @@
 	.formerize-placeholder {
 		color: rgba(124, 128, 129, 0.5) !important;
 	}
+
+    #divRedesSoc {
+        margin-left:10%;
+        line-height: 0px;         
+        display:inline-flex;
+    }
+
+    #divBtnTwitter {        
+        margin-left:10px;
+    }
+
+    #divBtnFacebook {               
+    }

@@ -79,6 +79,7 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 									<div class="row half">
 										<div class="12u">
 											<input type="text" name="nombreProyecto" placeholder="Nombre" id="nombreProyecto" runat="server">
+                                            <asp:RequiredFieldValidator ID="ReqFieldValNombre" Display="Dynamic" ControlToValidate="nombreProyecto" ValidationGroup ="valGroupProyectos" runat="server" ErrorMessage="Debe ingresarle un nombre al proyecto"></asp:RequiredFieldValidator>
 										</div>
 									</div>
 									<div class="row half">
@@ -89,12 +90,16 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
                                     <div class="row half no-collapse-1">
                                         <div class="6u">
                                             Fecha Vencimiento
-                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server"/>
+                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server"/>                                            
+                                            <asp:CustomValidator ID="CustomValFechActual" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupProyectos" runat="server" OnServerValidate="validarFechaActual"></asp:CustomValidator>
+                                            <asp:RequiredFieldValidator ID="ReqFieldValVenc" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupProyectos" runat="server" ErrorMessage="Debe ingresar una fecha de vencimiento"></asp:RequiredFieldValidator>
+                                            <asp:RegularExpressionValidator ID="RegExpresValFecha" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupProyectos" runat="server" ErrorMessage="Formato de fecha inv&aacute;lido o fecha incorrecta." 
+                                                ValidationExpression="^(?:(?:0?[1-9]|1\d|2[0-8])(\/|-)(?:0?[1-9]|1[0-2]))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(?:(?:31(\/|-)(?:0?[13578]|1[02]))|(?:(?:29|30)(\/|-)(?:0?[1,3-9]|1[0-2])))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(29(\/|-)0?2)(\/|-)(?:(?:0[48]00|[13579][26]00|[2468][048]00)|(?:\d\d)?(?:0[48]|[2468][048]|[13579][26]))$"></asp:RegularExpressionValidator>                            
 										</div>
 										<div class="6u">
                                             &nbsp;
-                                            <select name="avisoVencimientos" id="avisoVencimientos" runat="server">
-                                              <option value="seleccione">Seleccione avisos</option>
+                                            Seleccione Avisos
+                                            <select name="avisoVencimientos" id="avisoVencimientos" runat="server">                                              
                                               <option value="h-0">Nunca</option>
                                               <option value="h-1">1 hora antes</option>
                                               <option value="d-1">1 dia antes</option>
@@ -135,7 +140,7 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 									<div class="row">
 										<div class="12u">
 											<ul class="buttons">
-												<li><a class="button special" id="btnAltaProyecto" runat="server" onserverclick="altaProyForm_Click">Alta</a></li>
+												<li><a class="button special" id="btnAltaProyecto" runat="server" onserverclick="altaProyForm_Click" ValidationGroup = "valGroupProyectos">Alta</a></li>
                                                 <li><a class="button special" id="btnActualizaProyecto" runat="server" onserverclick="actualizaProyForm_Click">Guardar</a></li>
                                                 <li><a class="button special" id="btnCancelarProyecto" runat="server" onserverclick="cancelarProyForm_Click">Cancelar</a></li>
                                                 <li><a class="button special" id="btnVolverProyecto" runat="server" onserverclick="cancelarProyForm_Click">Volver</a></li>

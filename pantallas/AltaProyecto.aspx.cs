@@ -110,35 +110,32 @@ namespace Prodeo.pantallas
 
             }
 
-
         }
 
         protected void altaProyForm_Click(object sender, EventArgs e)
         {
-
-
-            DataTable dt = Session["tabla"] as DataTable;
-            string usuario = Session["usuario"].ToString();
-            Session["permiso"] = "A";
-            List<string> usuariosAsignados = new List<string>();
-            foreach(DataRow row in dt.Rows)
+            if (Page.IsValid)
             {
-                usuariosAsignados.Add(row.ItemArray[0] + "-" + row.ItemArray[1]);
-            }
+                DataTable dt = Session["tabla"] as DataTable;
+                string usuario = Session["usuario"].ToString();
+                Session["permiso"] = "A";
+                List<string> usuariosAsignados = new List<string>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    usuariosAsignados.Add(row.ItemArray[0] + "-" + row.ItemArray[1]);
+                }
 
-            ProyectoLogica agregaProyecto = new ProyectoLogica();
-            bool altaExitosa = agregaProyecto.insertaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value, usuario, usuariosAsignados);
-            if (altaExitosa)
-            {
-
-                Response.Redirect("~/pantallas/ListaProyectos.aspx");
+                ProyectoLogica agregaProyecto = new ProyectoLogica();
+                bool altaExitosa = agregaProyecto.insertaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value, usuario, usuariosAsignados);
+                if (altaExitosa)
+                {
+                    Response.Redirect("~/pantallas/ListaProyectos.aspx");
+                }
             }
         }
 
         protected void actualizaProyForm_Click(object sender, EventArgs e)
         {
-
-
             DataTable dt = Session["tabla"] as DataTable;
             string usuario = Session["usuario"].ToString();
             Session["permiso"] = "A";
@@ -152,7 +149,6 @@ namespace Prodeo.pantallas
             bool altaExitosa = agregaProyecto.actualizaProyecto(nombreProyecto.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), avisoVencimientos.Value, usuario, usuariosAsignados, Session["idProyecto"].ToString());
             if (altaExitosa)
             {
-
                 Response.Redirect("~/pantallas/ListaProyectos.aspx");
             }
         }
@@ -191,7 +187,6 @@ namespace Prodeo.pantallas
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
         public void quitarUsuario_html(string email)
         {
-
             DataTable dtViejo = Session["tabla"] as DataTable;
             DataTable dtNuevo = dtViejo.Clone();
             foreach (DataRow row in dtViejo.Rows)
@@ -372,5 +367,21 @@ namespace Prodeo.pantallas
             btnVolverProyecto.Visible = true;
         }
 
+        protected void validarFechaActual(object source, ServerValidateEventArgs args)
+        {
+            AccesoLogica logica = new AccesoLogica();
+            DateTime fechaVenc = Convert.ToDateTime(fechaVencimiento.Value);
+            bool fechaValida = logica.esFechaMayorActual(fechaVenc);
+            string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
+            if (fechaValida)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+                CustomValFechActual.ErrorMessage = "La fecha ingresada debe ser mayor o igual a la actual: " + fechaActual;
+            }
+        }
     }
 }

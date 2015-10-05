@@ -58,6 +58,15 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.HtmlControls.HtmlInputText nombreProyecto;
         
         /// <summary>
+        /// ReqFieldValNombre control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValNombre;
+        
+        /// <summary>
         /// descripcion control.
         /// </summary>
         /// <remarks>
@@ -74,6 +83,33 @@ namespace Prodeo.pantallas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaVencimiento;
+        
+        /// <summary>
+        /// CustomValFechActual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValFechActual;
+        
+        /// <summary>
+        /// ReqFieldValVenc control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValVenc;
+        
+        /// <summary>
+        /// RegExpresValFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegExpresValFecha;
         
         /// <summary>
         /// avisoVencimientos control.

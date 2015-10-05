@@ -114,6 +114,7 @@
     <Content Include="js\jquery.min.js" />
     <Content Include="js\skel-layers.min.js" />
     <Content Include="js\skel.min.js" />
+    <Content Include="pantallas\Contacto.aspx" />
     <Content Include="pantallas\EliminarModulo.aspx" />
     <Content Include="pantallas\AltaTarea.aspx" />
     <Content Include="pantallas\EliminarCuenta.aspx" />
@@ -202,6 +203,13 @@
     </Compile>
     <Compile Include="index.aspx.designer.cs">
       <DependentUpon>index.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\Contacto.aspx.cs">
+      <DependentUpon>Contacto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\Contacto.aspx.designer.cs">
+      <DependentUpon>Contacto.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\EliminarModulo.aspx.cs">
       <DependentUpon>EliminarModulo.aspx</DependentUpon>
