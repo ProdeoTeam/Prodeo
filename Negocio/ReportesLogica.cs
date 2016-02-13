@@ -69,6 +69,21 @@ namespace Negocio
             return reporteSource;
         }
 
+        
+        public Datos.Reportes.DatosReportes obtenerTareasCalendario(int idProyecto)
+        {
+            Datos.Reportes.DatosReportes reporteSource = new Datos.Reportes.DatosReportes();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                reporteSource = datos.obtenerDatosTareasPorModulos(idProyecto);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return reporteSource;
+        }
 
     }
 
