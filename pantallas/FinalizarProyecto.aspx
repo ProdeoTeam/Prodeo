@@ -5,7 +5,7 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <article id="main">
-    <section class="wrapper style3 container special">
+    <section class="wrapper style3 container special"> 
 				<div id="formInterno">
 						<header class="major">
 							<h2><strong><asp:Label ID="LabelElimTareas" runat="server" Text="Label"></asp:Label></strong></h2>
