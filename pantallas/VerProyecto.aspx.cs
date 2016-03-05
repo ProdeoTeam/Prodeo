@@ -165,6 +165,7 @@ namespace Prodeo.pantallas
                 Literal divApertura = new Literal();
                 Literal divCierre = new Literal();
                 Literal linkModulo = new Literal();
+                Literal linkCalendarioTareas = new Literal();
                 Literal linkEliminarModulo = new Literal();
                 int totalTareas;
                 int tareasFinalizadas = 0;
@@ -226,10 +227,12 @@ namespace Prodeo.pantallas
                 divApertura.Text = "<div>";
                 divCierre.Text = "</div>";
                 linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Ver</a>&nbsp&nbsp";
+                linkCalendarioTareas.Text = "<a href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "'>Modificar Vencimientos</a>&nbsp&nbsp";
                 linkEliminarModulo.Text = "<a href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Eliminar</a>"; ;
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(linkModulo);
+                contenedorAccordion.Controls.Add(linkCalendarioTareas);
                 if (Session["permiso"].ToString() == "A" && grillaTareas.Rows[0].Cells[3].Text == "No posee Tareas")
                 {
                     contenedorAccordion.Controls.Add(linkEliminarModulo);

@@ -12,7 +12,11 @@ namespace Prodeo.pantallas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Session["idProyecto"]
+            if (!IsPostBack)
+            {
+                //Session["idProyecto"]
+            }
         }
 
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
@@ -24,7 +28,7 @@ namespace Prodeo.pantallas
             try
             {
                 //Crear un array con arrays de 2 posiciones: (0)->Nombre (1)->Fecha
-
+                
             }
             catch (Exception)
             {
