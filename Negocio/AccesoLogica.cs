@@ -70,6 +70,12 @@ namespace Negocio
             DateTime fechaVencProy = datos.obtieneFechaVencProyecto(idProyecto);
             return fechaVencProy;
         }
+        public DateTime obtieneIniModulo(int idModulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            DateTime fechaIniMod = datos.obtieneFechaIniModulo(idModulo);
+            return fechaIniMod;
+        }
 
         //Verifica que la fecha ingresada por el usuario es mayor o igual que la fecha actual
         public bool esFechaMayorActual(DateTime fechaVenc)

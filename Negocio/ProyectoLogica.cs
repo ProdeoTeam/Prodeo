@@ -210,14 +210,14 @@ namespace Negocio
 
         #endregion
         #region "Tareas"
-        public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
+        public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             int modulo = Convert.ToInt32(idModulo);
             int idUser = Convert.ToInt32(idUsuario);
             try
             {
-                if (datos.insertarTarea(modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos, prioridad, idUser) != 0)
+                if (datos.insertarTarea(modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, fechaInicio, proyecto, usuario, avisos, prioridad, idUser) != 0)
                 {
                     return true;
                 }
@@ -239,7 +239,7 @@ namespace Negocio
             return tarea;
 
         }
-        public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
+        public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             int modulo = Convert.ToInt32(idModulo);
@@ -247,7 +247,7 @@ namespace Negocio
             int tarea = Convert.ToInt32(idTarea);
             try
             {
-                if (datos.ActualizarTarea(tarea, modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos, prioridad, idUser) != 0)
+                if (datos.ActualizarTarea(tarea, modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, fechaInicio, proyecto, usuario, avisos, prioridad, idUser) != 0)
                 {
                     return true;
                 }

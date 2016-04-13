@@ -138,6 +138,22 @@ namespace Datos
             return fechaVenc;
         }
 
+        //Obtiene la fecha de inicio de un módulo
+        public DateTime obtieneFechaIniModulo(int idModul)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            DateTime fechaIni;
+
+            var fechaIniMod = (from m in prodeoContext.Modulos
+                                where m.idModulo == idModul
+                                select m.FechaInicio).First();
+
+            fechaIni = Convert.ToDateTime(fechaIniMod);
+
+            return fechaIni;
+        }
+
+
         //guarda los datos de registro en la BD
         public int insertarUsuario(string usuario, string pass, string email, string emailCodificado)
         {
@@ -706,7 +722,7 @@ namespace Datos
 #endregion
 
         #region "Tareas"
-        public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
+        public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
         {
             try
             {
@@ -722,6 +738,7 @@ namespace Datos
                 tareas.FechaCreacion = fechaCreacion;
                 tareas.DireccionGPS = "0.0.0.0";
                 tareas.FechaVencimiento = fechaVencimiento;
+                tareas.FechaInicio = fechaInicio;
                 tareas.AlertaPrevia = avisos;
                 tareas.Prioridad = prioridad;
                 tareas.Estado = "Pendiente";
@@ -739,7 +756,7 @@ namespace Datos
             }
 
         }
-        public int ActualizarTarea(int idTarea, int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
+        public int ActualizarTarea(int idTarea, int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
         {
             try
             {
@@ -756,6 +773,7 @@ namespace Datos
                 tareas.Comentario = comentario;
                 tareas.DireccionGPS = "0.0.0.0";
                 tareas.FechaVencimiento = fechaVencimiento;
+                tareas.FechaInicio = fechaInicio;
                 tareas.AlertaPrevia = avisos;
                 tareas.Prioridad = prioridad;
                 var partTareas = (from pt in prodeoContext.ParticipantesTareas

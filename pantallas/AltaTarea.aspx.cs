@@ -131,12 +131,12 @@ namespace Prodeo.pantallas
                 GridViewRow row = (GridViewRow)Session["datosTarea"];
                 if (Session["idTarea"] != null)
                 {
-                    altaExitosa = agregaTarea.ActualizaTarea(Session["idTarea"].ToString(), listaModulos.SelectedValue, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
+                    altaExitosa = agregaTarea.ActualizaTarea(Session["idTarea"].ToString(), listaModulos.SelectedValue, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), Convert.ToDateTime(fechaInicio.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
                     Session["idTarea"] = null;
                 }
                 else
                 {
-                    altaExitosa = agregaTarea.insertaTarea(listaModulos.SelectedValue, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
+                    altaExitosa = agregaTarea.insertaTarea(listaModulos.SelectedValue, nombreTarea.Value, descripcion.Value, comentario.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), Convert.ToDateTime(fechaInicio.Value), proyecto, usuario, avisoVencimientos.Value, listaPrioridad.Value, usuariosLista.Value);
                 }
 
                 if (altaExitosa)
@@ -170,6 +170,7 @@ namespace Prodeo.pantallas
             listaModulos.Enabled = true;
             listaPrioridad.Disabled = false;
             fechaVencimiento.Disabled = false;
+            fechaInicio.Disabled = true;
             //fechaFinalizacion.Disabled = false;
             avisoVencimientos.Disabled = false;
             usuariosLista.Disabled = false;
@@ -190,6 +191,7 @@ namespace Prodeo.pantallas
             listaModulos.Enabled = false;
             listaPrioridad.Disabled = true;
             fechaVencimiento.Disabled = true;
+            fechaInicio.Disabled = true;
             //fechaFinalizacion.Disabled = false;
             avisoVencimientos.Disabled = true;
             usuariosLista.Disabled = true;
@@ -209,6 +211,7 @@ namespace Prodeo.pantallas
             listaModulos.Enabled = false;
             listaPrioridad.Disabled = true;
             fechaVencimiento.Disabled = true;
+            fechaInicio.Disabled = true;
             //fechaFinalizacion.Disabled = true;
             avisoVencimientos.Disabled = true;
             usuariosLista.Disabled = true;
@@ -254,6 +257,25 @@ namespace Prodeo.pantallas
                 args.IsValid = false;
                 DateTime FechVencModulo = logica.obtieneVencModulo(idModulo);
                 CustomValVencValid.ErrorMessage = "La fecha de vencimiento no puede ser mayor a la del modulo: " + FechVencModulo;
+            }
+        }
+
+        protected void validarFechaIni(object source, ServerValidateEventArgs args)
+        {
+
+            AccesoLogica logica = new AccesoLogica();
+            DateTime fechaIni = Convert.ToDateTime(fechaInicio.Value);
+            int idModulo = Convert.ToInt32(listaModulos.SelectedValue);
+            bool fechaValida = logica.esFechaTareaValida(fechaIni, idModulo);
+            if (fechaValida)
+            {
+                args.IsValid = true;
+            }
+            else
+            {
+                args.IsValid = false;
+                DateTime FechIniModulo = logica.obtieneIniModulo(idModulo);
+                CustomValVencValid.ErrorMessage = "La fecha de Inicio no puede ser mayor a la del modulo: " + FechIniModulo;
             }
         }
 
