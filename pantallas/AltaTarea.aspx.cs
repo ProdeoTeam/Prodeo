@@ -89,6 +89,11 @@ namespace Prodeo.pantallas
                         {
                             listaPrioridad.Items[i].Selected = true;
                         }
+                        else
+                        {
+                            listaPrioridad.Items[i].Selected = false;
+                        }
+
                     }
                     listaPrioridad.Disabled = true;
                     for (int i = 0; i <= avisoVencimientos.Items.Count - 1; i++)
