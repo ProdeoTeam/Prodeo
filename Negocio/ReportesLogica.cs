@@ -69,14 +69,14 @@ namespace Negocio
             return reporteSource;
         }
 
-        
-        public Datos.Reportes.DatosReportes obtenerTareasCalendario(int idProyecto)
+        [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
+        public ArrayList obtenerTareasCalendario(int idProyecto, int idModulo)
         {
-            Datos.Reportes.DatosReportes reporteSource = new Datos.Reportes.DatosReportes();
+            ArrayList reporteSource = new ArrayList();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                reporteSource = datos.obtenerDatosTareasPorModulos(idProyecto);
+                reporteSource = datos.obtenerDatosTareasDeModuloParaCalendario(idProyecto,idModulo);
             }
             catch (Exception ex)
             {

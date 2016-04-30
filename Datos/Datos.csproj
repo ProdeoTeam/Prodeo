@@ -92,6 +92,7 @@
       <DependentUpon>ModelProdeo.tt</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DatosReportes.cs" />
+    <Compile Include="Reportes\ReporteCalendario.cs" />
     <Compile Include="Reportes\Series.cs" />
     <Compile Include="Tareas.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>

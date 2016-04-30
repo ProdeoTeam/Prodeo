@@ -114,13 +114,13 @@ namespace Datos
             prodeoEntities prodeoContext = new prodeoEntities();
             DateTime fechaVenc;
 
-            var fechaVencMod = (from m in prodeoContext.Modulos                         
-                         where m.idModulo == idModul
-                         select m.FechaVencimiento).First();
-            
+            var fechaVencMod = (from m in prodeoContext.Modulos
+                                where m.idModulo == idModul
+                                select m.FechaVencimiento).First();
+
             fechaVenc = Convert.ToDateTime(fechaVencMod);
-            
-            return fechaVenc;            
+
+            return fechaVenc;
         }
 
         //Obtiene la fecha de vencimiento del proyecto
@@ -130,8 +130,8 @@ namespace Datos
             DateTime fechaVenc;
 
             var fechaVencProy = (from p in prodeoContext.Proyectos
-                                where p.idProyecto == idProyecto
-                                select p.FechaVencimiento).First();
+                                 where p.idProyecto == idProyecto
+                                 select p.FechaVencimiento).First();
 
             fechaVenc = Convert.ToDateTime(fechaVencProy);
 
@@ -145,8 +145,8 @@ namespace Datos
             DateTime fechaIni;
 
             var fechaIniMod = (from m in prodeoContext.Modulos
-                                where m.idModulo == idModul
-                                select m.FechaInicio).First();
+                               where m.idModulo == idModul
+                               select m.FechaInicio).First();
 
             fechaIni = Convert.ToDateTime(fechaIniMod);
 
@@ -271,7 +271,7 @@ namespace Datos
                     int cant = (from ppro in prodeoContext.ParticipantesProyectos
                                 where ppro.idProyecto == part.idProyecto && ppro.idUsuario != idUsuario && ppro.permisosAdministrador == "A"
                                 select pp).Count();
-                    if(cant == 0)
+                    if (cant == 0)
                     {
                         List<Modulos> listaModulos = (from m in prodeoContext.Modulos
                                                       where m.idProyecto == part.idProyecto
@@ -291,7 +291,7 @@ namespace Datos
 
                     }
                 }
-                
+
 
                 Usuarios user = (from u in prodeoContext.Usuarios
                                  where u.idUsuario == idUsuario
@@ -309,9 +309,9 @@ namespace Datos
                                                           where pt.idUsuario == idUsuario && t.Baja == 0 && m.Baja == 0
                                                           select new DatosEliminarCuenta { idTarea = t.idTarea, idModulo = t.idModulo, idUsuario = pt.idUsuario, idProyecto = m.idProyecto, idUsuarioCreador = m.idUsuarioCreador }).ToList();
 
-                foreach(DatosEliminarCuenta dc in datosCuentas)
+                foreach (DatosEliminarCuenta dc in datosCuentas)
                 {
-                    if(dc.idUsuarioCreador != idUsuario)
+                    if (dc.idUsuarioCreador != idUsuario)
                     {
                         ParticipantesTareas part = (from pt in prodeoContext.ParticipantesTareas
                                                     where pt.idUsuario == idUsuario && pt.idTarea == dc.idTarea
@@ -324,7 +324,7 @@ namespace Datos
                         int cant = (from pp in prodeoContext.ParticipantesProyectos
                                     where pp.idProyecto == dc.idProyecto && pp.idUsuario != idUsuario && pp.permisosAdministrador == "A"
                                     select pp).Count();
-                        if(cant > 0)
+                        if (cant > 0)
                         {
                             ParticipantesProyectos partP = (from pp in prodeoContext.ParticipantesProyectos
                                                             where pp.idProyecto == dc.idProyecto && pp.idUsuario != idUsuario && pp.permisosAdministrador == "A"
@@ -339,9 +339,9 @@ namespace Datos
                         else
                         {
                             List<Tareas> listaTareas = (from t in prodeoContext.Tareas
-                                                  where t.idModulo == dc.idModulo
-                                                  select t).ToList();
-                            foreach(Tareas ta in listaTareas)
+                                                        where t.idModulo == dc.idModulo
+                                                        select t).ToList();
+                            foreach (Tareas ta in listaTareas)
                             {
                                 ta.Baja = 1;
                                 prodeoContext.SaveChanges();
@@ -349,15 +349,15 @@ namespace Datos
                             List<Modulos> listaModulos = (from m in prodeoContext.Modulos
                                                           where m.idProyecto == dc.idProyecto
                                                           select m).ToList();
-                            foreach(Modulos mo in listaModulos)
+                            foreach (Modulos mo in listaModulos)
                             {
                                 mo.Baja = 1;
                                 prodeoContext.SaveChanges();
                             }
 
                             Proyectos encuentraProyectos = (from p in prodeoContext.Proyectos
-                                                              where p.idProyecto == dc.idProyecto
-                                                              select p).First();
+                                                            where p.idProyecto == dc.idProyecto
+                                                            select p).First();
 
                             encuentraProyectos.Baja = 1;
                             prodeoContext.SaveChanges();
@@ -528,14 +528,14 @@ namespace Datos
                                                    select new DatosParticipantesProyecto { nombreUsuario = u.mail, permiso = p.permisosAdministrador }).ToList();
             return pp;
         }
- public int eliminarProyecto(int idProyecto)
+        public int eliminarProyecto(int idProyecto)
         {
             try
             {
                 prodeoEntities prodeoContext = new prodeoEntities();
                 Proyectos pro = (from p in prodeoContext.Proyectos
-                               where p.idProyecto == idProyecto
-                               select p).First();
+                                 where p.idProyecto == idProyecto
+                                 select p).First();
                 pro.Baja = 1;
                 prodeoContext.SaveChanges();
                 return 1;
@@ -546,50 +546,50 @@ namespace Datos
             }
         }
 
- public int finalizarProyecto(int idProyecto)
- {
-     try
-     {
-         prodeoEntities prodeoContext = new prodeoEntities();
-         int tareaSinFinalizar = 0;
-         List<Modulos> mod = (from m in prodeoContext.Modulos
-                          where m.idProyecto == idProyecto
-                          select m).ToList();
-         foreach(Modulos unModulo in mod)
-         {
-             List<Tareas> tar = (from t in prodeoContext.Tareas
-                                 where unModulo.idModulo == t.idModulo
-                                 select t).ToList();
-             foreach(Tareas unaTarea in tar)
-             {
-                 if(unaTarea.Estado != "Finalizada")
-                 {
-                     tareaSinFinalizar++;
-                 }
-             }
-         }
+        public int finalizarProyecto(int idProyecto)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+                int tareaSinFinalizar = 0;
+                List<Modulos> mod = (from m in prodeoContext.Modulos
+                                     where m.idProyecto == idProyecto
+                                     select m).ToList();
+                foreach (Modulos unModulo in mod)
+                {
+                    List<Tareas> tar = (from t in prodeoContext.Tareas
+                                        where unModulo.idModulo == t.idModulo
+                                        select t).ToList();
+                    foreach (Tareas unaTarea in tar)
+                    {
+                        if (unaTarea.Estado != "Finalizada")
+                        {
+                            tareaSinFinalizar++;
+                        }
+                    }
+                }
 
-         if(tareaSinFinalizar == 0)
-         {
-             Proyectos proy = (from p in prodeoContext.Proyectos
-                               where p.idProyecto == idProyecto
-                               select p).First();
-             proy.FechaFinalizacion = DateTime.Now;
-             prodeoContext.SaveChanges();
-             return 1;
-         }
-         else
-         {
-             return 0;
-         }
-         
-         
-     }
-     catch (Exception e)
-     {
-         return 0;
-     }
- }
+                if (tareaSinFinalizar == 0)
+                {
+                    Proyectos proy = (from p in prodeoContext.Proyectos
+                                      where p.idProyecto == idProyecto
+                                      select p).First();
+                    proy.FechaFinalizacion = DateTime.Now;
+                    prodeoContext.SaveChanges();
+                    return 1;
+                }
+                else
+                {
+                    return 0;
+                }
+
+
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
 
 
         #endregion
@@ -719,7 +719,7 @@ namespace Datos
 
         }
 
-#endregion
+        #endregion
 
         #region "Tareas"
         public int insertarTarea(int idModulo, string nombre, string descrip, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, int idUserAsignado)
@@ -996,7 +996,7 @@ namespace Datos
                          join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
                          join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
                          where m.idProyecto == idProyecto
-                         select new TareasPorModulos { estado = t.Estado, fechaVemcimiento = t.FechaVencimiento, modulo = m.Nombre });
+                         select new TareasPorModulos { estado = t.Estado, fechaVencimiento = t.FechaVencimiento, modulo = m.Nombre });
             //, fechaFinalizacion = (t.FechaFinalizacion.GetType() == System.Type.GetType("System.DateTime") ? System.Convert.ToDateTime(t.FechaFinalizacion):Convert.ToDateTime("1900-01-01"))
             estados.Add("Pendientes Vencidas");
             estados.Add("Pendientes No Vencidas");
@@ -1018,7 +1018,7 @@ namespace Datos
                     else
                     {
                         //Tarea Pendiente
-                        if (DateTime.Compare(DateTime.Now, item.fechaVemcimiento) >= 0)
+                        if (DateTime.Compare(DateTime.Now, item.fechaVencimiento) >= 0)
                         {
                             //Now es posterior al vencimiento. Esta vencida
                             tareasFinalizadas.Add(0);
@@ -1049,7 +1049,7 @@ namespace Datos
 
 
                         //Tarea Pendiente
-                        if (DateTime.Compare(DateTime.Now, item.fechaVemcimiento) >= 0)
+                        if (DateTime.Compare(DateTime.Now, item.fechaVencimiento) >= 0)
                         {
                             //Now es posterior al vencimiento. Esta vencida
                             int cantPendientesVencidas = Convert.ToInt32(tareasPendientesVencidas[indiceUsuario]);
@@ -1086,6 +1086,24 @@ namespace Datos
             reporteSource.Series.Add(reporteSerie);
 
             return reporteSource;
+        }
+
+        public ArrayList obtenerDatosTareasDeModuloParaCalendario(int idProyecto, int idModulo)
+        {
+            ArrayList tareasDelModulo = new ArrayList();
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var query = (from t in prodeoContext.Tareas
+                         join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
+                         join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
+                         where m.idProyecto == idProyecto && t.Estado != "FINALIZADA"
+                         select new Reportes.ReporteCalendario {end = t.FechaVencimiento, start = t.FechaInicio, title = t.Nombre });
+
+            foreach (Reportes.ReporteCalendario item in query)
+            {
+                tareasDelModulo.Add(item);
+            }
+
+            return tareasDelModulo;
         }
 
         public ArrayList obtenerDatosAvanceDelProyecto(int idProyecto)

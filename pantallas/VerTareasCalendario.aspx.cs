@@ -27,7 +27,7 @@ namespace Prodeo.pantallas
             Negocio.ReportesLogica neg = new Negocio.ReportesLogica();
             try
             {
-                //Crear un array con arrays de 2 posiciones: (0)->Nombre (1)->Fecha
+                //Crear un array con arrays de 2 posiciones: (0)->Nombre (1)->FechaInicio (2)->FechaVencimiento
                 
             }
             catch (Exception)

@@ -30,7 +30,7 @@
 
 
         function cargarTareas() {
-            tareas = oCalendario.obtenerTareas();
+            tareas = AjaxReportes.obtenerTareasCalendario();
             tareas = tareas.value;
             for (var i = 0; i < tareas.length; i++) {
                 var unaTarea = [];
@@ -38,6 +38,7 @@
                 unaTarea = tareas[i];
                 unEvento.title = unaTarea[0];
                 unEvento.start = unaTarea[1];
+                unEvento.end = unaTarea[2];
                 eventos.push(unEvento);
             }
         }
