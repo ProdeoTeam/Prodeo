@@ -215,7 +215,12 @@ namespace Prodeo.pantallas
                 }
                 grillaTareas.RowDataBound += new GridViewRowEventHandler(GridView_RowDataBound);
                 grillaTareas.Attributes.Add("class", "default");
-                grillaTareas.DataSource = unModulo.tablaTareas;
+
+                //Filtramos las tareas finalizadas para que no se presenten en pantalla.
+                DataView dvTareas = new DataView(unModulo.tablaTareas);
+                dvTareas.RowFilter = "Estado <> 'Finalizada'";
+                grillaTareas.DataSource = dvTareas.ToTable();
+                //grillaTareas.DataSource = unModulo.tablaTareas;
                 grillaTareas.DataBind();
                 grillaTareas.Columns[0].Visible = false;
                 grillaTareas.Columns[1].Visible = false;
@@ -227,7 +232,7 @@ namespace Prodeo.pantallas
                 divApertura.Text = "<div>";
                 divCierre.Text = "</div>";
                 linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Ver</a>&nbsp&nbsp";
-                linkCalendarioTareas.Text = "<a href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "'>Modificar Vencimientos</a>&nbsp&nbsp";
+                linkCalendarioTareas.Text = "<a href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "&idProyecto=" + idproyecto + "'>Modificar Vencimientos</a>&nbsp&nbsp";
                 linkEliminarModulo.Text = "<a href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Eliminar</a>"; ;
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);

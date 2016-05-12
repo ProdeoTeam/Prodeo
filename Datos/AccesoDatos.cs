@@ -819,7 +819,8 @@ namespace Datos
             var query = (from p in prodeoContext.Tareas
                          join t in prodeoContext.ParticipantesTareas on p.idTarea equals t.idTarea
                          join u in prodeoContext.Usuarios on t.idUsuario equals u.idUsuario
-                         where p.idModulo == modulo && p.FechaFinalizacion == null && p.Baja == 0
+                         where p.idModulo == modulo //&& p.FechaFinalizacion == null 
+                         && p.Baja == 0
                          select new DatosTarea { IdTarea = p.idTarea, IdModulo = p.idModulo, Nombre = p.Nombre, Descripcion = p.Descripcion, Comentario = p.Comentario, Prioridad = p.Prioridad, Avisos = p.AlertaPrevia, Asignada = u.nombre, FechaLimite = p.FechaVencimiento, Estado = p.Estado }).OrderBy(o => o.FechaLimite).ToList();
             return query;
         }

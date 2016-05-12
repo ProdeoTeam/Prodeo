@@ -6,7 +6,14 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-
+    <link href="../Styles/fullcalendar.css" rel="stylesheet" />
+    <link href="../Styles/fullcalendar.print.css" rel="stylesheet" />
+    <script type="text/javascript" src='../js/moment.min.js'></script>
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="../js/jquery-ui.js"></script>
+    
+    <script type="text/javascript"  src="../js/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="../js/lang-all.js"></script>
     <script type="text/javascript">
         var tareas = [];
         var eventos = [];
@@ -30,15 +37,13 @@
 
 
         function cargarTareas() {
-            tareas = AjaxReportes.obtenerTareasCalendario();
+            var idModulo = 15;
+            var idProy = 26;
+            tareas = AjaxReportes.obtenerTareasCalendario(idProy,idModulo);
             tareas = tareas.value;
             for (var i = 0; i < tareas.length; i++) {
-                var unaTarea = [];
                 var unEvento = {};
-                unaTarea = tareas[i];
-                unEvento.title = unaTarea[0];
-                unEvento.start = unaTarea[1];
-                unEvento.end = unaTarea[2];
+                unEvento = tareas[i];
                 eventos.push(unEvento);
             }
         }

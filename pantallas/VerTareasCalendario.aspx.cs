@@ -5,7 +5,9 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Collections;
-
+using AjaxPro;
+using Negocio;
+using Datos;
 namespace Prodeo.pantallas
 {
     public partial class VerTareasCalendario : System.Web.UI.Page
@@ -15,6 +17,9 @@ namespace Prodeo.pantallas
             //Session["idProyecto"]
             if (!IsPostBack)
             {
+                int idProyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
+                int idModulo = Convert.ToInt32(Request.QueryString["idModulo"]);
+                Utility.RegisterTypeForAjax(typeof(ReportesLogica));
                 //Session["idProyecto"]
             }
         }
