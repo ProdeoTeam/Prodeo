@@ -131,12 +131,12 @@ namespace Negocio
             return mod;
         }
 
-        public bool insertaModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario)
+        public bool insertaModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaInicio, DateTime fechaVencimiento, int proyecto, string usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                if (datos.insertarModulo(nombre, descrip, fechaCreacion, fechaVencimiento, proyecto, usuario) != 0)
+                if (datos.insertarModulo(nombre, descrip, fechaCreacion, fechaInicio, fechaVencimiento, proyecto, usuario) != 0)
                 {
                     return true;
                 }

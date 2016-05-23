@@ -72,7 +72,7 @@ namespace Prodeo
                 ProyectoLogica agregaModulo = new ProyectoLogica();
                 if (Session["idModulo"].ToString() == "0")
                 {
-                    altaExitosa = agregaModulo.insertaModulo(nombreModulo.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario);
+                    altaExitosa = agregaModulo.insertaModulo(nombreModulo.Value, descripcion.Value, DateTime.Now, Convert.ToDateTime(fechaInicio.Value), Convert.ToDateTime(fechaVencimiento.Value), proyecto, usuario);
                 }
                 else
                 {

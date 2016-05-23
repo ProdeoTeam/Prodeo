@@ -66,7 +66,7 @@
                                             <label>Fecha Inicio</label>                                                                                       
                                             <%--<asp:TextBox ID="fechaVencimiento" runat="server" ></asp:TextBox>--%>
                                             <input type="date" name="fechaInicio" id="fechaInicio" runat="server" placeholder="DD/MM/AAAA">                                            
-                                            <!--<asp:CustomValidator ID="CustomValidator1" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupTareas" runat="server" OnServerValidate="validarFechaVenc"></asp:CustomValidator>
+                                            <!--<asp:CustomValidator ID="CustomValFechActual" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupTareas" runat="server" OnServerValidate="validarFechaActual"></asp:CustomValidator>
                                             <asp:CustomValidator ID="CustomValidator2" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupTareas" runat="server" OnServerValidate="validarFechaActual"></asp:CustomValidator>
                                             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupTareas" runat="server" ErrorMessage="Debe ingresar una fecha de inicio"></asp:RequiredFieldValidator>
                                             <asp:RegularExpressionValidator ID="RegularExpressionValidator1" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupTareas" runat="server" ErrorMessage="Formato de fecha inv&aacute;lido o fecha incorrecta." 
@@ -83,11 +83,7 @@
                                             <label>Fecha Vencimiento</label>                                                                                       
                                             <%--<asp:TextBox ID="fechaVencimiento" runat="server" ></asp:TextBox>--%>
                                             <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server" placeholder="DD/MM/AAAA">                                            
-                                            <asp:CustomValidator ID="CustomValVencValid" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupTareas" runat="server" OnServerValidate="validarFechaVenc"></asp:CustomValidator>
-                                            <asp:CustomValidator ID="CustomValFechActual" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupTareas" runat="server" OnServerValidate="validarFechaActual"></asp:CustomValidator>
-                                            <asp:RequiredFieldValidator ID="ReqFieldValVenc" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupTareas" runat="server" ErrorMessage="Debe ingresar una fecha de vencimiento"></asp:RequiredFieldValidator>
-                                            <asp:RegularExpressionValidator ID="RegExpresValFecha" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupTareas" runat="server" ErrorMessage="Formato de fecha inv&aacute;lido o fecha incorrecta." 
-                                                ValidationExpression="^(?:(?:0?[1-9]|1\d|2[0-8])(\/|-)(?:0?[1-9]|1[0-2]))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(?:(?:31(\/|-)(?:0?[13578]|1[02]))|(?:(?:29|30)(\/|-)(?:0?[1,3-9]|1[0-2])))(\/|-)(?:[1-9]\d\d\d|\d[1-9]\d\d|\d\d[1-9]\d|\d\d\d[1-9])$|^(29(\/|-)0?2)(\/|-)(?:(?:0[48]00|[13579][26]00|[2468][048]00)|(?:\d\d)?(?:0[48]|[2468][048]|[13579][26]))$"></asp:RegularExpressionValidator>                            
+                                            <%--<asp:CustomValidator ID="CustomValVencValid" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupTareas" runat="server" OnServerValidate="validarFechaVenc"></asp:CustomValidator>--%>                            
 										</div>
 										<%--<div class="6u">
                                             Fecha Finalizacion

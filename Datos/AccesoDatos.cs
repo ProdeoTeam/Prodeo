@@ -645,7 +645,7 @@ namespace Datos
                            select m).First();
             return mod;
         }
-        public int insertarModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario)
+        public int insertarModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaInicio, DateTime fechaVencimiento, int proyecto, string usuario)
         {
             try
             {
@@ -658,6 +658,7 @@ namespace Datos
                 modulos.Nombre = nombre;
                 modulos.Descripcion = descrip;
                 modulos.FechaCreacion = fechaCreacion;
+                modulos.FechaInicio = fechaInicio;
                 modulos.FechaVencimiento = fechaVencimiento;
                 modulos.idUsuarioCreador = idUsuario;
                 prodeoContext.Modulos.Add(modulos);
