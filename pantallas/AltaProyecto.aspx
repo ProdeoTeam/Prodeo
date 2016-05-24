@@ -133,9 +133,7 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
                                                     </tr>
                                                 </table>
 										</div>
-									</div>
-                                        
-									<div class="row">
+                                            <div class="row">
 										<div class="12u">
 											<ul class="buttons">
 												<li><a class="button special" id="btnAltaProyecto" runat="server" onserverclick="altaProyForm_Click" ValidationGroup = "valGroupProyectos">Alta</a></li>
@@ -145,6 +143,9 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
 											</ul>
 										</div>
 									</div>
+									</div>
+                                        
+									
                     </div>
                     </section>
         </article>

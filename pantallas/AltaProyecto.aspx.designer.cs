@@ -94,24 +94,6 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.WebControls.CustomValidator CustomValFechActual;
         
         /// <summary>
-        /// ReqFieldValVenc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValVenc;
-        
-        /// <summary>
-        /// RegExpresValFecha control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegExpresValFecha;
-        
-        /// <summary>
         /// avisoVencimientos control.
         /// </summary>
         /// <remarks>

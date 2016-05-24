@@ -114,6 +114,8 @@ namespace Prodeo.pantallas
                     usuariosLista.Disabled = true;
                     fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[9].Text));
                     fechaVencimiento.Disabled = true;
+                    fechaInicio.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[10].Text));
+                    fechaInicio.Disabled = true;
                     //if (row.Cells[10].Text != "&nbsp;")
                     //{
                     //    fechaFinalizacion.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[10].Text));
@@ -261,7 +263,7 @@ namespace Prodeo.pantallas
             {
                 args.IsValid = false;
                 DateTime FechVencModulo = logica.obtieneVencModulo(idModulo);
-                CustomValVencValid.ErrorMessage = "La fecha de vencimiento no puede ser mayor a la del modulo: " + FechVencModulo;
+                CustomValVencValid.ErrorMessage = "La fecha de vencimiento no puede ser mayor a la del modulo: " + FechVencModulo.ToShortDateString();
             }
         }
 
@@ -271,7 +273,7 @@ namespace Prodeo.pantallas
             AccesoLogica logica = new AccesoLogica();
             DateTime fechaIni = Convert.ToDateTime(fechaInicio.Value);
             int idModulo = Convert.ToInt32(listaModulos.SelectedValue);
-            bool fechaValida = logica.esFechaTareaValida(fechaIni, idModulo);
+            bool fechaValida = logica.esFechaInicioTareaValida(fechaIni, idModulo);
             if (fechaValida)
             {
                 args.IsValid = true;
@@ -280,25 +282,25 @@ namespace Prodeo.pantallas
             {
                 args.IsValid = false;
                 DateTime FechIniModulo = logica.obtieneIniModulo(idModulo);
-                CustomValVencValid.ErrorMessage = "La fecha de Inicio no puede ser mayor a la del modulo: " + FechIniModulo;
+                CustomValIniValid.ErrorMessage = "La fecha de Inicio no puede ser menor a la del modulo: " + FechIniModulo.ToShortDateString();
             }
         }
 
-        protected void validarFechaActual(object source, ServerValidateEventArgs args)
-        {
-            AccesoLogica logica = new AccesoLogica();
-            DateTime fechaVenc = Convert.ToDateTime(fechaVencimiento.Value);            
-            bool fechaValida = logica.esFechaMayorActual(fechaVenc);
-            string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
-            if (fechaValida)
-            {
-                args.IsValid = true;
-            }
-            else
-            {
-                args.IsValid = false;
-                CustomValFechActual.ErrorMessage = "La fecha ingresada debe ser mayor o igual a la actual: " + fechaActual;
-            }
-        }
+        //protected void validarFechaActual(object source, ServerValidateEventArgs args)
+        //{
+        //    AccesoLogica logica = new AccesoLogica();
+        //    DateTime fechaVenc = Convert.ToDateTime(fechaVencimiento.Value);            
+        //    bool fechaValida = logica.esFechaMayorActual(fechaVenc);
+        //    string fechaActual = DateTime.Now.ToString("dd/MM/yyyy");
+        //    if (fechaValida)
+        //    {
+        //        args.IsValid = true;
+        //    }
+        //    else
+        //    {
+        //        args.IsValid = false;
+        //        //CustomValFechActual.ErrorMessage = "La fecha ingresada debe ser mayor o igual a la actual: " + fechaActual;
+        //    }
+        //}
     }
 }

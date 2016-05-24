@@ -312,18 +312,22 @@ namespace Negocio
                 foreach (DatosTarea lis in lista)
                 {
                     int result = DateTime.Compare(lis.FechaLimite, DateTime.Now);
-                    if (result > 0)
+                    if(lis.Estado != "Finalizada")
                     {
-                        lis.Estado = "Pendiente";
+                        if (result > 0)
+                        {
+                            lis.Estado = "Pendiente";
+                        }
+                        else if (result == 0)
+                        {
+                            lis.Estado = "Pendiente";
+                        }
+                        else
+                        {
+                            lis.Estado = "Vencido";
+                        }
                     }
-                    else if (result == 0)
-                    {
-                        lis.Estado = "Pendiente";
-                    }
-                    else
-                    {
-                        lis.Estado = "Vencido";
-                    }
+                    
                 }
             }
             return lista;

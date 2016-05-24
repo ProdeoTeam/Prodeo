@@ -55,6 +55,7 @@ namespace Prodeo
                     descripcion.Value = mod.Descripcion;
                     descripcion.Disabled = true;
                     fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(mod.FechaVencimiento));
+                    fechaInicio.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(mod.FechaInicio));
                     fechaVencimiento.Disabled = true;
                 }
                 

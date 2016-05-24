@@ -63,8 +63,8 @@ namespace Prodeo.pantallas
             dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Fecha Limite");
             dtTareas.Columns.Add(unaColumna);
-            //unaColumna = new DataColumn("Fecha Vencimiento");
-            //dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Fecha Inicio");
+            dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Estado");
             dtTareas.Columns.Add(unaColumna);
             List<DatosTarea> listaTareas = new List<DatosTarea>();
@@ -117,6 +117,7 @@ namespace Prodeo.pantallas
                          dr.SetField("Avisos", tarea.Avisos);
                          dr.SetField("Asignada a", tarea.Asignada);
                          dr.SetField("Fecha Limite", tarea.FechaLimite);
+                         dr.SetField("Fecha Inicio", tarea.FechaInicio);
                          //dr.SetField("Fecha Vencimiento", tarea.FechaFinalizacion);
                          dr.SetField("Estado", tarea.Estado);
                         dtTareas.Rows.Add(dr);
@@ -226,6 +227,7 @@ namespace Prodeo.pantallas
                 grillaTareas.Columns[1].Visible = false;
                 grillaTareas.Columns[4].Visible = false;
                 grillaTareas.Columns[6].Visible = false;
+                grillaTareas.Columns[9].Visible = false;
 
                 //Creamos un div que va a ser el que tenga el contenido de lo que se va a mostrar al desplegar el accordion.
                 //Dentro de este dev agregamos la grilla de tareas

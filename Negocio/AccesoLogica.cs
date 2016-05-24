@@ -30,7 +30,7 @@ namespace Negocio
             bool fechaVencValida;
 
             //El usuario no puede poner en la tarea una fecha de vencimiento mayor a la del módulo
-            if (fechaVenc < fechavencMod)
+            if (fechaVenc <= fechavencMod)
             {
                 return fechaVencValida = true;
             }
@@ -38,6 +38,23 @@ namespace Negocio
             {
                 return fechaVencValida = false;
             }                        
+        }
+
+        public bool esFechaInicioTareaValida(DateTime fechaIni, int idModulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            DateTime fechaIniMod = datos.obtieneFechaIniModulo(idModulo);
+            bool fechaIniValida;
+
+            //El usuario no puede poner en la tarea una fecha de vencimiento mayor a la del módulo
+            if (fechaIni >= fechaIniMod)
+            {
+                return fechaIniValida = true;
+            }
+            else
+            {
+                return fechaIniValida = false;
+            }
         }
 
         public bool esFechaModulValida(DateTime fechaVenc, int idProyecto)
