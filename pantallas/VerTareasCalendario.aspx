@@ -6,13 +6,14 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <link href="../Styles/fullcalendar.css" rel="stylesheet" />
-    <link href="../Styles/fullcalendar.print.css" rel="stylesheet" />
+    <meta charset='utf-8' />
+    <link rel='stylesheet' href='../Styles/jquery-ui.min.css' />
+    <link href='../Styles/fullcalendar.css' rel='stylesheet' />
+    <link href='../Styles/fullcalendar.print.css' rel='stylesheet' media='print' />
+    <link href="" rel="stylesheet" />
     <script type="text/javascript" src='../js/moment.min.js'></script>
     <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
-    <script type="text/javascript" src="../js/jquery-ui.js"></script>
-    
-    <script type="text/javascript"  src="../js/fullcalendar.min.js"></script>
+    <script type="text/javascript" src="../js/fullcalendar.min.js"></script>
     <script type="text/javascript" src="../js/lang-all.js"></script>
     <script type="text/javascript">
         var tareas = [];
@@ -52,7 +53,7 @@
         function cargarTareas() {
             var idModulo = getUrlParameter('idModulo'); //1015
             var idProy = getUrlParameter('idProyecto'); //1026
-            tareas = AjaxReportes.obtenerTareasCalendario(idProy,idModulo);
+            tareas = AjaxReportes.obtenerTareasCalendario(idProy, idModulo);
             tareas = tareas.value;
             for (var i = 0; i < tareas.length; i++) {
                 var unEvento = {};
@@ -64,6 +65,7 @@
             cargarTareas();
             obtenerFechaHoy();
             $('#calendar').fullCalendar({
+                theme: true,
                 defaultDate: hoy,
                 lang: 'es',
                 editable: false,
@@ -73,11 +75,24 @@
 
         });
     </script>
+    <style>
+        body {
+            margin: 40px 10px;
+            padding: 0;
+            font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+            font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
     <form id="form1" runat="server">
         <div>
-            <div id="calendar" style="background-color: white" runat="server">
+            <div id="calendar" runat="server">
             </div>
 
         </div>
