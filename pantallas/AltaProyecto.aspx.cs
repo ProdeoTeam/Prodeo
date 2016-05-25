@@ -98,6 +98,10 @@ namespace Prodeo.pantallas
                         {
                             avisoVencimientos.Items[i].Selected = true;
                         }
+                        else
+                        {
+                            avisoVencimientos.Items[i].Selected = false;
+                        }
                     }
                     fechaVencimiento.Disabled = true;
                     txtUsuarioAjax.Disabled = true;

@@ -81,6 +81,10 @@ namespace Prodeo.pantallas
                             {
                                 listaModulos.Items[i].Selected = true;
                             }
+                            else
+                            {
+                                listaModulos.Items[i].Selected = false;
+                            }
                         }
                     listaModulos.Enabled = false;
                     for (int i = 0; i <= listaPrioridad.Items.Count - 1; i++)
@@ -102,6 +106,10 @@ namespace Prodeo.pantallas
                         {
                             avisoVencimientos.Items[i].Selected = true;
                         }
+                        else
+                        {
+                            avisoVencimientos.Items[i].Selected = false;
+                        }
                     }
                     avisoVencimientos.Disabled = true;
                     for (int i = 0; i <= usuariosLista.Items.Count - 1; i++)
@@ -109,6 +117,10 @@ namespace Prodeo.pantallas
                         if (usuariosLista.Items[i].Text == row.Cells[8].Text)
                         {
                             usuariosLista.Items[i].Selected = true;
+                        }
+                        else
+                        {
+                            usuariosLista.Items[i].Selected = false;
                         }
                     }
                     usuariosLista.Disabled = true;
