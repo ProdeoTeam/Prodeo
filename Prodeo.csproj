@@ -84,7 +84,9 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="images\quitar.jpg" />
+    <Content Include="js\fullcalendar.min.js" />
     <Content Include="js\jquery-ui.js" />
+    <Content Include="js\lang-all.js" />
     <Content Include="pantallas\AltaModulo.aspx" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="images\banner.jpg" />
@@ -118,9 +120,9 @@
     <Content Include="pantallas\EliminarModulo.aspx" />
     <Content Include="pantallas\AltaTarea.aspx" />
     <Content Include="pantallas\EliminarCuenta.aspx" />
-    <Content Include="pantallas\FinalizarProyecto.aspx" />
     <Content Include="pantallas\EliminarProyecto.aspx" />
     <Content Include="pantallas\EliminarTarea.aspx" />
+    <Content Include="pantallas\FinalizarProyecto.aspx" />
     <Content Include="pantallas\Registro.aspx" />
     <Content Include="pantallas\ProyectoPrincipal.aspx" />
     <Content Include="pantallas\ListaProyectos.aspx" />
@@ -129,9 +131,12 @@
     <Content Include="pantallas\seleccion.aspx" />
     <Content Include="pantallas\VerificarEmail.aspx" />
     <Content Include="pantallas\VerProyecto.aspx" />
+    <Content Include="pantallas\VerTareasCalendario.aspx" />
     <Content Include="Styles\btn-googleStyle.css" />
     <Content Include="Styles\font-awesome.min.css" />
     <Content Include="Styles\formulariosInternos.css" />
+    <Content Include="Styles\fullcalendar.css" />
+    <Content Include="Styles\fullcalendar.print.css" />
     <Content Include="Styles\modal.css" />
     <Content Include="Styles\pict-textbox.css" />
     <Content Include="Styles\responsiveform.css" />
@@ -233,13 +238,6 @@
     <Compile Include="pantallas\EliminarCuenta.aspx.designer.cs">
       <DependentUpon>EliminarCuenta.aspx</DependentUpon>
     </Compile>
-    <Compile Include="pantallas\FinalizarProyecto.aspx.cs">
-      <DependentUpon>FinalizarProyecto.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pantallas\FinalizarProyecto.aspx.designer.cs">
-      <DependentUpon>FinalizarProyecto.aspx</DependentUpon>
-    </Compile>
     <Compile Include="pantallas\EliminarProyecto.aspx.cs">
       <DependentUpon>EliminarProyecto.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -253,6 +251,13 @@
     </Compile>
     <Compile Include="pantallas\EliminarTarea.aspx.designer.cs">
       <DependentUpon>EliminarTarea.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\FinalizarProyecto.aspx.cs">
+      <DependentUpon>FinalizarProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\FinalizarProyecto.aspx.designer.cs">
+      <DependentUpon>FinalizarProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>
@@ -309,6 +314,13 @@
     </Compile>
     <Compile Include="pantallas\VerProyecto.aspx.designer.cs">
       <DependentUpon>VerProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\VerTareasCalendario.aspx.cs">
+      <DependentUpon>VerTareasCalendario.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\VerTareasCalendario.aspx.designer.cs">
+      <DependentUpon>VerTareasCalendario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">

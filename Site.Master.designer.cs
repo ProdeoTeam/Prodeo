@@ -103,6 +103,15 @@ namespace Prodeo {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor userLogueado;
         
         /// <summary>
+        /// linkMisProy control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkMisProy;
+        
+        /// <summary>
         /// linkEditUser control.
         /// </summary>
         /// <remarks>

@@ -63,8 +63,8 @@ namespace Prodeo.pantallas
             dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Fecha Limite");
             dtTareas.Columns.Add(unaColumna);
-            //unaColumna = new DataColumn("Fecha Vencimiento");
-            //dtTareas.Columns.Add(unaColumna);
+            unaColumna = new DataColumn("Fecha Inicio");
+            dtTareas.Columns.Add(unaColumna);
             unaColumna = new DataColumn("Estado");
             dtTareas.Columns.Add(unaColumna);
             List<DatosTarea> listaTareas = new List<DatosTarea>();
@@ -117,6 +117,7 @@ namespace Prodeo.pantallas
                          dr.SetField("Avisos", tarea.Avisos);
                          dr.SetField("Asignada a", tarea.Asignada);
                          dr.SetField("Fecha Limite", tarea.FechaLimite);
+                         dr.SetField("Fecha Inicio", tarea.FechaInicio);
                          //dr.SetField("Fecha Vencimiento", tarea.FechaFinalizacion);
                          dr.SetField("Estado", tarea.Estado);
                         dtTareas.Rows.Add(dr);
@@ -165,6 +166,7 @@ namespace Prodeo.pantallas
                 Literal divApertura = new Literal();
                 Literal divCierre = new Literal();
                 Literal linkModulo = new Literal();
+                Literal linkCalendarioTareas = new Literal();
                 Literal linkEliminarModulo = new Literal();
                 int totalTareas;
                 int tareasFinalizadas = 0;
@@ -185,11 +187,11 @@ namespace Prodeo.pantallas
 
                 h3.Text += "<div style='width:";
                 h3.Text += anchoBarraProgreso.ToString() + "px; height:20px;position:absolute;margin-left:75%;margin-top:-25px; border-style:solid; border-color:black; border-width:2px;'>";
-                h3.Text += "<div style='background-color:#12587B;width:'";
+                h3.Text += "<div style='background-color:#12587B;width:";
                 h3.Text += Math.Round(porcentajeAvance);
                 h3.Text += "%;";
                 
-                h3.Text += "height:16px;>";
+                h3.Text += "height:16px;'>";
                 h3.Text += "</div>";
                 h3.Text += "</h3>";
                 contenedorAccordion.Controls.Add(h3);
@@ -214,23 +216,31 @@ namespace Prodeo.pantallas
                 }
                 grillaTareas.RowDataBound += new GridViewRowEventHandler(GridView_RowDataBound);
                 grillaTareas.Attributes.Add("class", "default");
-                grillaTareas.DataSource = unModulo.tablaTareas;
+
+                //Filtramos las tareas finalizadas para que no se presenten en pantalla.
+                DataView dvTareas = new DataView(unModulo.tablaTareas);
+                dvTareas.RowFilter = "Estado <> 'Finalizada'";
+                grillaTareas.DataSource = dvTareas.ToTable();
+                //grillaTareas.DataSource = unModulo.tablaTareas;
                 grillaTareas.DataBind();
                 grillaTareas.Columns[0].Visible = false;
                 grillaTareas.Columns[1].Visible = false;
                 grillaTareas.Columns[4].Visible = false;
                 grillaTareas.Columns[6].Visible = false;
+                grillaTareas.Columns[9].Visible = false;
 
                 //Creamos un div que va a ser el que tenga el contenido de lo que se va a mostrar al desplegar el accordion.
                 //Dentro de este dev agregamos la grilla de tareas
                 divApertura.Text = "<div>";
                 divCierre.Text = "</div>";
                 linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Ver</a>&nbsp&nbsp";
+                linkCalendarioTareas.Text = "<a href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "&idProyecto=" + idproyecto + "'>Modificar Vencimientos</a>&nbsp&nbsp";
                 linkEliminarModulo.Text = "<a href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Eliminar</a>"; ;
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(linkModulo);
-                if (Session["permiso"].ToString() == "A" && grillaTareas.Rows[0].Cells[3].Text == "No posee Tareas")
+                contenedorAccordion.Controls.Add(linkCalendarioTareas);
+                if (Session["permiso"].ToString() == "A" && grillaTareas.Rows.Count == 0)
                 {
                     contenedorAccordion.Controls.Add(linkEliminarModulo);
                 }

@@ -4,209 +4,211 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="prodeoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Mails">
-          <Key>
-            <PropertyRef Name="idMail" />
-          </Key>
-          <Property Name="idMail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idProyecto" Type="int" />
-          <Property Name="idModulo" Type="int" />
-          <Property Name="idTarea" Type="int" />
-          <Property Name="asunto" Type="nvarchar" MaxLength="1" />
-          <Property Name="detalle" Type="nvarchar" MaxLength="1" />
-          <Property Name="destinatarios" Type="varchar" MaxLength="1" />
-          <Property Name="enviado" Type="char" MaxLength="1" />
-        </EntityType>
-        <EntityType Name="Modulos">
-          <Key>
-            <PropertyRef Name="idModulo" />
-          </Key>
-          <Property Name="idModulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idProyecto" Type="int" Nullable="false" />
-          <Property Name="idUsuarioCreador" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
-          <Property Name="FechaFinalizacion" Type="datetime" />
-          <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
-          <Property Name="Baja" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Participantes">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idUsuario" Type="int" Nullable="false" />
-          <Property Name="PermisosAdministrador" Type="char" MaxLength="1" Nullable="false" />
-        </EntityType>
-        <EntityType Name="ParticipantesProyectos">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idUsuario" Type="int" Nullable="false" />
-          <Property Name="idProyecto" Type="int" Nullable="false" />
-          <Property Name="permisosAdministrador" Type="char" MaxLength="1" />
-        </EntityType>
-        <EntityType Name="ParticipantesTareas">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idUsuario" Type="int" Nullable="false" />
-          <Property Name="idTarea" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Proyectos">
-          <Key>
-            <PropertyRef Name="idProyecto" />
-          </Key>
-          <Property Name="idProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
-          <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
-          <Property Name="FechaFinalizacion" Type="datetime" />
-          <Property Name="AlertaPrevia" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="Baja" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Tareas">
-          <Key>
-            <PropertyRef Name="idTarea" />
-          </Key>
-          <Property Name="idTarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="idModulo" Type="int" Nullable="false" />
-          <Property Name="Nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Descripcion" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
-          <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
-          <Property Name="FechaFinalizacion" Type="datetime" />
-          <Property Name="AlertaPrevia" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="DireccionGPS" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="Prioridad" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="Comentario" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Estado" Type="nvarchar" MaxLength="50" />
-          <Property Name="Tiempo" Type="float" />
-          <Property Name="Baja" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Usuarios">
-          <Key>
-            <PropertyRef Name="idUsuario" />
-          </Key>
-          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nombre" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="mail" Type="nvarchar" MaxLength="100" Nullable="false" />
-          <Property Name="password" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="usuarioActivo" Type="bit" Nullable="false" />
-          <Property Name="codigoVerificacion" Type="nvarchar" MaxLength="100" Nullable="false" />
-        </EntityType>
-        <Association Name="FK_Modulos_Proyectos">
-          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
-          <End Role="Modulos" Type="Self.Modulos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proyectos">
-              <PropertyRef Name="idProyecto" />
-            </Principal>
-            <Dependent Role="Modulos">
-              <PropertyRef Name="idProyecto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Modulos_Usuarios">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="Modulos" Type="Self.Modulos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="Modulos">
-              <PropertyRef Name="idUsuarioCreador" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_participantes_usuarios">
-          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="1" />
-          <End Role="Participantes" Type="Self.Participantes" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Usuarios">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="Participantes">
-              <PropertyRef Name="idUsuario" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ParticipantesProyectos_Proyectos">
-          <End Role="Proyectos" Type="Self.Proyectos" Multiplicity="1" />
-          <End Role="ParticipantesProyectos" Type="Self.ParticipantesProyectos" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Proyectos">
-              <PropertyRef Name="idProyecto" />
-            </Principal>
-            <Dependent Role="ParticipantesProyectos">
-              <PropertyRef Name="idProyecto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ParticipantesTareas_Tareas">
-          <End Role="Tareas" Type="Self.Tareas" Multiplicity="1" />
-          <End Role="ParticipantesTareas" Type="Self.ParticipantesTareas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tareas">
-              <PropertyRef Name="idTarea" />
-            </Principal>
-            <Dependent Role="ParticipantesTareas">
-              <PropertyRef Name="idTarea" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tareas_Modulos">
-          <End Role="Modulos" Type="Self.Modulos" Multiplicity="1" />
-          <End Role="Tareas" Type="Self.Tareas" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Modulos">
-              <PropertyRef Name="idModulo" />
-            </Principal>
-            <Dependent Role="Tareas">
-              <PropertyRef Name="idModulo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="prodeoModelStoreContainer">
-          <EntitySet Name="Mails" EntityType="Self.Mails" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Modulos" EntityType="Self.Modulos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Participantes" EntityType="Self.Participantes" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ParticipantesProyectos" EntityType="Self.ParticipantesProyectos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ParticipantesTareas" EntityType="Self.ParticipantesTareas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Proyectos" EntityType="Self.Proyectos" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Tareas" EntityType="Self.Tareas" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Modulos_Proyectos" Association="Self.FK_Modulos_Proyectos">
-            <End Role="Proyectos" EntitySet="Proyectos" />
-            <End Role="Modulos" EntitySet="Modulos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Modulos_Usuarios" Association="Self.FK_Modulos_Usuarios">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Modulos" EntitySet="Modulos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_participantes_usuarios" Association="Self.FK_participantes_usuarios">
-            <End Role="Usuarios" EntitySet="Usuarios" />
-            <End Role="Participantes" EntitySet="Participantes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ParticipantesProyectos_Proyectos" Association="Self.FK_ParticipantesProyectos_Proyectos">
-            <End Role="Proyectos" EntitySet="Proyectos" />
-            <End Role="ParticipantesProyectos" EntitySet="ParticipantesProyectos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ParticipantesTareas_Tareas" Association="Self.FK_ParticipantesTareas_Tareas">
-            <End Role="Tareas" EntitySet="Tareas" />
-            <End Role="ParticipantesTareas" EntitySet="ParticipantesTareas" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tareas_Modulos" Association="Self.FK_Tareas_Modulos">
-            <End Role="Modulos" EntitySet="Modulos" />
-            <End Role="Tareas" EntitySet="Tareas" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema></edmx:StorageModels>
+    <Schema Namespace="prodeoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="prodeoModelStoreContainer">
+    <EntitySet Name="Mails" EntityType="prodeoModel.Store.Mails" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Modulos" EntityType="prodeoModel.Store.Modulos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Participantes" EntityType="prodeoModel.Store.Participantes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ParticipantesProyectos" EntityType="prodeoModel.Store.ParticipantesProyectos" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ParticipantesTareas" EntityType="prodeoModel.Store.ParticipantesTareas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Tareas" EntityType="prodeoModel.Store.Tareas" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Usuarios" EntityType="prodeoModel.Store.Usuarios" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Proyectos" EntityType="prodeoModel.Store.Proyectos" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Modulos_Usuarios" Association="prodeoModel.Store.FK_Modulos_Usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Modulos" EntitySet="Modulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Tareas_Modulos" Association="prodeoModel.Store.FK_Tareas_Modulos">
+      <End Role="Modulos" EntitySet="Modulos" />
+      <End Role="Tareas" EntitySet="Tareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_participantes_usuarios" Association="prodeoModel.Store.FK_participantes_usuarios">
+      <End Role="Usuarios" EntitySet="Usuarios" />
+      <End Role="Participantes" EntitySet="Participantes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParticipantesTareas_Tareas" Association="prodeoModel.Store.FK_ParticipantesTareas_Tareas">
+      <End Role="Tareas" EntitySet="Tareas" />
+      <End Role="ParticipantesTareas" EntitySet="ParticipantesTareas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Modulos_Proyectos" Association="prodeoModel.Store.FK_Modulos_Proyectos">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="Modulos" EntitySet="Modulos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ParticipantesProyectos_Proyectos" Association="prodeoModel.Store.FK_ParticipantesProyectos_Proyectos">
+      <End Role="Proyectos" EntitySet="Proyectos" />
+      <End Role="ParticipantesProyectos" EntitySet="ParticipantesProyectos" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Mails">
+    <Key>
+      <PropertyRef Name="idMail" />
+    </Key>
+    <Property Name="idMail" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idProyecto" Type="int" Nullable="true" />
+    <Property Name="idModulo" Type="int" Nullable="true" />
+    <Property Name="idTarea" Type="int" Nullable="true" />
+    <Property Name="asunto" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="detalle" Type="nvarchar" Nullable="true" MaxLength="1" />
+    <Property Name="destinatarios" Type="varchar" Nullable="true" MaxLength="1" />
+    <Property Name="enviado" Type="char" Nullable="true" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="Modulos">
+    <Key>
+      <PropertyRef Name="idModulo" />
+    </Key>
+    <Property Name="idModulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idProyecto" Type="int" Nullable="false" />
+    <Property Name="idUsuarioCreador" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="FechaFinalizacion" Type="datetime" Nullable="true" />
+    <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+    <Property Name="Baja" Type="int" Nullable="false" />
+    <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Participantes">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="PermisosAdministrador" Type="char" Nullable="false" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="ParticipantesProyectos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="idProyecto" Type="int" Nullable="false" />
+    <Property Name="permisosAdministrador" Type="char" Nullable="true" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="ParticipantesTareas">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idUsuario" Type="int" Nullable="false" />
+    <Property Name="idTarea" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tareas">
+    <Key>
+      <PropertyRef Name="idTarea" />
+    </Key>
+    <Property Name="idTarea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idModulo" Type="int" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+    <Property Name="FechaFinalizacion" Type="datetime" Nullable="true" />
+    <Property Name="AlertaPrevia" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="DireccionGPS" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Prioridad" Type="char" Nullable="false" MaxLength="1" />
+    <Property Name="Comentario" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="Estado" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Tiempo" Type="float" Nullable="true" />
+    <Property Name="Baja" Type="int" Nullable="false" />
+    <Property Name="FechaInicio" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Usuarios">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="mail" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="password" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="usuarioActivo" Type="bit" Nullable="false" />
+    <Property Name="codigoVerificacion" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Proyectos">
+    <Key>
+      <PropertyRef Name="idProyecto" />
+    </Key>
+    <Property Name="idProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nombre" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Descripcion" Type="nvarchar" Nullable="false" MaxLength="200" />
+    <Property Name="FechaCreacion" Type="datetime" Nullable="false" />
+    <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+    <Property Name="FechaFinalizacion" Type="datetime" Nullable="true" />
+    <Property Name="AlertaPrevia" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="Baja" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Modulos_Usuarios">
+    <End Role="Usuarios" Type="prodeoModel.Store.Usuarios" Multiplicity="1" />
+    <End Role="Modulos" Type="prodeoModel.Store.Modulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Modulos">
+        <PropertyRef Name="idUsuarioCreador" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Tareas_Modulos">
+    <End Role="Modulos" Type="prodeoModel.Store.Modulos" Multiplicity="1" />
+    <End Role="Tareas" Type="prodeoModel.Store.Tareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Modulos">
+        <PropertyRef Name="idModulo" />
+      </Principal>
+      <Dependent Role="Tareas">
+        <PropertyRef Name="idModulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_participantes_usuarios">
+    <End Role="Usuarios" Type="prodeoModel.Store.Usuarios" Multiplicity="1" />
+    <End Role="Participantes" Type="prodeoModel.Store.Participantes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Usuarios">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="Participantes">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParticipantesTareas_Tareas">
+    <End Role="Tareas" Type="prodeoModel.Store.Tareas" Multiplicity="1" />
+    <End Role="ParticipantesTareas" Type="prodeoModel.Store.ParticipantesTareas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tareas">
+        <PropertyRef Name="idTarea" />
+      </Principal>
+      <Dependent Role="ParticipantesTareas">
+        <PropertyRef Name="idTarea" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Modulos_Proyectos">
+    <End Role="Proyectos" Type="prodeoModel.Store.Proyectos" Multiplicity="1" />
+    <End Role="Modulos" Type="prodeoModel.Store.Modulos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="idProyecto" />
+      </Principal>
+      <Dependent Role="Modulos">
+        <PropertyRef Name="idProyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ParticipantesProyectos_Proyectos">
+    <End Role="Proyectos" Type="prodeoModel.Store.Proyectos" Multiplicity="1" />
+    <End Role="ParticipantesProyectos" Type="prodeoModel.Store.ParticipantesProyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Proyectos">
+        <PropertyRef Name="idProyecto" />
+      </Principal>
+      <Dependent Role="ParticipantesProyectos">
+        <PropertyRef Name="idProyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="prodeoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -239,6 +241,7 @@
           <NavigationProperty Name="Usuarios" Relationship="Self.FK_Modulos_Usuarios" FromRole="Modulos" ToRole="Usuarios" />
           <NavigationProperty Name="Tareas" Relationship="Self.FK_Tareas_Modulos" FromRole="Modulos" ToRole="Tareas" />
           <NavigationProperty Name="Proyectos" Relationship="prodeoModel.FK_Modulos_Proyectos" FromRole="Modulos" ToRole="Proyectos" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Participantes">
           <Key>
@@ -288,6 +291,7 @@
           <Property Name="Baja" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Modulos" Relationship="Self.FK_Tareas_Modulos" FromRole="Tareas" ToRole="Modulos" />
           <NavigationProperty Name="ParticipantesTareas" Relationship="Self.FK_ParticipantesTareas_Tareas" FromRole="Tareas" ToRole="ParticipantesTareas" />
+          <Property Name="FechaInicio" Type="DateTime" Nullable="false" />
         </EntityType>
         <EntityType Name="Usuarios">
           <Key>
@@ -427,114 +431,115 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="prodeoModelStoreContainer" CdmEntityContainer="prodeoEntities">
-          <EntitySetMapping Name="Mails">
-            <EntityTypeMapping TypeName="prodeoModel.Mails">
-              <MappingFragment StoreEntitySet="Mails">
-                <ScalarProperty Name="idMail" ColumnName="idMail" />
-                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
-                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
-                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
-                <ScalarProperty Name="asunto" ColumnName="asunto" />
-                <ScalarProperty Name="detalle" ColumnName="detalle" />
-                <ScalarProperty Name="destinatarios" ColumnName="destinatarios" />
-                <ScalarProperty Name="enviado" ColumnName="enviado" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Modulos">
-            <EntityTypeMapping TypeName="prodeoModel.Modulos">
-              <MappingFragment StoreEntitySet="Modulos">
-                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
-                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
-                <ScalarProperty Name="idUsuarioCreador" ColumnName="idUsuarioCreador" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
-                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
-                <ScalarProperty Name="Baja" ColumnName="Baja" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Participantes">
-            <EntityTypeMapping TypeName="prodeoModel.Participantes">
-              <MappingFragment StoreEntitySet="Participantes">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="PermisosAdministrador" ColumnName="PermisosAdministrador" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ParticipantesProyectos">
-            <EntityTypeMapping TypeName="prodeoModel.ParticipantesProyectos">
-              <MappingFragment StoreEntitySet="ParticipantesProyectos">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
-                <ScalarProperty Name="permisosAdministrador" ColumnName="permisosAdministrador" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ParticipantesTareas">
-            <EntityTypeMapping TypeName="prodeoModel.ParticipantesTareas">
-              <MappingFragment StoreEntitySet="ParticipantesTareas">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Tareas">
-            <EntityTypeMapping TypeName="prodeoModel.Tareas">
-              <MappingFragment StoreEntitySet="Tareas">
-                <ScalarProperty Name="idTarea" ColumnName="idTarea" />
-                <ScalarProperty Name="idModulo" ColumnName="idModulo" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
-                <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
-                <ScalarProperty Name="AlertaPrevia" ColumnName="AlertaPrevia" />
-                <ScalarProperty Name="DireccionGPS" ColumnName="DireccionGPS" />
-                <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
-                <ScalarProperty Name="Comentario" ColumnName="Comentario" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
-                <ScalarProperty Name="Baja" ColumnName="Baja" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Usuarios">
-            <EntityTypeMapping TypeName="prodeoModel.Usuarios">
-              <MappingFragment StoreEntitySet="Usuarios">
-                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
-                <ScalarProperty Name="mail" ColumnName="mail" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="usuarioActivo" ColumnName="usuarioActivo" />
-                <ScalarProperty Name="codigoVerificacion" ColumnName="codigoVerificacion" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Proyectos">
-            <EntityTypeMapping TypeName="prodeoModel.Proyectos">
-              <MappingFragment StoreEntitySet="Proyectos">
-                <ScalarProperty Name="Baja" ColumnName="Baja" />
-                <ScalarProperty Name="AlertaPrevia" ColumnName="AlertaPrevia" />
-                <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
-                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
-                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="prodeoModelStoreContainer" CdmEntityContainer="prodeoEntities">
+    <EntitySetMapping Name="Mails">
+      <EntityTypeMapping TypeName="IsTypeOf(prodeoModel.Mails)">
+        <MappingFragment StoreEntitySet="Mails">
+          <ScalarProperty Name="idMail" ColumnName="idMail" />
+          <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+          <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+          <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+          <ScalarProperty Name="asunto" ColumnName="asunto" />
+          <ScalarProperty Name="detalle" ColumnName="detalle" />
+          <ScalarProperty Name="destinatarios" ColumnName="destinatarios" />
+          <ScalarProperty Name="enviado" ColumnName="enviado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Modulos">
+      <EntityTypeMapping TypeName="IsTypeOf(prodeoModel.Modulos)">
+        <MappingFragment StoreEntitySet="Modulos">
+          <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+          <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+          <ScalarProperty Name="idUsuarioCreador" ColumnName="idUsuarioCreador" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Participantes">
+      <EntityTypeMapping TypeName="IsTypeOf(prodeoModel.Participantes)">
+        <MappingFragment StoreEntitySet="Participantes">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="PermisosAdministrador" ColumnName="PermisosAdministrador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParticipantesProyectos">
+      <EntityTypeMapping TypeName="IsTypeOf(prodeoModel.ParticipantesProyectos)">
+        <MappingFragment StoreEntitySet="ParticipantesProyectos">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+          <ScalarProperty Name="permisosAdministrador" ColumnName="permisosAdministrador" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ParticipantesTareas">
+      <EntityTypeMapping TypeName="IsTypeOf(prodeoModel.ParticipantesTareas)">
+        <MappingFragment StoreEntitySet="ParticipantesTareas">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tareas">
+      <EntityTypeMapping TypeName="IsTypeOf(prodeoModel.Tareas)">
+        <MappingFragment StoreEntitySet="Tareas">
+          <ScalarProperty Name="idTarea" ColumnName="idTarea" />
+          <ScalarProperty Name="idModulo" ColumnName="idModulo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
+          <ScalarProperty Name="AlertaPrevia" ColumnName="AlertaPrevia" />
+          <ScalarProperty Name="DireccionGPS" ColumnName="DireccionGPS" />
+          <ScalarProperty Name="Prioridad" ColumnName="Prioridad" />
+          <ScalarProperty Name="Comentario" ColumnName="Comentario" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+          <ScalarProperty Name="Tiempo" ColumnName="Tiempo" />
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="IsTypeOf(prodeoModel.Usuarios)">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="usuarioActivo" ColumnName="usuarioActivo" />
+          <ScalarProperty Name="codigoVerificacion" ColumnName="codigoVerificacion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proyectos">
+      <EntityTypeMapping TypeName="IsTypeOf(prodeoModel.Proyectos)">
+        <MappingFragment StoreEntitySet="Proyectos">
+          <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+          <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+          <ScalarProperty Name="FechaFinalizacion" ColumnName="FechaFinalizacion" />
+          <ScalarProperty Name="AlertaPrevia" ColumnName="AlertaPrevia" />
+          <ScalarProperty Name="Baja" ColumnName="Baja" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -548,7 +553,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>

@@ -131,12 +131,12 @@ namespace Negocio
             return mod;
         }
 
-        public bool insertaModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario)
+        public bool insertaModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaInicio, DateTime fechaVencimiento, int proyecto, string usuario)
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                if (datos.insertarModulo(nombre, descrip, fechaCreacion, fechaVencimiento, proyecto, usuario) != 0)
+                if (datos.insertarModulo(nombre, descrip, fechaCreacion, fechaInicio, fechaVencimiento, proyecto, usuario) != 0)
                 {
                     return true;
                 }
@@ -210,14 +210,14 @@ namespace Negocio
 
         #endregion
         #region "Tareas"
-        public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
+        public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             int modulo = Convert.ToInt32(idModulo);
             int idUser = Convert.ToInt32(idUsuario);
             try
             {
-                if (datos.insertarTarea(modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos, prioridad, idUser) != 0)
+                if (datos.insertarTarea(modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, fechaInicio, proyecto, usuario, avisos, prioridad, idUser) != 0)
                 {
                     return true;
                 }
@@ -239,7 +239,7 @@ namespace Negocio
             return tarea;
 
         }
-        public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
+        public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
             int modulo = Convert.ToInt32(idModulo);
@@ -247,7 +247,7 @@ namespace Negocio
             int tarea = Convert.ToInt32(idTarea);
             try
             {
-                if (datos.ActualizarTarea(tarea, modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, proyecto, usuario, avisos, prioridad, idUser) != 0)
+                if (datos.ActualizarTarea(tarea, modulo, nombre, descripcion, comentario, fechaCreacion, fechaVencimiento, fechaInicio, proyecto, usuario, avisos, prioridad, idUser) != 0)
                 {
                     return true;
                 }
@@ -312,18 +312,22 @@ namespace Negocio
                 foreach (DatosTarea lis in lista)
                 {
                     int result = DateTime.Compare(lis.FechaLimite, DateTime.Now);
-                    if (result > 0)
+                    if(lis.Estado != "Finalizada")
                     {
-                        lis.Estado = "Pendiente";
+                        if (result > 0)
+                        {
+                            lis.Estado = "Pendiente";
+                        }
+                        else if (result == 0)
+                        {
+                            lis.Estado = "Pendiente";
+                        }
+                        else
+                        {
+                            lis.Estado = "Vencido";
+                        }
                     }
-                    else if (result == 0)
-                    {
-                        lis.Estado = "Pendiente";
-                    }
-                    else
-                    {
-                        lis.Estado = "Vencido";
-                    }
+                    
                 }
             }
             return lista;

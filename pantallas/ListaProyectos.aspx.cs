@@ -14,8 +14,24 @@ namespace Prodeo.pantallas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+             if (!IsPostBack)
+             {
+                 cargaListaProy(sender, e);  
+             }                                 
+        }
+        
+        protected void ddlFiltroProyChanged(object sender, EventArgs e)
+        {
+            cargaListaProy(sender, e);
+        }
+
+        protected void cargaListaProy(object sender, EventArgs e)
+        {
             ProyectoLogica proy = new ProyectoLogica();
-            List<DatosProyecto> dataProy = proy.obtieneListaProyecto(Session["usuario"].ToString());
+
+            int abiertoFinalizado = Convert.ToInt32(ddlFiltroProy.SelectedValue);
+
+            List<DatosProyecto> dataProy = proy.obtieneListaProyecto(Session["usuario"].ToString(), abiertoFinalizado);
             
                 Control control = FindHtmlControlByIdInControl(this, "proyectosLista");
 
@@ -52,14 +68,19 @@ namespace Prodeo.pantallas
                             literal.Text = "<h3>" + dato.Descripcion + "</h3>";
                             control.Controls.Add(literal);
 
-                            literal = new Literal();
-                            if(permiso == "Administrador")
+                            literal = new Literal();                            
+                            literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a><a href='DesvincularProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Desvincular Proyecto</a>";
+                            control.Controls.Add(literal);
+
+                            if (permiso == "Administrador" && abiertoFinalizado == 0)
                             {
-                                literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a><a href='FinalizarProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='buttonFinaliza'>Finalizar</a>";
+                                literal = new Literal();                            
+                                literal.Text = "<a href='FinalizarProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Finalizar</a>";
                             }
-                            else
+                            else if (permiso == "Administrador" && abiertoFinalizado == 1)
                             {
-                                literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a>";
+                                literal = new Literal();
+                                literal.Text = "<a href='ReabrirProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Reabrir</a>";
                             }
                             
                             control.Controls.Add(literal);
@@ -82,7 +103,7 @@ namespace Prodeo.pantallas
                         control.Controls.Add(literal);
 
                         literal = new Literal();
-                        literal.Text = "<h3>Vaya a la seccion alta de proyectos para comenzar.</h3>";
+                        literal.Text = "<h3>Vaya a la seccion alta de proyectos para comenzar.</h3>";                        
                         control.Controls.Add(literal);
 
                         literal = new Literal();

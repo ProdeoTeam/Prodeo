@@ -63,6 +63,12 @@ namespace Prodeo
         {
             Response.Redirect("~/pantallas/EliminarCuenta.aspx");
         }
+
+        protected void misProyectos_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/pantallas/ListaProyectos.aspx");
+        }
+        
     }
 }
 
