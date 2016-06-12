@@ -67,6 +67,24 @@ namespace Prodeo {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea descripcion;
         
         /// <summary>
+        /// fechaInicio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaInicio;
+        
+        /// <summary>
+        /// CustomValFechActual control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CustomValidator CustomValFechActual;
+        
+        /// <summary>
         /// fechaVencimiento control.
         /// </summary>
         /// <remarks>
@@ -83,33 +101,6 @@ namespace Prodeo {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.CustomValidator CustomValVencValid;
-        
-        /// <summary>
-        /// CustomValFechActual control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.CustomValidator CustomValFechActual;
-        
-        /// <summary>
-        /// ReqFieldValVenc control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValVenc;
-        
-        /// <summary>
-        /// RegExpresValFecha control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.RegularExpressionValidator RegExpresValFecha;
         
         /// <summary>
         /// btnAltaModulo control.

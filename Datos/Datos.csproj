@@ -92,6 +92,7 @@
       <DependentUpon>ModelProdeo.tt</DependentUpon>
     </Compile>
     <Compile Include="Reportes\DatosReportes.cs" />
+    <Compile Include="Reportes\ReporteCalendario.cs" />
     <Compile Include="Reportes\Series.cs" />
     <Compile Include="Tareas.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>
@@ -125,6 +126,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ModelProdeo.edmx.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
