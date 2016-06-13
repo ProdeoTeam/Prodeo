@@ -50,10 +50,10 @@ namespace Negocio
             }
         }
 
-        public List<DatosProyecto> obtieneListaProyecto(string usuario)
+        public List<DatosProyecto> obtieneListaProyecto(string usuario, int abiertoFinalizado)
         {
             AccesoDatos datos = new AccesoDatos();
-            List<DatosProyecto> lista = datos.obtenerListaProyectos(usuario);
+            List<DatosProyecto> lista = datos.obtenerListaProyectos(usuario, abiertoFinalizado);
             return lista;
 
         }
@@ -121,6 +121,27 @@ namespace Negocio
                 return false;
             }
         }
+
+        public bool ReabrirProyecto(int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                if (datos.reabrirProyecto(idProyecto) != 0)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+    }
 
         #endregion
         #region "Modulos"
