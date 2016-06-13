@@ -575,6 +575,7 @@ namespace Datos
                                       where p.idProyecto == idProyecto
                                       select p).First();
                     proy.FechaFinalizacion = DateTime.Now;
+                    proy.Finalizado = 1;
                     prodeoContext.SaveChanges();
                     return 1;
                 }
@@ -591,6 +592,25 @@ namespace Datos
             }
         }
 
+        public int reabrirProyecto(int idProyecto)
+        {
+            try
+            {
+                prodeoEntities prodeoContext = new prodeoEntities();
+
+                Proyectos proy = (from p in prodeoContext.Proyectos
+                                  where p.idProyecto == idProyecto
+                                  select p).First();
+                proy.FechaFinalizacion = null;
+                proy.Finalizado = 0;
+                prodeoContext.SaveChanges();
+                return 1;
+            }
+            catch (Exception e)
+            {
+                return 0;
+            }
+        }
 
         #endregion
 

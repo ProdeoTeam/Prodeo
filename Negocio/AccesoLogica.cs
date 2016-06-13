@@ -64,7 +64,7 @@ namespace Negocio
             bool fechaVencValida;
 
             //El usuario no puede poner en el modulo una fecha de vencimiento mayor a la del proyecto
-            if (fechaVenc < fechavencProy)
+            if (fechaVenc <= fechavencProy)
             {
                 return fechaVencValida = true;
             }

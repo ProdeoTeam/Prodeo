@@ -38,7 +38,7 @@
                                     <div class="row half no-collapse-1">
                                         <div class="6u">
                                             Fecha Vencimiento
-                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server">
+                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server" placeholder = "DD/MM/AAAA">
                                             <asp:CustomValidator ID="CustomValVencValid" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupModulos" runat="server" OnServerValidate="validarFechaVenc"></asp:CustomValidator>                          
 										</div>                                        
 									</div>

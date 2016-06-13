@@ -54,7 +54,7 @@
                                             &nbsp;                                                                                        
                                             <label>Prioridad</label>
                                             <select name="listaPrioridad" id="listaPrioridad" runat="server">                                              
-                                              <option selected="selected" value="N">Ninguna</option>
+                                              <option value="N">Ninguna</option>
                                               <option value="A">Alta</option>
                                               <option value="M">Media</option>
                                               <option value="B">Baja</option>
@@ -100,7 +100,7 @@
                                             &nbsp;
                                             <label>Alerta</label>
                                             <select name="avisoVencimientos" id="avisoVencimientos" runat="server">                                              
-                                              <option selected="selected" value="h-0">Nunca</option>
+                                              <option value="h-0">Nunca</option>
                                               <option value="h-1">1 hora antes</option>
                                               <option value="d-1">1 dia antes</option>
                                               <option value="d-2">2 dias antes</option>
