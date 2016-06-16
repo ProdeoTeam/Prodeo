@@ -490,7 +490,7 @@ namespace Datos
 
             return 0;
         }
-        public List<DatosProyecto> obtenerListaProyectos(string usuario)
+        public List<DatosProyecto> obtenerListaProyectos(string usuario, int abiertoFinalizado)
         {
             prodeoEntities prodeoContext = new prodeoEntities();
             int idUsuario = (from u in prodeoContext.Usuarios
@@ -498,7 +498,7 @@ namespace Datos
                              select u.idUsuario).First();
             var query = (from p in prodeoContext.Proyectos
                          join usr in prodeoContext.ParticipantesProyectos on p.idProyecto equals usr.idProyecto
-                         where usr.idUsuario == idUsuario && p.Baja == 0 && p.FechaFinalizacion == null
+                         where usr.idUsuario == idUsuario && p.Finalizado == abiertoFinalizado
                          select new DatosProyecto { Id = p.idProyecto, Nombre = p.Nombre, Permisos = usr.permisosAdministrador, Descripcion = p.Descripcion }).ToList();
             return query;
         }
