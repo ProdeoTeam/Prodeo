@@ -14,7 +14,8 @@ namespace Prodeo.pantallas
         public int idProyecto;
         public string permiso = "";
         protected void Page_Load(object sender, EventArgs e)
-        {
+        {                      
+            
             ProyectoLogica datosProyecto = new ProyectoLogica();
             idProyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
             permiso = Request.QueryString["p"];
@@ -162,6 +163,7 @@ namespace Prodeo.pantallas
             foreach (DatosModulo unModulo in listaDeModulos)
             {
                 GridView grillaTareas = new GridView();
+                grillaTareas.CssClass = "footable";
                 Literal h3 = new Literal();
                 Literal divApertura = new Literal();
                 Literal divCierre = new Literal();
@@ -185,7 +187,7 @@ namespace Prodeo.pantallas
                 //creamos y agregamos el h3 que sera el titulo de la solapa accordion
                 h3.Text = "<h3>" + unModulo.Nombre;
 
-                h3.Text += "<div style='width:";
+                h3.Text += "<div id='barraProgreso' style='width:";
                 h3.Text += anchoBarraProgreso.ToString() + "px; height:20px;position:absolute;margin-left:75%;margin-top:-25px; border-style:solid; border-color:black; border-width:2px;'>";
                 h3.Text += "<div style='background-color:#12587B;width:";
                 h3.Text += Math.Round(porcentajeAvance);
@@ -229,12 +231,34 @@ namespace Prodeo.pantallas
                 grillaTareas.Columns[6].Visible = false;
                 grillaTareas.Columns[9].Visible = false;
 
+                //------------------------------------------------------------------
+                //ESTABLECE LAS COLUMNAS QUE SE VAN A MOSTRAR U OCULTAR A MEDIDA QUE VA CERRANDO EL NAVEGADOR
+                //DOCUMENTACION PLUGIN: http://fooplugins.com/plugins/footable-jquery/
+
+                //Attribute to show the Plus Minus Button.
+                grillaTareas.HeaderRow.Cells[0].Attributes["data-class"] = "expand";//posicion 0 comandos seleccionar y eliminar
+                
+
+                //Attribute to hide column in Phone.
+                grillaTareas.HeaderRow.Cells[4].Attributes["data-hide"] = "phone"; //Descripcion 
+                grillaTareas.HeaderRow.Cells[6].Attributes["data-hide"] = "phone"; //Prioridad
+                grillaTareas.HeaderRow.Cells[8].Attributes["data-hide"] = "phone"; //Asignada
+                grillaTareas.HeaderRow.Cells[9].Attributes["data-hide"] = "phone"; //Fecha limite
+                grillaTareas.HeaderRow.Cells[11].Attributes["data-hide"] = "phone"; //Estado
+
+                
+                
+                //Adds THEAD and TBODY to GridView.
+                grillaTareas.HeaderRow.TableSection = TableRowSection.TableHeader;
+
+                //------------------------------------------------------------------
+
                 //Creamos un div que va a ser el que tenga el contenido de lo que se va a mostrar al desplegar el accordion.
                 //Dentro de este dev agregamos la grilla de tareas
                 divApertura.Text = "<div>";
                 divCierre.Text = "</div>";
-                linkModulo.Text = "<a href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Ver</a>&nbsp&nbsp";
-                linkCalendarioTareas.Text = "<a href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "&idProyecto=" + idproyecto + "'>Modificar Vencimientos</a>&nbsp&nbsp";
+                linkModulo.Text = "<a class='button' href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>VER MÓDULO</a>&nbsp&nbsp";
+                linkCalendarioTareas.Text = "<a class='button' href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "&idProyecto=" + idproyecto + "'>ADMINISTRAR PLAN</a>&nbsp&nbsp";
                 linkEliminarModulo.Text = "<a href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Eliminar</a>"; ;
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);

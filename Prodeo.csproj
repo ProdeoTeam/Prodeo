@@ -84,7 +84,7 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="images\quitar.jpg" />
-    <Content Include="js\fullcalendar.min.js" />
+    <Content Include="images\sprite.png" />
     <Content Include="js\jquery-ui.js" />
     <Content Include="js\lang-all.js" />
     <Content Include="pantallas\AltaModulo.aspx" />
@@ -131,9 +131,11 @@
     <Content Include="pantallas\seleccion.aspx" />
     <Content Include="pantallas\VerificarEmail.aspx" />
     <Content Include="pantallas\VerProyecto.aspx" />
-    <Content Include="pantallas\VerTareasCalendario.aspx" />
+    <Content Include="js\footable.min.js" />
+    <Content Include="Styles\botones-sociales.css" />
     <Content Include="Styles\btn-googleStyle.css" />
     <Content Include="Styles\font-awesome.min.css" />
+    <Content Include="Styles\footable.min.css" />
     <Content Include="Styles\formulariosInternos.css" />
     <Content Include="Styles\fullcalendar.css" />
     <Content Include="Styles\fullcalendar.print.css" />
@@ -162,6 +164,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="pantallas\ReabrirProyecto.aspx" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Account\ChangePassword.aspx.cs">
@@ -329,6 +332,13 @@
     </Compile>
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\ReabrirProyecto.aspx.cs">
+      <DependentUpon>ReabrirProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\ReabrirProyecto.aspx.designer.cs">
+      <DependentUpon>ReabrirProyecto.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
