@@ -14,15 +14,21 @@ namespace Prodeo.pantallas
         {
             if (!IsPostBack)
             {
+                int idModulo = 0;
                 ProyectoLogica proy = new ProyectoLogica();
                 int proyecto = Convert.ToInt32(Session["idProyecto"]);
                 string usuario = Session["usuario"].ToString();
                 string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
+                idModulo = Convert.ToInt32(Request.QueryString["idModulo"]);
                 AccesoLogica user = new AccesoLogica();
                 listaModulos.DataSource = proy.obtieneListaModulos(usuario, proyecto, permiso);
                 listaModulos.DataValueField = "IdModulo";                
                 listaModulos.DataTextField = "Nombre";
-                listaModulos.DataBind();                
+                listaModulos.DataBind();  
+                if(idModulo != 0)
+                {
+                    listaModulos.SelectedValue = idModulo.ToString();
+                }
                 usuariosLista.DataSource = user.obtieneListaUsuarios(proyecto);
                 usuariosLista.DataValueField = "idUsuario";
                 usuariosLista.DataTextField = "nombre";

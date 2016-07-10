@@ -58,9 +58,13 @@
                     $('[Id*=GridView1]').footable();
                 });
             </script>
+            <br />
+            <asp:Panel ID="Panel1" runat="server" groupingtext="Listado de Módulos" BorderColor="Gray" BorderWidth="2px">
+                <div id="contenedorAccordion" runat="server" class="default">                
+                </div>
+            </asp:Panel>
 
-			<div id="contenedorAccordion" runat="server" class="default">                
-            </div>                                
+			                                
         </section>            
     </article>
 </asp:Content>
