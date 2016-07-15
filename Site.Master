@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head runat="server">
     <title>.::Prodeo::.</title>
+        <link rel="shortcut icon" href="images/logos/ProdeoLogo.png" type="image/png" />
 		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 		<meta name="description" content="" />
 		<meta name="keywords" content="" />
@@ -53,10 +54,12 @@
 
 
                          <li class="submenu">                            
-							<a href="#" ID="userLogueado" runat="server">Charlie</a>
+							<a href="" ID="userLogueado" runat="server">Charlie</a>                             
+                             
 							<ul>								                                                               
+                                <li><a href="#" ID="linkMisProy" runat="server" onserverclick="misProyectos_Click">Mis Proyectos</a></li>
                                 <li><a href="#" ID="linkEditUser" runat="server" onserverclick="editarUsuario_Click">Modificar datos</a></li>
-                                <li><a href="#" ID="eliminarCuenta" runat="server" onserverclick="eliminarCuenta_Click">Eliminar cuenta</a></li>						
+                                <li><a href="#" ID="eliminarCuenta" runat="server" onserverclick="eliminarCuenta_Click">Eliminar cuenta</a></li>                                
 							</ul>                            
 						</li>
                        
