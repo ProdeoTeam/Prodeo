@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="FinalizarProyecto.aspx.cs" Inherits="Prodeo.pantallas.FinalizarProyecto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="ReabrirProyecto.aspx.cs" Inherits="Prodeo.pantallas.ReabrirProyecto" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="<%= ResolveClientUrl("~/js/initPages.js")%>" type="text/javascript"></script>
     <link href="../Styles/formulariosInternos.css" rel="stylesheet" />
@@ -12,7 +12,7 @@
 			    </header>
                 <footer>
 					<ul class="buttons">
-						<li id="btnEliminarModulo" runat="server"><a class="button" onserverclick="finalizarProyecto_Click" runat="server">Finalizar Proyecto</a></li>
+						<li id="btnReabrirProyecto" runat="server"><a class="button" onserverclick="reabrirProyecto_Click" runat="server">Reabrir Proyecto</a></li>
                         <li id="btnCancelar" runat="server"><a class="button" onserverclick="cancelar_Click" runat="server">Cancelar</a></li>        
 					</ul>
 			    </footer>                                    

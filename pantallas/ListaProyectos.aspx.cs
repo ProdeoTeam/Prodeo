@@ -14,87 +14,108 @@ namespace Prodeo.pantallas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                cargaListaProy(sender, e);
+            }
+        }
+
+        protected void ddlFiltroProyChanged(object sender, EventArgs e)
+        {
+            cargaListaProy(sender, e);
+        }
+
+        protected void cargaListaProy(object sender, EventArgs e)
+        {
             ProyectoLogica proy = new ProyectoLogica();
-            List<DatosProyecto> dataProy = proy.obtieneListaProyecto(Session["usuario"].ToString());
-            
-                Control control = FindHtmlControlByIdInControl(this, "proyectosLista");
 
-                if (control != null)
+            int abiertoFinalizado = Convert.ToInt32(ddlFiltroProy.SelectedValue);
+
+            List<DatosProyecto> dataProy = proy.obtieneListaProyecto(Session["usuario"].ToString(), abiertoFinalizado);
+
+            Control control = FindHtmlControlByIdInControl(this, "proyectosLista");
+
+            if (control != null)
+            {
+                if (dataProy.Count > 0)
                 {
-                    if (dataProy.Count > 0)
-                    {
-                        string permiso = "";
-                       foreach (DatosProyecto dato in dataProy)
-                        {
-                            Literal literal;
-
-                            literal = new Literal();
-                            literal.Text = "<section id='vistaProyecto'>";
-                            control.Controls.Add(literal);
-                            switch(dato.Permisos)
-                            {
-                                case "A":
-                                    {
-                                        permiso = "Administrador";
-                                        break;
-                                    }
-                                case "C":
-                                    {
-                                        permiso = "Colaborador";
-                                        break;
-                                    }
-                            }
-                            literal = new Literal();
-                            literal.Text = "<h2>" + dato.Nombre + " : " + permiso + "</h2>";
-                            control.Controls.Add(literal);
-
-                            literal = new Literal();
-                            literal.Text = "<h3>" + dato.Descripcion + "</h3>";
-                            control.Controls.Add(literal);
-
-                            literal = new Literal();
-                            if(permiso == "Administrador")
-                            {
-                                literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a><a href='FinalizarProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='buttonFinaliza'>Finalizar</a>";
-                            }
-                            else
-                            {
-                                literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a>";
-                            }
-                            
-                            control.Controls.Add(literal);
-
-                            literal = new Literal();
-                            literal.Text = "</section><br />";
-                            control.Controls.Add(literal);
-                        }
-                    }
-                    else
+                    string permiso = "";
+                    foreach (DatosProyecto dato in dataProy)
                     {
                         Literal literal;
 
                         literal = new Literal();
                         literal.Text = "<section id='vistaProyecto'>";
                         control.Controls.Add(literal);
-
+                        switch (dato.Permisos)
+                        {
+                            case "A":
+                                {
+                                    permiso = "Administrador";
+                                    break;
+                                }
+                            case "C":
+                                {
+                                    permiso = "Colaborador";
+                                    break;
+                                }
+                        }
                         literal = new Literal();
-                        literal.Text = "<h2>No posee proyectos!</h2>";
+                        literal.Text = "<h2>" + dato.Nombre + " : " + permiso + "</h2>";
                         control.Controls.Add(literal);
 
                         literal = new Literal();
-                        literal.Text = "<h3>Vaya a la seccion alta de proyectos para comenzar.</h3>";
+                        literal.Text = "<h3>" + dato.Descripcion + "</h3>";
                         control.Controls.Add(literal);
 
                         literal = new Literal();
-                        literal.Text = "<a href='AltaProyecto.aspx' class='button'>Alta de Proyectos</a>";
+                        literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a><a href='DesvincularProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Desvincular Proyecto</a>";
+                        control.Controls.Add(literal);
+
+                        if (permiso == "Administrador" && abiertoFinalizado == 0)
+                        {
+                            literal = new Literal();
+                            literal.Text = "<a href='FinalizarProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Finalizar</a>";
+                        }
+                        else if (permiso == "Administrador" && abiertoFinalizado == 1)
+                        {
+                            literal = new Literal();
+                            literal.Text = "<a href='ReabrirProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Reabrir</a>";
+                        }
+
                         control.Controls.Add(literal);
 
                         literal = new Literal();
                         literal.Text = "</section><br />";
                         control.Controls.Add(literal);
                     }
+                }
+                else
+                {
+                    Literal literal;
+
+                    literal = new Literal();
+                    literal.Text = "<section id='vistaProyecto'>";
+                    control.Controls.Add(literal);
+
+                    literal = new Literal();
+                    literal.Text = "<h2>No posee proyectos!</h2>";
+                    control.Controls.Add(literal);
+
+                    literal = new Literal();
+                    literal.Text = "<h3>Vaya a la seccion alta de proyectos para comenzar.</h3>";
+                    control.Controls.Add(literal);
+
+                    literal = new Literal();
+                    literal.Text = "<a href='AltaProyecto.aspx' class='button'>Alta de Proyectos</a>";
+                    control.Controls.Add(literal);
+
+                    literal = new Literal();
+                    literal.Text = "</section><br />";
+                    control.Controls.Add(literal);
+                }
             }
-            
+
 
         }
 

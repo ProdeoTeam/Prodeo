@@ -10,7 +10,7 @@ namespace Datos.Reportes
     {
         //Esta clase se utiliza en el javascript del FullCalendar de jQuery
         public string title { get; set; }
-        public DateTime start { get; set; }
+        public DateTime? start { get; set; }
         public DateTime end { get; set; }
         public int idTarea { get; set; }
     }

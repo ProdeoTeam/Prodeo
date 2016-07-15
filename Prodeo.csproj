@@ -84,6 +84,8 @@
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="images\quitar.jpg" />
+    <Content Include="images\sprite.png" />
+    <Content Include="js\footable.min.js" />
     <Content Include="js\fullcalendar.min.js" />
     <Content Include="js\jquery-ui.js" />
     <Content Include="js\lang-all.js" />
@@ -123,6 +125,7 @@
     <Content Include="pantallas\EliminarProyecto.aspx" />
     <Content Include="pantallas\EliminarTarea.aspx" />
     <Content Include="pantallas\FinalizarProyecto.aspx" />
+    <Content Include="pantallas\ReabrirProyecto.aspx" />
     <Content Include="pantallas\Registro.aspx" />
     <Content Include="pantallas\ProyectoPrincipal.aspx" />
     <Content Include="pantallas\ListaProyectos.aspx" />
@@ -132,6 +135,7 @@
     <Content Include="pantallas\VerificarEmail.aspx" />
     <Content Include="pantallas\VerProyecto.aspx" />
     <Content Include="pantallas\VerTareasCalendario.aspx" />
+    <Content Include="Styles\botones-sociales.css" />
     <Content Include="Styles\btn-googleStyle.css" />
     <Content Include="Styles\font-awesome.min.css" />
     <Content Include="Styles\formulariosInternos.css" />
@@ -268,6 +272,13 @@
     </Compile>
     <Compile Include="pantallas\FinalizarProyecto.aspx.designer.cs">
       <DependentUpon>FinalizarProyecto.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pantallas\ReabrirProyecto.aspx.cs">
+      <DependentUpon>ReabrirProyecto.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pantallas\ReabrirProyecto.aspx.designer.cs">
+      <DependentUpon>ReabrirProyecto.aspx</DependentUpon>
     </Compile>
     <Compile Include="pantallas\Registro.aspx.cs">
       <DependentUpon>Registro.aspx</DependentUpon>

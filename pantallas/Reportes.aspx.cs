@@ -23,7 +23,7 @@ namespace Prodeo.pantallas
                 string usuario = Session["usuario"].ToString();
                 ProyectoLogica proy = new ProyectoLogica();
 
-                proyectosLista.DataSource = proy.obtieneListaProyecto(Session["usuario"].ToString());
+                proyectosLista.DataSource = proy.obtieneListaProyecto(Session["usuario"].ToString(), 0);
                 proyectosLista.DataValueField = "Id";
                 proyectosLista.DataTextField = "Nombre";
                 proyectosLista.DataBind();

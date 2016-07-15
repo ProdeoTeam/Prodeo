@@ -1,5 +1,6 @@
 ﻿/* Form */
 
+      
 	#formInterno input[type="text"],
 	#formInterno input[type="password"],
 	#formInterno input[type="email"],
@@ -71,15 +72,75 @@
 		color: rgba(124, 128, 129, 0.5) !important;
 	}
 
-    #divRedesSoc {
-        margin-left:10%;
-        line-height: 0px;         
-        display:inline-flex;
+    #divContEncabezado {
+        text-align:left;
+        padding-left:20px;
+        display:inline-block;
+        width:100%;
     }
 
+        #divContEncabezado select, input {
+            height:1.95em;
+            width:250px;
+        }
+
+    .divsOpcEncabezado {
+        display:inline-block;
+    }
+
+    #divBotones-sociales {
+        float:right;
+    }
+
+    @media screen and (max-width: 780px) {
+        #divBotones-sociales {
+            margin-top: 15px;
+        }                         
+    }
+
+     @media screen and (max-width: 857px) {	    
+        #divBuscar {
+            margin-top:15px;   
+        }
+        
+        #spanFiltrar {
+            margin-right:7px;
+        } 
+        
+        #barraProgreso{
+            display: none;
+        }
+
+        #MainContent_linkAgregarTarea {
+            margin-left:30px;
+        }     
+    }
+
+    
+    /*AL ACORDEON DE MODULOS LO RENDERIZA CON ESTE ID*/
+    #ui-accordion-MainContent_contenedorAccordion-panel-0 {
+        overflow-x:hidden;
+        min-width:390px;
+    }
+
+    #ui-accordion-MainContent_contenedorAccordion-header-0{    
+        min-width:390px;
+    }
+
+    /*.linkVerProy:link, visited, focus, active  {
+        border:none; 
+        font-weight: bold; 
+        color:blue; 
+    }*/
+
+
+    /*#divRedesSoc {
+    margin-left:10%;
+    line-height: 0px;         
+    display:inline-flex;
+    }
     #divBtnTwitter {        
         margin-left:10px;
     }
-
     #divBtnFacebook {               
-    }
+    }*/

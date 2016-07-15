@@ -10,24 +10,33 @@
 namespace Prodeo.pantallas {
     
     
-    public partial class ListaProyectos {
+    public partial class ReabrirProyecto {
         
         /// <summary>
-        /// proyectosLista control.
+        /// LabelElimTareas control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl proyectosLista;
+        protected global::System.Web.UI.WebControls.Label LabelElimTareas;
         
         /// <summary>
-        /// ddlFiltroProy control.
+        /// btnReabrirProyecto control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList ddlFiltroProy;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnReabrirProyecto;
+        
+        /// <summary>
+        /// btnCancelar control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl btnCancelar;
     }
 }

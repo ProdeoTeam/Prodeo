@@ -16,10 +16,10 @@
         <AssociationConnector Association="prodeoModel.FK_Tareas_Modulos" ManuallyRouted="false" />
         <AssociationConnector Association="prodeoModel.FK_participantes_usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="prodeoModel.FK_ParticipantesTareas_Tareas" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="prodeoModel.Proyectos" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="prodeoModel.Proyectos" Width="1.5" PointX="0.75" PointY="6.5" />
         <AssociationConnector Association="prodeoModel.FK_Modulos_Proyectos" />
         <AssociationConnector Association="prodeoModel.FK_ParticipantesProyectos_Proyectos" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
