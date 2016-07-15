@@ -76,13 +76,42 @@ namespace Negocio
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                reporteSource = datos.obtenerDatosTareasDeModuloParaCalendario(idProyecto,idModulo);
+                reporteSource = datos.obtenerDatosTareasDeModuloParaCalendario(idProyecto, idModulo);
             }
             catch (Exception ex)
             {
 
             }
             return reporteSource;
+        }
+
+        [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
+        public bool ActualizarFechasTarea(ArrayList tareasActualizar)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool actualizadoOk = true;
+            try
+            {
+                
+                for (int i = 0; i < tareasActualizar.Count; i++)
+                {
+                    String a = (String)tareasActualizar[0];
+                    a = a.Replace("\"", "");
+                    a = a.Replace("[", "");
+                    a = a.Replace("]", "");
+                    String[] b = a.Split(',');
+                    int idTarea = Convert.ToInt32(b[0]);
+                    DateTime start = DateTime.ParseExact(b[1], "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    DateTime end = DateTime.ParseExact(b[2], "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture);
+                    actualizadoOk = datos.ActualizarFechasTarea(idTarea, start, end);
+                }
+            }
+            catch (Exception ex)
+            {
+                actualizadoOk = false;
+            }
+            //return actualizadoOk;
+            return actualizadoOk;
         }
 
     }

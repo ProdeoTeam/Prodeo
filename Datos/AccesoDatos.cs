@@ -791,7 +791,30 @@ namespace Datos
             }
 
         }
+        public bool ActualizarFechasTarea(int idTarea, DateTime fechaInicio, DateTime fechaVencimiento)
+        {
+            bool resultModif;
+            prodeoEntities prodeoContext = new prodeoEntities();
 
+            try
+            {
+                var tareas = (from t in prodeoContext.Tareas
+                              where t.idTarea == idTarea
+                              select t).First();
+                tareas.FechaInicio = fechaInicio;
+                tareas.FechaVencimiento = fechaVencimiento;
+                //prodeoContext.Entry(userSinActiv).State = System.Data.Entity.EntityState.Modified;                
+                prodeoContext.SaveChanges();
+                resultModif = true;
+            }
+
+            catch (Exception ex)
+            {
+                resultModif = false;
+            }
+
+            return resultModif;
+        }
         public int eliminarTarea(int idTarea, string usuario)
         {
             try
@@ -1098,7 +1121,7 @@ namespace Datos
                          join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
                          join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
                          where m.idProyecto == idProyecto && t.Estado != "FINALIZADA"
-                         select new Reportes.ReporteCalendario {end = t.FechaVencimiento, start = t.FechaInicio, title = t.Nombre });
+                         select new Reportes.ReporteCalendario {end = t.FechaVencimiento, start = t.FechaInicio, title = t.Nombre, idTarea = t.idTarea });
 
             foreach (Reportes.ReporteCalendario item in query)
             {

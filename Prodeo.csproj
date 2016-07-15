@@ -137,6 +137,16 @@
     <Content Include="Styles\formulariosInternos.css" />
     <Content Include="Styles\fullcalendar.css" />
     <Content Include="Styles\fullcalendar.print.css" />
+    <Content Include="Styles\images\overlay.png" />
+    <Content Include="Styles\images\ui-bg_glass_100_e4f1fb_1x400.png" />
+    <Content Include="Styles\images\ui-bg_glass_50_3baae3_1x400.png" />
+    <Content Include="Styles\images\ui-bg_glass_80_d7ebf9_1x400.png" />
+    <Content Include="Styles\images\ui-bg_highlight-hard_100_f2f5f7_1x100.png" />
+    <Content Include="Styles\images\ui-bg_highlight-soft_100_deedf7_1x100.png" />
+    <Content Include="Styles\images\ui-bg_highlight-soft_25_ffef8f_1x100.png" />
+    <Content Include="Styles\images\ui-icons_2694e8_256x240.png" />
+    <Content Include="Styles\images\ui-icons_3d80b3_256x240.png" />
+    <Content Include="Styles\jquery-ui.min.css" />
     <Content Include="Styles\modal.css" />
     <Content Include="Styles\pict-textbox.css" />
     <Content Include="Styles\responsiveform.css" />
@@ -344,6 +354,14 @@
     <None Include="fonts\fontawesome-webfont.woff" />
     <None Include="fonts\FontAwesome.otf" />
     <Content Include="packages.config" />
+    <Content Include="Styles\images\dark-bl.svg" />
+    <Content Include="Styles\images\dark-br.svg" />
+    <Content Include="Styles\images\dark-tl.svg" />
+    <Content Include="Styles\images\dark-tr.svg" />
+    <Content Include="Styles\images\light-bl.svg" />
+    <Content Include="Styles\images\light-br.svg" />
+    <Content Include="Styles\images\light-tl.svg" />
+    <Content Include="Styles\images\light-tr.svg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Datos\Datos.csproj">

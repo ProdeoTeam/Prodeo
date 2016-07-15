@@ -24,22 +24,22 @@ namespace Prodeo.pantallas
             }
         }
 
-        [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
-        private ArrayList obtenerTareas()
-        {
-            ArrayList aTareas = new ArrayList();
-            ArrayList aUnaTarea = new ArrayList();
-            Negocio.ReportesLogica neg = new Negocio.ReportesLogica();
-            try
-            {
-                //Crear un array con arrays de 2 posiciones: (0)->Nombre (1)->FechaInicio (2)->FechaVencimiento
+        //[AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
+        //private ArrayList obtenerTareas()
+        //{
+        //    ArrayList aTareas = new ArrayList();
+        //    ArrayList aUnaTarea = new ArrayList();
+        //    Negocio.ReportesLogica neg = new Negocio.ReportesLogica();
+        //    try
+        //    {
+        //        //Crear un array con arrays de 2 posiciones: (0)->Nombre (1)->FechaInicio (2)->FechaVencimiento
                 
-            }
-            catch (Exception)
-            {
-                aTareas = new ArrayList();
-            }
-            return aTareas;
-        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        aTareas = new ArrayList();
+        //    }
+        //    return aTareas;
+        //}
     }
 }

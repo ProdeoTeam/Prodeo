@@ -25,7 +25,8 @@
         <link href="~/Styles/btn-googleStyle.css" rel="stylesheet" />
         <link href="~/Styles/pict-textbox.css" rel="stylesheet" />
         <link href="~/Styles/responsiveform.css" rel="stylesheet" />
-
+    <asp:ContentPlaceHolder ID="HeadContent2" runat="server">
+        </asp:ContentPlaceHolder>
 		<!--[if lte IE 8]><link rel="stylesheet" href="~/Styles/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="~/Styles/ie/v9.css" /><![endif]-->
 
