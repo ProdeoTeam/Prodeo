@@ -85,6 +85,7 @@
     <Content Include="Account\Register.aspx" />
     <Content Include="images\quitar.jpg" />
     <Content Include="images\sprite.png" />
+    <Content Include="images\user.png" />
     <Content Include="js\footable.min.js" />
     <Content Include="js\fullcalendar.min.js" />
     <Content Include="js\jquery-ui.js" />

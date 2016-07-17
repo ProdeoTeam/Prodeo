@@ -18,7 +18,7 @@ namespace Prodeo
                 sessionInactiva.Style.Add("display", "none");
                 principalProyecto.Style.Add("display", "block");
                 userLogueado.Style.Add("display", "block");
-                userLogueado.InnerHtml = Session["usuario"].ToString();
+                userName.InnerHtml = Session["usuario"].ToString();
             } 
             else
             {                
@@ -42,7 +42,7 @@ namespace Prodeo
                     sessionInactiva.Style.Add("display", "none");
                     principalProyecto.Style.Add("display", "block");
                     userLogueado.Style.Add("display", "block");
-                    userLogueado.InnerHtml = Session["usuario"].ToString();
+                    userName.InnerHtml = Session["usuario"].ToString();
                     Response.Redirect("~/pantallas/seleccion.aspx");
                 } 
             }

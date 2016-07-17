@@ -267,8 +267,13 @@ namespace Prodeo.pantallas
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(linkModulo);
-                contenedorAccordion.Controls.Add(linkTarea);
-                contenedorAccordion.Controls.Add(linkCalendarioTareas);
+                
+                if (Session["permiso"].ToString() == "A")
+                {
+                    contenedorAccordion.Controls.Add(linkTarea);
+                    contenedorAccordion.Controls.Add(linkCalendarioTareas);
+                }
+                
                 if (Session["permiso"].ToString() == "A" && grillaTareas.Rows.Count == 0)
                 {
                     contenedorAccordion.Controls.Add(linkEliminarModulo);

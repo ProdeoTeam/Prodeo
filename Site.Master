@@ -54,7 +54,7 @@
 
 
                          <li class="submenu">                            
-							<a href="" ID="userLogueado" runat="server">Charlie</a>                             
+							<a href="" ID="userLogueado" runat="server"><asp:Image ID="Image2" ImageUrl="~/images/user.png" runat="server"></asp:Image><span ID="userName" runat="server">Charlie</span></a>                             
                              
 							<ul>								                                                               
                                 <li><a href="#" ID="linkMisProy" runat="server" onserverclick="misProyectos_Click">Mis Proyectos</a></li>
