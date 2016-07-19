@@ -83,28 +83,12 @@
                     eventLimit: true, // allow "more" link when too many events
                     events: eventos,
                     eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
-                        //alert(event.start.format('DD/MM/YYYY'));
-
-                        //var hasta = '';
-                        //var estaEnArrayActualizado = false;
-                        //if (event.end._d.getDate() < 10) {
-                        //    hasta += '0'
-                        //}
-                        //hasta += event.end._d.getDate() + '/';
-                        //if ((event.end._d.getMonth() + 1) < 10) {
-                        //    hasta += '0'
-                        //}
-                        //hasta += (event.end._d.getMonth() + 1) + '/';
-                        //hasta += event.end._d.getFullYear();
-                        //alert(hasta);
-                        //alert(event.idTarea);
+                        var estaEnArrayActualizado = false;
                         var desde = event.start.format('DD/MM/YYYY');
                         var fin = event.end.format('DD/MM/YYYY');
                         for (var i = 0; i < eventosActualizados.length; i++) {
                             if (eventosActualizados[i][0] == event.idTarea) {
                                 estaEnArrayActualizado = true;
-                                //eventosActualizados[i][1] = event.start;
-                                //eventosActualizados[i][2] = event.end;
                                 eventosActualizados[i][1] = desde;
                                 eventosActualizados[i][2] = fin;
                             }
@@ -118,26 +102,6 @@
                             nuevoEvento.push(fin);
                             eventosActualizados.push(nuevoEvento);
                         }
-                        //for (var i = 0; i < eventosActualizados.length; i++) {
-                        //    if (eventosActualizados[i].idTarea == event.idTarea) {
-                        //        estaEnArrayActualizado = true;
-                        //        eventosActualizados[i].start = event.start;
-                        //        eventosActualizados[i].end = event.end;
-                        //    }
-                        //}
-                        //if (!estaEnArrayActualizado) {
-                        //    for (var i = 0; i < eventos.length; i++) {
-                        //        if (eventos[i].idTarea == event.idTarea) {
-                        //            eventos[i].start = event.start;
-                        //            eventos[i].end = event.end;
-                        //            eventosActualizados.push(eventos[i]);
-                        //        }
-                        //    }
-
-
-                        //var dia = (d.getDate() < 10) ? '0' + d.getDate() : d.getDate();
-                        //var mes = (d.getMonth() < 10) ? '0' + d.getMonth() : d.getMonth();
-                        //alert([dia, mes, d.getFullYear()].join('/'));
                     }
                 });
 
