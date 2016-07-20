@@ -144,18 +144,16 @@ namespace Negocio
 
         #endregion
         #region "Modulos"
-        
         public Modulos obtieneDatosModulo(int idModulo)
-            {
-                AccesoDatos datos = new AccesoDatos();
-                Modulos mod = datos.obtenerDatosModulo(idModulo);
-                return mod;
-            }
+        {
+            AccesoDatos datos = new AccesoDatos();
+            Modulos mod = datos.obtenerDatosModulo(idModulo);
+            return mod;
+        }
 
         public bool insertaModulo(string nombre, string descrip, DateTime fechaCreacion, DateTime fechaInicio, DateTime fechaVencimiento, int proyecto, string usuario)
         {
             AccesoDatos datos = new AccesoDatos();
-            
             try
             {
                 if (datos.insertarModulo(nombre, descrip, fechaCreacion, fechaInicio, fechaVencimiento, proyecto, usuario) != 0)
@@ -231,8 +229,7 @@ namespace Negocio
         }
 
         #endregion
-
-         #region "Tareas"
+        #region "Tareas"
         public bool insertaTarea(string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -409,10 +406,6 @@ namespace Negocio
 
         }
         #endregion
+
     }
-
-        
-        
-       
-
 }

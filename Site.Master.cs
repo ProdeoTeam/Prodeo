@@ -19,7 +19,7 @@ namespace Prodeo
                 principalProyecto.Visible = true;
                 userLogueado.Visible = true;
                 userLogueado.InnerHtml = Session["usuario"].ToString();
-            } 
+            }
             else
             {                
                 sessionActiva.Visible = false;

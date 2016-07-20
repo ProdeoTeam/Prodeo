@@ -14,15 +14,15 @@ namespace Prodeo.pantallas
         public int idProyecto;
         public string permiso = "";
         protected void Page_Load(object sender, EventArgs e)
-        {                      
-            
+        {
+
             ProyectoLogica datosProyecto = new ProyectoLogica();
             idProyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
             permiso = Request.QueryString["p"];
             nombreProyecto.Text = datosProyecto.obtieneNombreProyecto(idProyecto);
             Session["idProyecto"] = idProyecto;
             Session["permiso"] = permiso;
-            if(permiso == "C")
+            if (permiso == "C")
             {
                 liTarea.Style["display"] = "none";
                 liModulo.Style["display"] = "none";
@@ -33,7 +33,7 @@ namespace Prodeo.pantallas
                 liModulo.Style["display"] = "inline-block";
             }
             presentarContenidoProyecto(idProyecto, permiso);
-            
+
 
         }
         /// <summary>
@@ -75,53 +75,53 @@ namespace Prodeo.pantallas
             }
             else
             {
-                listaTareas = proy.obtieneListaTareasUsusario(idModulo,Session["usuario"].ToString());
+                listaTareas = proy.obtieneListaTareasUsusario(idModulo, Session["usuario"].ToString());
             }
-            if(listaTareas.Count != 0)
+            if (listaTareas.Count != 0)
             {
                 Button newButton = new Button();
                 newButton.Text = "Ver";
-                foreach(DatosTarea tarea in listaTareas)
+                foreach (DatosTarea tarea in listaTareas)
                 {
-                        string prioridad = "";
-                        newButton.ID = "btnTarea"+tarea.IdTarea;
-                        DataRow dr = dtTareas.NewRow();
-                        dr.SetField("Id Tarea", tarea.IdTarea);
-                        dr.SetField("Id Modulo", tarea.IdModulo);
-                        dr.SetField("Nombre Tarea",tarea.Nombre);
-                        dr.SetField("Descripcion", tarea.Descripcion);
-                        dr.SetField("Comentario", tarea.Comentario);
-                         switch(tarea.Prioridad)
-                         {
-                             case "A":
-                                 {
-                                     prioridad = "Alta";
-                                     break;
-                                 }
-                             case "M":
-                                 {
-                                     prioridad = "Media";
-                                     break;
-                                 }
-                             case "B":
-                                 {
-                                     prioridad = "Baja";
-                                     break;
-                                 }
-                             case "N":
-                                 {
-                                     prioridad = "Ninguna";
-                                     break;
-                                 }
-                         }
-                         dr.SetField("Prioridad", prioridad);
-                         dr.SetField("Avisos", tarea.Avisos);
-                         dr.SetField("Asignada a", tarea.Asignada);
-                         dr.SetField("Fecha Limite", tarea.FechaLimite);
-                         dr.SetField("Fecha Inicio", tarea.FechaInicio);
-                         //dr.SetField("Fecha Vencimiento", tarea.FechaFinalizacion);
-                         dr.SetField("Estado", tarea.Estado);
-                        dtTareas.Rows.Add(dr);
+                    string prioridad = "";
+                    newButton.ID = "btnTarea" + tarea.IdTarea;
+                    DataRow dr = dtTareas.NewRow();
+                    dr.SetField("Id Tarea", tarea.IdTarea);
+                    dr.SetField("Id Modulo", tarea.IdModulo);
+                    dr.SetField("Nombre Tarea", tarea.Nombre);
+                    dr.SetField("Descripcion", tarea.Descripcion);
+                    dr.SetField("Comentario", tarea.Comentario);
+                    switch (tarea.Prioridad)
+                    {
+                        case "A":
+                            {
+                                prioridad = "Alta";
+                                break;
+                            }
+                        case "M":
+                            {
+                                prioridad = "Media";
+                                break;
+                            }
+                        case "B":
+                            {
+                                prioridad = "Baja";
+                                break;
+                            }
+                        case "N":
+                            {
+                                prioridad = "Ninguna";
+                                break;
+                            }
+                    }
+                    dr.SetField("Prioridad", prioridad);
+                    dr.SetField("Avisos", tarea.Avisos);
+                    dr.SetField("Asignada a", tarea.Asignada);
+                    dr.SetField("Fecha Limite", tarea.FechaLimite);
+                    dr.SetField("Fecha Inicio", tarea.FechaInicio);
+                    //dr.SetField("Fecha Vencimiento", tarea.FechaFinalizacion);
+                    dr.SetField("Estado", tarea.Estado);
+                    dtTareas.Rows.Add(dr);
                 }
             }
             else
@@ -146,16 +146,17 @@ namespace Prodeo.pantallas
             //Entidad.Modulo unModulo;
             listaDeModulos = new List<DatosModulo>();
             ProyectoLogica proy = new ProyectoLogica();
-                listaDeModulos = proy.obtieneListaModulos(Session["usuario"].ToString(), idproyecto, permiso);
-                //Aca se debería recorrer un datatable, que tiene todas las tareas e ir generando nuevas tablas con un dataview para separarlos por modulos.
-                foreach (DatosModulo modulo in listaDeModulos)
-                {
-                    modulo.tablaTareas = obtenerTareas(modulo.IdModulo);
-                }
+            listaDeModulos = proy.obtieneListaModulos(Session["usuario"].ToString(), idproyecto, permiso);
+            //Aca se debería recorrer un datatable, que tiene todas las tareas e ir generando nuevas tablas con un dataview para separarlos por modulos.
+            foreach (DatosModulo modulo in listaDeModulos)
+            {
+                modulo.tablaTareas = obtenerTareas(modulo.IdModulo);
+            }
 
             return listaDeModulos;
         }
-        void presentarContenidoProyecto(int idproyecto, string permiso) {
+        void presentarContenidoProyecto(int idproyecto, string permiso)
+        {
             //Prodeo.Entidad.Modulo unModulo = new Prodeo.Entidad.Modulo();
             List<DatosModulo> listaDeModulos;
             listaDeModulos = new List<DatosModulo>();
@@ -171,16 +172,18 @@ namespace Prodeo.pantallas
                 Literal divApertura = new Literal();
                 Literal divCierre = new Literal();
                 Literal linkModulo = new Literal();
+                Literal linkTarea = new Literal();
                 Literal linkCalendarioTareas = new Literal();
                 Literal linkEliminarModulo = new Literal();
                 int totalTareas;
                 int tareasFinalizadas = 0;
                 Double porcentajeAvance = 0;
-                
+
                 totalTareas = unModulo.tablaTareas.Rows.Count;
                 foreach (DataRow item in unModulo.tablaTareas.Rows)
                 {
-                    if("Finalizada" == Convert.ToString(item["Estado"])){
+                    if ("Finalizada" == Convert.ToString(item["Estado"]))
+                    {
                         tareasFinalizadas = tareasFinalizadas + 1;
                     }
                 }
@@ -195,7 +198,7 @@ namespace Prodeo.pantallas
                 h3.Text += "<div style='background-color:#12587B;width:";
                 h3.Text += Math.Round(porcentajeAvance);
                 h3.Text += "%;";
-                
+
                 h3.Text += "height:16px;'>";
                 h3.Text += "</div>";
                 h3.Text += "</h3>";
@@ -210,14 +213,36 @@ namespace Prodeo.pantallas
                     field.HeaderText = column.ColumnName;
                     grillaTareas.Columns.Add(field);
                 }
-                grillaTareas.ID = "GridView"+unModulo.IdModulo;
+                CommandField search = new CommandField();
+                search.ButtonType = ButtonType.Image;
+                search.SelectImageUrl = "~/images/search.png"; //Specify image URL
+                search.ShowSelectButton = true;
+                search.HeaderText = "Ver";
+                search.ControlStyle.Width = 24;
+                search.HeaderStyle.Width = 50;
+                grillaTareas.Columns.Add(search);
+
+                if (Session["permiso"].ToString() == "A")
+                {
+                    CommandField delete = new CommandField();
+                    delete.ButtonType = ButtonType.Image;
+                    delete.DeleteImageUrl = "~/images/cancel.png"; //Specify image URL
+                    delete.ShowDeleteButton = true;
+                    delete.HeaderText = "Eliminar";
+                    delete.ControlStyle.Width = 24;
+                    delete.HeaderStyle.Width = 80;
+                    grillaTareas.Columns.Add(delete);
+                }
+                
+
+                grillaTareas.ID = "GridView" + unModulo.IdModulo;
                 grillaTareas.AutoGenerateColumns = false;
                 grillaTareas.SelectedIndexChanged += new EventHandler(GridView_SelectedIndexChanged);
-                grillaTareas.AutoGenerateSelectButton = true;
+                grillaTareas.AutoGenerateSelectButton = false;
                 if (Session["permiso"].ToString() == "A")
                 {
                     grillaTareas.RowDeleting += new GridViewDeleteEventHandler(GridView_RowDeleting);
-                    grillaTareas.AutoGenerateDeleteButton = true;
+                    grillaTareas.AutoGenerateDeleteButton = false;
                 }
                 grillaTareas.RowDataBound += new GridViewRowEventHandler(GridView_RowDataBound);
                 grillaTareas.Attributes.Add("class", "default");
@@ -255,24 +280,30 @@ namespace Prodeo.pantallas
                 //DOCUMENTACION PLUGIN: http://fooplugins.com/plugins/footable-jquery/
 
 
+
                 if (cantTareasAMostrar > 1) 
                 {
                     //Attribute to show the Plus Minus Button.
-                    grillaTareas.HeaderRow.Cells[0].Attributes["data-class"] = "expand";//posicion 0 comandos seleccionar y eliminar
+                    grillaTareas.HeaderRow.Cells[2].Attributes["data-class"] = "expand";//posicion 0 comandos seleccionar y eliminar
                 
+                    /*
+                    //Attribute to hide column in Phone.                
+                    grillaTareas.HeaderRow.Cells[4].Attributes["data-hide"] = "phone"; //Descripcion 
+                    grillaTareas.HeaderRow.Cells[6].Attributes["data-hide"] = "phone"; //Prioridad
+                    grillaTareas.HeaderRow.Cells[8].Attributes["data-hide"] = "phone"; //Asignada
+                    grillaTareas.HeaderRow.Cells[9].Attributes["data-hide"] = "phone"; //Fecha limite
+                    grillaTareas.HeaderRow.Cells[11].Attributes["data-hide"] = "phone"; //Estado
+                    */
+                
+                    //Attribute to hide column in Phone.
+                    grillaTareas.HeaderRow.Cells[3].Attributes["data-hide"] = "phone"; //Descripcion 
+                    grillaTareas.HeaderRow.Cells[5].Attributes["data-hide"] = "phone"; //Prioridad
+                    grillaTareas.HeaderRow.Cells[7].Attributes["data-hide"] = "phone"; //Asignada
+                    grillaTareas.HeaderRow.Cells[8].Attributes["data-hide"] = "phone"; //Fecha limite
+                    grillaTareas.HeaderRow.Cells[10].Attributes["data-hide"] = "phone"; //Estado
 
-                //Attribute to hide column in Phone.
-                
-                grillaTareas.HeaderRow.Cells[4].Attributes["data-hide"] = "phone"; //Descripcion 
-                grillaTareas.HeaderRow.Cells[6].Attributes["data-hide"] = "phone"; //Prioridad
-                grillaTareas.HeaderRow.Cells[8].Attributes["data-hide"] = "phone"; //Asignada
-                grillaTareas.HeaderRow.Cells[9].Attributes["data-hide"] = "phone"; //Fecha limite
-                grillaTareas.HeaderRow.Cells[11].Attributes["data-hide"] = "phone"; //Estado
-                
-                
-                
-                //Adds THEAD and TBODY to GridView.
-                grillaTareas.HeaderRow.TableSection = TableRowSection.TableHeader;
+                    //Adds THEAD and TBODY to GridView.
+                    grillaTareas.HeaderRow.TableSection = TableRowSection.TableHeader;
                 }
                 //------------------------------------------------------------------
 
@@ -281,17 +312,24 @@ namespace Prodeo.pantallas
                 divApertura.Text = "<div>";
                 divCierre.Text = "</div>";
                 linkModulo.Text = "<a class='button' href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>VER MÓDULO</a>&nbsp&nbsp";
+                linkTarea.Text = "<a class='button' href='AltaTarea.aspx?idModulo=" + unModulo.IdModulo + "'>ALTA TAREA</a>&nbsp&nbsp";
                 linkCalendarioTareas.Text = "<a class='button' href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "&idProyecto=" + idproyecto + "'>ADMINISTRAR PLAN</a>&nbsp&nbsp";
                 linkEliminarModulo.Text = "<a class='button' href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>ELIMINAR</a>"; ;
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(linkModulo);
-                contenedorAccordion.Controls.Add(linkCalendarioTareas);
+                
+                if (Session["permiso"].ToString() == "A")
+                {
+                    contenedorAccordion.Controls.Add(linkTarea);
+                    contenedorAccordion.Controls.Add(linkCalendarioTareas);
+                }
+                
                 if (Session["permiso"].ToString() == "A" && grillaTareas.Rows.Count == 0)
                 {
                     contenedorAccordion.Controls.Add(linkEliminarModulo);
                 }
-                
+
                 contenedorAccordion.Controls.Add(divCierre);
 
             }
@@ -302,7 +340,7 @@ namespace Prodeo.pantallas
             GridView dv = sender as GridView;
             GridViewRow row = dv.SelectedRow;
             Session["datosTarea"] = row;
-            
+
             Response.Redirect("~/pantallas/AltaTarea.aspx");
 
         }
@@ -312,13 +350,13 @@ namespace Prodeo.pantallas
             ProyectoLogica proy = new ProyectoLogica();
             GridView dv = sender as GridView;
             GridViewRow row = dv.Rows[e.RowIndex];
-            Response.Redirect("~/pantallas/EliminarTarea.aspx?idTarea=" + row.Cells[1].Text + "");
+            Response.Redirect("~/pantallas/EliminarTarea.aspx?idTarea=" + row.Cells[0].Text + "");
             //bool correcto = proy.EliminaTarea(row.Cells[1].Text, Session["usuario"].ToString());
             //if(correcto)
             //{
             //    Response.Redirect(Request.Url.AbsoluteUri);
             //}
-            
+
 
         }
 

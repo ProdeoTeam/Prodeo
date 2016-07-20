@@ -14,15 +14,21 @@ namespace Prodeo.pantallas
         {
             if (!IsPostBack)
             {
+                int idModulo = 0;
                 ProyectoLogica proy = new ProyectoLogica();
                 int proyecto = Convert.ToInt32(Session["idProyecto"]);
                 string usuario = Session["usuario"].ToString();
                 string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
+                idModulo = Convert.ToInt32(Request.QueryString["idModulo"]);
                 AccesoLogica user = new AccesoLogica();
                 listaModulos.DataSource = proy.obtieneListaModulos(usuario, proyecto, permiso);
                 listaModulos.DataValueField = "IdModulo";                
                 listaModulos.DataTextField = "Nombre";
-                listaModulos.DataBind();                
+                listaModulos.DataBind();
+                if (idModulo != 0)
+                {
+                    listaModulos.SelectedValue = idModulo.ToString();
+                }
                 usuariosLista.DataSource = user.obtieneListaUsuarios(proyecto);
                 usuariosLista.DataValueField = "idUsuario";
                 usuariosLista.DataTextField = "nombre";
@@ -68,16 +74,16 @@ namespace Prodeo.pantallas
                     LabelTareas.Text = "Ver Tarea";
                     GridViewRow row;
                     row = (GridViewRow) Session["datosTarea"];
-                    Session["idTarea"] = row.Cells[1].Text;
-                    nombreTarea.Value = row.Cells[3].Text;
+                    Session["idTarea"] = row.Cells[0].Text;
+                    nombreTarea.Value = row.Cells[2].Text;
                     nombreTarea.Disabled = true;
-                    descripcion.Value = row.Cells[4].Text;
+                    descripcion.Value = row.Cells[3].Text;
                     descripcion.Disabled = true;
-                    comentario.Value = row.Cells[5].Text;
+                    comentario.Value = row.Cells[4].Text;
                     comentario.Disabled = true;
                     for (int i=0; i<=listaModulos.Items.Count - 1; i++)
                         {
-                            if (listaModulos.Items[i].Value == row.Cells[2].Text)
+                            if (listaModulos.Items[i].Value == row.Cells[1].Text)
                             {
                                 listaModulos.Items[i].Selected = true;
                             }
@@ -89,7 +95,7 @@ namespace Prodeo.pantallas
                     listaModulos.Enabled = false;
                     for (int i = 0; i <= listaPrioridad.Items.Count - 1; i++)
                     {
-                        if (listaPrioridad.Items[i].Text == row.Cells[6].Text)
+                        if (listaPrioridad.Items[i].Text == row.Cells[5].Text)
                         {
                             listaPrioridad.Items[i].Selected = true;
                         }
@@ -102,7 +108,7 @@ namespace Prodeo.pantallas
                     listaPrioridad.Disabled = true;
                     for (int i = 0; i <= avisoVencimientos.Items.Count - 1; i++)
                     {
-                        if (avisoVencimientos.Items[i].Value == row.Cells[7].Text)
+                        if (avisoVencimientos.Items[i].Value == row.Cells[6].Text)
                         {
                             avisoVencimientos.Items[i].Selected = true;
                         }
@@ -114,7 +120,7 @@ namespace Prodeo.pantallas
                     avisoVencimientos.Disabled = true;
                     for (int i = 0; i <= usuariosLista.Items.Count - 1; i++)
                     {
-                        if (usuariosLista.Items[i].Text == row.Cells[8].Text)
+                        if (usuariosLista.Items[i].Text == row.Cells[7].Text)
                         {
                             usuariosLista.Items[i].Selected = true;
                         }
@@ -124,9 +130,9 @@ namespace Prodeo.pantallas
                         }
                     }
                     usuariosLista.Disabled = true;
-                    fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[9].Text));
+                    fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[8].Text));
                     fechaVencimiento.Disabled = true;
-                    fechaInicio.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[10].Text));
+                    fechaInicio.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(row.Cells[9].Text));
                     fechaInicio.Disabled = true;
                     //if (row.Cells[10].Text != "&nbsp;")
                     //{

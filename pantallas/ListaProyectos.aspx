@@ -9,7 +9,6 @@
             //Article
             var contentSection = document.getElementById("main"); //Obtengo una referencia al "section"
             //Recorremos los section
-
             filtro = filtro.toUpperCase();
             for (var i = 5; i < contentSection.childNodes[1].childNodes.length ; i = i + 2) { //Gracias a contentSection.ELEMENTS debería recorrer todos los "article" que hay dentro del "section"
                 // main ; Section-ProyectosLista ; section-vistaProyecto ; elemento-h2 ; innerText             // main ; Section-ProyectosLista ; section-vistaProyecto ; elemento-h3 ; innerText

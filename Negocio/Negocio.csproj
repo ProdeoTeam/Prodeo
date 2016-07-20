@@ -42,7 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AccesoLogica.cs" />	
+    <Compile Include="AccesoLogica.cs" />
     <Compile Include="CriptografiaLogica.cs" />
     <Compile Include="MailRegistroLogica.cs" />
     <Compile Include="ReportesLogica.cs" />

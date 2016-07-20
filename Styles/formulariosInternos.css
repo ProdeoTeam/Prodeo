@@ -80,7 +80,7 @@
     }
 
         #divContEncabezado select, input {
-            height:1.95em;
+            /*height:1.95em;*/
             width:250px;
         }
 
@@ -139,12 +139,8 @@
     line-height: 0px;         
     display:inline-flex;
     }
-
     #divBtnTwitter {        
         margin-left:10px;
     }
-
     #divBtnFacebook {               
     }*/
-
-

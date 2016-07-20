@@ -42,6 +42,7 @@ namespace Prodeo.pantallas
             {
                 LabelElimTareas.Text = "No se pudo finalizar el proyecto " + datosPro.Nombre + ", el mismo posee tareas sin finalizar!";
             }
+
         }   
     }
 }

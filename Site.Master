@@ -26,7 +26,8 @@
         <link href="~/Styles/btn-googleStyle.css" rel="stylesheet" />
         <link href="~/Styles/pict-textbox.css" rel="stylesheet" />
         <link href="~/Styles/responsiveform.css" rel="stylesheet" />
-
+    <asp:ContentPlaceHolder ID="HeadContent2" runat="server">
+        </asp:ContentPlaceHolder>
 		<!--[if lte IE 8]><link rel="stylesheet" href="~/Styles/ie/v8.css" /><![endif]-->
 		<!--[if lte IE 9]><link rel="stylesheet" href="~/Styles/ie/v9.css" /><![endif]-->
 
@@ -51,7 +52,8 @@
                         </li>
 
                          <li class="submenu">                            
-							<a href="#" ID="userLogueado" runat="server" onserverclick="editarUsuario_Click"></a>                             
+
+							<a href="#" ID="userLogueado" runat="server" onserverclick="editarUsuario_Click"><asp:Image ID="Image2" ImageUrl="~/images/user.png" runat="server"></asp:Image><span ID="userName" runat="server"></span></a>                             
                              
 							<ul>								                                                               
                                 <li><a href="#" ID="linkMisProy" runat="server" onserverclick="misProyectos_Click">Mis Proyectos</a></li>
