@@ -40,8 +40,7 @@
 				<nav id="nav">
 					<ul>
 					    <li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink></li>
-                        <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink></li>
-                        <li class="current"><asp:HyperLink ID="HyperLink4" NavigateUrl="~/index.aspx" runat="server">Mobile</asp:HyperLink></li>
+                        <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="~/index.aspx#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink></li>                        
                         <li class="current"><asp:HyperLink ID="HyperLink6" NavigateUrl="~/pantallas/Contacto.aspx" runat="server">Contacto</asp:HyperLink></li>
                                                                                                                        
                         
@@ -51,18 +50,16 @@
                             </div>
                         </li>
 
-
                          <li class="submenu">                            
-							<a href="" ID="userLogueado" runat="server">Charlie</a>                             
+							<a href="#" ID="userLogueado" runat="server" onserverclick="editarUsuario_Click"></a>                             
                              
 							<ul>								                                                               
                                 <li><a href="#" ID="linkMisProy" runat="server" onserverclick="misProyectos_Click">Mis Proyectos</a></li>
                                 <li><a href="#" ID="linkEditUser" runat="server" onserverclick="editarUsuario_Click">Modificar datos</a></li>
-                                <li><a href="#" ID="eliminarCuenta" runat="server" onserverclick="eliminarCuenta_Click">Eliminar cuenta</a></li>                                
+                                <li><a href="#" ID="linkEliminarCuenta" runat="server" onserverclick="eliminarCuenta_Click">Eliminar cuenta</a></li>                                                                                                                                                                                               
 							</ul>                            
 						</li>
                        
-
                         <li runat="server">
                             <div runat="server" id="sessionInactiva"><a href="#envelope" class="button special" id="modaltrigger">Iniciar sesi&oacute;n</a></div>
                         </li>

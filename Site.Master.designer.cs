@@ -58,15 +58,6 @@ namespace Prodeo {
         protected global::System.Web.UI.WebControls.HyperLink HyperLink3;
         
         /// <summary>
-        /// HyperLink4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.HyperLink HyperLink4;
-        
-        /// <summary>
         /// HyperLink6 control.
         /// </summary>
         /// <remarks>
@@ -121,13 +112,13 @@ namespace Prodeo {
         protected global::System.Web.UI.HtmlControls.HtmlAnchor linkEditUser;
         
         /// <summary>
-        /// eliminarCuenta control.
+        /// linkEliminarCuenta control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlAnchor eliminarCuenta;
+        protected global::System.Web.UI.HtmlControls.HtmlAnchor linkEliminarCuenta;
         
         /// <summary>
         /// sessionInactiva control.

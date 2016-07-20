@@ -114,9 +114,7 @@ namespace Prodeo.pantallas
                         literal.Text = "</section><br />";
                         control.Controls.Add(literal);
                     }
-            }
-            
-
+            }            
         }
 
         private Control FindHtmlControlByIdInControl(Control control, string id)

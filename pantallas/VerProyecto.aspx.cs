@@ -129,6 +129,7 @@ namespace Prodeo.pantallas
                 DataRow dr = dtTareas.NewRow();
                 dr.SetField("Nombre Tarea", "No posee Tareas");
                 dtTareas.Rows.Add(dr);
+                
             }
 
             return dtTareas;
@@ -160,6 +161,8 @@ namespace Prodeo.pantallas
             listaDeModulos = new List<DatosModulo>();
             listaDeModulos = obtenerListaModulos(idproyecto, permiso);
             int anchoBarraProgreso = 150;
+            string abiertoFinalizado = Convert.ToString(ddlFiltroProy.SelectedValue);
+            int cantTareasAMostrar = 0;
             foreach (DatosModulo unModulo in listaDeModulos)
             {
                 GridView grillaTareas = new GridView();
@@ -219,10 +222,26 @@ namespace Prodeo.pantallas
                 grillaTareas.RowDataBound += new GridViewRowEventHandler(GridView_RowDataBound);
                 grillaTareas.Attributes.Add("class", "default");
 
-                //Filtramos las tareas finalizadas para que no se presenten en pantalla.
+
+                
+                //Filtramos las tareas según el drop down list->por defecto las pendientes
                 DataView dvTareas = new DataView(unModulo.tablaTareas);
-                dvTareas.RowFilter = "Estado <> 'Finalizada'";
+                if (abiertoFinalizado == "Pendiente")
+                {
+                    dvTareas.RowFilter = "Estado <> 'Finalizada'";
+                    cantTareasAMostrar = totalTareas - tareasFinalizadas;
+                }
+                else
+                {
+                    dvTareas.RowFilter = "Estado <> 'Pendiente'";
+                    cantTareasAMostrar = tareasFinalizadas;
+                }
+
                 grillaTareas.DataSource = dvTareas.ToTable();
+                
+
+
+
                 //grillaTareas.DataSource = unModulo.tablaTareas;
                 grillaTareas.DataBind();
                 grillaTareas.Columns[0].Visible = false;
@@ -232,25 +251,29 @@ namespace Prodeo.pantallas
                 grillaTareas.Columns[9].Visible = false;
 
                 //------------------------------------------------------------------
-                //ESTABLECE LAS COLUMNAS QUE SE VAN A MOSTRAR U OCULTAR A MEDIDA QUE VA CERRANDO EL NAVEGADOR
+                    //ESTABLECE LAS COLUMNAS QUE SE VAN A MOSTRAR U OCULTAR A MEDIDA QUE VA CERRANDO EL NAVEGADOR
                 //DOCUMENTACION PLUGIN: http://fooplugins.com/plugins/footable-jquery/
 
-                //Attribute to show the Plus Minus Button.
-                grillaTareas.HeaderRow.Cells[0].Attributes["data-class"] = "expand";//posicion 0 comandos seleccionar y eliminar
+
+                if (cantTareasAMostrar > 1) 
+                {
+                    //Attribute to show the Plus Minus Button.
+                    grillaTareas.HeaderRow.Cells[0].Attributes["data-class"] = "expand";//posicion 0 comandos seleccionar y eliminar
                 
 
                 //Attribute to hide column in Phone.
+                
                 grillaTareas.HeaderRow.Cells[4].Attributes["data-hide"] = "phone"; //Descripcion 
                 grillaTareas.HeaderRow.Cells[6].Attributes["data-hide"] = "phone"; //Prioridad
                 grillaTareas.HeaderRow.Cells[8].Attributes["data-hide"] = "phone"; //Asignada
                 grillaTareas.HeaderRow.Cells[9].Attributes["data-hide"] = "phone"; //Fecha limite
                 grillaTareas.HeaderRow.Cells[11].Attributes["data-hide"] = "phone"; //Estado
-
+                
                 
                 
                 //Adds THEAD and TBODY to GridView.
                 grillaTareas.HeaderRow.TableSection = TableRowSection.TableHeader;
-
+                }
                 //------------------------------------------------------------------
 
                 //Creamos un div que va a ser el que tenga el contenido de lo que se va a mostrar al desplegar el accordion.
@@ -259,7 +282,7 @@ namespace Prodeo.pantallas
                 divCierre.Text = "</div>";
                 linkModulo.Text = "<a class='button' href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>VER MÓDULO</a>&nbsp&nbsp";
                 linkCalendarioTareas.Text = "<a class='button' href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "&idProyecto=" + idproyecto + "'>ADMINISTRAR PLAN</a>&nbsp&nbsp";
-                linkEliminarModulo.Text = "<a href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>Eliminar</a>"; ;
+                linkEliminarModulo.Text = "<a class='button' href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>ELIMINAR</a>"; ;
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(linkModulo);

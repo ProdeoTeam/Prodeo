@@ -13,19 +13,22 @@ namespace Prodeo
         protected void Page_Load(object sender, EventArgs e)
         {
             if (Session["usuario"] != null)
-            {                
-                sessionActiva.Style.Add("display", "block");
-                sessionInactiva.Style.Add("display", "none");
-                principalProyecto.Style.Add("display", "block");
-                userLogueado.Style.Add("display", "block");
+            {                                
+                sessionActiva.Visible = true;
+                sessionInactiva.Visible = false;
+                principalProyecto.Visible = true;
+                userLogueado.Visible = true;
                 userLogueado.InnerHtml = Session["usuario"].ToString();
             } 
             else
             {                
-                sessionActiva.Style.Add("display", "none");
-                sessionInactiva.Style.Add("display", "block");
-                principalProyecto.Style.Add("display", "none");
-                userLogueado.Style.Add("display", "none");
+                sessionActiva.Visible = false;
+                sessionInactiva.Visible = true;
+                principalProyecto.Visible = false;
+                userLogueado.Visible = false;
+                linkMisProy.Visible = false;
+                linkEditUser.Visible = false;
+                linkEliminarCuenta.Visible = false;
             }
         }
 
@@ -38,10 +41,10 @@ namespace Prodeo
                 Session["usuario"] = usuario.Value;
                 if (Session["usuario"] != null)
                 {                    
-                    sessionActiva.Style.Add("display", "block");
-                    sessionInactiva.Style.Add("display", "none");
-                    principalProyecto.Style.Add("display", "block");
-                    userLogueado.Style.Add("display", "block");
+                    sessionActiva.Visible = true;
+                    sessionInactiva.Visible = false;
+                    principalProyecto.Visible = true;
+                    userLogueado.Visible = true;
                     userLogueado.InnerHtml = Session["usuario"].ToString();
                     Response.Redirect("~/pantallas/seleccion.aspx");
                 } 

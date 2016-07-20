@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VerProyecto.aspx.cs" Inherits="Prodeo.pantallas.VerProyecto" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="VerProyecto.aspx.cs" Inherits="Prodeo.pantallas.VerProyecto" EnableViewState="false"%>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="asp" %>
 
@@ -38,6 +38,16 @@
 			<header class="major">
 				<h2><strong>Proyecto </strong><asp:Label ID="nombreProyecto" runat="server" Text="" Font-Bold="True"></asp:Label></h2>
                 <input id="btnVerProyecto" type="button" onserverclick="btnVerProyecto_Click" value="Ver Proyecto" runat="server"/>
+
+                <div id="divFiltrar" class="divsOpcEncabezado">
+                    <span id="spanFiltrar">Filtrar Tareas</span>
+                    <asp:DropDownList ID="ddlFiltroProy" runat="server" AutoPostBack="true">
+                        <asp:ListItem Selected ="True" Value ="Pendiente">PENDIENTES</asp:ListItem>
+                        <asp:ListItem Value ="Finalizada">FINALIZADAS</asp:ListItem>
+                    </asp:DropDownList>
+                </div>
+
+
 			</header>
             
             <footer>
