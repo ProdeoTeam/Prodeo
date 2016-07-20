@@ -55,7 +55,12 @@
             <script type="text/javascript">
                 //============== función del plugin footable ==============
                 $(function () {
-                    $('[Id*=GridView1]').footable();
+                    $('[Id*=GridView1]').footable({
+                        breakpoints: {
+                            tablet: 1024,
+                            phone: 800
+                        }
+                    });
                 });
             </script>
             <br />

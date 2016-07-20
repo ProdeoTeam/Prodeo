@@ -83,7 +83,9 @@
     <Content Include="Account\ChangePasswordSuccess.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="images\cancel.png" />
     <Content Include="images\quitar.jpg" />
+    <Content Include="images\search.png" />
     <Content Include="images\sprite.png" />
     <Content Include="images\user.png" />
     <Content Include="js\adapters\standalone-framework.js" />
