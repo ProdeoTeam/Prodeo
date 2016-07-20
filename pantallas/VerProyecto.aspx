@@ -22,6 +22,7 @@
             } else {
                 $("#MainContent_contenedorAccordion").accordion({
                     collapsible: true,
+                    active: false,
                     heightStyle: "content"
                 });
                 //alert("entro");
