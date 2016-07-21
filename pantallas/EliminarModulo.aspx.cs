@@ -16,7 +16,7 @@ namespace Prodeo.pantallas
         public int proyecto;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["username"] == null)
+            if (Session["usuario"] == null)
             {
                 Response.Redirect("~/index.aspx");
             }

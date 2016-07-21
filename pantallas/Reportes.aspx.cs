@@ -19,7 +19,7 @@ namespace Prodeo.pantallas
             //Utility.RegisterTypeForAjax(typeof(Reportes));
             if (!IsPostBack)
             {
-                if (Session["username"] == null)
+                if (Session["usuario"] == null)
                 {
                     Response.Redirect("~/index.aspx");
                 }
@@ -36,6 +36,12 @@ namespace Prodeo.pantallas
                 }
                 
             }
+        }
+
+        protected void volverListaModulos_Click(object sender, EventArgs e)
+        {
+            int proyecto = Convert.ToInt32(Session["idProyecto"]);
+            Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
         }
 
         //[AjaxMethod(HttpSessionStateRequirement.ReadWrite)]

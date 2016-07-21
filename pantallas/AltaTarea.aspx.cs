@@ -14,7 +14,7 @@ namespace Prodeo.pantallas
         {
             if (!IsPostBack)
             {
-                if (Session["username"] == null)
+                if (Session["usuario"] == null)
                 {
                     Response.Redirect("~/index.aspx");
                 }

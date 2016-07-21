@@ -212,7 +212,7 @@
                             <li><a href="#" class="button graph" onclick="crearAvanceDelProyecto()"  runat="server">Reporte Avance del<br /> Proyecto</a></li>
 					    </ul>
 						<div class="row">
-						<div id="containerReporte" style="width: 400px;">
+						<div id="containerReporte" style="width: 1024px;">
 
 						</div>
 
@@ -220,7 +220,7 @@
 
 						<footer class="major">
 							<ul class="buttons">
-								<li><a href="#" class="button">Ayuda</a></li>
+								<li><a class="button special" id="btnVolverListaModulos" runat="server" onserverclick="volverListaModulos_Click">Volver</a></li>
 							</ul>
 						</footer>
 					

@@ -950,7 +950,7 @@ namespace Datos
                 {
                     //Todavia no se procesaron tareas del usuario, asi que agregamos al usuario e inicializamos sus tareas
                     usuarios.Add(item.usuario);
-                    if (item.estado == "FINALIZADA")
+                    if (item.estado == "Finalizada")
                     {
                         //Tarea Finalizada
                         tareasFinalizadas.Add(1);
@@ -980,7 +980,7 @@ namespace Datos
                 else
                 {
                     //El usuario ya existe
-                    if (item.estado == "FINALIZADA")
+                    if (item.estado == "Finalizada")
                     {
                         //le agregamos una tarea finalizada
                         int cantFinalizadas = Convert.ToInt32(tareasFinalizadas[indiceUsuario]);
@@ -1054,7 +1054,7 @@ namespace Datos
                 {
                     //Todavia no se procesaron tareas del usuario, asi que agregamos al usuario e inicializamos sus tareas
                     modulos.Add(item.modulo);
-                    if (item.estado == "FINALIZADA")
+                    if (item.estado == "Finalizada")
                     {
                         //Tarea Finalizada
                         tareasFinalizadas.Add(1);
@@ -1083,7 +1083,7 @@ namespace Datos
                 else
                 {
                     //El usuario ya existe
-                    if (item.estado == "FINALIZADA")
+                    if (item.estado == "Finalizada")
                     {
                         //le agregamos una tarea finalizada
                         int cantFinalizadas = Convert.ToInt32(tareasFinalizadas[indiceUsuario]);
@@ -1179,7 +1179,7 @@ namespace Datos
             foreach (DatosTarea item in query)
             {
                 //El usuario ya existe
-                if (item.Estado == "FINALIZADA")
+                if (item.Estado == "Finalizada")
                 {
                     //le agregamos una tarea finalizada
                     int cantFinalizadas = Convert.ToInt32(tareasFinalizadas[1]);
