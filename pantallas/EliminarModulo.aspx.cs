@@ -16,6 +16,12 @@ namespace Prodeo.pantallas
         public int proyecto;
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["username"] == null)
+            {
+                Response.Redirect("~/index.aspx");
+            }
+            else
+            {
                 ProyectoLogica proy = new ProyectoLogica();
                 proyecto = Convert.ToInt32(Session["idProyecto"]);
                 string usuario = Session["usuario"].ToString();
@@ -23,7 +29,9 @@ namespace Prodeo.pantallas
                 AccesoLogica user = new AccesoLogica();
                 idModulo = Convert.ToInt32(Request.QueryString["idModulo"]);
                 modulo = proy.obtieneDatosModulo(idModulo);
-                LabelElimTareas.Text = "Se va a eliminar el modulo "+ modulo.Nombre +", desea continuar?";
+                LabelElimTareas.Text = "Se va a eliminar el modulo " + modulo.Nombre + ", desea continuar?";
+            }
+                
         }
 
         protected void cancelar_Click(object sender, EventArgs e)

@@ -19,14 +19,22 @@ namespace Prodeo.pantallas
             //Utility.RegisterTypeForAjax(typeof(Reportes));
             if (!IsPostBack)
             {
-                Utility.RegisterTypeForAjax(typeof(ReportesLogica));
-                string usuario = Session["usuario"].ToString();
-                ProyectoLogica proy = new ProyectoLogica();
+                if (Session["username"] == null)
+                {
+                    Response.Redirect("~/index.aspx");
+                }
+                else
+                {
+                    Utility.RegisterTypeForAjax(typeof(ReportesLogica));
+                    string usuario = Session["usuario"].ToString();
+                    ProyectoLogica proy = new ProyectoLogica();
 
-                proyectosLista.DataSource = proy.obtieneListaProyecto(Session["usuario"].ToString(), 0);
-                proyectosLista.DataValueField = "Id";
-                proyectosLista.DataTextField = "Nombre";
-                proyectosLista.DataBind();
+                    proyectosLista.DataSource = proy.obtieneListaProyecto(Session["usuario"].ToString(), 0);
+                    proyectosLista.DataValueField = "Id";
+                    proyectosLista.DataTextField = "Nombre";
+                    proyectosLista.DataBind();
+                }
+                
             }
         }
 

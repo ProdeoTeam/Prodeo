@@ -19,6 +19,7 @@ namespace Prodeo
                 principalProyecto.Visible = true;
                 userLogueado.Visible = true;
                 userName.InnerHtml = Session["usuario"].ToString();
+                HyperLink2.Text = "Bienvenido"; 
             }
             else
             {                
@@ -29,6 +30,7 @@ namespace Prodeo
                 linkMisProy.Visible = false;
                 linkEditUser.Visible = false;
                 linkEliminarCuenta.Visible = false;
+                HyperLink2.Text = "Inicio";
             }
         }
 

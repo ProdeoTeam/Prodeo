@@ -11,7 +11,15 @@ namespace Prodeo.pantallas
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Session["idProyecto"] = null;
+            if (Session["username"] == null)
+            {
+                Response.Redirect("~/index.aspx");
+            }
+            else
+            {
+                Session["idProyecto"] = null;
+            }
+            
         }
     }
 }

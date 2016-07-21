@@ -16,7 +16,15 @@ namespace Prodeo.pantallas
         {
             if (!IsPostBack)
             {
-                cargaListaProy(sender, e);
+                if (Session["username"] == null)
+                {
+                    Response.Redirect("~/index.aspx");
+                }
+                else
+                {
+                    cargaListaProy(sender, e);
+                }
+                
             }
         }
 

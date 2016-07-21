@@ -17,100 +17,108 @@ namespace Prodeo.pantallas
         {
             if (!IsPostBack)
             {
-                AjaxPro.Utility.RegisterTypeForAjax(typeof(AltaProyecto));
-                AjaxPro.Utility.RegisterTypeForAjax(typeof(GridView));
-                DataTable dt = new DataTable();
-
-                dt.Columns.Add("mail", typeof(string));
-                dt.Columns.Add("permisos", typeof(string));
-
-                //GridView1.DataSource = dt;
-                //GridView1.DataBind();
-                Session["tabla"] = dt;
-                ProyectoLogica proy = new ProyectoLogica();
-                int Numproyecto = Convert.ToInt32(Session["idProyecto"]);
-                string usuario = Session["usuario"].ToString();
-                string permiso = "";
-                if(Numproyecto != 0)
+                if (Session["username"] == null)
                 {
-                    permiso = proy.obtienePermisoUsuario(usuario, Numproyecto);
-                }
-                if(Session["idProyecto"] == null)
-                {
-                    LabelProyectos.Text = "Alta de Proyecto";
-                    Session["permiso"] = "A";
-                    btnEditarProyecto.Visible = false;
-                    btnCancelarEdicion.Visible = false;
-                    btnAltaProyecto.Visible = true;
-                    btnActualizaProyecto.Visible = false;
-                    btnCancelarProyecto.Visible = true;
-                    btnVolverProyecto.Visible = false;
-                    btnEliminarProyecto.Visible = false;
+                    Response.Redirect("~/index.aspx");
                 }
                 else
                 {
-                    nombreProyecto.Disabled = true;
-                    descripcion.Disabled = true;
-                    fechaVencimiento.Disabled = true;
-                    avisoVencimientos.Disabled = true;
-                    selectPermisos.Disabled = true;
-                    btnAgregarUsuario.Disabled = true;
-                    txtUsuarioAjax.Disabled = false;
-                    LabelProyectos.Text = "Ver Proyecto";
-                    btnEditarProyecto.Visible = true;
-                    btnCancelarEdicion.Visible = false;
-                    btnAltaProyecto.Visible = false;
-                    btnCancelarProyecto.Visible = false;
-                    btnActualizaProyecto.Visible = false;
-                    btnVolverProyecto.Visible = true;
-                    if (permiso == "A")
+                    AjaxPro.Utility.RegisterTypeForAjax(typeof(AltaProyecto));
+                    AjaxPro.Utility.RegisterTypeForAjax(typeof(GridView));
+                    DataTable dt = new DataTable();
+
+                    dt.Columns.Add("mail", typeof(string));
+                    dt.Columns.Add("permisos", typeof(string));
+
+                    //GridView1.DataSource = dt;
+                    //GridView1.DataBind();
+                    Session["tabla"] = dt;
+                    ProyectoLogica proy = new ProyectoLogica();
+                    int Numproyecto = Convert.ToInt32(Session["idProyecto"]);
+                    string usuario = Session["usuario"].ToString();
+                    string permiso = "";
+                    if (Numproyecto != 0)
                     {
-                        btnEditarProyecto.Visible = true;
+                        permiso = proy.obtienePermisoUsuario(usuario, Numproyecto);
+                    }
+                    if (Session["idProyecto"] == null)
+                    {
+                        LabelProyectos.Text = "Alta de Proyecto";
+                        Session["permiso"] = "A";
+                        btnEditarProyecto.Visible = false;
                         btnCancelarEdicion.Visible = false;
-                        int cantidadModulos = proy.obtieneCantidadModulos(Numproyecto);
-                        if(cantidadModulos == 0)
-                        {
-                            btnEliminarProyecto.Visible = true;
-                        }
-                        else
-                        {
-                            btnEliminarProyecto.Visible = false;
-                        }
-                        
+                        btnAltaProyecto.Visible = true;
+                        btnActualizaProyecto.Visible = false;
+                        btnCancelarProyecto.Visible = true;
+                        btnVolverProyecto.Visible = false;
+                        btnEliminarProyecto.Visible = false;
                     }
                     else
                     {
-                        btnEditarProyecto.Visible = false;
+                        nombreProyecto.Disabled = true;
+                        descripcion.Disabled = true;
+                        fechaVencimiento.Disabled = true;
+                        avisoVencimientos.Disabled = true;
+                        selectPermisos.Disabled = true;
+                        btnAgregarUsuario.Disabled = true;
+                        txtUsuarioAjax.Disabled = false;
+                        LabelProyectos.Text = "Ver Proyecto";
+                        btnEditarProyecto.Visible = true;
                         btnCancelarEdicion.Visible = false;
-                        btnEliminarProyecto.Visible = false;
-                    }
-                    Proyectos proyecto = proy.obtieneDatosProyecto(Session["idProyecto"].ToString());
-                    List<DatosParticipantesProyecto> partProy = proy.obtieneParticipantes(Session["idProyecto"].ToString());
-                    nombreProyecto.Value = proyecto.Nombre;
-                    nombreProyecto.Disabled = true;
-                    descripcion.Value = proyecto.Descripcion;
-                    descripcion.Disabled = true;
-                    fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", proyecto.FechaVencimiento);
-                    fechaVencimiento.Disabled = true;
-                    for (int i = 0; i <= avisoVencimientos.Items.Count - 1; i++)
-                    {
-                        if (avisoVencimientos.Items[i].Value == proyecto.AlertaPrevia)
+                        btnAltaProyecto.Visible = false;
+                        btnCancelarProyecto.Visible = false;
+                        btnActualizaProyecto.Visible = false;
+                        btnVolverProyecto.Visible = true;
+                        if (permiso == "A")
                         {
-                            avisoVencimientos.Items[i].Selected = true;
+                            btnEditarProyecto.Visible = true;
+                            btnCancelarEdicion.Visible = false;
+                            int cantidadModulos = proy.obtieneCantidadModulos(Numproyecto);
+                            if (cantidadModulos == 0)
+                            {
+                                btnEliminarProyecto.Visible = true;
+                            }
+                            else
+                            {
+                                btnEliminarProyecto.Visible = false;
+                            }
+
                         }
                         else
                         {
-                            avisoVencimientos.Items[i].Selected = false;
+                            btnEditarProyecto.Visible = false;
+                            btnCancelarEdicion.Visible = false;
+                            btnEliminarProyecto.Visible = false;
+                        }
+                        Proyectos proyecto = proy.obtieneDatosProyecto(Session["idProyecto"].ToString());
+                        List<DatosParticipantesProyecto> partProy = proy.obtieneParticipantes(Session["idProyecto"].ToString());
+                        nombreProyecto.Value = proyecto.Nombre;
+                        nombreProyecto.Disabled = true;
+                        descripcion.Value = proyecto.Descripcion;
+                        descripcion.Disabled = true;
+                        fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", proyecto.FechaVencimiento);
+                        fechaVencimiento.Disabled = true;
+                        for (int i = 0; i <= avisoVencimientos.Items.Count - 1; i++)
+                        {
+                            if (avisoVencimientos.Items[i].Value == proyecto.AlertaPrevia)
+                            {
+                                avisoVencimientos.Items[i].Selected = true;
+                            }
+                            else
+                            {
+                                avisoVencimientos.Items[i].Selected = false;
+                            }
+                        }
+                        fechaVencimiento.Disabled = true;
+                        txtUsuarioAjax.Disabled = true;
+                        foreach (DatosParticipantesProyecto dp in partProy)
+                        {
+                            HtmlTableRow rowTablaUsuarios = this.agregarUsuario_html(dp.nombreUsuario, dp.permiso);
+                            tablaUsuariosGrilla.Controls.Add(rowTablaUsuarios);
                         }
                     }
-                    fechaVencimiento.Disabled = true;
-                    txtUsuarioAjax.Disabled = true;
-                    foreach (DatosParticipantesProyecto dp in partProy)
-                    {
-                       HtmlTableRow rowTablaUsuarios =  this.agregarUsuario_html(dp.nombreUsuario, dp.permiso);
-                       tablaUsuariosGrilla.Controls.Add(rowTablaUsuarios);
-                    }
                 }
+                
 
             }
 

@@ -40,7 +40,7 @@
             <h1 id="logo"><asp:HyperLink ID="HyperLink1" runat="server"><asp:Image ID="Image1" ImageUrl="~/images/logos/prodeo.gif" runat="server"></asp:Image></asp:HyperLink></h1>
 				<nav id="nav">
 					<ul>
-					    <li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Bienvenido</asp:HyperLink></li>
+					    <li class="current"><asp:HyperLink ID="HyperLink2" NavigateUrl="~/index.aspx" runat="server">Inicio</asp:HyperLink></li>
                         <li class="current"><asp:HyperLink ID="HyperLink3" NavigateUrl="~/index.aspx#tutorial" class="button fit scrolly" runat="server">Tutorial</asp:HyperLink></li>                        
                         <li class="current"><asp:HyperLink ID="HyperLink6" NavigateUrl="~/pantallas/Contacto.aspx" runat="server">Contacto</asp:HyperLink></li>
                                                                                                                        

@@ -15,24 +15,31 @@ namespace Prodeo.pantallas
         public string permiso = "";
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            ProyectoLogica datosProyecto = new ProyectoLogica();
-            idProyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
-            permiso = Request.QueryString["p"];
-            nombreProyecto.Text = datosProyecto.obtieneNombreProyecto(idProyecto);
-            Session["idProyecto"] = idProyecto;
-            Session["permiso"] = permiso;
-            if (permiso == "C")
+            if (Session["username"] == null)
             {
-                liTarea.Style["display"] = "none";
-                liModulo.Style["display"] = "none";
+                Response.Redirect("~/index.aspx");
             }
             else
             {
-                liTarea.Style["display"] = "inline-block";
-                liModulo.Style["display"] = "inline-block";
+                ProyectoLogica datosProyecto = new ProyectoLogica();
+                idProyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
+                permiso = Request.QueryString["p"];
+                nombreProyecto.Text = datosProyecto.obtieneNombreProyecto(idProyecto);
+                Session["idProyecto"] = idProyecto;
+                Session["permiso"] = permiso;
+                if (permiso == "C")
+                {
+                    liTarea.Style["display"] = "none";
+                    liModulo.Style["display"] = "none";
+                }
+                else
+                {
+                    liTarea.Style["display"] = "inline-block";
+                    liModulo.Style["display"] = "inline-block";
+                }
+                presentarContenidoProyecto(idProyecto, permiso);
             }
-            presentarContenidoProyecto(idProyecto, permiso);
+            
 
 
         }

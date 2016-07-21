@@ -15,49 +15,57 @@ namespace Prodeo
         {
             if (!IsPostBack)
             {
-                ProyectoLogica proy = new ProyectoLogica();
-                int proyecto = Convert.ToInt32(Session["idProyecto"]);
-                string usuario = Session["usuario"].ToString();
-                string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
-                int idModulo = Convert.ToInt32(Request.QueryString["idModulo"]);
-                Session["idModulo"] = idModulo;
-                if(idModulo == 0)
+                if (Session["username"] == null)
                 {
-                    Session["permiso"] = "A";
-                    LabelModulo.Text = "Alta de Modulo";
-                    btnAltaModulo.Visible = true;
-                    btnCancelarModulo.Visible = true;
-                    btnVolverModulo.Visible = false;
-                    btnEditarModulo.Visible = false;
-                    btnCancelarEdicion.Visible = false;
+                    Response.Redirect("~/index.aspx");
                 }
                 else
                 {
-                    btnAltaModulo.Visible = false;
-                    btnCancelarModulo.Visible = false;
-                    btnVolverModulo.Visible = true;
-                    if (permiso == "A")
+                    ProyectoLogica proy = new ProyectoLogica();
+                    int proyecto = Convert.ToInt32(Session["idProyecto"]);
+                    string usuario = Session["usuario"].ToString();
+                    string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
+                    int idModulo = Convert.ToInt32(Request.QueryString["idModulo"]);
+                    Session["idModulo"] = idModulo;
+                    if (idModulo == 0)
                     {
-                        btnEditarModulo.Visible = true;
+                        Session["permiso"] = "A";
+                        LabelModulo.Text = "Alta de Modulo";
+                        btnAltaModulo.Visible = true;
+                        btnCancelarModulo.Visible = true;
+                        btnVolverModulo.Visible = false;
+                        btnEditarModulo.Visible = false;
                         btnCancelarEdicion.Visible = false;
                     }
                     else
                     {
-                        btnEditarModulo.Visible = false;
-                        btnCancelarEdicion.Visible = false;
+                        btnAltaModulo.Visible = false;
+                        btnCancelarModulo.Visible = false;
+                        btnVolverModulo.Visible = true;
+                        if (permiso == "A")
+                        {
+                            btnEditarModulo.Visible = true;
+                            btnCancelarEdicion.Visible = false;
+                        }
+                        else
+                        {
+                            btnEditarModulo.Visible = false;
+                            btnCancelarEdicion.Visible = false;
+                        }
+
+                        LabelModulo.Text = "Ver Modulo";
+
+                        Modulos mod = proy.obtieneDatosModulo(idModulo);
+                        nombreModulo.Value = mod.Nombre;
+                        nombreModulo.Disabled = true;
+                        descripcion.Value = mod.Descripcion;
+                        descripcion.Disabled = true;
+                        fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(mod.FechaVencimiento));
+                        fechaInicio.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(mod.FechaInicio));
+                        fechaVencimiento.Disabled = true;
                     }
-
-                    LabelModulo.Text = "Ver Modulo";
-
-                    Modulos mod = proy.obtieneDatosModulo(idModulo);
-                    nombreModulo.Value = mod.Nombre;
-                    nombreModulo.Disabled = true;
-                    descripcion.Value = mod.Descripcion;
-                    descripcion.Disabled = true;
-                    fechaVencimiento.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(mod.FechaVencimiento));
-                    fechaInicio.Value = String.Format("{0:yyyy-MM-dd}", Convert.ToDateTime(mod.FechaInicio));
-                    fechaVencimiento.Disabled = true;
                 }
+                
                 
             }
 

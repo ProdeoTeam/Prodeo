@@ -16,14 +16,22 @@ namespace Prodeo.pantallas
         public int proyecto;
         protected void Page_Load(object sender, EventArgs e)
         {
-            ProyectoLogica proy = new ProyectoLogica();
-            proyecto = Convert.ToInt32(Session["idProyecto"]);
-            string usuario = Session["usuario"].ToString();
-            string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
-            AccesoLogica user = new AccesoLogica();
-            idTarea = Convert.ToInt32(Request.QueryString["idTarea"]);
-            tarea = proy.obtieneDatosTarea(idTarea);
-            LabelElimTareas.Text = "Se va a eliminar la tarea " + tarea.Nombre + ", desea continuar?";
+            if (Session["username"] == null)
+            {
+                Response.Redirect("~/index.aspx");
+            }
+            else
+            {
+                ProyectoLogica proy = new ProyectoLogica();
+                proyecto = Convert.ToInt32(Session["idProyecto"]);
+                string usuario = Session["usuario"].ToString();
+                string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
+                AccesoLogica user = new AccesoLogica();
+                idTarea = Convert.ToInt32(Request.QueryString["idTarea"]);
+                tarea = proy.obtieneDatosTarea(idTarea);
+                LabelElimTareas.Text = "Se va a eliminar la tarea " + tarea.Nombre + ", desea continuar?";
+            }
+            
         }
 
         protected void cancelar_Click(object sender, EventArgs e)
