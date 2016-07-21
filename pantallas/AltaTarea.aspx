@@ -66,6 +66,7 @@
                                             <label>Fecha Inicio</label>                                                                                       
                                             <%--<asp:TextBox ID="fechaVencimiento" runat="server" ></asp:TextBox>--%>
                                             <input type="date" name="fechaInicio" id="fechaInicio" runat="server" placeholder="DD/MM/AAAA">  
+                                            <asp:RequiredFieldValidator ID="ReqFieldValFechaInicio" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupTareas" runat="server" ErrorMessage="Debe ingresarle una fecha de inicio"></asp:RequiredFieldValidator>
                                             <asp:CustomValidator ID="CustomValIniValid" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupTareas" runat="server" OnServerValidate="validarFechaIni"></asp:CustomValidator>                                           
                                             
 										</div>
@@ -79,7 +80,8 @@
                                         <div class="12u">
                                             <label>Fecha Vencimiento</label>                                                                                       
                                             <%--<asp:TextBox ID="fechaVencimiento" runat="server" ></asp:TextBox>--%>
-                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server" placeholder="DD/MM/AAAA">                                            
+                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server" placeholder="DD/MM/AAAA"> 
+                                            <asp:RequiredFieldValidator ID="ReqFieldValFechaVencimiento" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupTareas" runat="server" ErrorMessage="Debe ingresarle una fecha de vencimiento"></asp:RequiredFieldValidator>                                           
                                             <asp:CustomValidator ID="CustomValVencValid" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupTareas" runat="server" OnServerValidate="validarFechaVenc"></asp:CustomValidator>                            
 										</div>
 										<%--<div class="6u">

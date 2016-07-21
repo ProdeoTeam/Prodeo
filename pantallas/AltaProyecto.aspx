@@ -90,7 +90,8 @@ input[type="text"]{ width: 100px; } /* ancho a los elementos input="text" */
                                     <div class="row half no-collapse-1">
                                         <div class="6u">
                                             Fecha Vencimiento
-                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server"/>                                            
+                                            <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server"/>  
+                                            <asp:RequiredFieldValidator ID="ReqFieldValFechaVencimiento" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupProyectos" runat="server" ErrorMessage="Debe ingresarle una fecha de vencimiento"></asp:RequiredFieldValidator>                                          
                                             <asp:CustomValidator ID="CustomValFechActual" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupProyectos" runat="server" OnServerValidate="validarFechaActual"></asp:CustomValidator>
                             
 										</div>

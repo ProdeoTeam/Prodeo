@@ -207,9 +207,9 @@
                                               <option value="seleccione" selected>Seleccione Proyecto</option>
                                               
                                             </select></li>
-                            <li><a href="#" class="button" onclick="crearTareasPorUsuario()" runat="server">Reporte Tareas por usuario</a></li>
-						    <li><a href="#" class="button" onclick="crearTareasPorModulo()" runat="server">Reporte Tareas por modulo</a></li>
-                            <li><a href="#" class="button" onclick="crearAvanceDelProyecto()"  runat="server">Reporte Avance del Proyecto</a></li>
+                            <li><a href="#" class="button graph" onclick="crearTareasPorUsuario()" runat="server">Reporte Tareas por<br /> usuario</a></li>
+						    <li><a href="#" class="button graph" onclick="crearTareasPorModulo()" runat="server">Reporte Tareas por<br /> modulo</a></li>
+                            <li><a href="#" class="button graph" onclick="crearAvanceDelProyecto()"  runat="server">Reporte Avance del<br /> Proyecto</a></li>
 					    </ul>
 						<div class="row">
 						<div id="containerReporte" style="width: 400px;">

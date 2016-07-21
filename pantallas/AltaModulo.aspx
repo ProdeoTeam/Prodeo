@@ -31,7 +31,8 @@
                                     <div class="row half no-collapse-1">
                                         <div class="6u">
                                             Fecha Inicio
-                                            <input type="date" name="fechaInicio" id="fechaInicio" runat="server">
+                                            <input type="date" name="fechaInicio" id="fechaInicio" runat="server" >
+                                            <asp:RequiredFieldValidator ID="ReqFieldValFechaInicio" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupModulos" runat="server" ErrorMessage="Debe ingresarle una fecha de inicio"></asp:RequiredFieldValidator>
                                             <asp:CustomValidator ID="CustomValFechActual" Display="Dynamic" ControlToValidate="fechaInicio" ValidationGroup ="valGroupModulos" runat="server" OnServerValidate="validarFechaActual"></asp:CustomValidator>                           
 										</div>                                        
 									</div>
@@ -39,6 +40,7 @@
                                         <div class="6u">
                                             Fecha Vencimiento
                                             <input type="date" name="fechaVencimiento" id="fechaVencimiento" runat="server" placeholder = "DD/MM/AAAA">
+                                            <asp:RequiredFieldValidator ID="ReqFieldValFechaVencimiento" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupModulos" runat="server" ErrorMessage="Debe ingresarle una fecha de vencimiento"></asp:RequiredFieldValidator>
                                             <asp:CustomValidator ID="CustomValVencValid" Display="Dynamic" ControlToValidate="fechaVencimiento" ValidationGroup ="valGroupModulos" runat="server" OnServerValidate="validarFechaVenc"></asp:CustomValidator>                          
 										</div>                                        
 									</div>

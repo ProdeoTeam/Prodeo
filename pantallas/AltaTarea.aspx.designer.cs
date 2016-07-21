@@ -121,6 +121,15 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaInicio;
         
         /// <summary>
+        /// ReqFieldValFechaInicio control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValFechaInicio;
+        
+        /// <summary>
         /// CustomValIniValid control.
         /// </summary>
         /// <remarks>
@@ -137,6 +146,15 @@ namespace Prodeo.pantallas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaVencimiento;
+        
+        /// <summary>
+        /// ReqFieldValFechaVencimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValFechaVencimiento;
         
         /// <summary>
         /// CustomValVencValid control.

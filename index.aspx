@@ -41,6 +41,39 @@
                         sus actividades a lo largo de la semana.
 					</p>
 				</header>
+
+                <!-- CTA -->
+			<section id="cta">
+			
+				<header>
+					<h2>¿Desea recibir nuestro <strong>Newsletter</strong>?</h2>
+					<p>¡Ingrese sus datos y le llegar&aacute;n nuestras novedades!</p>
+				</header>
+				<footer>
+					<!-- Content -->
+							<div id="contentNewsletter">
+								<form>
+									<div class="row 50%">
+										<div class="6u 12u(mobile)">
+											<input type="text" name="name" placeholder="Nombre" />
+										</div>
+										<div class="6u 12u(mobile)">
+											<input type="text" name="email" placeholder="Email" />
+										</div>
+									</div>
+									<div class="row">
+										<div class="12u">
+											<ul class="buttons">
+												<li><input type="submit" class="special" value="Enviar" /></li>
+											</ul>
+										</div>
+									</div>
+								</form>
+							</div>
+
+				</footer>
+			
+			</section>
 					
 				<!-- One -->
 					<section class="wrapper style2 container special-alt">
@@ -193,39 +226,6 @@
 					</section>
 					
 			</article>
-
-		<!-- CTA -->
-			<section id="cta">
-			
-				<header>
-					<h2>¿Desea recibir nuestro <strong>Newsletter</strong>?</h2>
-					<p>¡Ingrese sus datos y le llegar&aacute;n nuestras novedades!</p>
-				</header>
-				<footer>
-					<!-- Content -->
-							<div id="contentNewsletter">
-								<form>
-									<div class="row 50%">
-										<div class="6u 12u(mobile)">
-											<input type="text" name="name" placeholder="Nombre" />
-										</div>
-										<div class="6u 12u(mobile)">
-											<input type="text" name="email" placeholder="Email" />
-										</div>
-									</div>
-									<div class="row">
-										<div class="12u">
-											<ul class="buttons">
-												<li><input type="submit" class="special" value="Enviar" /></li>
-											</ul>
-										</div>
-									</div>
-								</form>
-							</div>
-
-				</footer>
-			
-			</section>
 
 		<!-- Footer -->
 			<footer id="footer">

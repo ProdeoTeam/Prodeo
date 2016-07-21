@@ -40,6 +40,15 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.WebControls.DropDownList ddlFiltroProy;
         
         /// <summary>
+        /// liModulo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liModulo;
+        
+        /// <summary>
         /// liTarea control.
         /// </summary>
         /// <remarks>
@@ -56,15 +65,6 @@ namespace Prodeo.pantallas {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlAnchor linkAgregarTarea;
-        
-        /// <summary>
-        /// liModulo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl liModulo;
         
         /// <summary>
         /// liGraficos control.

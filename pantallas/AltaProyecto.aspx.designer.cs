@@ -85,6 +85,15 @@ namespace Prodeo.pantallas {
         protected global::System.Web.UI.HtmlControls.HtmlInputGenericControl fechaVencimiento;
         
         /// <summary>
+        /// ReqFieldValFechaVencimiento control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator ReqFieldValFechaVencimiento;
+        
+        /// <summary>
         /// CustomValFechActual control.
         /// </summary>
         /// <remarks>

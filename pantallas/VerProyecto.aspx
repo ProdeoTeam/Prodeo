@@ -52,8 +52,8 @@
             
             <footer>
 					<ul class="buttons">
-						<li id="liTarea" runat="server"><a id="linkAgregarTarea" href="~/pantallas/AltaTarea.aspx" class="button" runat="server">Agregar Tarea</a></li>
 						<li id="liModulo" runat="server"><a href="~/pantallas/AltaModulo.aspx" class="button" runat="server">Agregar Módulo</a></li>
+                        <li id="liTarea" runat="server"><a id="linkAgregarTarea" href="~/pantallas/AltaTarea.aspx" class="button" runat="server">Agregar Tarea</a></li>
                         <li id="liGraficos" runat="server"><a href="~/pantallas/Reportes.aspx" class="button" runat="server">Gráficos Estadísticos</a></li>
 					</ul>
 			</footer>

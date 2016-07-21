@@ -18,7 +18,7 @@ namespace Prodeo
                 sessionInactiva.Visible = false;
                 principalProyecto.Visible = true;
                 userLogueado.Visible = true;
-                userLogueado.InnerHtml = Session["usuario"].ToString();
+                userName.InnerHtml = Session["usuario"].ToString();
             }
             else
             {                
@@ -45,7 +45,7 @@ namespace Prodeo
                     sessionInactiva.Visible = false;
                     principalProyecto.Visible = true;
                     userLogueado.Visible = true;
-                    userLogueado.InnerHtml = Session["usuario"].ToString();
+                    userName.InnerHtml = Session["usuario"].ToString();
                     Response.Redirect("~/pantallas/seleccion.aspx");
                 } 
             }
