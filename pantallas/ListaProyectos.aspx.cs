@@ -38,6 +38,15 @@ namespace Prodeo.pantallas
             ProyectoLogica proy = new ProyectoLogica();
 
             int abiertoFinalizado = Convert.ToInt32(ddlFiltroProy.SelectedValue);
+            string colorProyecto = "";
+            if(abiertoFinalizado == 0)
+            {
+                colorProyecto = "<section id='vistaProyecto'>";
+            }
+            else
+            {
+                colorProyecto = "<section id='vistaProyectoFinalizado'>";
+            }
 
             List<DatosProyecto> dataProy = proy.obtieneListaProyecto(Session["usuario"].ToString(), abiertoFinalizado);
 
@@ -53,7 +62,7 @@ namespace Prodeo.pantallas
                         Literal literal;
 
                         literal = new Literal();
-                        literal.Text = "<section id='vistaProyecto'>";
+                        literal.Text = colorProyecto;
                         control.Controls.Add(literal);
                         switch (dato.Permisos)
                         {
@@ -75,10 +84,13 @@ namespace Prodeo.pantallas
                         literal = new Literal();
                         literal.Text = "<h3>" + dato.Descripcion + "</h3>";
                         control.Controls.Add(literal);
-
-                        literal = new Literal();
-                        literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a><a href='DesvincularProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Desvincular Proyecto</a>";
-                        control.Controls.Add(literal);
+                        if(abiertoFinalizado == 0)
+                        {
+                            literal = new Literal();
+                            literal.Text = "<a href='VerProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Ingresar</a><a href='DesvincularProyecto.aspx?idProyecto=" + dato.Id + "&p=" + dato.Permisos + "' class='button'>Desvincular Proyecto</a>";
+                            control.Controls.Add(literal);
+                        }
+                        
 
                         if (permiso == "Administrador" && abiertoFinalizado == 0)
                         {
