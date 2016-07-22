@@ -119,8 +119,10 @@ namespace Prodeo.pantallas
                     }
                 }
                 
+                
 
             }
+            
 
         }
 
@@ -242,7 +244,7 @@ namespace Prodeo.pantallas
                     td.InnerText = permisos;
                     tr.Controls.Add(td);
                     //agregamos boton eliminar
-                    botonEliminar.Attributes.Add("onclick", "quitarUsuario('" + tr.ID + "')");
+                    botonEliminar.Attributes.Add("onclick", "quitarUsuario('MainContent_" + tr.ID + "')");
                     botonEliminar.Attributes.Add("value", "Eliminar");
                     botonEliminar.Attributes.Add("type", "button");
                     td = new System.Web.UI.HtmlControls.HtmlTableCell();
@@ -336,6 +338,18 @@ namespace Prodeo.pantallas
 
         protected void editarProyecto_Click(object sender, EventArgs e)
         {
+            AjaxPro.Utility.RegisterTypeForAjax(typeof(AltaProyecto));
+            AjaxPro.Utility.RegisterTypeForAjax(typeof(GridView));
+            DataTable dt = new DataTable();
+
+            dt.Columns.Add("mail", typeof(string));
+            dt.Columns.Add("permisos", typeof(string));
+
+            //GridView1.DataSource = dt;
+            //GridView1.DataBind();
+            Session["tabla"] = dt;
+            ProyectoLogica proy = new ProyectoLogica();
+
             LabelProyectos.Text = "Editar Proyecto";
             btnEditarProyecto.Visible = false;
             btnCancelarEdicion.Visible = true;
@@ -351,6 +365,15 @@ namespace Prodeo.pantallas
             btnCancelarProyecto.Visible = false;
             btnVolverProyecto.Visible = false;
             btnActualizaProyecto.Visible = true;
+
+            Proyectos proyecto = proy.obtieneDatosProyecto(Session["idProyecto"].ToString());
+                        List<DatosParticipantesProyecto> partProy = proy.obtieneParticipantes(Session["idProyecto"].ToString());
+
+            foreach (DatosParticipantesProyecto dp in partProy)
+            {
+                HtmlTableRow rowTablaUsuarios = this.agregarUsuario_html(dp.nombreUsuario, dp.permiso);
+                tablaUsuariosGrilla.Controls.Add(rowTablaUsuarios);
+            }
         }
 
         protected void eliminarProyecto_Click(object sender, EventArgs e)
