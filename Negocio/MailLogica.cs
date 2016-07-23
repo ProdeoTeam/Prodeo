@@ -71,5 +71,23 @@ namespace Negocio
             }
             return envioOk;
         }
+        public bool enviarMail(int idModulo, int idProyecto, int idTarea, string asunto, string detalle, string destinatarios)
+        {
+            bool envioOk = false;
+            AccesoDatos datos;
+            try
+            {
+                datos = new AccesoDatos();
+                if (datos.insertarMail(idModulo,idProyecto,idTarea,asunto,detalle,destinatarios) >= 0)
+                {
+                    envioOk = true;
+                }
+            }
+            catch (Exception)
+            {
+                envioOk = false;
+            }
+            return envioOk;
+        }
     }
 }
