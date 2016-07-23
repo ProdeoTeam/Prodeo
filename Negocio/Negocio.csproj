@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="AccesoLogica.cs" />
     <Compile Include="CriptografiaLogica.cs" />
-    <Compile Include="MailRegistroLogica.cs" />
+    <Compile Include="MailLogica.cs" />
     <Compile Include="ReportesLogica.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProyectoLogica.cs" />

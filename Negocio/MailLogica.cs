@@ -5,10 +5,10 @@ using System.Net;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-
+using Datos;
 namespace Negocio
 {
-    public class MailRegistroLogica
+    public class MailLogica
     {
         public string enviarMailRegistro(string destinatario, string urlVerificacion)
         {
@@ -46,6 +46,30 @@ namespace Negocio
             }
         
             return output;
+        }
+
+        public bool enviarMailContacto(string nombreContacto, string mailContacto, string asunto, string mensajeContacto)
+        {
+            bool envioOk = false;
+            AccesoDatos datos;
+            string cuerpoMail;
+            try
+            {
+                datos = new AccesoDatos();
+                cuerpoMail = "Asunto: " + asunto + System.Environment.NewLine;
+                cuerpoMail = "Nombre: " + nombreContacto + System.Environment.NewLine;
+                cuerpoMail = "Mail: " + mailContacto + System.Environment.NewLine;
+                cuerpoMail = "Mensaje: " + mensajeContacto + System.Environment.NewLine;
+                if (datos.insertarMail(0, 0, 0, "Mail de contacto de usuario " + nombreContacto, cuerpoMail, "prodeoteam@gmail.com") >= 0)
+                {
+                    envioOk = true;
+                } 
+            }
+            catch (Exception)
+            {
+                envioOk = false;
+            }
+            return envioOk;
         }
     }
 }

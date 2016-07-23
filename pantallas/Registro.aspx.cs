@@ -58,7 +58,7 @@ namespace Prodeo.pantallas
             if (Page.IsValid) 
             { 
                 AccesoLogica logica = new AccesoLogica();
-                MailRegistroLogica mailReg = new MailRegistroLogica();                
+                MailLogica mailReg = new MailLogica();                
                 CriptografiaLogica encriptaMail = new CriptografiaLogica();
 
                 //Codifica y encripta la direccion de email
