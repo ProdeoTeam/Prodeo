@@ -76,6 +76,68 @@
             });
         }
 
+        //-------------------------------------------------------------------------------------
+        //Creacion de chart Horas por usuarios
+
+        function crearHorasPorUsuario() {
+            var ddlProyecto = document.getElementById("MainContent_proyectosLista");
+            var idProyecto = ddlProyecto.options[ddlProyecto.selectedIndex].value;
+            var datosReporte = AjaxReportes.obtenerHorasPorUsuario(idProyecto);
+
+            datosReporte = datosReporte.value;
+
+            $('#containerReporte').highcharts({
+
+                chart: {
+                    type: 'column',
+                    options3d: {
+                        enabled: true,
+                        alpha: 15,
+                        beta: 15,
+                        viewDistance: 25,
+                        depth: 40
+                    },
+                    marginTop: 80,
+                    marginRight: 40
+                },
+
+                title: {
+                    text: 'Total de horas agrupadas por usuario'
+                },
+
+                xAxis: {
+                    categories: datosReporte.Categorias
+                },
+
+                yAxis: {
+                    allowDecimals: false,
+                    min: 0,
+                    title: {
+                        text: 'Cantidad de Horas'
+                    }
+                },
+
+                tooltip: {
+                    headerFormat: '<b>{point.key}</b><br>',
+                    pointFormat: '<span style="color:{series.color}">\u25CF</span> {series.name}: {point.y} Hs'
+                },
+
+                plotOptions: {
+                    column: {
+                        stacking: 'normal',
+                        depth: 40
+                    }
+                },
+
+                series: [{
+                    name: datosReporte.Series[0].Nombre,
+                    //tiene que tener tantas posiciones como usuarios, cada una indica el valor en cada barras de usuario
+                    data: datosReporte.Series[0].Datos,
+                    stack: datosReporte.Series[0].Stack
+                }]
+            });
+        }
+
 
         //-------------------------------------------------------------------------------------
         // Creacion de chart Tareas Por Modulo
@@ -210,6 +272,7 @@
                             <li><a href="#" class="button graph" onclick="crearTareasPorUsuario()" runat="server">Reporte Tareas por<br /> usuario</a></li>
 						    <li><a href="#" class="button graph" onclick="crearTareasPorModulo()" runat="server">Reporte Tareas por<br /> modulo</a></li>
                             <li><a href="#" class="button graph" onclick="crearAvanceDelProyecto()"  runat="server">Reporte Avance del<br /> Proyecto</a></li>
+                            <li><a href="#" class="button graph" onclick="crearHorasPorUsuario()"  runat="server">Reporte Horas por<br /> usuario</a></li>
 					    </ul>
 						<div class="row">
 						<div id="containerReporte" style="width: 1024px;">

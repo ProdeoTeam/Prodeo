@@ -57,6 +57,7 @@
     <Compile Include="DatosParticipantesProyecto.cs" />
     <Compile Include="DatosProyecto.cs" />
     <Compile Include="DatosTarea.cs" />
+    <Compile Include="HorasPorUsuarios.cs" />
     <Compile Include="Mails.cs">
       <DependentUpon>ModelProdeo.tt</DependentUpon>
     </Compile>

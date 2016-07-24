@@ -1134,6 +1134,57 @@ namespace Datos
             return reporteSource;
         }
 
+        public Reportes.DatosReportes obtenerHorasTareasPorUsuario(int idProyecto)
+        {
+            //Categorias/nombres en eje x/usuarios
+            ArrayList usuarios = new ArrayList();
+            ArrayList horas = new ArrayList();
+            Reportes.DatosReportes reporteSource = new Reportes.DatosReportes();
+            Reportes.Series reporteSerie = new Reportes.Series();
+            prodeoEntities prodeoContext = new prodeoEntities();
+            var query = (from t in prodeoContext.Tareas
+                         join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
+                         join u in prodeoContext.Usuarios on pt.idUsuario equals u.idUsuario
+                         join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
+                         where m.idProyecto == idProyecto
+                         select new HorasPorUsuarios { tiempo = t.Tiempo, usuario = u.nombre });
+            foreach (HorasPorUsuarios item in query)
+            {
+                if(item.tiempo == null)
+                {
+                    item.tiempo = 0;
+                }
+                int indiceUsuario = usuarios.IndexOf(item.usuario);
+                if (indiceUsuario < 0)
+                {
+                    //Todavia no se procesaron tareas del usuario, asi que agregamos al usuario e inicializamos sus tareas
+                    usuarios.Add(item.usuario);
+
+                        //Tarea Finalizada
+                        horas.Add(item.tiempo);
+
+                    
+                }
+                else
+                {
+                    //El usuario ya existe
+
+                        //le agregamos una tarea finalizada
+                    double cantHoras = Convert.ToInt32(horas[indiceUsuario]);
+                        horas[indiceUsuario] = cantHoras + item.tiempo;
+                }
+            }
+
+            reporteSource.Categorias = usuarios;
+            reporteSerie = new Reportes.Series();
+            reporteSerie.Nombre = "Horas Por Usuario";
+            reporteSerie.Stack = "Horas";
+            reporteSerie.Datos = horas;
+            reporteSource.Series.Add(reporteSerie);
+
+            return reporteSource;
+        }
+
         public ArrayList obtenerDatosTareasDeModuloParaCalendario(int idProyecto, int idModulo)
         {
             ArrayList tareasDelModulo = new ArrayList();

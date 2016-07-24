@@ -34,6 +34,22 @@ namespace Negocio
         }
 
         [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
+        public Datos.Reportes.DatosReportes obtenerHorasPorUsuario(int idProyecto)
+        {
+            Datos.Reportes.DatosReportes reporteSource = new Datos.Reportes.DatosReportes();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                reporteSource = datos.obtenerHorasTareasPorUsuario(idProyecto);
+            }
+            catch (Exception ex)
+            {
+
+            }
+            return reporteSource;
+        }
+
+        [AjaxPro.AjaxMethod(AjaxPro.HttpSessionStateRequirement.ReadWrite)]
         public ArrayList obtenerAvanceDelProyecto(int idProyecto)
         {
             ArrayList datosSerie = new ArrayList();
