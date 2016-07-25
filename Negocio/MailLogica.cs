@@ -71,6 +71,31 @@ namespace Negocio
             }
             return envioOk;
         }
+
+        public bool enviarMailNewsletter(string nombreContacto, string mailContacto, string asunto, string mensajeContacto)
+        {
+            bool envioOk = false;
+            AccesoDatos datos;
+            string cuerpoMail;
+            try
+            {
+                datos = new AccesoDatos();
+                cuerpoMail = "Asunto: " + asunto + System.Environment.NewLine;
+                cuerpoMail = cuerpoMail + "Nombre: " + nombreContacto + System.Environment.NewLine;
+                cuerpoMail = cuerpoMail + "Mail: " + mailContacto + System.Environment.NewLine;
+                cuerpoMail = cuerpoMail + "Mensaje: " + mensajeContacto + System.Environment.NewLine;
+                if (datos.insertarMail(0, 0, 0, "Solicitud de Newsletter " + nombreContacto, cuerpoMail, "prodeoteam@gmail.com") >= 0)
+                {
+                    envioOk = true;
+                }
+            }
+            catch (Exception)
+            {
+                envioOk = false;
+            }
+            return envioOk;
+        }
+
         public bool enviarMail(int idModulo, int idProyecto, int idTarea, string asunto, string detalle, string destinatarios)
         {
             bool envioOk = false;

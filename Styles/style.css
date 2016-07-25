@@ -175,7 +175,8 @@
 
     /*Newsletter*/
 
-    #contentNewsletter input[type="text"]
+    #contentNewsletter input[type="text"],
+	input[type="email"]
     {
         -moz-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
 		-webkit-transition: background-color 0.2s ease-in-out, border-color 0.2s ease-in-out;
@@ -197,7 +198,8 @@
 		outline: 0;
     }
 
-    #contentNewsletter input[type="text"]:focus
+    #contentNewsletter input[type="text"]:focus,
+	input[type="email"]:focus
     {
         border-color: #12587B;
     }

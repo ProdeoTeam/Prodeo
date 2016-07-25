@@ -55,19 +55,19 @@
 								<form>
 									<div class="row 50%">
 										<div class="6u 12u(mobile)">
-											<input type="text" name="name" placeholder="Nombre" />
+											<input type="text" id="txtName" name="name" runat="server" placeholder="Nombre" required />
 										</div>
 										<div class="6u 12u(mobile)">
-											<input type="text" name="email" placeholder="Email" />
+											<input type="email" id="txtEmail" name="email" runat="server" placeholder="Email" required />
 										</div>
 									</div>
-									<div class="row">
-										<div class="12u">
-											<ul class="buttons">
-												<li><input type="submit" class="special" value="Enviar" /></li>
-											</ul>
-										</div>
-									</div>
+									<div class="row" ID="contenBtnEnviar" runat="server">
+					    <div class="12u">
+						    <ul class="buttons">							    
+						        <li><asp:Button CssClass="special" ID="btnEnviar" runat="server" Text="Enviar" OnClick="btnEnviar_Click" ValidationGroup ="valGroupContacto"></asp:Button></li>
+                            </ul>
+					    </div>
+				    </div>
 								</form>
 							</div>
 
