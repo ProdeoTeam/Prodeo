@@ -169,7 +169,15 @@ namespace Prodeo.pantallas
 
         protected void cancelarProyForm_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/pantallas/seleccion.aspx");
+            if (Session["idProyecto"] == null)
+            {
+                Response.Redirect("~/pantallas/seleccion.aspx");
+            }
+            else
+            {
+                int proyecto = Convert.ToInt32(Session["idProyecto"]);
+                Response.Redirect("~/pantallas/VerProyecto.aspx?idProyecto=" + proyecto + "&p=" + Session["permiso"]);
+            }
         }
 
         //protected void agregoUserProy_Click(object sender, EventArgs e)
