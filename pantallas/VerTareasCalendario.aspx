@@ -9,102 +9,102 @@
     <script type="text/javascript" src='../js/moment.min.js'></script>
     <!--
         -->
-    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>    
-    
+    <script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+
     <script type="text/javascript" src="../js/fullcalendar.min.js"></script>
     <script type="text/javascript" src="../js/lang-all.js"></script>
-        <script type="text/javascript">
-            var tareas = [];
-            var eventos = [];
-            var eventosActualizados = [];
-            var hoy;
-            function obtenerFechaHoy() {
-                var today = new Date();
-                var dd = today.getDate();
-                var mm = today.getMonth() + 1;
-                var yyyy = today.getFullYear();
-                if (mm < 10) {
-                    mm = '0' + mm
-                }
-                if (dd < 10) {
-                    dd = '0' + dd
-                }
-                hoy = yyyy + '-' + mm + '-' + dd;
-                return hoy;
-
+    <script type="text/javascript">
+        var tareas = [];
+        var eventos = [];
+        var eventosActualizados = [];
+        var hoy;
+        function obtenerFechaHoy() {
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1;
+            var yyyy = today.getFullYear();
+            if (mm < 10) {
+                mm = '0' + mm
             }
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            hoy = yyyy + '-' + mm + '-' + dd;
+            return hoy;
 
-            function getUrlParameter(sParam) {
-                var sPageURL = decodeURIComponent(window.location.search.substring(1)),
-                    sURLVariables = sPageURL.split('&'),
-                    sParameterName,
-                    i;
+        }
 
-                for (i = 0; i < sURLVariables.length; i++) {
-                    sParameterName = sURLVariables[i].split('=');
+        function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
 
-                    if (sParameterName[0] === sParam) {
-                        return sParameterName[1] === undefined ? true : sParameterName[1];
-                    }
-                }
-            };
-            function GuardarModificaciones() {
-                if (eventosActualizados.length > 0) {
-                    var rta = AjaxReportes.ActualizarFechasTarea(eventosActualizados);
-                    if (rta) {
-                        eventosActualizados = [];
-                        alert("Se actualizaron con exito las fechas");
-                    } else {
-                        alert("No se pudieron actualizar las fechas");
-                    }
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
                 }
             }
-            function cargarTareas() {
-                var idModulo = getUrlParameter('idModulo'); 
-                var idProy = getUrlParameter('idProyecto'); 
-                tareas = AjaxReportes.obtenerTareasCalendario(idProy, idModulo);
-                tareas = tareas.value;
-                for (var i = 0; i < tareas.length; i++) {
-                    var unEvento = {};
-                    unEvento = tareas[i];
-                    eventos.push(unEvento);
+        };
+        function GuardarModificaciones() {
+            if (eventosActualizados.length > 0) {
+                var rta = AjaxReportes.ActualizarFechasTarea(eventosActualizados);
+                if (rta) {
+                    eventosActualizados = [];
+                    alert("Se actualizaron con exito las fechas");
+                } else {
+                    alert("No se pudieron actualizar las fechas");
                 }
             }
+        }
+        function cargarTareas() {
+            var idModulo = getUrlParameter('idModulo');
+            var idProy = getUrlParameter('idProyecto');
+            tareas = AjaxReportes.obtenerTareasCalendario(idProy, idModulo);
+            tareas = tareas.value;
+            for (var i = 0; i < tareas.length; i++) {
+                var unEvento = {};
+                unEvento = tareas[i];
+                eventos.push(unEvento);
+            }
+        }
 
-            $(document).ready(function () {
-                cargarTareas();
-                obtenerFechaHoy();
-                $('#MainContent_calendar').fullCalendar({
-                    theme: true,
-                    defaultDate: hoy,
-                    lang: 'es',
-                    allDay: false,
-                    editable: true,
-                    eventLimit: true, 
-                    events: eventos,
-                    eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
-                        var desde = event.start.format('DD/MM/YYYY');
-                        var fin = event.end.format('DD/MM/YYYY');
-                        var estaEnArrayActualizado = false;
-                        for (var i = 0; i < eventosActualizados.length; i++) {
-                            if (eventosActualizados[i][0] == event.idTarea) {
-                                estaEnArrayActualizado = true;
-                                eventosActualizados[i][1] = desde;
-                                eventosActualizados[i][2] = fin;
-                            }
+        $(document).ready(function () {
+            cargarTareas();
+            obtenerFechaHoy();
+            $('#MainContent_calendar').fullCalendar({
+                theme: true,
+                defaultDate: hoy,
+                lang: 'es',
+                allDay: false,
+                editable: true,
+                eventLimit: true,
+                events: eventos,
+                eventDrop: function (event, delta, revertFunc, jsEvent, ui, view) {
+                    var desde = event.start.format('DD/MM/YYYY');
+                    var fin = event.end.format('DD/MM/YYYY');
+                    var estaEnArrayActualizado = false;
+                    for (var i = 0; i < eventosActualizados.length; i++) {
+                        if (eventosActualizados[i][0] == event.idTarea) {
+                            estaEnArrayActualizado = true;
+                            eventosActualizados[i][1] = desde;
+                            eventosActualizados[i][2] = fin;
                         }
-                        if (!estaEnArrayActualizado) {
-                            var nuevoEvento = [];
-                            nuevoEvento.push(event.idTarea);
-                            nuevoEvento.push(desde);
-                            nuevoEvento.push(fin);
-                            eventosActualizados.push(nuevoEvento);
-                        }
-                    
                     }
-                });
+                    if (!estaEnArrayActualizado) {
+                        var nuevoEvento = [];
+                        nuevoEvento.push(event.idTarea);
+                        nuevoEvento.push(desde);
+                        nuevoEvento.push(fin);
+                        eventosActualizados.push(nuevoEvento);
+                    }
 
+                }
             });
+
+        });
     </script>
     <style>
         /*body {
@@ -129,7 +129,14 @@
                     </div>
             
             <div style="width: 100%; text-align: center;">
-                <input type="button" style="text-align: center; margin: 0 auto;" onclick="GuardarModificaciones()" value="Guardar Modificaciones" />
+                <footer class="major">
+				    <ul class="buttons">
+					    <li>
+                            <input type="button" class="button special" id="btnVolverListaModulos" runat="server" onserverclick="volverListaModulos_Click" value="Volver"/>
+                            <input type="button" class="button special" onclick="GuardarModificaciones()" value="Guardar Modificaciones" />
+                        </li>
+					</ul>
+				</footer>
             </div>
        </section>
     </article>

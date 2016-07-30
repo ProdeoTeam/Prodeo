@@ -147,6 +147,7 @@
     <Content Include="pantallas\VerificarEmail.aspx" />
     <Content Include="pantallas\VerProyecto.aspx" />
     <Content Include="js\footable.min.js" />
+    <Content Include="pantallas\VerTareasCalendario.aspx" />
     <Content Include="Styles\botones-sociales.css" />
     <Content Include="Styles\btn-googleStyle.css" />
     <Content Include="Styles\font-awesome.min.css" />
@@ -336,9 +337,6 @@
     <Compile Include="pantallas\VerTareasCalendario.aspx.cs">
       <DependentUpon>VerTareasCalendario.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="pantallas\VerTareasCalendario.aspx.designer.cs">
-      <DependentUpon>VerTareasCalendario.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Site.Master.cs">
