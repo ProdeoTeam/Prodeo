@@ -259,6 +259,15 @@ namespace Negocio
             return tarea;
 
         }
+
+        public int obtieneCantidadTareaPend(int idModulo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            int cantidad = datos.obtenerCantidadTareasPend(idModulo);
+            return cantidad;
+
+        }
+
         public bool ActualizaTarea(string idTarea, string idModulo, string nombre, string descripcion, string comentario, DateTime fechaCreacion, DateTime fechaVencimiento, DateTime fechaInicio, int proyecto, string usuario, string avisos, string prioridad, string idUsuario)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -402,6 +411,14 @@ namespace Negocio
         {
             AccesoDatos datos = new AccesoDatos();
             bool exito = datos.eliminarCuenta(usuario);
+            return exito;
+
+        }
+
+        public bool desvincularProyecto(string usuario, int idProyecto)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            bool exito = datos.desvincularProyecto(usuario, idProyecto);
             return exito;
 
         }

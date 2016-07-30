@@ -165,6 +165,7 @@ namespace Prodeo.pantallas
         void presentarContenidoProyecto(int idproyecto, string permiso)
         {
             //Prodeo.Entidad.Modulo unModulo = new Prodeo.Entidad.Modulo();
+            ProyectoLogica proy = new ProyectoLogica();
             List<DatosModulo> listaDeModulos;
             listaDeModulos = new List<DatosModulo>();
             listaDeModulos = obtenerListaModulos(idproyecto, permiso);
@@ -321,7 +322,7 @@ namespace Prodeo.pantallas
                 linkModulo.Text = "<a class='button' href='AltaModulo.aspx?idModulo=" + unModulo.IdModulo + "'>VER MÓDULO</a>&nbsp&nbsp";
                 linkTarea.Text = "<a class='button' href='AltaTarea.aspx?idModulo=" + unModulo.IdModulo + "'>ALTA TAREA</a>&nbsp&nbsp";
                 linkCalendarioTareas.Text = "<a class='button' href='VerTareasCalendario.aspx?idModulo=" + unModulo.IdModulo + "&idProyecto=" + idproyecto + "'>ADMINISTRAR PLAN</a>&nbsp&nbsp";
-                linkEliminarModulo.Text = "<a class='button' href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>ELIMINAR</a>"; ;
+                linkEliminarModulo.Text = "<a class='button' href='EliminarModulo.aspx?idModulo=" + unModulo.IdModulo + "'>ELIMINAR</a>";
                 contenedorAccordion.Controls.Add(divApertura);
                 contenedorAccordion.Controls.Add(grillaTareas);
                 contenedorAccordion.Controls.Add(linkModulo);
@@ -331,8 +332,8 @@ namespace Prodeo.pantallas
                     contenedorAccordion.Controls.Add(linkTarea);
                     contenedorAccordion.Controls.Add(linkCalendarioTareas);
                 }
-                
-                if (Session["permiso"].ToString() == "A" && grillaTareas.Rows.Count == 0)
+                int cantidadTareasPend = proy.obtieneCantidadTareaPend(unModulo.IdModulo);
+                if (Session["permiso"].ToString() == "A" && cantidadTareasPend == 0)
                 {
                     contenedorAccordion.Controls.Add(linkEliminarModulo);
                 }

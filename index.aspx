@@ -55,10 +55,10 @@
 								<form>
 									<div class="row 50%">
 										<div class="6u 12u(mobile)">
-											<input type="text" id="txtName" name="name" runat="server" placeholder="Nombre" required />
+											<input type="text" id="txtName" name="name" runat="server" placeholder="Nombre"  />
 										</div>
 										<div class="6u 12u(mobile)">
-											<input type="email" id="txtEmail" name="email" runat="server" placeholder="Email" required />
+											<input type="email" id="txtEmail" name="email" runat="server" placeholder="Email" />
 										</div>
 									</div>
 									<div class="row" ID="contenBtnEnviar" runat="server">

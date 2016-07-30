@@ -612,6 +612,167 @@ namespace Datos
             }
         }
 
+        public bool desvincularProyecto(string usuario, int idProyecto)
+        {
+            prodeoEntities prodeoContext = new prodeoEntities();
+            bool exito = false;
+            try
+            {
+                int idUsuario = (from u in prodeoContext.Usuarios
+                                 where u.nombre == usuario
+                                 select u.idUsuario).First();
+
+                //GUARDA LA CANTIDAD DE TAREAS QUE TIENE ASIGNADO EL USUARIO
+                int cantTareas = (from tu in prodeoContext.ParticipantesTareas
+                                  where tu.idUsuario == idUsuario && tu.Tareas.Modulos.idProyecto == idProyecto
+                                  select tu).Count();
+                if (cantTareas == 0)
+                {
+                    //LISTA LOS PROYECTOS EN LOS QUE PARTICIPA EL USUARIO
+                    ParticipantesProyectos pp = (from paP in prodeoContext.ParticipantesProyectos
+                                                 where paP.idUsuario == idUsuario && paP.idProyecto == idProyecto
+                                                 select paP).FirstOrDefault();
+
+                    //BORRA FISICAMENTE EL REGISTRO DE LA TABLA ParticipantesProyectos
+                    prodeoContext.ParticipantesProyectos.Remove(pp);
+                    prodeoContext.SaveChanges();
+
+                    //GUARDA LA CANTIDAD DE USUARIOS ADMINISTRADORES QUE QUEDAN
+                    int cant = (from ppro in prodeoContext.ParticipantesProyectos
+                                where ppro.idProyecto == pp.idProyecto && ppro.idUsuario != idUsuario && ppro.permisosAdministrador == "A"
+                                select ppro).Count();
+
+                    //SI NO QUEDÓ NINGÚN USUARIO ADMINISTRADOR, DA DE BAJA LOS MODULOS Y EL PROYECTO
+                    if (cant == 0 && pp.permisosAdministrador == "A")
+                    {
+                        List<Modulos> listaModulos = (from m in prodeoContext.Modulos
+                                                      where m.idProyecto == pp.idProyecto
+                                                      select m).ToList();
+                        foreach (Modulos mo in listaModulos)
+                        {
+                            mo.Baja = 1;
+                            prodeoContext.SaveChanges();
+                        }
+
+                        Proyectos encuentraProyectos = (from p in prodeoContext.Proyectos
+                                                        where p.idProyecto == pp.idProyecto
+                                                        select p).First();
+
+                        encuentraProyectos.Baja = 1;
+                        prodeoContext.SaveChanges();
+
+
+                    }
+
+                    exito = true;
+                }
+                else
+                {
+                    List<DatosEliminarCuenta> datosCuentas = (from t in prodeoContext.Tareas
+                                                              join pt in prodeoContext.ParticipantesTareas on t.idTarea equals pt.idTarea
+                                                              join m in prodeoContext.Modulos on t.idModulo equals m.idModulo
+                                                              where pt.idUsuario == idUsuario && t.Baja == 0 && m.Baja == 0 && m.idProyecto == idProyecto
+                                                              select new DatosEliminarCuenta { idTarea = t.idTarea, idModulo = t.idModulo, idUsuario = pt.idUsuario, idProyecto = m.idProyecto, idUsuarioCreador = m.idUsuarioCreador }).ToList();
+
+                    foreach (DatosEliminarCuenta dc in datosCuentas)
+                    {
+                        if (dc.idUsuarioCreador != idUsuario)
+                        {
+                            ParticipantesTareas part = (from pt in prodeoContext.ParticipantesTareas
+                                                        where pt.idUsuario == idUsuario && pt.idTarea == dc.idTarea && pt.Tareas.Modulos.idProyecto == idProyecto
+                                                        select pt).First();
+                            part.idUsuario = dc.idUsuarioCreador;
+
+                            ParticipantesProyectos pp = (from paP in prodeoContext.ParticipantesProyectos
+                                                         where paP.idUsuario == idUsuario && paP.idProyecto == idProyecto
+                                                         select paP).FirstOrDefault();
+
+                            //BORRA FISICAMENTE EL REGISTRO DE LA TABLA ParticipantesProyectos
+                            prodeoContext.ParticipantesProyectos.Remove(pp);
+
+                            prodeoContext.SaveChanges();
+
+                            exito = true;
+                        }
+                        else
+                        {
+                            int cant = (from pp in prodeoContext.ParticipantesProyectos
+                                        where pp.idProyecto == dc.idProyecto && pp.idUsuario != idUsuario && pp.permisosAdministrador == "A"
+                                        select pp).Count();
+                            if (cant > 0)
+                            {
+                                ParticipantesProyectos partP = (from pp in prodeoContext.ParticipantesProyectos
+                                                                where pp.idProyecto == dc.idProyecto && pp.idUsuario != idUsuario && pp.permisosAdministrador == "A"
+                                                                select pp).First();
+
+                                ParticipantesProyectos partActual = (from paP in prodeoContext.ParticipantesProyectos
+                                                             where paP.idUsuario == idUsuario && paP.idProyecto == idProyecto
+                                                             select paP).FirstOrDefault();
+
+
+                                ParticipantesTareas part = (from pt in prodeoContext.ParticipantesTareas
+                                                            where pt.idUsuario == idUsuario && pt.idTarea == dc.idTarea
+                                                            select pt).First();
+                                part.idUsuario = partP.idUsuario;
+
+                                List<Modulos> modulosUsuarioCreador = (from m in prodeoContext.Modulos
+                                                                 where m.idProyecto == idProyecto
+                                                                 select m).ToList();
+                                foreach (Modulos unModulo in modulosUsuarioCreador)
+                                {
+                                    unModulo.idUsuarioCreador = partP.idUsuario;
+                                    prodeoContext.SaveChanges();
+                                }
+
+                                //BORRA FISICAMENTE EL REGISTRO DE LA TABLA ParticipantesProyectos
+                                prodeoContext.ParticipantesProyectos.Remove(partActual);
+
+                                prodeoContext.SaveChanges();
+
+                                exito = true;
+                            }
+                            else
+                            {
+                                List<Tareas> listaTareas = (from t in prodeoContext.Tareas
+                                                            where t.idModulo == dc.idModulo && t.Modulos.idProyecto == idProyecto
+                                                            select t).ToList();
+                                foreach (Tareas ta in listaTareas)
+                                {
+                                    ta.Baja = 1;
+                                    prodeoContext.SaveChanges();
+                                }
+                                List<Modulos> listaModulos = (from m in prodeoContext.Modulos
+                                                              where m.idProyecto == dc.idProyecto
+                                                              select m).ToList();
+                                foreach (Modulos mo in listaModulos)
+                                {
+                                    mo.Baja = 1;
+                                    prodeoContext.SaveChanges();
+                                }
+
+                                Proyectos encuentraProyectos = (from p in prodeoContext.Proyectos
+                                                                where p.idProyecto == dc.idProyecto
+                                                                select p).First();
+
+                                encuentraProyectos.Baja = 1;
+                                prodeoContext.SaveChanges();
+
+                                exito = true;
+
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch(Exception ex)
+            {
+                exito = false;
+            }
+
+            return exito;
+        }
+
 
         #endregion
 
@@ -916,6 +1077,16 @@ namespace Datos
                             where t.idTarea == idTarea
                             select t).First();
             return tarea;
+
+        }
+
+        public int obtenerCantidadTareasPend(int idModulo)
+        {
+            prodeoEntities context = new prodeoEntities();
+            int cantidad = (from t in context.Tareas
+                            where t.idModulo == idModulo && t.Estado == "Pendiente"
+                            select t).Count();
+            return cantidad;
 
         }
 
