@@ -1461,9 +1461,9 @@ namespace Datos
                 mail.asunto = asunto;
                 mail.destinatarios = destinatarios;
                 mail.detalle = detalle;
-                mail.enviado = "N";
-
-
+                mail.enviado = "P";
+                //mail.idMail = 50;
+                
                 prodeoContext.Mails.Add(mail);
                 prodeoContext.SaveChanges();
                 return 1;
