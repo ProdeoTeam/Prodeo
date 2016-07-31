@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="prodeoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="prodeoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Mails">
           <Key>
             <PropertyRef Name="idMail" />
@@ -13,9 +13,9 @@
           <Property Name="idProyecto" Type="int" />
           <Property Name="idModulo" Type="int" />
           <Property Name="idTarea" Type="int" />
-          <Property Name="asunto" Type="nvarchar" MaxLength="1" />
-          <Property Name="detalle" Type="nvarchar" MaxLength="1" />
-          <Property Name="destinatarios" Type="varchar" MaxLength="1" />
+          <Property Name="asunto" Type="varchar(max)" />
+          <Property Name="detalle" Type="varchar(max)" />
+          <Property Name="destinatarios" Type="varchar(max)" />
           <Property Name="enviado" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="Modulos">
@@ -221,9 +221,9 @@
           <Property Name="idProyecto" Type="Int32" />
           <Property Name="idModulo" Type="Int32" />
           <Property Name="idTarea" Type="Int32" />
-          <Property Name="asunto" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="detalle" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="destinatarios" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="asunto" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="detalle" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="destinatarios" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="enviado" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityType Name="Modulos">
