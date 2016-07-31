@@ -43,9 +43,13 @@ namespace Prodeo.pantallas
             {
                 colorProyecto = "<section id='vistaProyecto'>";
             }
-            else
+            else if (abiertoFinalizado == 1)
             {
                 colorProyecto = "<section id='vistaProyectoFinalizado'>";
+            }
+            else
+            {
+                colorProyecto = "<section id='vistaProyectoEliminado'>";
             }
 
             List<DatosProyecto> dataProy = proy.obtieneListaProyecto(Session["usuario"].ToString(), abiertoFinalizado);

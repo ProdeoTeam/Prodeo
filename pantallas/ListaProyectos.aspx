@@ -45,6 +45,7 @@
                         <asp:DropDownList ID="ddlFiltroProy" runat="server" OnSelectedIndexChanged="ddlFiltroProyChanged" AutoPostBack="true">
                             <asp:ListItem Selected ="True" Value ="0">ABIERTOS</asp:ListItem>
                             <asp:ListItem Value ="1">FINALIZADOS</asp:ListItem>
+                            <asp:ListItem Value ="2">ELIMINADOS</asp:ListItem>
                         </asp:DropDownList>
                     </div>
 

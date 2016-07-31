@@ -492,14 +492,26 @@ namespace Datos
         }
         public List<DatosProyecto> obtenerListaProyectos(string usuario, int abiertoFinalizado)
         {
+            List<DatosProyecto> query = new List<DatosProyecto>();
             prodeoEntities prodeoContext = new prodeoEntities();
             int idUsuario = (from u in prodeoContext.Usuarios
                              where u.nombre == usuario
                              select u.idUsuario).First();
-            var query = (from p in prodeoContext.Proyectos
-                         join usr in prodeoContext.ParticipantesProyectos on p.idProyecto equals usr.idProyecto
-                         where usr.idUsuario == idUsuario && p.Baja == 0 && p.Finalizado == abiertoFinalizado
-                         select new DatosProyecto { Id = p.idProyecto, Nombre = p.Nombre, Permisos = usr.permisosAdministrador, Descripcion = p.Descripcion }).ToList();
+            if(abiertoFinalizado == 2)
+            {
+                query = (from p in prodeoContext.Proyectos
+                             join usr in prodeoContext.ParticipantesProyectos on p.idProyecto equals usr.idProyecto
+                             where usr.idUsuario == idUsuario && p.Baja == 1
+                             select new DatosProyecto { Id = p.idProyecto, Nombre = p.Nombre, Permisos = usr.permisosAdministrador, Descripcion = p.Descripcion }).ToList();
+            }
+            else
+            {
+                query = (from p in prodeoContext.Proyectos
+                             join usr in prodeoContext.ParticipantesProyectos on p.idProyecto equals usr.idProyecto
+                             where usr.idUsuario == idUsuario && p.Baja == 0 && p.Finalizado == abiertoFinalizado
+                             select new DatosProyecto { Id = p.idProyecto, Nombre = p.Nombre, Permisos = usr.permisosAdministrador, Descripcion = p.Descripcion }).ToList();
+            }
+            
             return query;
         }
         public string obtenerNombreProyecto(int idProyecto)
