@@ -332,8 +332,8 @@ namespace Prodeo.pantallas
                     contenedorAccordion.Controls.Add(linkTarea);
                     contenedorAccordion.Controls.Add(linkCalendarioTareas);
                 }
-                int cantidadTareasPend = proy.obtieneCantidadTareaPend(unModulo.IdModulo);
-                if (Session["permiso"].ToString() == "A" && cantidadTareasPend == 0)
+                int cantidadTareasActivas = proy.obtieneCantidadTareaActivas(unModulo.IdModulo);
+                if (Session["permiso"].ToString() == "A" && cantidadTareasActivas== 0)
                 {
                     contenedorAccordion.Controls.Add(linkEliminarModulo);
                 }

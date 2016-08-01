@@ -29,7 +29,7 @@ namespace Prodeo.pantallas
                 AccesoLogica user = new AccesoLogica();
                 idModulo = Convert.ToInt32(Request.QueryString["idModulo"]);
                 modulo = proy.obtieneDatosModulo(idModulo);
-                LabelElimTareas.Text = "Se va a eliminar el modulo " + modulo.Nombre + ", desea continuar?";
+                LabelElimTareas.Text = "Se va a eliminar el modulo " + modulo.Nombre + ", ¿desea continuar?";
             }
                 
         }

@@ -1205,7 +1205,7 @@
 
     #vistaProyectoFinalizado
 	{
-		background: rgba(123, 18, 18, 0.9);
+		background: rgba(213, 190, 1, 0.9);
 		border: solid 1px rgba(255,255,255,0.25);
 		border-radius: 0.5em;
         margin-top: 0.8em;
@@ -1233,6 +1233,46 @@
 		}
 		
 			#vistaProyectoFinalizado .button:hover
+			{
+				border-color: rgba(255,255,255,0.75);
+				background-color: rgba(255,255,255,0.15);
+				color: #fff;
+                border-radius: 0.5em;
+                /*display:inline-block;
+                margin-left: 5px;*/
+			}
+
+
+    #vistaProyectoEliminado
+	{
+		background: rgba(123, 18, 18, 0.9);
+		border: solid 1px rgba(255,255,255,0.25);
+		border-radius: 0.5em;
+        margin-top: 0.8em;
+        padding: 0.5em;
+	}
+
+		#vistaProyectoEliminado h2
+		{
+			color: #fff;
+		}
+
+        #vistaProyectoEliminado h3
+		{
+			color: #96dad1;
+		}
+		
+		#vistaProyectoEliminado .button
+		{
+			background: #fff;
+			border-color: rgba(255,255,255,0);
+			color: #27636B;
+            border-radius: 0.5em;
+            display:inline-block;
+            margin-left: 5px;
+		}
+		
+			#vistaProyectoEliminado .button:hover
 			{
 				border-color: rgba(255,255,255,0.75);
 				background-color: rgba(255,255,255,0.15);

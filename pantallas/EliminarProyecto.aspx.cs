@@ -27,7 +27,7 @@ namespace Prodeo.pantallas
                 string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
                 AccesoLogica user = new AccesoLogica();
                 datosPro = proy.obtieneDatosProyecto(Session["idProyecto"].ToString());
-                LabelElimTareas.Text = "Se va a eliminar el proyecto " + datosPro.Nombre + ", desea continuar?";
+                LabelElimTareas.Text = "Se va a eliminar el proyecto " + datosPro.Nombre + ", ¿desea continuar?";
             }
             
         }

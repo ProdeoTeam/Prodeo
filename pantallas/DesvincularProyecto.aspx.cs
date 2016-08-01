@@ -24,7 +24,7 @@ namespace Prodeo.pantallas
                 ProyectoLogica proy = new ProyectoLogica();
                 proyecto = Convert.ToInt32(Request.QueryString["idProyecto"]);
                 datosPro = proy.obtieneDatosProyecto(proyecto.ToString());
-                LabelElimTareas.Text = "Se va a desvincular el proyecto " + datosPro.Nombre + ", desea continuar?";
+                LabelElimTareas.Text = "Se va a desvincular el proyecto " + datosPro.Nombre + ", ¿desea continuar?";
             }
         }
 

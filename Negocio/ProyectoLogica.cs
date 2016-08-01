@@ -260,10 +260,10 @@ namespace Negocio
 
         }
 
-        public int obtieneCantidadTareaPend(int idModulo)
+        public int obtieneCantidadTareaActivas(int idModulo)
         {
             AccesoDatos datos = new AccesoDatos();
-            int cantidad = datos.obtenerCantidadTareasPend(idModulo);
+            int cantidad = datos.obtenerCantidadTareasActivas(idModulo);
             return cantidad;
 
         }
