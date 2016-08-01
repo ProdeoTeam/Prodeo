@@ -80,10 +80,10 @@ namespace Negocio
             try
             {
                 datos = new AccesoDatos();
-                cuerpoMail = "Asunto: " + asunto + "</br>";
-                cuerpoMail = cuerpoMail + "Nombre: " + nombreContacto + "</br>";
-                cuerpoMail = cuerpoMail + "Mail: " + mailContacto + "</br>";
-                cuerpoMail = cuerpoMail + "Mensaje: " + mensajeContacto + "</br>";
+                cuerpoMail = "Asunto: " + asunto + "<br/>";
+                cuerpoMail = cuerpoMail + "Nombre: " + nombreContacto + "<br/>";
+                cuerpoMail = cuerpoMail + "Mail: " + mailContacto + "<br/>";
+                cuerpoMail = cuerpoMail + "Mensaje: " + mensajeContacto + "<br/>";
                 if (datos.insertarMail(0, 0, 0, "Solicitud de Newsletter " + nombreContacto, cuerpoMail, "prodeoteam@gmail.com") >= 0)
                 {
                     envioOk = true;
