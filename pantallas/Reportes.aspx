@@ -2,8 +2,8 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
     <script src="<%= ResolveClientUrl("~/js/initPages.js")%>" type="text/javascript"></script>
-   
-           
+
+
     <script type="text/javascript">
         //-------------------------------------------------------------------------------------
         // Creacion de chart ResultadoIntervenciones
@@ -245,30 +245,33 @@
                     data: datosReporte
                 }]
             });
-        
+
         }
 
     </script>
- 
+
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
     <script type="text/javascript" src="../js/highcharts.js"></script>
-        <script type="text/javascript" src="../js/highcharts-3d.js"></script>
+    <script type="text/javascript" src="../js/highcharts-3d.js"></script>
     <script type="text/javascript" src="../js/modules/exporting.js"></script>
     <%--<section id="banner">
         </section>--%>
-        <article id="main">
+    <article id="main">
             <section class="wrapper style3 container special">
 					
 						<header class="major">
 							<h2><strong>Sección Reportes</strong></h2>
 						</header>
-                        <ul class="buttons">
+                 <ul class="buttons">
 						    
-                            <li><select name="proyectosLista" id="proyectosLista" runat="server">
-                                              <option value="seleccione" selected>Seleccione Proyecto</option>
+                            <li><span>Proyecto:</span> 
+                                      <select name="proyectosLista" id="proyectosLista" runat="server">
+                                                  <option value="seleccione" selected>Seleccione Proyecto</option>
                                               
                                             </select></li>
+					    </ul>
+                        <ul class="buttons">
                             <li><a href="#" class="button graph" onclick="crearTareasPorUsuario()" runat="server">Reporte Tareas por<br /> usuario</a></li>
 						    <li><a href="#" class="button graph" onclick="crearTareasPorModulo()" runat="server">Reporte Tareas por<br /> modulo</a></li>
                             <li><a href="#" class="button graph" onclick="crearAvanceDelProyecto()"  runat="server">Reporte Avance del<br /> Proyecto</a></li>
