@@ -1092,11 +1092,11 @@ namespace Datos
 
         }
 
-        public int obtenerCantidadTareasPend(int idModulo)
+        public int obtenerCantidadTareasActivas(int idModulo)
         {
             prodeoEntities context = new prodeoEntities();
             int cantidad = (from t in context.Tareas
-                            where t.idModulo == idModulo && t.Estado == "Pendiente"
+                            where t.idModulo == idModulo && t.Baja == 0
                             select t).Count();
             return cantidad;
 
