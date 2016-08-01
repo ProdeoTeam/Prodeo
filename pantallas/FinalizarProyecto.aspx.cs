@@ -27,7 +27,7 @@ namespace Prodeo.pantallas
                 string permiso = proy.obtienePermisoUsuario(usuario, proyecto);
                 AccesoLogica user = new AccesoLogica();
                 datosPro = proy.obtieneDatosProyecto(proyecto.ToString());
-                LabelElimTareas.Text = "Se va a finalizar el proyecto " + datosPro.Nombre + ", desea continuar?";
+                LabelElimTareas.Text = "Se va a finalizar el proyecto " + datosPro.Nombre + ", ¿desea continuar?";
             }
             
         }

@@ -233,8 +233,8 @@
 				<ul class="icons">
 					<li><a href="https://twitter.com/proyectosprodeo" class="icon circle fa-twitter"><span class="label">Twitter</span></a></li>
 					<li><a href="https://www.facebook.com/pages/Prodeo/1567642463469507" class="icon circle fa-facebook"><span class="label">Facebook</span></a></li>
-					<li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
-					<%--<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
+					<%--<li><a href="#" class="icon circle fa-google-plus"><span class="label">Google+</span></a></li>
+					<li><a href="#" class="icon circle fa-github"><span class="label">Github</span></a></li>
 					<li><a href="#" class="icon circle fa-dribbble"><span class="label">Dribbble</span></a></li>--%>
 				</ul>
 				

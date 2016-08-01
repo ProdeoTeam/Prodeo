@@ -29,7 +29,7 @@ namespace Prodeo.pantallas
                 AccesoLogica user = new AccesoLogica();
                 idTarea = Convert.ToInt32(Request.QueryString["idTarea"]);
                 tarea = proy.obtieneDatosTarea(idTarea);
-                LabelElimTareas.Text = "Se va a eliminar la tarea " + tarea.Nombre + ", desea continuar?";
+                LabelElimTareas.Text = "Se va a eliminar la tarea " + tarea.Nombre + ", ¿desea continuar?";
             }
             
         }

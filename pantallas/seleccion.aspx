@@ -9,7 +9,7 @@
     <section class="wrapper style3 container special">
 					
 						<header class="major">
-							<h2><strong>Que desea hacer???</strong></h2>
+							<h2><strong>¿Qué desea hacer?</strong></h2>
 						</header>
 						
 						<div class="row">
@@ -20,7 +20,7 @@
 									<header>
 										<h3>Crear un Proyecto</h3>
 									</header>
-									<p>Aqui puede dar de alta un proyecto a su medida que le va a ayudar a controlarlo de la forma mas adecuada.</p>
+									<p>Aquí puede dar de alta un proyecto a su medida que le va a ayudar a controlarlo de la forma más adecuada.</p>
 								</section>
 
 							</div>
@@ -31,17 +31,17 @@
 									<header>
 										<h3>Ver sus Proyectos</h3>
 									</header>
-									<p>Aqui podra hacer cambios y seguimientos de todos sus proyetos.</p>
+									<p>Aquí podrá hacer cambios y seguimientos de todos sus proyectos.</p>
 								</section>
 
 							</div>
 						</div>
 
-						<footer class="major">
+						<%--<footer class="major">
 							<ul class="buttons">
 								<li><a href="#" class="button">Ayuda</a></li>
 							</ul>
-						</footer>
+						</footer>--%>
 					
 					</section>
         </article> 
